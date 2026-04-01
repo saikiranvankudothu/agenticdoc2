@@ -1,0 +1,1540 @@
+{
+  "doc_id": "paper",
+  "source_path": "C:\\Users\\saiki\\Downloads\\armdoc\\agenticdoc\\pdf\\paper.pdf",
+  "total_pages": 3,
+  "pages": [
+    {
+      "page_index": 0,
+      "width": 612.0,
+      "height": 792.0,
+      "text_blocks": [
+        {
+          "block_id": "08824b22e9a4",
+          "text": "Information-Flow-Aware KV Recomputation for Long Context",
+          "bbox": {
+            "x0": 178.04100036621094,
+            "y0": 45.50126647949219,
+            "x1": 418.8427429199219,
+            "y1": 57.16654968261719
+          },
+          "page_index": 0,
+          "style": {
+            "font_name": "NimbusRomNo9L-Medi",
+            "font_size": 8.966400146484375,
+            "is_bold": true,
+            "is_italic": false,
+            "color": 0
+          },
+          "block_type": "text",
+          "extraction_method": "embedded",
+          "confidence": 1.0,
+          "raw_block_no": 0
+        },
+        {
+          "block_id": "6b91ed8c5a32",
+          "text": "Figure 1. Context chunks are prefetched independently using chunk-local RoPE. At inference time, retrieved chunks are concatenated with the prompt, global RoPE positions are reconstructed, and prompt-conditioned attention norms are used to select high-impact tokens for full-context KV recomputation. The recomputed KV states are concatenated with cached chunks, restoring cross-chunk interactions. An optional chunk reordering step places more informative chunks closer to the prompt.",
+          "bbox": {
+            "x0": 54.893001556396484,
+            "y0": 234.25502014160156,
+            "x1": 543.011474609375,
+            "y1": 274.9475402832031
+          },
+          "page_index": 0,
+          "style": {
+            "font_name": "NimbusRomNo9L-Regu",
+            "font_size": 8.930462837219238,
+            "is_bold": false,
+            "is_italic": false,
+            "color": 0
+          },
+          "block_type": "text",
+          "extraction_method": "embedded",
+          "confidence": 1.0,
+          "raw_block_no": 1
+        },
+        {
+          "block_id": "63f4b24e04df",
+          "text": "query–token affinity, and effective information flow, by iden- tifying tokens that are structurally positioned to propagate information under the global causal attention induced by retrieval and decoding. Crucially, this property holds only when attention norms are computed under a RoPE order- ing consistent with inference-time decoding, using a global positional reconstruction of retrieved chunks; chunk-local or mismatched positional configurations yield unstable and misleading token rankings. Building on this insight, we further propose a retrieved-chunk reordering strategy based on identified information-flow–critical tokens, improving the effectiveness of downstream attention and providing additional validation of our information-flow perspective. Extensive experiments on both LLM and VLM benchmarks show that our approach consistently outperforms existing recomputation methods under comparable budgets.",
+          "bbox": {
+            "x0": 55.082000732421875,
+            "y0": 296.0985412597656,
+            "x1": 291.18487548828125,
+            "y1": 487.4314880371094
+          },
+          "page_index": 0,
+          "style": {
+            "font_name": "NimbusRomNo9L-Regu",
+            "font_size": 9.862470626831055,
+            "is_bold": false,
+            "is_italic": false,
+            "color": 0
+          },
+          "block_type": "text",
+          "extraction_method": "embedded",
+          "confidence": 1.0,
+          "raw_block_no": 2
+        },
+        {
+          "block_id": "9742d85aee90",
+          "text": "While our primary focus is retrieval-augmented generation with precomputed document-level KV caches, the proposed chunking-and-recompute strategy also applies when such caches are unavailable. In non-RAG long-context inference, the input can be partitioned into chunks whose KV caches are computed independently, followed by selective recom- putation under the global causal mask. This yields two practical benefits: (i) in multi-query or interactive settings, prefetched KV caches can be stored and reused to amor- tize prefilling cost, and (ii) chunk-wise prefilling naturally enables parallel computation across multiple GPUs, since chunks are processed independently prior to recombination and recomputation.",
+          "bbox": {
+            "x0": 54.97200012207031,
+            "y0": 493.35955810546875,
+            "x1": 291.0933532714844,
+            "y1": 648.8264770507812
+          },
+          "page_index": 0,
+          "style": {
+            "font_name": "NimbusRomNo9L-Regu",
+            "font_size": 10.012289047241211,
+            "is_bold": false,
+            "is_italic": false,
+            "color": 0
+          },
+          "block_type": "text",
+          "extraction_method": "embedded",
+          "confidence": 1.0,
+          "raw_block_no": 3
+        },
+        {
+          "block_id": "1af8b51af0e2",
+          "text": "We summarize our contributions as follows.",
+          "bbox": {
+            "x0": 54.97200012207031,
+            "y0": 654.7535400390625,
+            "x1": 230.263916015625,
+            "y1": 666.7584838867188
+          },
+          "page_index": 0,
+          "style": {
+            "font_name": "NimbusRomNo9L-Regu",
+            "font_size": 9.962599754333496,
+            "is_bold": false,
+            "is_italic": false,
+            "color": 0
+          },
+          "block_type": "text",
+          "extraction_method": "embedded",
+          "confidence": 1.0,
+          "raw_block_no": 4
+        },
+        {
+          "block_id": "158db27fd3f6",
+          "text": "• We propose a simple and effective attention- norm–based criterion from the query to context to- kens that jointly captures semantic relevance and effec-",
+          "bbox": {
+            "x0": 66.89700317382812,
+            "y0": 681.9445190429688,
+            "x1": 291.0970153808594,
+            "y1": 717.8604736328125
+          },
+          "page_index": 0,
+          "style": {
+            "font_name": "NimbusRomNo9L-Regu",
+            "font_size": 9.862470626831055,
+            "is_bold": false,
+            "is_italic": false,
+            "color": 0
+          },
+          "block_type": "text",
+          "extraction_method": "embedded",
+          "confidence": 1.0,
+          "raw_block_no": 5
+        },
+        {
+          "block_id": "aede1d4733a5",
+          "text": "tive information flow under the global causal attention graph.",
+          "bbox": {
+            "x0": 327.3659973144531,
+            "y0": 296.0985412597656,
+            "x1": 541.4415893554688,
+            "y1": 320.05950927734375
+          },
+          "page_index": 0,
+          "style": {
+            "font_name": "NimbusRomNo9L-Regu",
+            "font_size": 9.9126615524292,
+            "is_bold": false,
+            "is_italic": false,
+            "color": 0
+          },
+          "block_type": "text",
+          "extraction_method": "embedded",
+          "confidence": 1.0,
+          "raw_block_no": 6
+        },
+        {
+          "block_id": "c3e12812c628",
+          "text": "• We show that reliable recomputation target selection requires an inference-consistent RoPE ordering , and introduce a global positional reconstruction of retrieved chunks to enable stable and meaningful token ranking.",
+          "bbox": {
+            "x0": 318.8970031738281,
+            "y0": 326.8015441894531,
+            "x1": 543.1488647460938,
+            "y1": 374.6715087890625
+          },
+          "page_index": 0,
+          "style": {
+            "font_name": "NimbusRomNo9L-Regu",
+            "font_size": 9.862470626831055,
+            "is_bold": false,
+            "is_italic": false,
+            "color": 0
+          },
+          "block_type": "text",
+          "extraction_method": "embedded",
+          "confidence": 1.0,
+          "raw_block_no": 7
+        },
+        {
+          "block_id": "99b1ddd4c5d7",
+          "text": "• Building on the identified information-flow–critical tokens, we further propose a retrieved-chunk reorder- ing strategy that improves downstream attention ef- fectiveness, providing additional validation of our information-flow perspective.",
+          "bbox": {
+            "x0": 318.8970031738281,
+            "y0": 381.41455078125,
+            "x1": 543.0936889648438,
+            "y1": 441.239501953125
+          },
+          "page_index": 0,
+          "style": {
+            "font_name": "NimbusRomNo9L-Regu",
+            "font_size": 10.061732292175293,
+            "is_bold": false,
+            "is_italic": false,
+            "color": 0
+          },
+          "block_type": "text",
+          "extraction_method": "embedded",
+          "confidence": 1.0,
+          "raw_block_no": 8
+        },
+        {
+          "block_id": "d157d4153800",
+          "text": "• We evaluate our approach on both LLM and VLM RAG benchmarks, demonstrating consistent improvements over existing selective recomputation methods under comparable efficiency budgets.",
+          "bbox": {
+            "x0": 318.8970031738281,
+            "y0": 447.9825439453125,
+            "x1": 541.6083984375,
+            "y1": 495.8525085449219
+          },
+          "page_index": 0,
+          "style": {
+            "font_name": "NimbusRomNo9L-Regu",
+            "font_size": 10.061732292175293,
+            "is_bold": false,
+            "is_italic": false,
+            "color": 0
+          },
+          "block_type": "text",
+          "extraction_method": "embedded",
+          "confidence": 1.0,
+          "raw_block_no": 9
+        },
+        {
+          "block_id": "7f0198f46917",
+          "text": "2. Related Work",
+          "bbox": {
+            "x0": 307.44000244140625,
+            "y0": 510.14105224609375,
+            "x1": 390.55255126953125,
+            "y1": 525.6947631835938
+          },
+          "page_index": 0,
+          "style": {
+            "font_name": "NimbusRomNo9L-Medi",
+            "font_size": 11.9552001953125,
+            "is_bold": true,
+            "is_italic": false,
+            "color": 0
+          },
+          "block_type": "text",
+          "extraction_method": "embedded",
+          "confidence": 1.0,
+          "raw_block_no": 10
+        },
+        {
+          "block_id": "9c1d75a8f44a",
+          "text": "2.1. KV Eviction & Compression",
+          "bbox": {
+            "x0": 307.44000244140625,
+            "y0": 531.4269409179688,
+            "x1": 446.7371520996094,
+            "y1": 544.3882446289062
+          },
+          "page_index": 0,
+          "style": {
+            "font_name": "NimbusRomNo9L-Medi",
+            "font_size": 9.962599754333496,
+            "is_bold": true,
+            "is_italic": false,
+            "color": 0
+          },
+          "block_type": "text",
+          "extraction_method": "embedded",
+          "confidence": 1.0,
+          "raw_block_no": 11
+        },
+        {
+          "block_id": "1806e630227e",
+          "text": "KV eviction and compression methods reduce long-context inference cost by limiting the size or precision of KV caches during decoding. Eviction-based approaches such as H2O ( Zhang et al. , 2023 ) and StreamingLLM ( Xiao et al. , 2023 ) discard cached KV states based on heuristics, includ- ing recency or attention importance. Compression methods such as Pyramid KV ( Cai et al. , 2024 ) and memorization- based approaches ( Wu et al. , 2022 ) approximate histori- cal KV representations through hierarchical compression or summary memory. These methods primarily target the memory footprint and access cost during autoregressive decoding. In contrast, our work addresses the prefilling bottleneck under chunk-wise processing, where KV states are computed independently, and cross-chunk interactions",
+          "bbox": {
+            "x0": 307.44000244140625,
+            "y0": 550.4385375976562,
+            "x1": 543.0971069335938,
+            "y1": 717.8604736328125
+          },
+          "page_index": 0,
+          "style": {
+            "font_name": "NimbusRomNo9L-Regu",
+            "font_size": 9.867501258850098,
+            "is_bold": false,
+            "is_italic": false,
+            "color": 0
+          },
+          "block_type": "text",
+          "extraction_method": "embedded",
+          "confidence": 1.0,
+          "raw_block_no": 12
+        },
+        {
+          "block_id": "c4fc1f6f00bd",
+          "text": "2",
+          "bbox": {
+            "x0": 295.95001220703125,
+            "y0": 730.7615356445312,
+            "x1": 300.9313049316406,
+            "y1": 742.7664794921875
+          },
+          "page_index": 0,
+          "style": {
+            "font_name": "NimbusRomNo9L-Regu",
+            "font_size": 9.962599754333496,
+            "is_bold": false,
+            "is_italic": false,
+            "color": 0
+          },
+          "block_type": "text",
+          "extraction_method": "embedded",
+          "confidence": 1.0,
+          "raw_block_no": 13
+        }
+      ],
+      "figure_blocks": [
+        {
+          "block_id": "b43f1b79b7a6",
+          "bbox": {
+            "x0": 0.0,
+            "y0": 0.0,
+            "x1": 612.0,
+            "y1": 45.50126647949219
+          },
+          "page_index": 0,
+          "image_path": null,
+          "caption": null
+        },
+        {
+          "block_id": "75cc57d7f1a7",
+          "bbox": {
+            "x0": 0.0,
+            "y0": 57.16654968261719,
+            "x1": 612.0,
+            "y1": 234.25502014160156
+          },
+          "page_index": 0,
+          "image_path": null,
+          "caption": null
+        }
+      ],
+      "extraction_method": "embedded",
+      "ocr_triggered": false
+    },
+    {
+      "page_index": 1,
+      "width": 612.0,
+      "height": 792.0,
+      "text_blocks": [
+        {
+          "block_id": "717d888e4ca0",
+          "text": "Information-Flow-Aware KV Recomputation for Long Context",
+          "bbox": {
+            "x0": 178.04100036621094,
+            "y0": 45.50126647949219,
+            "x1": 418.8427429199219,
+            "y1": 57.16654968261719
+          },
+          "page_index": 1,
+          "style": {
+            "font_name": "NimbusRomNo9L-Medi",
+            "font_size": 8.966400146484375,
+            "is_bold": true,
+            "is_italic": false,
+            "color": 0
+          },
+          "block_type": "text",
+          "extraction_method": "embedded",
+          "confidence": 1.0,
+          "raw_block_no": 0
+        },
+        {
+          "block_id": "623da626611a",
+          "text": "are lost. Rather than shrinking or discarding KV caches, we retain token-level KV states and selectively recompute a small subset of tokens to restore global information flow.",
+          "bbox": {
+            "x0": 55.082000732421875,
+            "y0": 67.81756591796875,
+            "x1": 290.68701171875,
+            "y1": 103.73351287841797
+          },
+          "page_index": 1,
+          "style": {
+            "font_name": "NimbusRomNo9L-Regu",
+            "font_size": 9.877554893493652,
+            "is_bold": false,
+            "is_italic": false,
+            "color": 0
+          },
+          "block_type": "text",
+          "extraction_method": "embedded",
+          "confidence": 1.0,
+          "raw_block_no": 1
+        },
+        {
+          "block_id": "cc2852300425",
+          "text": "2.2. Chunked Input Processing",
+          "bbox": {
+            "x0": 55.439998626708984,
+            "y0": 116.50292205810547,
+            "x1": 186.07958984375,
+            "y1": 129.46426391601562
+          },
+          "page_index": 1,
+          "style": {
+            "font_name": "NimbusRomNo9L-Medi",
+            "font_size": 9.962599754333496,
+            "is_bold": true,
+            "is_italic": false,
+            "color": 0
+          },
+          "block_type": "text",
+          "extraction_method": "embedded",
+          "confidence": 1.0,
+          "raw_block_no": 2
+        },
+        {
+          "block_id": "0a7751e8be29",
+          "text": "Chunked input processing has been explored to extend effec- tive context length beyond the model’s native window. Con- text Expansion with Parallel Encoding (CEPE) ( Yen et al. , 2024 ) encodes long contexts in parallel using a lightweight encoder and enables a decoder to attend to chunk repre- sentations via cross-attention. A key limitation of such approaches is that chunks are encoded independently, and cross-chunk interactions are not explicitly modeled within the chunk representations. Our method instead targets inter- action across chunks by selectively recomputing KV states under the full context. Moreover, CEPE requires addi- tional training to align the parallel encoder with the decoder, whereas our approach operates in a plug-and-play manner at inference time without modifying the pretrained model.",
+          "bbox": {
+            "x0": 55.082000732421875,
+            "y0": 135.5135498046875,
+            "x1": 291.09796142578125,
+            "y1": 302.93548583984375
+          },
+          "page_index": 1,
+          "style": {
+            "font_name": "NimbusRomNo9L-Regu",
+            "font_size": 9.862470626831055,
+            "is_bold": false,
+            "is_italic": false,
+            "color": 0
+          },
+          "block_type": "text",
+          "extraction_method": "embedded",
+          "confidence": 1.0,
+          "raw_block_no": 3
+        },
+        {
+          "block_id": "9fe624051d70",
+          "text": "2.3. KV Recomputation",
+          "bbox": {
+            "x0": 55.439998626708984,
+            "y0": 315.7059020996094,
+            "x1": 155.61392211914062,
+            "y1": 328.667236328125
+          },
+          "page_index": 1,
+          "style": {
+            "font_name": "NimbusRomNo9L-Medi",
+            "font_size": 9.962599754333496,
+            "is_bold": true,
+            "is_italic": false,
+            "color": 0
+          },
+          "block_type": "text",
+          "extraction_method": "embedded",
+          "confidence": 1.0,
+          "raw_block_no": 4
+        },
+        {
+          "block_id": "822429da4b42",
+          "text": "KV recomputation methods aim to recover accuracy when reusing independently prefetched KV caches by selectively recomputing a small subset of tokens under the full context. CacheBlend identifies tokens whose cached KV states devi- ate most from full-context attention, while EPIC mitigates positional mismatch by recomputing fixed chunk-initial to- kens. These approaches select recomputation targets based on token-level deviation or positional heuristics, without explicitly modeling how information propagates to gener- ated tokens. In contrast, our method selects tokens based on their capacity to transmit information across chunks, jointly accounting for semantic relevance and positional influence under inference-time attention geometry.",
+          "bbox": {
+            "x0": 55.439998626708984,
+            "y0": 334.716552734375,
+            "x1": 291.1810607910156,
+            "y1": 490.1835021972656
+          },
+          "page_index": 1,
+          "style": {
+            "font_name": "NimbusRomNo9L-Regu",
+            "font_size": 9.882577896118164,
+            "is_bold": false,
+            "is_italic": false,
+            "color": 0
+          },
+          "block_type": "text",
+          "extraction_method": "embedded",
+          "confidence": 1.0,
+          "raw_block_no": 5
+        },
+        {
+          "block_id": "64ae39c89360",
+          "text": "3. Preliminary",
+          "bbox": {
+            "x0": 55.439998626708984,
+            "y0": 504.47198486328125,
+            "x1": 128.94056701660156,
+            "y1": 520.0256958007812
+          },
+          "page_index": 1,
+          "style": {
+            "font_name": "NimbusRomNo9L-Medi",
+            "font_size": 11.9552001953125,
+            "is_bold": true,
+            "is_italic": false,
+            "color": 0
+          },
+          "block_type": "text",
+          "extraction_method": "embedded",
+          "confidence": 1.0,
+          "raw_block_no": 6
+        },
+        {
+          "block_id": "e0ad6092c1ed",
+          "text": "3.1. KV Cache",
+          "bbox": {
+            "x0": 55.439998626708984,
+            "y0": 525.7579345703125,
+            "x1": 116.869384765625,
+            "y1": 538.71923828125
+          },
+          "page_index": 1,
+          "style": {
+            "font_name": "NimbusRomNo9L-Medi",
+            "font_size": 9.962599754333496,
+            "is_bold": true,
+            "is_italic": false,
+            "color": 0
+          },
+          "block_type": "text",
+          "extraction_method": "embedded",
+          "confidence": 1.0,
+          "raw_block_no": 7
+        },
+        {
+          "block_id": "f855b5544fdf",
+          "text": "We consider an autoregressive Transformer decoder. Let h ℓ t ∈ R d denote the hidden state at layer ℓ and position t . For each attention head, keys and values are computed as linear projections of the hidden states,",
+          "bbox": {
+            "x0": 54.97200012207031,
+            "y0": 544.7685546875,
+            "x1": 291.1834716796875,
+            "y1": 592.6394653320312
+          },
+          "page_index": 1,
+          "style": {
+            "font_name": "NimbusRomNo9L-Regu",
+            "font_size": 10.061732292175293,
+            "is_bold": false,
+            "is_italic": false,
+            "color": 0
+          },
+          "block_type": "text",
+          "extraction_method": "embedded",
+          "confidence": 1.0,
+          "raw_block_no": 8
+        },
+        {
+          "block_id": "086099d2a571",
+          "text": "k ℓ t = W ℓ K h ℓ t , v ℓ t = W ℓ V h ℓ t , (1)",
+          "bbox": {
+            "x0": 106.29499816894531,
+            "y0": 600.3186645507812,
+            "x1": 290.1141662597656,
+            "y1": 614.6156616210938
+          },
+          "page_index": 1,
+          "style": {
+            "font_name": "NimbusRomNo9L-Regu",
+            "font_size": 9.962599754333496,
+            "is_bold": false,
+            "is_italic": false,
+            "color": 0
+          },
+          "block_type": "text",
+          "extraction_method": "embedded",
+          "confidence": 1.0,
+          "raw_block_no": 9
+        },
+        {
+          "block_id": "fd5ad7dd566a",
+          "text": "where the head index is omitted for clarity.",
+          "bbox": {
+            "x0": 55.08201599121094,
+            "y0": 620.279541015625,
+            "x1": 225.8310089111328,
+            "y1": 632.2844848632812
+          },
+          "page_index": 1,
+          "style": {
+            "font_name": "NimbusRomNo9L-Regu",
+            "font_size": 9.962599754333496,
+            "is_bold": false,
+            "is_italic": false,
+            "color": 0
+          },
+          "block_type": "text",
+          "extraction_method": "embedded",
+          "confidence": 1.0,
+          "raw_block_no": 10
+        },
+        {
+          "block_id": "95a233b098bc",
+          "text": "During autoregressive decoding, to avoid recomputing keys and values for previously processed tokens, Transformer de- coders maintain a key–value (KV) cache that stores all past { k ℓ s , v ℓ s } s ≤ t at each layer. We denote the cached tensors up to position t by",
+          "bbox": {
+            "x0": 55.439998626708984,
+            "y0": 638.2125244140625,
+            "x1": 291.097900390625,
+            "y1": 698.0374755859375
+          },
+          "page_index": 1,
+          "style": {
+            "font_name": "NimbusRomNo9L-Regu",
+            "font_size": 9.862470626831055,
+            "is_bold": false,
+            "is_italic": false,
+            "color": 0
+          },
+          "block_type": "text",
+          "extraction_method": "embedded",
+          "confidence": 1.0,
+          "raw_block_no": 11
+        },
+        {
+          "block_id": "f60731ce51ee",
+          "text": "K ℓ ≤ t ∈ R t × d h , V ℓ ≤ t ∈ R t × d h , (2)",
+          "bbox": {
+            "x0": 102.45100402832031,
+            "y0": 705.4935302734375,
+            "x1": 290.1125793457031,
+            "y1": 727.0880737304688
+          },
+          "page_index": 1,
+          "style": {
+            "font_name": "NimbusRomNo9L-Regu",
+            "font_size": 9.962599754333496,
+            "is_bold": false,
+            "is_italic": false,
+            "color": 0
+          },
+          "block_type": "text",
+          "extraction_method": "embedded",
+          "confidence": 1.0,
+          "raw_block_no": 12
+        },
+        {
+          "block_id": "ccf680846ce3",
+          "text": "where d h is the per-head dimension. In practice, inference consists of a prefilling phase that computes KV states for an input context of length L in a single forward pass, followed by an iterative decoding phase that appends one new KV pair per generated token. In long-context question answering, where the generated answer is short, inference cost is often dominated by the prefilling stage.",
+          "bbox": {
+            "x0": 307.0820007324219,
+            "y0": 67.81756591796875,
+            "x1": 542.6870727539062,
+            "y1": 151.5535125732422
+          },
+          "page_index": 1,
+          "style": {
+            "font_name": "NimbusRomNo9L-Regu",
+            "font_size": 9.942654609680176,
+            "is_bold": false,
+            "is_italic": false,
+            "color": 0
+          },
+          "block_type": "text",
+          "extraction_method": "embedded",
+          "confidence": 1.0,
+          "raw_block_no": 13
+        },
+        {
+          "block_id": "ef45618a7832",
+          "text": "3.2. Rotary Positional Embedding (RoPE)",
+          "bbox": {
+            "x0": 307.44000244140625,
+            "y0": 164.3238983154297,
+            "x1": 484.91375732421875,
+            "y1": 177.28524780273438
+          },
+          "page_index": 1,
+          "style": {
+            "font_name": "NimbusRomNo9L-Medi",
+            "font_size": 9.962599754333496,
+            "is_bold": true,
+            "is_italic": false,
+            "color": 0
+          },
+          "block_type": "text",
+          "extraction_method": "embedded",
+          "confidence": 1.0,
+          "raw_block_no": 14
+        },
+        {
+          "block_id": "faec026a8931",
+          "text": "Rotary positional embedding (RoPE) encodes positional information by applying position-dependent rotations to queries and keys. For vectors decomposed into 2D sub- spaces, RoPE applies",
+          "bbox": {
+            "x0": 307.44000244140625,
+            "y0": 183.33453369140625,
+            "x1": 543.093505859375,
+            "y1": 231.2045135498047
+          },
+          "page_index": 1,
+          "style": {
+            "font_name": "NimbusRomNo9L-Regu",
+            "font_size": 10.061732292175293,
+            "is_bold": false,
+            "is_italic": false,
+            "color": 0
+          },
+          "block_type": "text",
+          "extraction_method": "embedded",
+          "confidence": 1.0,
+          "raw_block_no": 15
+        },
+        {
+          "block_id": "095427aca0b3",
+          "text": "RoPE( x , t ) = � cos( θ i t ) − sin( θ i t ) sin( θ i t ) cos( θ i t )",
+          "bbox": {
+            "x0": 341.6440124511719,
+            "y0": 233.20089721679688,
+            "x1": 491.4939880371094,
+            "y1": 270.3813171386719
+          },
+          "page_index": 1,
+          "style": {
+            "font_name": "CMR10",
+            "font_size": 9.962599754333496,
+            "is_bold": false,
+            "is_italic": false,
+            "color": 0
+          },
+          "block_type": "equation",
+          "extraction_method": "embedded",
+          "confidence": 1.0,
+          "raw_block_no": 16
+        },
+        {
+          "block_id": "19eaceef509c",
+          "text": "� x , (3)",
+          "bbox": {
+            "x0": 491.5039367675781,
+            "y0": 233.20089721679688,
+            "x1": 542.1090087890625,
+            "y1": 270.3813171386719
+          },
+          "page_index": 1,
+          "style": {
+            "font_name": "NimbusRomNo9L-Regu",
+            "font_size": 9.962599754333496,
+            "is_bold": false,
+            "is_italic": false,
+            "color": 0
+          },
+          "block_type": "text",
+          "extraction_method": "embedded",
+          "confidence": 1.0,
+          "raw_block_no": 17
+        },
+        {
+          "block_id": "43c816bd217a",
+          "text": "where the angular frequencies are defined as",
+          "bbox": {
+            "x0": 307.0819396972656,
+            "y0": 271.9245910644531,
+            "x1": 484.1273193359375,
+            "y1": 283.9295349121094
+          },
+          "page_index": 1,
+          "style": {
+            "font_name": "NimbusRomNo9L-Regu",
+            "font_size": 9.962599754333496,
+            "is_bold": false,
+            "is_italic": false,
+            "color": 0
+          },
+          "block_type": "text",
+          "extraction_method": "embedded",
+          "confidence": 1.0,
+          "raw_block_no": 18
+        },
+        {
+          "block_id": "c6947755792d",
+          "text": "θ i = 10000 − 2 i/d , i = 0 , . . . , d",
+          "bbox": {
+            "x0": 347.6119384765625,
+            "y0": 292.6640930175781,
+            "x1": 480.1424865722656,
+            "y1": 310.8606872558594
+          },
+          "page_index": 1,
+          "style": {
+            "font_name": "CMMI10",
+            "font_size": 9.962599754333496,
+            "is_bold": false,
+            "is_italic": true,
+            "color": 0
+          },
+          "block_type": "equation",
+          "extraction_method": "embedded",
+          "confidence": 1.0,
+          "raw_block_no": 19
+        },
+        {
+          "block_id": "0a5554af261f",
+          "text": "2 − 1 . (4)",
+          "bbox": {
+            "x0": 475.0639953613281,
+            "y0": 297.6705322265625,
+            "x1": 542.1072998046875,
+            "y1": 323.2740783691406
+          },
+          "page_index": 1,
+          "style": {
+            "font_name": "NimbusRomNo9L-Regu",
+            "font_size": 9.962599754333496,
+            "is_bold": false,
+            "is_italic": false,
+            "color": 0
+          },
+          "block_type": "text",
+          "extraction_method": "embedded",
+          "confidence": 1.0,
+          "raw_block_no": 20
+        },
+        {
+          "block_id": "bd648a3b6c15",
+          "text": "Lower-index dimensions correspond to higher frequencies and are more sensitive to positional differences, while higher-index dimensions encode lower-frequency compo- nents. Consequently, the effectiveness of attention interac- tions depends on the absolute positions at which tokens are placed, which becomes particularly relevant when KV states are computed independently and later reused or recomputed under different positional assignments.",
+          "bbox": {
+            "x0": 307.44000244140625,
+            "y0": 321.2305603027344,
+            "x1": 543.0935668945312,
+            "y1": 416.9215087890625
+          },
+          "page_index": 1,
+          "style": {
+            "font_name": "NimbusRomNo9L-Regu",
+            "font_size": 10.02714729309082,
+            "is_bold": false,
+            "is_italic": false,
+            "color": 0
+          },
+          "block_type": "text",
+          "extraction_method": "embedded",
+          "confidence": 1.0,
+          "raw_block_no": 21
+        },
+        {
+          "block_id": "5bd01a55db02",
+          "text": "4. Method",
+          "bbox": {
+            "x0": 307.44000244140625,
+            "y0": 431.21002197265625,
+            "x1": 359.24188232421875,
+            "y1": 446.76373291015625
+          },
+          "page_index": 1,
+          "style": {
+            "font_name": "NimbusRomNo9L-Medi",
+            "font_size": 11.9552001953125,
+            "is_bold": true,
+            "is_italic": false,
+            "color": 0
+          },
+          "block_type": "text",
+          "extraction_method": "embedded",
+          "confidence": 1.0,
+          "raw_block_no": 22
+        },
+        {
+          "block_id": "e2542c1387b2",
+          "text": "In this section, we introduce our method for selecting re- computation targets by jointly considering token semantic relevance and positional influence, with the goal of facilitat- ing information propagation during decoding.",
+          "bbox": {
+            "x0": 307.44000244140625,
+            "y0": 452.85455322265625,
+            "x1": 543.0948486328125,
+            "y1": 500.7244873046875
+          },
+          "page_index": 1,
+          "style": {
+            "font_name": "NimbusRomNo9L-Regu",
+            "font_size": 9.877554893493652,
+            "is_bold": false,
+            "is_italic": false,
+            "color": 0
+          },
+          "block_type": "text",
+          "extraction_method": "embedded",
+          "confidence": 1.0,
+          "raw_block_no": 23
+        },
+        {
+          "block_id": "c4cf0ee294cc",
+          "text": "4.1. Input Chunking and Prefilling",
+          "bbox": {
+            "x0": 307.44000244140625,
+            "y0": 513.493896484375,
+            "x1": 453.9800109863281,
+            "y1": 526.4552001953125
+          },
+          "page_index": 1,
+          "style": {
+            "font_name": "NimbusRomNo9L-Medi",
+            "font_size": 9.962599754333496,
+            "is_bold": true,
+            "is_italic": false,
+            "color": 0
+          },
+          "block_type": "text",
+          "extraction_method": "embedded",
+          "confidence": 1.0,
+          "raw_block_no": 24
+        },
+        {
+          "block_id": "14ee9cb6496a",
+          "text": "Let the input consist of N tokens, which we partition into K disjoint chunks { C 1 , . . . , C K } . Each chunk serves as a basic unit for prefilling and can correspond to a naturally independent segment (e.g., a document or an image), or a contiguous partition of a single long input (e.g., a text sequence or a visual token grid).",
+          "bbox": {
+            "x0": 307.44000244140625,
+            "y0": 532.5055541992188,
+            "x1": 541.7927856445312,
+            "y1": 604.2864990234375
+          },
+          "page_index": 1,
+          "style": {
+            "font_name": "NimbusRomNo9L-Regu",
+            "font_size": 10.061732292175293,
+            "is_bold": false,
+            "is_italic": false,
+            "color": 0
+          },
+          "block_type": "text",
+          "extraction_method": "embedded",
+          "confidence": 1.0,
+          "raw_block_no": 25
+        },
+        {
+          "block_id": "77ab0d4ca03e",
+          "text": "During chunk-wise prefilling, each chunk is processed inde- pendently to compute its key–value (KV) cache. Within a chunk C i , positional indices are assigned locally: tokens are indexed from 0 to | C i | − 1 according to their order inside the chunk, regardless of their absolute position in the full input. Keys and queries are then computed using RoPE based on these chunk-local positions, and the resulting KV states are stored in the cache associated with C i . As a result, chunk-wise prefilling encodes KV states under chunk-local",
+          "bbox": {
+            "x0": 307.44000244140625,
+            "y0": 610.2135620117188,
+            "x1": 543.0897827148438,
+            "y1": 717.8604736328125
+          },
+          "page_index": 1,
+          "style": {
+            "font_name": "NimbusRomNo9L-Regu",
+            "font_size": 10.061732292175293,
+            "is_bold": false,
+            "is_italic": false,
+            "color": 0
+          },
+          "block_type": "text",
+          "extraction_method": "embedded",
+          "confidence": 1.0,
+          "raw_block_no": 26
+        },
+        {
+          "block_id": "729c4e8ba624",
+          "text": "3",
+          "bbox": {
+            "x0": 295.95001220703125,
+            "y0": 730.7615356445312,
+            "x1": 300.9313049316406,
+            "y1": 742.7664794921875
+          },
+          "page_index": 1,
+          "style": {
+            "font_name": "NimbusRomNo9L-Regu",
+            "font_size": 9.962599754333496,
+            "is_bold": false,
+            "is_italic": false,
+            "color": 0
+          },
+          "block_type": "text",
+          "extraction_method": "embedded",
+          "confidence": 1.0,
+          "raw_block_no": 27
+        }
+      ],
+      "figure_blocks": [
+        {
+          "block_id": "a07db44652c8",
+          "bbox": {
+            "x0": 0.0,
+            "y0": 0.0,
+            "x1": 612.0,
+            "y1": 45.50126647949219
+          },
+          "page_index": 1,
+          "image_path": null,
+          "caption": null
+        }
+      ],
+      "extraction_method": "embedded",
+      "ocr_triggered": false
+    },
+    {
+      "page_index": 2,
+      "width": 612.0,
+      "height": 792.0,
+      "text_blocks": [
+        {
+          "block_id": "57316364a5ed",
+          "text": "Information-Flow-Aware KV Recomputation for Long Context",
+          "bbox": {
+            "x0": 178.04100036621094,
+            "y0": 45.50126647949219,
+            "x1": 418.8427429199219,
+            "y1": 57.16654968261719
+          },
+          "page_index": 2,
+          "style": {
+            "font_name": "NimbusRomNo9L-Medi",
+            "font_size": 8.966400146484375,
+            "is_bold": true,
+            "is_italic": false,
+            "color": 0
+          },
+          "block_type": "text",
+          "extraction_method": "embedded",
+          "confidence": 1.0,
+          "raw_block_no": 0
+        },
+        {
+          "block_id": "959a0f162b58",
+          "text": "which frequency placement and prompt–context proximity can arise in practice.",
+          "bbox": {
+            "x0": 55.082000732421875,
+            "y0": 67.81756591796875,
+            "x1": 289.7856140136719,
+            "y1": 91.77849578857422
+          },
+          "page_index": 2,
+          "style": {
+            "font_name": "NimbusRomNo9L-Regu",
+            "font_size": 9.977532386779785,
+            "is_bold": false,
+            "is_italic": false,
+            "color": 0
+          },
+          "block_type": "text",
+          "extraction_method": "embedded",
+          "confidence": 1.0,
+          "raw_block_no": 1
+        },
+        {
+          "block_id": "2c2f6714b612",
+          "text": "4.3. KV reorder",
+          "bbox": {
+            "x0": 55.439998626708984,
+            "y0": 104.54790496826172,
+            "x1": 122.7672348022461,
+            "y1": 117.50924682617188
+          },
+          "page_index": 2,
+          "style": {
+            "font_name": "NimbusRomNo9L-Medi",
+            "font_size": 9.962599754333496,
+            "is_bold": true,
+            "is_italic": false,
+            "color": 0
+          },
+          "block_type": "text",
+          "extraction_method": "embedded",
+          "confidence": 1.0,
+          "raw_block_no": 2
+        },
+        {
+          "block_id": "a79d14eb5f41",
+          "text": "Beyond KV prefilling and token selection, we further con- sider the ordering of chunks at inference time as an addi- tional degree of freedom for facilitating information flow. Under RoPE-based causal decoding, tokens placed closer to the prompt in the sequence are more likely to interact with prompt queries through attention, which facilitates more effective propagation of contextual information to down- stream generated tokens. We therefore introduce an optional chunk reordering step for settings where input chunks corre- spond to independent segments , such as multi-document retrieval, and where no intrinsic sequential order needs to be preserved. For inputs with intrinsic sequential structure, such as a single long document, reordering may disrupt coherence and is therefore not used. To enable chunk re- ordering, we first derive chunk-level importance scores.",
+          "bbox": {
+            "x0": 55.439998626708984,
+            "y0": 123.55853271484375,
+            "x1": 291.184814453125,
+            "y1": 302.93548583984375
+          },
+          "page_index": 2,
+          "style": {
+            "font_name": "NimbusRomNo9L-Regu",
+            "font_size": 9.977532386779785,
+            "is_bold": false,
+            "is_italic": false,
+            "color": 0
+          },
+          "block_type": "text",
+          "extraction_method": "embedded",
+          "confidence": 1.0,
+          "raw_block_no": 3
+        },
+        {
+          "block_id": "654b5c0d53d9",
+          "text": "Concretely, we perform an initial round of token selection within each chunk independently, using local RoPE rather than global positions. This makes token selection within each chunk comparable and prevents chunks closer to the prompt from being systematically favored. After reordering, we reselect tokens under the updated chunk order to obtain the final set of recomputation tokens. This second selection pass accounts for the fact that reordering alters the original prompt–context RoPE geometry, and ensures the selected tokens remain important under the new layout. Autoregres- sive decoding is then performed using the reordered chunks and the corresponding recomputed KV states.",
+          "bbox": {
+            "x0": 55.082000732421875,
+            "y0": 308.8635559082031,
+            "x1": 291.0936279296875,
+            "y1": 452.37548828125
+          },
+          "page_index": 2,
+          "style": {
+            "font_name": "NimbusRomNo9L-Regu",
+            "font_size": 9.95761775970459,
+            "is_bold": false,
+            "is_italic": false,
+            "color": 0
+          },
+          "block_type": "text",
+          "extraction_method": "embedded",
+          "confidence": 1.0,
+          "raw_block_no": 4
+        },
+        {
+          "block_id": "596444446dda",
+          "text": "Thus, chunk reordering leverages the freedom in chunk or- dering to further align RoPE geometry with information flow in the decoding phase, complementing token selection under chunk-wise prefilling. More details on KV recompu- tation implementation can be found at Appendix. B",
+          "bbox": {
+            "x0": 55.13100051879883,
+            "y0": 458.3035583496094,
+            "x1": 291.09857177734375,
+            "y1": 518.1284790039062
+          },
+          "page_index": 2,
+          "style": {
+            "font_name": "NimbusRomNo9L-Regu",
+            "font_size": 10.002370834350586,
+            "is_bold": false,
+            "is_italic": false,
+            "color": 0
+          },
+          "block_type": "text",
+          "extraction_method": "embedded",
+          "confidence": 1.0,
+          "raw_block_no": 5
+        },
+        {
+          "block_id": "ebb1ea93d67a",
+          "text": "5. Ablation Result",
+          "bbox": {
+            "x0": 55.439998626708984,
+            "y0": 532.4170532226562,
+            "x1": 147.43527221679688,
+            "y1": 547.9707641601562
+          },
+          "page_index": 2,
+          "style": {
+            "font_name": "NimbusRomNo9L-Medi",
+            "font_size": 11.9552001953125,
+            "is_bold": true,
+            "is_italic": false,
+            "color": 0
+          },
+          "block_type": "text",
+          "extraction_method": "embedded",
+          "confidence": 1.0,
+          "raw_block_no": 6
+        },
+        {
+          "block_id": "62540bf33c0a",
+          "text": "5.1. RoPE Geometry",
+          "bbox": {
+            "x0": 55.439998626708984,
+            "y0": 553.7029418945312,
+            "x1": 142.8717803955078,
+            "y1": 566.6642456054688
+          },
+          "page_index": 2,
+          "style": {
+            "font_name": "NimbusRomNo9L-Medi",
+            "font_size": 9.962599754333496,
+            "is_bold": true,
+            "is_italic": false,
+            "color": 0
+          },
+          "block_type": "text",
+          "extraction_method": "embedded",
+          "confidence": 1.0,
+          "raw_block_no": 7
+        },
+        {
+          "block_id": "3db7e2e2ce9e",
+          "text": "We ablate different RoPE geometry configurations to study how positional allocation during token selection affects downstream performance.",
+          "bbox": {
+            "x0": 54.97200012207031,
+            "y0": 572.7145385742188,
+            "x1": 289.7912902832031,
+            "y1": 608.6295166015625
+          },
+          "page_index": 2,
+          "style": {
+            "font_name": "NimbusRomNo9L-Regu",
+            "font_size": 9.947644233703613,
+            "is_bold": false,
+            "is_italic": false,
+            "color": 0
+          },
+          "block_type": "text",
+          "extraction_method": "embedded",
+          "confidence": 1.0,
+          "raw_block_no": 8
+        },
+        {
+          "block_id": "64831ed08030",
+          "text": "Table 1 shows that RoPE geometry has a substantial impact on recomputation effectiveness. Among the tested configura- tions, GLOBAL consistently achieves the best performance across all four benchmarks. In contrast, configurations that assign prompt and context tokens to separate or truncated positional ranges (e.g., HL–HP and TL–TP) result in notice- ably lower scores. This suggests that mismatches between the positional layout used for selection and the actual decod-",
+          "bbox": {
+            "x0": 55.13100051879883,
+            "y0": 614.5575561523438,
+            "x1": 291.0980224609375,
+            "y1": 710.2484741210938
+          },
+          "page_index": 2,
+          "style": {
+            "font_name": "NimbusRomNo9L-Regu",
+            "font_size": 9.862470626831055,
+            "is_bold": false,
+            "is_italic": false,
+            "color": 0
+          },
+          "block_type": "text",
+          "extraction_method": "embedded",
+          "confidence": 1.0,
+          "raw_block_no": 9
+        },
+        {
+          "block_id": "9e3e7bed84c3",
+          "text": "ing order can degrade the quality of selected recomputation targets.",
+          "bbox": {
+            "x0": 307.44000244140625,
+            "y0": 67.81756591796875,
+            "x1": 541.4385375976562,
+            "y1": 91.77849578857422
+          },
+          "page_index": 2,
+          "style": {
+            "font_name": "NimbusRomNo9L-Regu",
+            "font_size": 9.902643203735352,
+            "is_bold": false,
+            "is_italic": false,
+            "color": 0
+          },
+          "block_type": "text",
+          "extraction_method": "embedded",
+          "confidence": 1.0,
+          "raw_block_no": 10
+        },
+        {
+          "block_id": "006ad7530e72",
+          "text": "These results indicate that effective selective recomputation benefits from evaluating token importance under a positional layout that closely matches inference-time decoding. Based on this observation, we adopt GLOBAL as the default RoPE geometry for token selection in our method. In the reorder- ing setting, we use HL–TP for the first-stage selection to encourage diversity across chunks, followed by GLOBAL for the second-stage selection to refine recomputation tar- gets under the final positional layout.",
+          "bbox": {
+            "x0": 307.1310119628906,
+            "y0": 97.70556640625,
+            "x1": 543.0936889648438,
+            "y1": 205.3524627685547
+          },
+          "page_index": 2,
+          "style": {
+            "font_name": "NimbusRomNo9L-Regu",
+            "font_size": 9.89261531829834,
+            "is_bold": false,
+            "is_italic": false,
+            "color": 0
+          },
+          "block_type": "text",
+          "extraction_method": "embedded",
+          "confidence": 1.0,
+          "raw_block_no": 11
+        },
+        {
+          "block_id": "d66871f65a88",
+          "text": "Table 1. Ablation of RoPE geometry configurations on Qwen under the passage-split setting. Higher is better.",
+          "bbox": {
+            "x0": 306.93798828125,
+            "y0": 216.6430206298828,
+            "x1": 541.4437866210938,
+            "y1": 237.41055297851562
+          },
+          "page_index": 2,
+          "style": {
+            "font_name": "NimbusRomNo9L-Regu",
+            "font_size": 8.966400146484375,
+            "is_bold": false,
+            "is_italic": false,
+            "color": 0
+          },
+          "block_type": "text",
+          "extraction_method": "embedded",
+          "confidence": 1.0,
+          "raw_block_no": 12
+        },
+        {
+          "block_id": "3bf60b9331d9",
+          "text": "Method 2WikiMQA MuSiQue HotpotQA NarrativeQA",
+          "bbox": {
+            "x0": 312.4362487792969,
+            "y0": 247.3770751953125,
+            "x1": 536.4508056640625,
+            "y1": 257.4104309082031
+          },
+          "page_index": 2,
+          "style": {
+            "font_name": "NimbusRomNo9L-Regu",
+            "font_size": 8.326441764831543,
+            "is_bold": false,
+            "is_italic": false,
+            "color": 0
+          },
+          "block_type": "text",
+          "extraction_method": "embedded",
+          "confidence": 1.0,
+          "raw_block_no": 13
+        },
+        {
+          "block_id": "d6f1d95ff92a",
+          "text": "HL–HP 0.4455 0.2871 0.5529 0.1481 TL–TP 0.4458 0.2970 0.5693 0.1923 HL–TP 0.4722 0.3072 0.5651 0.2106 GLOBAL 0.5019 0.3386 0.5954 0.2288",
+          "bbox": {
+            "x0": 312.4362487792969,
+            "y0": 261.54925537109375,
+            "x1": 526.334228515625,
+            "y1": 302.0570983886719
+          },
+          "page_index": 2,
+          "style": {
+            "font_name": "NimbusRomNo9L-Regu",
+            "font_size": 8.326441764831543,
+            "is_bold": false,
+            "is_italic": false,
+            "color": 0
+          },
+          "block_type": "text",
+          "extraction_method": "embedded",
+          "confidence": 1.0,
+          "raw_block_no": 14
+        },
+        {
+          "block_id": "871ef15af7fb",
+          "text": "5.2. RoPE Similarity",
+          "bbox": {
+            "x0": 307.44000244140625,
+            "y0": 324.9949035644531,
+            "x1": 394.8916931152344,
+            "y1": 337.95623779296875
+          },
+          "page_index": 2,
+          "style": {
+            "font_name": "NimbusRomNo9L-Medi",
+            "font_size": 9.962599754333496,
+            "is_bold": true,
+            "is_italic": false,
+            "color": 0
+          },
+          "block_type": "text",
+          "extraction_method": "embedded",
+          "confidence": 1.0,
+          "raw_block_no": 15
+        },
+        {
+          "block_id": "ada325fabfce",
+          "text": "To further understand why our selection strategy facilitates effective information propagation, we analyze the RoPE similarity between prompt tokens and the selected context tokens. Importantly, this analysis blocks the contribution of token semantics: similarities are computed purely from the RoPE embedding matrices. Specifically, we measure the similarity between the RoPE embeddings of prompt tokens and those of the selected context tokens, and report both the Mean-of-Max (MoM) similarity and the maximum similarity across selected tokens. Higher values indicate that selected tokens occupy RoPE frequency bands that are more closely aligned with the prompt, and are therefore more positionally reachable under causal decoding.",
+          "bbox": {
+            "x0": 307.1310119628906,
+            "y0": 344.00555419921875,
+            "x1": 541.4443969726562,
+            "y1": 499.4725036621094
+          },
+          "page_index": 2,
+          "style": {
+            "font_name": "NimbusRomNo9L-Regu",
+            "font_size": 9.962599754333496,
+            "is_bold": false,
+            "is_italic": false,
+            "color": 0
+          },
+          "block_type": "text",
+          "extraction_method": "embedded",
+          "confidence": 1.0,
+          "raw_block_no": 16
+        },
+        {
+          "block_id": "95ba7f2070a5",
+          "text": "2WikiMQA HotpotQA",
+          "bbox": {
+            "x0": 414.23529052734375,
+            "y0": 514.002685546875,
+            "x1": 516.0753784179688,
+            "y1": 524.4608154296875
+          },
+          "page_index": 2,
+          "style": {
+            "font_name": "NimbusRomNo9L-Medi",
+            "font_size": 8.038522720336914,
+            "is_bold": true,
+            "is_italic": false,
+            "color": 0
+          },
+          "block_type": "text",
+          "extraction_method": "embedded",
+          "confidence": 1.0,
+          "raw_block_no": 17
+        },
+        {
+          "block_id": "5e489349f2d7",
+          "text": "Model Method MoM Max MoM Max",
+          "bbox": {
+            "x0": 323.9626770019531,
+            "y0": 527.8135986328125,
+            "x1": 521.236083984375,
+            "y1": 537.5000610351562
+          },
+          "page_index": 2,
+          "style": {
+            "font_name": "NimbusRomNo9L-Regu",
+            "font_size": 8.038522720336914,
+            "is_bold": false,
+            "is_italic": false,
+            "color": 0
+          },
+          "block_type": "text",
+          "extraction_method": "embedded",
+          "confidence": 1.0,
+          "raw_block_no": 18
+        },
+        {
+          "block_id": "a98e83b7fe61",
+          "text": "LLaMA Norm-based 0.5324 0.9773 0.5219 0.9766 CacheBlend 0.5243 0.9133 0.5191 0.8570 EPIC 0.5049 0.6734 0.4985 0.6852",
+          "bbox": {
+            "x0": 323.9626770019531,
+            "y0": 541.206298828125,
+            "x1": 524.9180297851562,
+            "y1": 570.4752197265625
+          },
+          "page_index": 2,
+          "style": {
+            "font_name": "NimbusRomNo9L-Regu",
+            "font_size": 8.038522720336914,
+            "is_bold": false,
+            "is_italic": false,
+            "color": 0
+          },
+          "block_type": "text",
+          "extraction_method": "embedded",
+          "confidence": 1.0,
+          "raw_block_no": 19
+        },
+        {
+          "block_id": "84b3fafebfaf",
+          "text": "Qwen Norm-based 0.4548 0.9805 0.4179 0.9805 CacheBlend 0.4505 0.8078 0.4226 0.8891 EPIC 0.4129 0.5656 0.3835 0.6555",
+          "bbox": {
+            "x0": 323.9626770019531,
+            "y0": 574.1814575195312,
+            "x1": 524.9180297851562,
+            "y1": 603.4495849609375
+          },
+          "page_index": 2,
+          "style": {
+            "font_name": "NimbusRomNo9L-Regu",
+            "font_size": 8.038522720336914,
+            "is_bold": false,
+            "is_italic": false,
+            "color": 0
+          },
+          "block_type": "text",
+          "extraction_method": "embedded",
+          "confidence": 1.0,
+          "raw_block_no": 20
+        },
+        {
+          "block_id": "6eafef340c86",
+          "text": "Table 2. RoPE similarity statistics on long-context QA benchmarks. We report Mean-of-Max (MoM) and Max scores across different inference strategies. Higher is better.",
+          "bbox": {
+            "x0": 306.93798828125,
+            "y0": 605.7970581054688,
+            "x1": 543.011474609375,
+            "y1": 636.5275268554688
+          },
+          "page_index": 2,
+          "style": {
+            "font_name": "NimbusRomNo9L-Regu",
+            "font_size": 9.00219440460205,
+            "is_bold": false,
+            "is_italic": false,
+            "color": 0
+          },
+          "block_type": "text",
+          "extraction_method": "embedded",
+          "confidence": 1.0,
+          "raw_block_no": 21
+        },
+        {
+          "block_id": "cc2da3225383",
+          "text": "As shown in Table 2 , norm-based selection consistently yields higher RoPE similarity scores than prior methods across both datasets and model families, under both the Mean-of-Max and Max metrics. This result reveals an alignment between attention salience and RoPE-induced",
+          "bbox": {
+            "x0": 307.0820007324219,
+            "y0": 658.0345458984375,
+            "x1": 541.7904663085938,
+            "y1": 717.8604736328125
+          },
+          "page_index": 2,
+          "style": {
+            "font_name": "NimbusRomNo9L-Regu",
+            "font_size": 10.061732292175293,
+            "is_bold": false,
+            "is_italic": false,
+            "color": 0
+          },
+          "block_type": "text",
+          "extraction_method": "embedded",
+          "confidence": 1.0,
+          "raw_block_no": 22
+        },
+        {
+          "block_id": "702c215d5bd3",
+          "text": "5",
+          "bbox": {
+            "x0": 295.95001220703125,
+            "y0": 730.7615356445312,
+            "x1": 300.9313049316406,
+            "y1": 742.7664794921875
+          },
+          "page_index": 2,
+          "style": {
+            "font_name": "NimbusRomNo9L-Regu",
+            "font_size": 9.962599754333496,
+            "is_bold": false,
+            "is_italic": false,
+            "color": 0
+          },
+          "block_type": "text",
+          "extraction_method": "embedded",
+          "confidence": 1.0,
+          "raw_block_no": 23
+        }
+      ],
+      "figure_blocks": [
+        {
+          "block_id": "0e997f38a71d",
+          "bbox": {
+            "x0": 0.0,
+            "y0": 0.0,
+            "x1": 612.0,
+            "y1": 45.50126647949219
+          },
+          "page_index": 2,
+          "image_path": null,
+          "caption": null
+        }
+      ],
+      "extraction_method": "embedded",
+      "ocr_triggered": false
+    }
+  ]
+}

@@ -1,0 +1,1799 @@
+{
+  "doc_id": "am",
+  "source_path": "C:\\Users\\saiki\\Downloads\\armdoc\\agenticdoc\\pdf\\am.pdf",
+  "total_pages": 3,
+  "pages": [
+    {
+      "page_index": 0,
+      "width": 637.2760009765625,
+      "height": 779.0079956054688,
+      "regions": [
+        {
+          "region_id": "06614465c105",
+          "region_class": "figure",
+          "bbox": {
+            "x0": 0.0,
+            "y0": 0.0,
+            "x1": 637.2760009765625,
+            "y1": 56.69903564453125
+          },
+          "page_index": 0,
+          "confidence": 0.95,
+          "backend": "heuristic",
+          "text_content": null,
+          "source_block_ids": [
+            "f0ae696b70b3"
+          ]
+        },
+        {
+          "region_id": "4171c41629a5",
+          "region_class": "paragraph",
+          "bbox": {
+            "x0": 96.5,
+            "y0": 56.69903564453125,
+            "x1": 582.4874267578125,
+            "y1": 81.037353515625
+          },
+          "page_index": 0,
+          "confidence": 0.8,
+          "backend": "heuristic",
+          "text_content": "' Visionaries like Mahavira and Buddha challenged Vedic authority and emphasized individual agency, offering liberation from worldly existence.",
+          "source_block_ids": [
+            "d6a9a208b1dd"
+          ]
+        },
+        {
+          "region_id": "105326227386",
+          "region_class": "title",
+          "bbox": {
+            "x0": 54.59526062011719,
+            "y0": 57.72772216796875,
+            "x1": 76.37260437011719,
+            "y1": 384.4179992675781
+          },
+          "page_index": 0,
+          "confidence": 0.8,
+          "backend": "heuristic",
+          "text_content": "NCERT ANCIENT & MEDIEVAL HISTORY",
+          "source_block_ids": [
+            "471869c4e74f"
+          ]
+        },
+        {
+          "region_id": "3659e4b602cb",
+          "region_class": "paragraph",
+          "bbox": {
+            "x0": 96.5,
+            "y0": 87.299072265625,
+            "x1": 582.490478515625,
+            "y1": 111.037353515625
+          },
+          "page_index": 0,
+          "confidence": 0.8,
+          "backend": "heuristic",
+          "text_content": "' This was in clear contrast to the Brahminical stance, which used to determine individuals’ existence by birth in a particular caste or gender.",
+          "source_block_ids": [
+            "62cc2ad3fdff"
+          ]
+        },
+        {
+          "region_id": "51cddcba6733",
+          "region_class": "paragraph",
+          "bbox": {
+            "x0": 97.25,
+            "y0": 122.55706787109375,
+            "x1": 362.0514831542969,
+            "y1": 134.29534912109375
+          },
+          "page_index": 0,
+          "confidence": 0.8,
+          "backend": "heuristic",
+          "text_content": "How were Buddhist Texts Prepared and Preserved?",
+          "source_block_ids": [
+            "e7f199ce5f54"
+          ]
+        },
+        {
+          "region_id": "5dbd8cc6af70",
+          "region_class": "paragraph",
+          "bbox": {
+            "x0": 101.75,
+            "y0": 138.14892578125,
+            "x1": 576.9224243164062,
+            "y1": 215.013427734375
+          },
+          "page_index": 0,
+          "confidence": 0.8,
+          "backend": "heuristic",
+          "text_content": "' The Buddha (and other teachers) taught orally – through discussion and debate. Men and women (perhaps children as well) attended these discourses and discussed what they heard. None of the Buddha’s speeches were written down during his lifetime. After his death (c. 483 BCE), his teachings were compiled by his disciples at a council of “elders” or senior monks at Vesali (Pali for Vaishali in present-day Bihar). These compilations were known as Tripitaka – literally, three baskets to hold different types of texts. They were first transmitted orally and then written and classified according to length as well as subject matter.",
+          "source_block_ids": [
+            "cb4a1b243fcb"
+          ]
+        },
+        {
+          "region_id": "9e9b23f8d488",
+          "region_class": "paragraph",
+          "bbox": {
+            "x0": 101.75,
+            "y0": 219.09893798828125,
+            "x1": 576.9121704101562,
+            "y1": 251.763427734375
+          },
+          "page_index": 0,
+          "confidence": 0.8,
+          "backend": "heuristic",
+          "text_content": "' The Vinaya Pitaka included rules and regulations for those who joined the sangha or monastic order; the Buddha’s teachings were included in the Sutta Pitaka ; and the Abhidhamma Pitaka dealt with philosophical matters.",
+          "source_block_ids": [
+            "703c579b8a96"
+          ]
+        },
+        {
+          "region_id": "a24e63d38fe0",
+          "region_class": "paragraph",
+          "bbox": {
+            "x0": 101.75,
+            "y0": 255.84893798828125,
+            "x1": 576.9174194335938,
+            "y1": 288.5133972167969
+          },
+          "page_index": 0,
+          "confidence": 0.8,
+          "backend": "heuristic",
+          "text_content": "' As Buddhism travelled to new regions such as Sri Lanka, other texts such as the Dipavamsa (literally, the chronicle of the island) and Mahavamsa (the great chronicle) were written, containing regional histories of Buddhism.",
+          "source_block_ids": [
+            "d1a1c649e9c2"
+          ]
+        },
+        {
+          "region_id": "e6e523ab5cc0",
+          "region_class": "paragraph",
+          "bbox": {
+            "x0": 101.75,
+            "y0": 292.59893798828125,
+            "x1": 576.907470703125,
+            "y1": 314.2134094238281
+          },
+          "page_index": 0,
+          "confidence": 0.8,
+          "backend": "heuristic",
+          "text_content": "' Many of these works contained biographies of the Buddha. Some of the oldest texts are in Pali , while later compositions are in Sanskrit .",
+          "source_block_ids": [
+            "fc3873b05575"
+          ]
+        },
+        {
+          "region_id": "568eaa458648",
+          "region_class": "paragraph",
+          "bbox": {
+            "x0": 101.75,
+            "y0": 318.2989501953125,
+            "x1": 576.9338989257812,
+            "y1": 362.0133972167969
+          },
+          "page_index": 0,
+          "confidence": 0.8,
+          "backend": "heuristic",
+          "text_content": "' When Buddhism spread to East Asia, pilgrims such as Fa Xian and Xuan Zang travelled from China to India in search of texts. These they took back to their own country, where they were translated by scholars. Indian Buddhist teachers also travelled to faraway places, carrying texts to disseminate the teachings of the Buddha.",
+          "source_block_ids": [
+            "d7e0e382b512"
+          ]
+        },
+        {
+          "region_id": "a81bbbca1a67",
+          "region_class": "paragraph",
+          "bbox": {
+            "x0": 101.75,
+            "y0": 366.09893798828125,
+            "x1": 576.90673828125,
+            "y1": 387.7134094238281
+          },
+          "page_index": 0,
+          "confidence": 0.8,
+          "backend": "heuristic",
+          "text_content": "' Buddhist texts were preserved in manuscripts for several centuries in monasteries in different parts of Asia. Modern translations have been prepared from Pali, Sanskrit, Chinese and Tibetan texts.",
+          "source_block_ids": [
+            "683f70389b86"
+          ]
+        },
+        {
+          "region_id": "cf9602d8f55a",
+          "region_class": "paragraph",
+          "bbox": {
+            "x0": 92.0,
+            "y0": 404.1800537109375,
+            "x1": 226.0001678466797,
+            "y1": 415.9183349609375
+          },
+          "page_index": 0,
+          "confidence": 0.8,
+          "backend": "heuristic",
+          "text_content": "Beyond Worldly Pleasures",
+          "source_block_ids": [
+            "6ab38248a878"
+          ]
+        },
+        {
+          "region_id": "af58c3509b7a",
+          "region_class": "paragraph",
+          "bbox": {
+            "x0": 403.14898681640625,
+            "y0": 421.3610534667969,
+            "x1": 472.3494873046875,
+            "y1": 433.0993347167969
+          },
+          "page_index": 0,
+          "confidence": 0.8,
+          "backend": "heuristic",
+          "text_content": "People’s liking",
+          "source_block_ids": [
+            "6e2f05a1e2eb"
+          ]
+        },
+        {
+          "region_id": "b2272774e87f",
+          "region_class": "paragraph",
+          "bbox": {
+            "x0": 92.0,
+            "y0": 423.7800598144531,
+            "x1": 332.31024169921875,
+            "y1": 507.5183410644531
+          },
+          "page_index": 0,
+          "confidence": 0.8,
+          "backend": "heuristic",
+          "text_content": "Thinkers like Mahavira and Buddha challenged the authority of Vedas, ceremonial sacrifices, religious practices etc. and at the same time promoted simplistic ways for liberation from worldly desires and sorrows. Their teachings led to the development of world religions in the form of Jainism & Buddhism.",
+          "source_block_ids": [
+            "8c51ddc10fdb"
+          ]
+        },
+        {
+          "region_id": "eda73ebfb13c",
+          "region_class": "paragraph",
+          "bbox": {
+            "x0": 398.8550109863281,
+            "y0": 433.3610534667969,
+            "x1": 476.6554870605469,
+            "y1": 445.0993347167969
+          },
+          "page_index": 0,
+          "confidence": 0.8,
+          "backend": "heuristic",
+          "text_content": "for simple living",
+          "source_block_ids": [
+            "e31bedae0cad"
+          ]
+        },
+        {
+          "region_id": "a8a1b5ae926b",
+          "region_class": "paragraph",
+          "bbox": {
+            "x0": 526.9219970703125,
+            "y0": 438.1970520019531,
+            "x1": 556.5227661132812,
+            "y1": 449.9353332519531
+          },
+          "page_index": 0,
+          "confidence": 0.8,
+          "backend": "heuristic",
+          "text_content": "Varna",
+          "source_block_ids": [
+            "24ef13f4efb2"
+          ]
+        },
+        {
+          "region_id": "8559bad004e2",
+          "region_class": "paragraph",
+          "bbox": {
+            "x0": 523.9240112304688,
+            "y0": 450.1970520019531,
+            "x1": 559.5234375,
+            "y1": 461.9353332519531
+          },
+          "page_index": 0,
+          "confidence": 0.8,
+          "backend": "heuristic",
+          "text_content": "System",
+          "source_block_ids": [
+            "79299e581d2d"
+          ]
+        },
+        {
+          "region_id": "1c92702cf05f",
+          "region_class": "paragraph",
+          "bbox": {
+            "x0": 438.8500061035156,
+            "y0": 463.1970520019531,
+            "x1": 489.6482849121094,
+            "y1": 474.9353332519531
+          },
+          "page_index": 0,
+          "confidence": 0.8,
+          "backend": "heuristic",
+          "text_content": "Causes of",
+          "source_block_ids": [
+            "9c88e26ab0cb"
+          ]
+        },
+        {
+          "region_id": "1ee7683b6aee",
+          "region_class": "paragraph",
+          "bbox": {
+            "x0": 349.4230041503906,
+            "y0": 472.0300598144531,
+            "x1": 403.2232360839844,
+            "y1": 483.7683410644531
+          },
+          "page_index": 0,
+          "confidence": 0.8,
+          "backend": "heuristic",
+          "text_content": "Emergence",
+          "source_block_ids": [
+            "236003f95209"
+          ]
+        },
+        {
+          "region_id": "b5e388d75483",
+          "region_class": "paragraph",
+          "bbox": {
+            "x0": 442.6510009765625,
+            "y0": 475.1970520019531,
+            "x1": 485.8492736816406,
+            "y1": 486.9353332519531
+          },
+          "page_index": 0,
+          "confidence": 0.8,
+          "backend": "heuristic",
+          "text_content": "origin of",
+          "source_block_ids": [
+            "b40ba214724b"
+          ]
+        },
+        {
+          "region_id": "ba82cca723a7",
+          "region_class": "paragraph",
+          "bbox": {
+            "x0": 352.0299987792969,
+            "y0": 484.0300598144531,
+            "x1": 403.82830810546875,
+            "y1": 495.7683410644531
+          },
+          "page_index": 0,
+          "confidence": 0.8,
+          "backend": "heuristic",
+          "text_content": "of cities &",
+          "source_block_ids": [
+            "1033ce01de31"
+          ]
+        },
+        {
+          "region_id": "61a0e227a303",
+          "region_class": "paragraph",
+          "bbox": {
+            "x0": 431.6499938964844,
+            "y0": 487.1970520019531,
+            "x1": 496.8482666015625,
+            "y1": 498.9353332519531
+          },
+          "page_index": 0,
+          "confidence": 0.8,
+          "backend": "heuristic",
+          "text_content": "Buddhism &",
+          "source_block_ids": [
+            "59a1d15b0ad0"
+          ]
+        },
+        {
+          "region_id": "3f0d99770d90",
+          "region_class": "paragraph",
+          "bbox": {
+            "x0": 363.6239929199219,
+            "y0": 496.0300598144531,
+            "x1": 389.024169921875,
+            "y1": 507.7683410644531
+          },
+          "page_index": 0,
+          "confidence": 0.8,
+          "backend": "heuristic",
+          "text_content": "trade",
+          "source_block_ids": [
+            "ac30778cfd95"
+          ]
+        },
+        {
+          "region_id": "3236c7e91daa",
+          "region_class": "paragraph",
+          "bbox": {
+            "x0": 443.14898681640625,
+            "y0": 499.1970520019531,
+            "x1": 482.1484069824219,
+            "y1": 510.9353332519531
+          },
+          "page_index": 0,
+          "confidence": 0.8,
+          "backend": "heuristic",
+          "text_content": "Jainism",
+          "source_block_ids": [
+            "295af02729b3"
+          ]
+        },
+        {
+          "region_id": "5c66700668e7",
+          "region_class": "paragraph",
+          "bbox": {
+            "x0": 516.64599609375,
+            "y0": 513.1610107421875,
+            "x1": 571.2462158203125,
+            "y1": 524.8992919921875
+          },
+          "page_index": 0,
+          "confidence": 0.8,
+          "backend": "heuristic",
+          "text_content": "Kshatriya’s",
+          "source_block_ids": [
+            "669c20f80aa6"
+          ]
+        },
+        {
+          "region_id": "ad4842ed451d",
+          "region_class": "title",
+          "bbox": {
+            "x0": 92.0,
+            "y0": 514.2962646484375,
+            "x1": 234.07818603515625,
+            "y1": 528.3822021484375
+          },
+          "page_index": 0,
+          "confidence": 0.8,
+          "backend": "heuristic",
+          "text_content": "Mahavira and Jainism",
+          "source_block_ids": [
+            "1f8be48cc382"
+          ]
+        },
+        {
+          "region_id": "a1bac5dc3fbd",
+          "region_class": "paragraph",
+          "bbox": {
+            "x0": 406.2250061035156,
+            "y0": 523.3970336914062,
+            "x1": 464.62298583984375,
+            "y1": 535.1353149414062
+          },
+          "page_index": 0,
+          "confidence": 0.8,
+          "backend": "heuristic",
+          "text_content": "Agricultural",
+          "source_block_ids": [
+            "235c64df3bb4"
+          ]
+        },
+        {
+          "region_id": "300f7f66c899",
+          "region_class": "paragraph",
+          "bbox": {
+            "x0": 524.1489868164062,
+            "y0": 525.1610717773438,
+            "x1": 563.7505493164062,
+            "y1": 536.8993530273438
+          },
+          "page_index": 0,
+          "confidence": 0.8,
+          "backend": "heuristic",
+          "text_content": "reaction",
+          "source_block_ids": [
+            "2707823a4848"
+          ]
+        },
+        {
+          "region_id": "1be53d8d1b44",
+          "region_class": "paragraph",
+          "bbox": {
+            "x0": 413.9230041503906,
+            "y0": 535.3970336914062,
+            "x1": 456.9234313964844,
+            "y1": 547.1353149414062
+          },
+          "page_index": 0,
+          "confidence": 0.8,
+          "backend": "heuristic",
+          "text_content": "economy",
+          "source_block_ids": [
+            "a34769dff635"
+          ]
+        },
+        {
+          "region_id": "ed2767c94b18",
+          "region_class": "paragraph",
+          "bbox": {
+            "x0": 92.0,
+            "y0": 538.1800537109375,
+            "x1": 225.9984588623047,
+            "y1": 549.9183349609375
+          },
+          "page_index": 0,
+          "confidence": 0.8,
+          "backend": "heuristic",
+          "text_content": "The Message of Mahavira:",
+          "source_block_ids": [
+            "2237198d7213"
+          ]
+        },
+        {
+          "region_id": "701c0d2cc75b",
+          "region_class": "paragraph",
+          "bbox": {
+            "x0": 96.5,
+            "y0": 557.780029296875,
+            "x1": 305.7884521484375,
+            "y1": 629.518310546875
+          },
+          "page_index": 0,
+          "confidence": 0.8,
+          "backend": "heuristic",
+          "text_content": "' The basic philosophy of Jaina existed in the pre-Mahavira period. There were 23 Jaina Tirthankaras before Vardhamana Mahavira, who became the 24th Tirthankara in the 6th century BCE .",
+          "source_block_ids": [
+            "38a78b0e28f9"
+          ]
+        },
+        {
+          "region_id": "111d9b7fb406",
+          "region_class": "paragraph",
+          "bbox": {
+            "x0": 394.35198974609375,
+            "y0": 579.05908203125,
+            "x1": 500.55145263671875,
+            "y1": 590.79736328125
+          },
+          "page_index": 0,
+          "confidence": 0.8,
+          "backend": "heuristic",
+          "text_content": "Tri-Ratnas of Jainism",
+          "source_block_ids": [
+            "5ea78da610dc"
+          ]
+        },
+        {
+          "region_id": "3ef7943f31c8",
+          "region_class": "paragraph",
+          "bbox": {
+            "x0": 324.3630065917969,
+            "y0": 618.5940551757812,
+            "x1": 564.216552734375,
+            "y1": 631.3323364257812
+          },
+          "page_index": 0,
+          "confidence": 0.8,
+          "backend": "heuristic",
+          "text_content": "Right Faith Right Action",
+          "source_block_ids": [
+            "75b4b41e4d0f"
+          ]
+        },
+        {
+          "region_id": "b12bac17d959",
+          "region_class": "paragraph",
+          "bbox": {
+            "x0": 406.3330078125,
+            "y0": 619.5940551757812,
+            "x1": 487.7332458496094,
+            "y1": 631.3323364257812
+          },
+          "page_index": 0,
+          "confidence": 0.8,
+          "backend": "heuristic",
+          "text_content": "Right Knowledge",
+          "source_block_ids": [
+            "6bc62883e8de"
+          ]
+        },
+        {
+          "region_id": "99662483026d",
+          "region_class": "paragraph",
+          "bbox": {
+            "x0": 96.5,
+            "y0": 633.3800659179688,
+            "x1": 305.5992736816406,
+            "y1": 669.1183471679688
+          },
+          "page_index": 0,
+          "confidence": 0.8,
+          "backend": "heuristic",
+          "text_content": "' Jainism’s basic idea is that all things possess life, including stones and water.",
+          "source_block_ids": [
+            "0439c032781a"
+          ]
+        },
+        {
+          "region_id": "bc6fcc529a4f",
+          "region_class": "footer",
+          "bbox": {
+            "x0": 555.2509765625,
+            "y0": 708.4926147460938,
+            "x1": 570.2509765625,
+            "y1": 718.4926147460938
+          },
+          "page_index": 0,
+          "confidence": 0.8,
+          "backend": "heuristic",
+          "text_content": "120",
+          "source_block_ids": [
+            "208e601ae8a8"
+          ]
+        }
+      ],
+      "backend": "heuristic"
+    },
+    {
+      "page_index": 1,
+      "width": 637.2760009765625,
+      "height": 779.0079956054688,
+      "regions": [
+        {
+          "region_id": "4abd06eca185",
+          "region_class": "figure",
+          "bbox": {
+            "x0": 0.0,
+            "y0": 0.0,
+            "x1": 637.2760009765625,
+            "y1": 779.0079956054688
+          },
+          "page_index": 1,
+          "confidence": 0.95,
+          "backend": "heuristic",
+          "text_content": null,
+          "source_block_ids": [
+            "9c63a49488b0"
+          ]
+        },
+        {
+          "region_id": "d50b8b7b9079",
+          "region_class": "paragraph",
+          "bbox": {
+            "x0": 61.463401794433594,
+            "y0": 53.94903564453125,
+            "x1": 547.4453735351562,
+            "y1": 76.58734130859375
+          },
+          "page_index": 1,
+          "confidence": 0.8,
+          "backend": "heuristic",
+          "text_content": "' Its central principle is non-violence (ahinsa), especially towards all living beings. Other teachings included-",
+          "source_block_ids": [
+            "df3f99fbb0db"
+          ]
+        },
+        {
+          "region_id": "61960ddbd21f",
+          "region_class": "list",
+          "bbox": {
+            "x0": 83.9634017944336,
+            "y0": 80.1490478515625,
+            "x1": 371.26824951171875,
+            "y1": 105.3873291015625
+          },
+          "page_index": 1,
+          "confidence": 0.8,
+          "backend": "heuristic",
+          "text_content": "* Karma shapes the cycle of birth-rebirth; asceticism and penance break it.",
+          "source_block_ids": [
+            "d337fad5d14a"
+          ]
+        },
+        {
+          "region_id": "77c007907d12",
+          "region_class": "list",
+          "bbox": {
+            "x0": 83.9634017944336,
+            "y0": 108.94903564453125,
+            "x1": 366.36322021484375,
+            "y1": 120.68731689453125
+          },
+          "page_index": 1,
+          "confidence": 0.8,
+          "backend": "heuristic",
+          "text_content": "* Monasticism was essential for liberation from karma.",
+          "source_block_ids": [
+            "db87800a283c"
+          ]
+        },
+        {
+          "region_id": "5258dc9d6a03",
+          "region_class": "paragraph",
+          "bbox": {
+            "x0": 61.463401794433594,
+            "y0": 123.44903564453125,
+            "x1": 371.2713317871094,
+            "y1": 146.08734130859375
+          },
+          "page_index": 1,
+          "confidence": 0.8,
+          "backend": "heuristic",
+          "text_content": "' Jain monks/nuns uphold five vows : no killing, no stealing, no lying, celibacy and no ownership.",
+          "source_block_ids": [
+            "e7e000b8b5e6"
+          ]
+        },
+        {
+          "region_id": "7f93b7f6c0b9",
+          "region_class": "paragraph",
+          "bbox": {
+            "x0": 56.963401794433594,
+            "y0": 151.2490234375,
+            "x1": 180.56185913085938,
+            "y1": 162.9873046875
+          },
+          "page_index": 1,
+          "confidence": 0.8,
+          "backend": "heuristic",
+          "text_content": "The Spread of Jainism:",
+          "source_block_ids": [
+            "2045afa79682"
+          ]
+        },
+        {
+          "region_id": "dcccd3c8fbdf",
+          "region_class": "title",
+          "bbox": {
+            "x0": 561.9998779296875,
+            "y0": 57.70703125,
+            "x1": 583.7772216796875,
+            "y1": 382.0249938964844
+          },
+          "page_index": 1,
+          "confidence": 0.8,
+          "backend": "heuristic",
+          "text_content": "Art and Culture in Ancient India",
+          "source_block_ids": [
+            "108d5dd3ef2e"
+          ]
+        },
+        {
+          "region_id": "d087288d0278",
+          "region_class": "paragraph",
+          "bbox": {
+            "x0": 61.463401794433594,
+            "y0": 169.7490234375,
+            "x1": 547.4457397460938,
+            "y1": 192.3873291015625
+          },
+          "page_index": 1,
+          "confidence": 0.8,
+          "backend": "heuristic",
+          "text_content": "' Jainism’s expansion across India paralleled Buddhism. Jaina scholars authored diverse texts in languages like Prakrit, Sanskrit, and Tamil , with preserved manuscripts in temple libraries.",
+          "source_block_ids": [
+            "13b883f93238"
+          ]
+        },
+        {
+          "region_id": "c6c8d811898a",
+          "region_class": "paragraph",
+          "bbox": {
+            "x0": 61.463401794433594,
+            "y0": 195.1490478515625,
+            "x1": 523.9618530273438,
+            "y1": 206.8873291015625
+          },
+          "page_index": 1,
+          "confidence": 0.8,
+          "backend": "heuristic",
+          "text_content": "' Early stone sculptures linked to Jainism have been found at various subcontinental sites.",
+          "source_block_ids": [
+            "f0cccc4f88a7"
+          ]
+        },
+        {
+          "region_id": "8c17c97b9580",
+          "region_class": "title",
+          "bbox": {
+            "x0": 56.963401794433594,
+            "y0": 213.665283203125,
+            "x1": 315.2029724121094,
+            "y1": 227.751220703125
+          },
+          "page_index": 1,
+          "confidence": 0.8,
+          "backend": "heuristic",
+          "text_content": "Buddha and the Quest for Enlightenment",
+          "source_block_ids": [
+            "98d95822e84d"
+          ]
+        },
+        {
+          "region_id": "1db8fc367066",
+          "region_class": "paragraph",
+          "bbox": {
+            "x0": 56.963401794433594,
+            "y0": 236.44903564453125,
+            "x1": 192.76187133789062,
+            "y1": 248.18731689453125
+          },
+          "page_index": 1,
+          "confidence": 0.8,
+          "backend": "heuristic",
+          "text_content": "Early Life and Awakening:",
+          "source_block_ids": [
+            "b4dc027c1ee5"
+          ]
+        },
+        {
+          "region_id": "a28cff99f431",
+          "region_class": "paragraph",
+          "bbox": {
+            "x0": 61.463401794433594,
+            "y0": 254.94903564453125,
+            "x1": 547.443359375,
+            "y1": 277.58734130859375
+          },
+          "page_index": 1,
+          "confidence": 0.8,
+          "backend": "heuristic",
+          "text_content": "' Born as a Siddhartha , he was raised in luxury as the son of a Sakya clan chief, secluded from life’s hardships.",
+          "source_block_ids": [
+            "f12e0ed0a42a"
+          ]
+        },
+        {
+          "region_id": "c780c5b5e21a",
+          "region_class": "paragraph",
+          "bbox": {
+            "x0": 61.463401794433594,
+            "y0": 280.34906005859375,
+            "x1": 547.6273803710938,
+            "y1": 302.9873352050781
+          },
+          "page_index": 1,
+          "confidence": 0.8,
+          "backend": "heuristic",
+          "text_content": "' His first exposure to the world outside the palace shocked him, encountering old age, sickness, death, and a homeless mendicant .",
+          "source_block_ids": [
+            "dc35b7407dc6"
+          ]
+        },
+        {
+          "region_id": "1165070069db",
+          "region_class": "paragraph",
+          "bbox": {
+            "x0": 56.963401794433594,
+            "y0": 308.1490478515625,
+            "x1": 202.7618865966797,
+            "y1": 319.8873291015625
+          },
+          "page_index": 1,
+          "confidence": 0.8,
+          "backend": "heuristic",
+          "text_content": "The Path to Enlightenment:",
+          "source_block_ids": [
+            "fbea5d5f765a"
+          ]
+        },
+        {
+          "region_id": "ae0ea11ea6d4",
+          "region_class": "paragraph",
+          "bbox": {
+            "x0": 61.463401794433594,
+            "y0": 326.6490478515625,
+            "x1": 454.0346984863281,
+            "y1": 349.2873229980469
+          },
+          "page_index": 1,
+          "confidence": 0.8,
+          "backend": "heuristic",
+          "text_content": "' Disturbed by the inevitability of human decay, Siddhartha chose the mendicant’s path after witnessing the mendicant’s serene demeanour.",
+          "source_block_ids": [
+            "b7ce1b902c3d"
+          ]
+        },
+        {
+          "region_id": "31ac41676fe7",
+          "region_class": "paragraph",
+          "bbox": {
+            "x0": 61.463401794433594,
+            "y0": 352.0490417480469,
+            "x1": 454.04779052734375,
+            "y1": 374.68731689453125
+          },
+          "page_index": 1,
+          "confidence": 0.8,
+          "backend": "heuristic",
+          "text_content": "' After leaving the palace, he explored various paths, including extreme ascetic practices, leading to a situation of near death.",
+          "source_block_ids": [
+            "0f4174ca7126"
+          ]
+        },
+        {
+          "region_id": "3a7abfe621c6",
+          "region_class": "paragraph",
+          "bbox": {
+            "x0": 61.463401794433594,
+            "y0": 377.44903564453125,
+            "x1": 454.2314453125,
+            "y1": 410.9873352050781
+          },
+          "page_index": 1,
+          "confidence": 0.8,
+          "backend": "heuristic",
+          "text_content": "' Abandoning severe methods, Siddhartha engaged in meditation, leading to his enlightenment and subsequent recognition as the Buddha or Enlightened One.",
+          "source_block_ids": [
+            "fbbfb2d780ed"
+          ]
+        },
+        {
+          "region_id": "02b77f38defd",
+          "region_class": "paragraph",
+          "bbox": {
+            "x0": 56.963401794433594,
+            "y0": 416.1490478515625,
+            "x1": 206.5618438720703,
+            "y1": 427.8873291015625
+          },
+          "page_index": 1,
+          "confidence": 0.8,
+          "backend": "heuristic",
+          "text_content": "Life After Becoming Buddha:",
+          "source_block_ids": [
+            "c24f59dd5c11"
+          ]
+        },
+        {
+          "region_id": "cfffea7e1ea4",
+          "region_class": "paragraph",
+          "bbox": {
+            "x0": 61.463401794433594,
+            "y0": 434.6490478515625,
+            "x1": 547.6182861328125,
+            "y1": 457.2873229980469
+          },
+          "page_index": 1,
+          "confidence": 0.8,
+          "backend": "heuristic",
+          "text_content": "' Post-enlightenment, Buddha dedicated his life to teaching the dhamma or the path of righteous living.",
+          "source_block_ids": [
+            "177f06d853a0"
+          ]
+        },
+        {
+          "region_id": "5f193188f1d9",
+          "region_class": "paragraph",
+          "bbox": {
+            "x0": 61.463401794433594,
+            "y0": 460.0490417480469,
+            "x1": 547.4467163085938,
+            "y1": 482.68731689453125
+          },
+          "page_index": 1,
+          "confidence": 0.8,
+          "backend": "heuristic",
+          "text_content": "' Buddha’s journey from sheltered royalty to enlightenment remains a foundational story in Buddhism, influencing followers for self-discovery and understanding.",
+          "source_block_ids": [
+            "48792e70a771"
+          ]
+        },
+        {
+          "region_id": "47d2ce6e2d61",
+          "region_class": "paragraph",
+          "bbox": {
+            "x0": 56.963401794433594,
+            "y0": 487.84906005859375,
+            "x1": 206.76182556152344,
+            "y1": 499.58734130859375
+          },
+          "page_index": 1,
+          "confidence": 0.8,
+          "backend": "heuristic",
+          "text_content": "Spread of Buddha’s Message:",
+          "source_block_ids": [
+            "906e47ee61fb"
+          ]
+        },
+        {
+          "region_id": "e0d091534ec2",
+          "region_class": "paragraph",
+          "bbox": {
+            "x0": 61.463401794433594,
+            "y0": 506.34906005859375,
+            "x1": 547.448486328125,
+            "y1": 528.9873046875
+          },
+          "page_index": 1,
+          "confidence": 0.8,
+          "backend": "heuristic",
+          "text_content": "' Buddha, a highly influential teacher , disseminated his teachings across centuries throughout the Indian subcontinent and beyond.",
+          "source_block_ids": [
+            "23a5d8dc9339"
+          ]
+        },
+        {
+          "region_id": "427b716e5a09",
+          "region_class": "paragraph",
+          "bbox": {
+            "x0": 61.463401794433594,
+            "y0": 531.7490234375,
+            "x1": 547.434326171875,
+            "y1": 554.3873291015625
+          },
+          "page_index": 1,
+          "confidence": 0.8,
+          "backend": "heuristic",
+          "text_content": "' His message reached areas from Central Asia to East Asia (China, Korea, Japan), and across the seas to regions like Sri Lanka, Myanmar, Thailand and Indonesia.",
+          "source_block_ids": [
+            "fbb2731028af"
+          ]
+        },
+        {
+          "region_id": "e536563329c7",
+          "region_class": "title",
+          "bbox": {
+            "x0": 56.963401794433594,
+            "y0": 559.8452758789062,
+            "x1": 212.00433349609375,
+            "y1": 573.9312133789062
+          },
+          "page_index": 1,
+          "confidence": 0.8,
+          "backend": "heuristic",
+          "text_content": "Teachings of the Buddha",
+          "source_block_ids": [
+            "e2611847222b"
+          ]
+        },
+        {
+          "region_id": "349040f2612a",
+          "region_class": "paragraph",
+          "bbox": {
+            "x0": 56.963401794433594,
+            "y0": 582.6290283203125,
+            "x1": 180.9618682861328,
+            "y1": 594.3673095703125
+          },
+          "page_index": 1,
+          "confidence": 0.8,
+          "backend": "heuristic",
+          "text_content": "Teachings from Stories:",
+          "source_block_ids": [
+            "b31ecab75519"
+          ]
+        },
+        {
+          "region_id": "ca26cc6fa17a",
+          "region_class": "paragraph",
+          "bbox": {
+            "x0": 61.463401794433594,
+            "y0": 601.1290283203125,
+            "x1": 373.8616638183594,
+            "y1": 623.767333984375
+          },
+          "page_index": 1,
+          "confidence": 0.8,
+          "backend": "heuristic",
+          "text_content": "' The Buddha’s teachings are reconstructed from stories, mostly found in the Sutta Pitaka .",
+          "source_block_ids": [
+            "7a33d8ef7546"
+          ]
+        },
+        {
+          "region_id": "7a3715c04b49",
+          "region_class": "paragraph",
+          "bbox": {
+            "x0": 61.463401794433594,
+            "y0": 626.529052734375,
+            "x1": 373.8502197265625,
+            "y1": 649.1673583984375
+          },
+          "page_index": 1,
+          "confidence": 0.8,
+          "backend": "heuristic",
+          "text_content": "' He employed reason and persuasion , not supernatural displays, to convince people.",
+          "source_block_ids": [
+            "b0d4e322c51c"
+          ]
+        },
+        {
+          "region_id": "4ce1ea60f33c",
+          "region_class": "paragraph",
+          "bbox": {
+            "x0": 61.463401794433594,
+            "y0": 651.9290771484375,
+            "x1": 373.86572265625,
+            "y1": 674.5673217773438
+          },
+          "page_index": 1,
+          "confidence": 0.8,
+          "backend": "heuristic",
+          "text_content": "' His interactions with people, like a grief-stricken mother, emphasized understanding and acceptance .",
+          "source_block_ids": [
+            "22a1fc0fd08b"
+          ]
+        },
+        {
+          "region_id": "3bc15fef8114",
+          "region_class": "footer",
+          "bbox": {
+            "x0": 67.05999755859375,
+            "y0": 708.4926147460938,
+            "x1": 82.05999755859375,
+            "y1": 718.4926147460938
+          },
+          "page_index": 1,
+          "confidence": 0.8,
+          "backend": "heuristic",
+          "text_content": "121",
+          "source_block_ids": [
+            "6aa0de4dc630"
+          ]
+        },
+        {
+          "region_id": "a184a3559391",
+          "region_class": "paragraph",
+          "bbox": {
+            "x0": 413.0719909667969,
+            "y0": 607.3880615234375,
+            "x1": 509.6727600097656,
+            "y1": 619.1263427734375
+          },
+          "page_index": 1,
+          "confidence": 0.8,
+          "backend": "heuristic",
+          "text_content": "Abhidhammapitaka",
+          "source_block_ids": [
+            "443471404543"
+          ]
+        },
+        {
+          "region_id": "45ed67603179",
+          "region_class": "paragraph",
+          "bbox": {
+            "x0": 438.2380065917969,
+            "y0": 633.7880859375,
+            "x1": 487.83819580078125,
+            "y1": 645.5263671875
+          },
+          "page_index": 1,
+          "confidence": 0.8,
+          "backend": "heuristic",
+          "text_content": "Tripitakas",
+          "source_block_ids": [
+            "af51125fe375"
+          ]
+        },
+        {
+          "region_id": "897f8b5eb017",
+          "region_class": "paragraph",
+          "bbox": {
+            "x0": 393.1499938964844,
+            "y0": 648.7880249023438,
+            "x1": 419.95074462890625,
+            "y1": 660.5263061523438
+          },
+          "page_index": 1,
+          "confidence": 0.8,
+          "backend": "heuristic",
+          "text_content": "Sutta",
+          "source_block_ids": [
+            "977acec725de"
+          ]
+        },
+        {
+          "region_id": "ae94323002d3",
+          "region_class": "paragraph",
+          "bbox": {
+            "x0": 505.98699951171875,
+            "y0": 649.3880615234375,
+            "x1": 539.5877685546875,
+            "y1": 661.1263427734375
+          },
+          "page_index": 1,
+          "confidence": 0.8,
+          "backend": "heuristic",
+          "text_content": "Vinaya",
+          "source_block_ids": [
+            "b18fb9b24dc9"
+          ]
+        },
+        {
+          "region_id": "a83675877e2e",
+          "region_class": "paragraph",
+          "bbox": {
+            "x0": 391.1510009765625,
+            "y0": 664.3880615234375,
+            "x1": 421.9517822265625,
+            "y1": 676.1263427734375
+          },
+          "page_index": 1,
+          "confidence": 0.8,
+          "backend": "heuristic",
+          "text_content": "pitaka",
+          "source_block_ids": [
+            "468d6a9fd707"
+          ]
+        },
+        {
+          "region_id": "241467a96c9c",
+          "region_class": "paragraph",
+          "bbox": {
+            "x0": 507.38800048828125,
+            "y0": 664.988037109375,
+            "x1": 538.1887817382812,
+            "y1": 676.726318359375
+          },
+          "page_index": 1,
+          "confidence": 0.8,
+          "backend": "heuristic",
+          "text_content": "pitaka",
+          "source_block_ids": [
+            "b0cc71bcd318"
+          ]
+        }
+      ],
+      "backend": "heuristic"
+    },
+    {
+      "page_index": 2,
+      "width": 637.2760009765625,
+      "height": 779.0079956054688,
+      "regions": [
+        {
+          "region_id": "d2124d172153",
+          "region_class": "figure",
+          "bbox": {
+            "x0": 0.0,
+            "y0": 0.0,
+            "x1": 637.2760009765625,
+            "y1": 779.0079956054688
+          },
+          "page_index": 2,
+          "confidence": 0.95,
+          "backend": "heuristic",
+          "text_content": null,
+          "source_block_ids": [
+            "478fc132fb74"
+          ]
+        },
+        {
+          "region_id": "c12b551fc4bd",
+          "region_class": "header",
+          "bbox": {
+            "x0": 93.0,
+            "y0": 55.60003662109375,
+            "x1": 203.99842834472656,
+            "y1": 67.33831787109375
+          },
+          "page_index": 2,
+          "confidence": 0.8,
+          "backend": "heuristic",
+          "text_content": "Buddhist Philosophy:",
+          "source_block_ids": [
+            "44f0a8db08f3"
+          ]
+        },
+        {
+          "region_id": "74c141df1261",
+          "region_class": "title",
+          "bbox": {
+            "x0": 54.59526062011719,
+            "y0": 57.72772216796875,
+            "x1": 76.37260437011719,
+            "y1": 384.4179992675781
+          },
+          "page_index": 2,
+          "confidence": 0.8,
+          "backend": "heuristic",
+          "text_content": "NCERT ANCIENT & MEDIEVAL HISTORY",
+          "source_block_ids": [
+            "6ac241739370"
+          ]
+        },
+        {
+          "region_id": "d9290cfd7d63",
+          "region_class": "paragraph",
+          "bbox": {
+            "x0": 97.5,
+            "y0": 76.2000732421875,
+            "x1": 583.4722290039062,
+            "y1": 100.9383544921875
+          },
+          "page_index": 2,
+          "confidence": 0.8,
+          "backend": "heuristic",
+          "text_content": "' Buddhist philosophy highlights the transient (anicca) nature of the world , which is in constant flux.",
+          "source_block_ids": [
+            "06a6c671bab8"
+          ]
+        },
+        {
+          "region_id": "ab3974e3b976",
+          "region_class": "paragraph",
+          "bbox": {
+            "x0": 97.5,
+            "y0": 105.799072265625,
+            "x1": 488.79046630859375,
+            "y1": 117.537353515625
+          },
+          "page_index": 2,
+          "confidence": 0.8,
+          "backend": "heuristic",
+          "text_content": "' The world is also soulless (anatta ), lacking permanence or eternal essence.",
+          "source_block_ids": [
+            "152091cdd4c7"
+          ]
+        },
+        {
+          "region_id": "ce74d0c25cd8",
+          "region_class": "paragraph",
+          "bbox": {
+            "x0": 97.5,
+            "y0": 122.3990478515625,
+            "x1": 388.4003601074219,
+            "y1": 134.1373291015625
+          },
+          "page_index": 2,
+          "confidence": 0.8,
+          "backend": "heuristic",
+          "text_content": "' Intrinsic sorrow (dukkha) is part of human existence.",
+          "source_block_ids": [
+            "8a8d92774cc7"
+          ]
+        },
+        {
+          "region_id": "69f21c63f26d",
+          "region_class": "paragraph",
+          "bbox": {
+            "x0": 97.5,
+            "y0": 138.9990234375,
+            "x1": 580.2114868164062,
+            "y1": 150.7373046875
+          },
+          "page_index": 2,
+          "confidence": 0.8,
+          "backend": "heuristic",
+          "text_content": "' The path to transcendence involves moderation between extreme asceticism and indulgence.",
+          "source_block_ids": [
+            "7165941b2bc6"
+          ]
+        },
+        {
+          "region_id": "28e072ce7f94",
+          "region_class": "paragraph",
+          "bbox": {
+            "x0": 93.0,
+            "y0": 156.9990234375,
+            "x1": 215.39845275878906,
+            "y1": 168.7373046875
+          },
+          "page_index": 2,
+          "confidence": 0.8,
+          "backend": "heuristic",
+          "text_content": "Non-Theistic Approach:",
+          "source_block_ids": [
+            "b30ed8aec436"
+          ]
+        },
+        {
+          "region_id": "86794e0f1d05",
+          "region_class": "paragraph",
+          "bbox": {
+            "x0": 97.5,
+            "y0": 177.59906005859375,
+            "x1": 395.5982971191406,
+            "y1": 189.33734130859375
+          },
+          "page_index": 2,
+          "confidence": 0.8,
+          "backend": "heuristic",
+          "text_content": "' The existence of gods was secondary in early Buddhism.",
+          "source_block_ids": [
+            "56f960e5d61e"
+          ]
+        },
+        {
+          "region_id": "7141c45a3433",
+          "region_class": "paragraph",
+          "bbox": {
+            "x0": 97.5,
+            "y0": 194.2000732421875,
+            "x1": 484.5983581542969,
+            "y1": 205.9383544921875
+          },
+          "page_index": 2,
+          "confidence": 0.8,
+          "backend": "heuristic",
+          "text_content": "' The Buddha viewed the social world as human-made, not divinely created.",
+          "source_block_ids": [
+            "467572bc840a"
+          ]
+        },
+        {
+          "region_id": "9eb7a554012d",
+          "region_class": "paragraph",
+          "bbox": {
+            "x0": 97.5,
+            "y0": 210.799072265625,
+            "x1": 531.2024536132812,
+            "y1": 222.537353515625
+          },
+          "page_index": 2,
+          "confidence": 0.8,
+          "backend": "heuristic",
+          "text_content": "' Kings and Gahapatis were advised to be ethical, emphasizing human responsibility.",
+          "source_block_ids": [
+            "809fbeebd145"
+          ]
+        },
+        {
+          "region_id": "3eb8b8701c48",
+          "region_class": "paragraph",
+          "bbox": {
+            "x0": 93.0,
+            "y0": 228.799072265625,
+            "x1": 233.39846801757812,
+            "y1": 240.537353515625
+          },
+          "page_index": 2,
+          "confidence": 0.8,
+          "backend": "heuristic",
+          "text_content": "Individual Transformation:",
+          "source_block_ids": [
+            "8f957c29deb8"
+          ]
+        },
+        {
+          "region_id": "932cb5f67b3d",
+          "region_class": "paragraph",
+          "bbox": {
+            "x0": 97.5,
+            "y0": 249.3990478515625,
+            "x1": 458.7984313964844,
+            "y1": 261.1373291015625
+          },
+          "page_index": 2,
+          "confidence": 0.8,
+          "backend": "heuristic",
+          "text_content": "' Buddhism emphasized individual effort to escape the cycle of rebirth.",
+          "source_block_ids": [
+            "2f0b97b0e42b"
+          ]
+        },
+        {
+          "region_id": "c5f3ebab124d",
+          "region_class": "paragraph",
+          "bbox": {
+            "x0": 97.5,
+            "y0": 266.00006103515625,
+            "x1": 583.4742431640625,
+            "y1": 290.73834228515625
+          },
+          "page_index": 2,
+          "confidence": 0.8,
+          "backend": "heuristic",
+          "text_content": "' Righteous action and individual agency were vital to achieving Self-Realization and Nibbana (Nirvana), extinguishing ego and desire.",
+          "source_block_ids": [
+            "4fcaefe90189"
+          ]
+        },
+        {
+          "region_id": "13e3ee95a3cb",
+          "region_class": "paragraph",
+          "bbox": {
+            "x0": 97.5,
+            "y0": 295.60003662109375,
+            "x1": 583.6882934570312,
+            "y1": 320.33831787109375
+          },
+          "page_index": 2,
+          "confidence": 0.8,
+          "backend": "heuristic",
+          "text_content": "' His last piece of advice: “Be lamps unto yourselves as all of you must work out your liberation” signifies the role of individuals in their journeys towards liberation.",
+          "source_block_ids": [
+            "4d314ad2c8dc"
+          ]
+        },
+        {
+          "region_id": "e863b32e2246",
+          "region_class": "paragraph",
+          "bbox": {
+            "x0": 93.0,
+            "y0": 327.60003662109375,
+            "x1": 219.20077514648438,
+            "y1": 339.33831787109375
+          },
+          "page_index": 2,
+          "confidence": 0.8,
+          "backend": "heuristic",
+          "text_content": "Followers of the Buddha",
+          "source_block_ids": [
+            "42cfabbe95aa"
+          ]
+        },
+        {
+          "region_id": "b5a843875529",
+          "region_class": "paragraph",
+          "bbox": {
+            "x0": 93.0,
+            "y0": 350.60003662109375,
+            "x1": 225.9984588623047,
+            "y1": 362.33831787109375
+          },
+          "page_index": 2,
+          "confidence": 0.8,
+          "backend": "heuristic",
+          "text_content": "Formation of the Sangha:",
+          "source_block_ids": [
+            "cfeb24aa49de"
+          ]
+        },
+        {
+          "region_id": "f8e40d7d5412",
+          "region_class": "paragraph",
+          "bbox": {
+            "x0": 97.5,
+            "y0": 370.7000427246094,
+            "x1": 409.2962646484375,
+            "y1": 394.9383239746094
+          },
+          "page_index": 2,
+          "confidence": 0.8,
+          "backend": "heuristic",
+          "text_content": "' Buddha gathered disciples, forming the sangha – a community of monks, who became dhamma teachers.",
+          "source_block_ids": [
+            "97f89794ecfc"
+          ]
+        },
+        {
+          "region_id": "4fe9605e5d96",
+          "region_class": "paragraph",
+          "bbox": {
+            "x0": 476.84698486328125,
+            "y0": 373.18804931640625,
+            "x1": 515.8477783203125,
+            "y1": 384.92633056640625
+          },
+          "page_index": 2,
+          "confidence": 0.8,
+          "backend": "heuristic",
+          "text_content": "Buddha",
+          "source_block_ids": [
+            "d035e764f743"
+          ]
+        },
+        {
+          "region_id": "ae0e75d25676",
+          "region_class": "paragraph",
+          "bbox": {
+            "x0": 466.2869873046875,
+            "y0": 395.988037109375,
+            "x1": 532.685302734375,
+            "y1": 419.726318359375
+          },
+          "page_index": 2,
+          "confidence": 0.8,
+          "backend": "heuristic",
+          "text_content": "Three Jewels of Buddhism",
+          "source_block_ids": [
+            "97776ed2ef43"
+          ]
+        },
+        {
+          "region_id": "f3b86590503c",
+          "region_class": "paragraph",
+          "bbox": {
+            "x0": 97.5,
+            "y0": 399.300048828125,
+            "x1": 409.29730224609375,
+            "y1": 423.538330078125
+          },
+          "page_index": 2,
+          "confidence": 0.8,
+          "backend": "heuristic",
+          "text_content": "' Monks, known as bhikkhus , lived simply, owning necessities and relying on alms received from the lay people.",
+          "source_block_ids": [
+            "e5e5f4fcbc1a"
+          ]
+        },
+        {
+          "region_id": "24263f38750b",
+          "region_class": "paragraph",
+          "bbox": {
+            "x0": 97.5,
+            "y0": 427.8990478515625,
+            "x1": 409.30126953125,
+            "y1": 464.6373291015625
+          },
+          "page_index": 2,
+          "confidence": 0.8,
+          "backend": "heuristic",
+          "text_content": "' Later, women were admitted into the sangha , facilitated by Ananda’s persuasion, Mahapajapati Gotami was the first bhikkhuni.",
+          "source_block_ids": [
+            "845be29fe2a5"
+          ]
+        },
+        {
+          "region_id": "7b566c8e56a8",
+          "region_class": "paragraph",
+          "bbox": {
+            "x0": 419.7239990234375,
+            "y0": 428.3790588378906,
+            "x1": 573.8087158203125,
+            "y1": 440.9173278808594
+          },
+          "page_index": 2,
+          "confidence": 0.8,
+          "backend": "heuristic",
+          "text_content": "Sangha Dharma",
+          "source_block_ids": [
+            "9418c99599de"
+          ]
+        },
+        {
+          "region_id": "69ee27590719",
+          "region_class": "paragraph",
+          "bbox": {
+            "x0": 93.0,
+            "y0": 471.4000549316406,
+            "x1": 253.9984893798828,
+            "y1": 483.1383361816406
+          },
+          "page_index": 2,
+          "confidence": 0.8,
+          "backend": "heuristic",
+          "text_content": "Social Diversity in the Sangha:",
+          "source_block_ids": [
+            "0ef51527372e"
+          ]
+        },
+        {
+          "region_id": "adeec0b73e8a",
+          "region_class": "paragraph",
+          "bbox": {
+            "x0": 97.5,
+            "y0": 492.3990478515625,
+            "x1": 583.4723510742188,
+            "y1": 517.538330078125
+          },
+          "page_index": 2,
+          "confidence": 0.8,
+          "backend": "heuristic",
+          "text_content": "' Buddha’s followers encompassed various social strata , from kings and wealthy individuals to workers and slaves.",
+          "source_block_ids": [
+            "e6710a1d171b"
+          ]
+        },
+        {
+          "region_id": "49ba08c5e35c",
+          "region_class": "paragraph",
+          "bbox": {
+            "x0": 97.5,
+            "y0": 522.800048828125,
+            "x1": 583.4904174804688,
+            "y1": 547.9383544921875
+          },
+          "page_index": 2,
+          "confidence": 0.8,
+          "backend": "heuristic",
+          "text_content": "' Equality prevailed within the sangha, as all members shed previous social identities upon joining.",
+          "source_block_ids": [
+            "3c03c211d9db"
+          ]
+        },
+        {
+          "region_id": "aef4c426cb9c",
+          "region_class": "paragraph",
+          "bbox": {
+            "x0": 93.0,
+            "y0": 555.6000366210938,
+            "x1": 304.1984558105469,
+            "y1": 567.3383178710938
+          },
+          "page_index": 2,
+          "confidence": 0.8,
+          "backend": "heuristic",
+          "text_content": "Internal Structure and Decision-making:",
+          "source_block_ids": [
+            "12c3cbcda9c5"
+          ]
+        },
+        {
+          "region_id": "921a90eff907",
+          "region_class": "paragraph",
+          "bbox": {
+            "x0": 97.5,
+            "y0": 576.6000366210938,
+            "x1": 563.6143798828125,
+            "y1": 588.3383178710938
+          },
+          "page_index": 2,
+          "confidence": 0.8,
+          "backend": "heuristic",
+          "text_content": "' Sangha’s functioning resembled ganas and sanghas , employing consensus in discussions.",
+          "source_block_ids": [
+            "3879957a8dd5"
+          ]
+        },
+        {
+          "region_id": "c4becc430f21",
+          "region_class": "paragraph",
+          "bbox": {
+            "x0": 97.5,
+            "y0": 593.5990600585938,
+            "x1": 441.3983459472656,
+            "y1": 605.3373413085938
+          },
+          "page_index": 2,
+          "confidence": 0.8,
+          "backend": "heuristic",
+          "text_content": "' In cases of disagreement, voting was used to determine decisions.",
+          "source_block_ids": [
+            "cd2a69d2807a"
+          ]
+        },
+        {
+          "region_id": "b2dc8d041392",
+          "region_class": "paragraph",
+          "bbox": {
+            "x0": 93.0,
+            "y0": 613.0000610351562,
+            "x1": 231.79843139648438,
+            "y1": 624.7383422851562
+          },
+          "page_index": 2,
+          "confidence": 0.8,
+          "backend": "heuristic",
+          "text_content": "Buddhism’s Rapid Growth:",
+          "source_block_ids": [
+            "c7b88a16167a"
+          ]
+        },
+        {
+          "region_id": "43b0957cdc07",
+          "region_class": "paragraph",
+          "bbox": {
+            "x0": 97.5,
+            "y0": 634.0000610351562,
+            "x1": 583.468505859375,
+            "y1": 659.1383056640625
+          },
+          "page_index": 2,
+          "confidence": 0.8,
+          "backend": "heuristic",
+          "text_content": "' Buddhism gained momentum during Buddha’s life and post his passing, attracting those disillusioned with existing religious norms and grappling with social upheaval.",
+          "source_block_ids": [
+            "44b1ede5e1c0"
+          ]
+        },
+        {
+          "region_id": "f7b139a05079",
+          "region_class": "paragraph",
+          "bbox": {
+            "x0": 97.5,
+            "y0": 663.7490234375,
+            "x1": 583.4783325195312,
+            "y1": 688.2378540039062
+          },
+          "page_index": 2,
+          "confidence": 0.8,
+          "backend": "heuristic",
+          "text_content": "' Buddhist teachings emphasized conduct, values, and compassion over birth-based claims of superiority.",
+          "source_block_ids": [
+            "27dabc0e192f"
+          ]
+        },
+        {
+          "region_id": "52e4d14bc719",
+          "region_class": "footer",
+          "bbox": {
+            "x0": 555.2509765625,
+            "y0": 708.4926147460938,
+            "x1": 570.2509765625,
+            "y1": 718.4926147460938
+          },
+          "page_index": 2,
+          "confidence": 0.8,
+          "backend": "heuristic",
+          "text_content": "122",
+          "source_block_ids": [
+            "c3124fdc5309"
+          ]
+        }
+      ],
+      "backend": "heuristic"
+    }
+  ]
+}
