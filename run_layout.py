@@ -128,7 +128,7 @@ def main():
     parser.add_argument("--output-dir", default="output",
         help="Root directory for outputs (default: ./output)")
     parser.add_argument("--backend", default="auto",
-        choices=["auto", "layoutparser", "dit", "heuristic"],
+        choices=["auto", "yolo","layoutparser", "dit", "heuristic"],
         help="Layout detection backend (default: auto)")
     parser.add_argument("--score-threshold", type=float, default=0.70,
         help="Min ML detection confidence (default: 0.70)")

@@ -383,6 +383,63 @@ class DiTLayoutDetector:
         
         return all_regions
 
+# In extractors/ml_layout_detector.py — add alongside DiTLayoutDetector
+
+YOLO_CLASS_MAP = {
+    0: RegionClass.CAPTION,    1: RegionClass.FOOTER,
+    2: RegionClass.EQUATION,   3: RegionClass.LIST,
+    4: RegionClass.FOOTER,     5: RegionClass.HEADER,
+    6: RegionClass.FIGURE,     7: RegionClass.TITLE,
+    8: RegionClass.TABLE,      9: RegionClass.PARAGRAPH,
+    10: RegionClass.TITLE,
+}
+
+class YOLOLayoutDetector:
+    def __init__(self, score_threshold: float = 0.50):
+        from ultralytics import YOLO
+        self.model = YOLO("yolov8n.pt")   # replace with DocLayNet weights when available
+        self.score_threshold = score_threshold
+
+    def detect(self, page_image, page, doc_id: str) -> list[LayoutRegion]:
+        results = self.model(page_image, device="cpu", verbose=False)[0]
+        regions = []
+        for i, box in enumerate(results.boxes):
+            conf = float(box.conf[0])
+            if conf < self.score_threshold:
+                continue
+            x1, y1, x2, y2 = box.xyxy[0].tolist()
+            # Scale pixel coords back to PDF points
+            sx = page.width  / page_image.width
+            sy = page.height / page_image.height
+            regions.append(LayoutRegion(
+                region_id    = _region_id(doc_id, page.page_index, i),
+                region_class = YOLO_CLASS_MAP.get(int(box.cls[0]), RegionClass.PARAGRAPH),
+                bbox         = BoundingBox(x0=x1*sx, y0=y1*sy, x1=x2*sx, y1=y2*sy),
+                page_index   = page.page_index,
+                confidence   = conf,
+                backend      = DetectionBackend.DIT,   # reuse until you add YOLO to DetectionBackend enum
+            ))
+        return regions
+    
+    def detect_batch(
+        self,
+        page_images: list,
+        pages: list,
+        doc_id: str,
+    ) -> list[list[LayoutRegion]]:
+        """
+        Batch wrapper for YOLO detection (CPU-friendly).
+        Keeps API consistent with DiTLayoutDetector.
+        """
+
+        all_regions = []
+
+        for img, page in zip(page_images, pages):
+            regions = self.detect(img, page, doc_id)
+            all_regions.append(regions)
+
+        return all_regions
+
 # ─────────────────────────────────────────────────────────────
 # Hybrid Fusion: merge ML regions with heuristic refinement
 # ─────────────────────────────────────────────────────────────

@@ -41,13 +41,13 @@ from extractors.layout_models import (
     RegionClass, DetectionBackend,
 )
 from extractors.heuristic_layout_detector import HeuristicLayoutDetector
-from extractors.ml_layout_detector import ( DiTLayoutDetector, fuse_ml_and_heuristic,)
+from extractors.ml_layout_detector import ( DiTLayoutDetector,YOLOLayoutDetector, fuse_ml_and_heuristic,)
 
 logger = logging.getLogger(__name__)
 
-BackendChoice = Literal["auto", "dit", "heuristic"]
+BackendChoice = Literal["auto", "yolo", "dit", "heuristic"]
 
-RENDER_DPI = 150   # DPI for rendering pages (ML backends need images)
+RENDER_DPI = 200   # DPI for rendering pages (ML backends need images)
 
 
 def _try_import(module_name: str) -> bool:
@@ -105,6 +105,8 @@ class LayoutDetectionAgent:
         self._ml_detector = None
         if self._backend_name == "dit":
             self._ml_detector = DiTLayoutDetector(score_threshold=score_threshold)
+        elif self._backend_name == "yolo":
+            self._ml_detector = YOLOLayoutDetector(score_threshold=score_threshold)
 
     # ── Public API ─────────────────────────────────────────
 
@@ -185,10 +187,13 @@ class LayoutDetectionAgent:
     def _resolve_backend(self, choice: BackendChoice) -> str:
         if choice != "auto":
             return choice
+        if _try_import("ultralytics"):
+            logger.info("  Auto-selected backend: yolo (fast CPU inference)")
+            return "yolo"
         if _try_import("transformers") and _try_import("torch"):
-            logger.info("  Auto-selected backend: dit (CPU-optimized)")
+            logger.info("  Auto-selected backend: dit (slow on CPU, consider yolo)")
             return "dit"
-        logger.info("  Auto-selected backend: heuristic (no ML libs found)")
+        logger.info("  Auto-selected backend: heuristic")
         return "heuristic"
 
     def _open_pdf(self, pdf_path: str):

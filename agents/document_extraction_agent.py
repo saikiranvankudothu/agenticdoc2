@@ -44,7 +44,7 @@ class DocumentExtractionAgent:
     AGENT_NAME = "DocumentExtractionAgent"
 
     def __init__(self, output_dir="output", ocr_threshold=50,
-                 render_dpi=150, verbose=False):
+                 render_dpi=200, verbose=False):
         self.output_dir    = Path(output_dir)
         self.ocr_threshold = ocr_threshold
         self.render_dpi    = render_dpi
