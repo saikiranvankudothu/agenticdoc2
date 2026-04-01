@@ -1,0 +1,534 @@
+{
+  "doc_id": "paper",
+  "alignments": [
+    {
+      "block_id": "08824b22e9a4",
+      "region_id": "62aa5c622c4c",
+      "region_class": "header",
+      "score": 1.0,
+      "page_index": 0,
+      "flagged": false
+    },
+    {
+      "block_id": "6b91ed8c5a32",
+      "region_id": "a08f30ed0c9d",
+      "region_class": "caption",
+      "score": 1.0,
+      "page_index": 0,
+      "flagged": false
+    },
+    {
+      "block_id": "63f4b24e04df",
+      "region_id": "ec2685348823",
+      "region_class": "paragraph",
+      "score": 1.0,
+      "page_index": 0,
+      "flagged": false
+    },
+    {
+      "block_id": "9742d85aee90",
+      "region_id": "87213f5aee7b",
+      "region_class": "paragraph",
+      "score": 1.0,
+      "page_index": 0,
+      "flagged": false
+    },
+    {
+      "block_id": "1af8b51af0e2",
+      "region_id": "a29639315d06",
+      "region_class": "paragraph",
+      "score": 1.0,
+      "page_index": 0,
+      "flagged": false
+    },
+    {
+      "block_id": "158db27fd3f6",
+      "region_id": "d9f4872f2b43",
+      "region_class": "list",
+      "score": 1.0,
+      "page_index": 0,
+      "flagged": false
+    },
+    {
+      "block_id": "aede1d4733a5",
+      "region_id": "94db7a9a9fad",
+      "region_class": "paragraph",
+      "score": 1.0,
+      "page_index": 0,
+      "flagged": false
+    },
+    {
+      "block_id": "c3e12812c628",
+      "region_id": "b5f5b80a2b1d",
+      "region_class": "list",
+      "score": 1.0,
+      "page_index": 0,
+      "flagged": false
+    },
+    {
+      "block_id": "99b1ddd4c5d7",
+      "region_id": "ce94567d18d4",
+      "region_class": "list",
+      "score": 1.0,
+      "page_index": 0,
+      "flagged": false
+    },
+    {
+      "block_id": "d157d4153800",
+      "region_id": "3b3ae1e66423",
+      "region_class": "list",
+      "score": 1.0,
+      "page_index": 0,
+      "flagged": false
+    },
+    {
+      "block_id": "7f0198f46917",
+      "region_id": "eb1f0235f6e6",
+      "region_class": "title",
+      "score": 1.0,
+      "page_index": 0,
+      "flagged": false
+    },
+    {
+      "block_id": "9c1d75a8f44a",
+      "region_id": "aaee53921e65",
+      "region_class": "title",
+      "score": 1.0,
+      "page_index": 0,
+      "flagged": false
+    },
+    {
+      "block_id": "1806e630227e",
+      "region_id": "f09ece78e015",
+      "region_class": "paragraph",
+      "score": 1.0,
+      "page_index": 0,
+      "flagged": false
+    },
+    {
+      "block_id": "c4fc1f6f00bd",
+      "region_id": "6c947c83b6f1",
+      "region_class": "footer",
+      "score": 1.0,
+      "page_index": 0,
+      "flagged": false
+    },
+    {
+      "block_id": "717d888e4ca0",
+      "region_id": "10d405f6b89d",
+      "region_class": "header",
+      "score": 1.0,
+      "page_index": 1,
+      "flagged": false
+    },
+    {
+      "block_id": "623da626611a",
+      "region_id": "17294395846a",
+      "region_class": "paragraph",
+      "score": 1.0,
+      "page_index": 1,
+      "flagged": false
+    },
+    {
+      "block_id": "cc2852300425",
+      "region_id": "fdab2688595d",
+      "region_class": "title",
+      "score": 1.0,
+      "page_index": 1,
+      "flagged": false
+    },
+    {
+      "block_id": "0a7751e8be29",
+      "region_id": "065cf9815941",
+      "region_class": "paragraph",
+      "score": 1.0,
+      "page_index": 1,
+      "flagged": false
+    },
+    {
+      "block_id": "9fe624051d70",
+      "region_id": "099698770710",
+      "region_class": "title",
+      "score": 1.0,
+      "page_index": 1,
+      "flagged": false
+    },
+    {
+      "block_id": "822429da4b42",
+      "region_id": "144ab83dcdf7",
+      "region_class": "paragraph",
+      "score": 1.0,
+      "page_index": 1,
+      "flagged": false
+    },
+    {
+      "block_id": "64ae39c89360",
+      "region_id": "6c99266e9176",
+      "region_class": "title",
+      "score": 1.0,
+      "page_index": 1,
+      "flagged": false
+    },
+    {
+      "block_id": "e0ad6092c1ed",
+      "region_id": "3f4c7190fe02",
+      "region_class": "title",
+      "score": 1.0,
+      "page_index": 1,
+      "flagged": false
+    },
+    {
+      "block_id": "f855b5544fdf",
+      "region_id": "4b772c40cc08",
+      "region_class": "paragraph",
+      "score": 1.0,
+      "page_index": 1,
+      "flagged": false
+    },
+    {
+      "block_id": "086099d2a571",
+      "region_id": "d6dbf5af615b",
+      "region_class": "paragraph",
+      "score": 1.0,
+      "page_index": 1,
+      "flagged": false
+    },
+    {
+      "block_id": "fd5ad7dd566a",
+      "region_id": "8feaf570ed68",
+      "region_class": "paragraph",
+      "score": 1.0,
+      "page_index": 1,
+      "flagged": false
+    },
+    {
+      "block_id": "95a233b098bc",
+      "region_id": "850faa696fff",
+      "region_class": "paragraph",
+      "score": 1.0,
+      "page_index": 1,
+      "flagged": false
+    },
+    {
+      "block_id": "f60731ce51ee",
+      "region_id": "c330b0c929e2",
+      "region_class": "equation",
+      "score": 1.0,
+      "page_index": 1,
+      "flagged": false
+    },
+    {
+      "block_id": "ccf680846ce3",
+      "region_id": "425202c62e72",
+      "region_class": "paragraph",
+      "score": 1.0,
+      "page_index": 1,
+      "flagged": false
+    },
+    {
+      "block_id": "ef45618a7832",
+      "region_id": "e8b71caedbfa",
+      "region_class": "title",
+      "score": 1.0,
+      "page_index": 1,
+      "flagged": false
+    },
+    {
+      "block_id": "faec026a8931",
+      "region_id": "9080a0fc8dc2",
+      "region_class": "paragraph",
+      "score": 1.0,
+      "page_index": 1,
+      "flagged": false
+    },
+    {
+      "block_id": "095427aca0b3",
+      "region_id": "dae21f6b2dff",
+      "region_class": "paragraph",
+      "score": 1.0,
+      "page_index": 1,
+      "flagged": false
+    },
+    {
+      "block_id": "19eaceef509c",
+      "region_id": "10c26b309662",
+      "region_class": "paragraph",
+      "score": 1.0,
+      "page_index": 1,
+      "flagged": false
+    },
+    {
+      "block_id": "43c816bd217a",
+      "region_id": "540469ad963f",
+      "region_class": "paragraph",
+      "score": 1.0,
+      "page_index": 1,
+      "flagged": false
+    },
+    {
+      "block_id": "c6947755792d",
+      "region_id": "53c70fedd3e7",
+      "region_class": "paragraph",
+      "score": 1.0,
+      "page_index": 1,
+      "flagged": false
+    },
+    {
+      "block_id": "0a5554af261f",
+      "region_id": "5c4171bae03e",
+      "region_class": "paragraph",
+      "score": 1.0,
+      "page_index": 1,
+      "flagged": false
+    },
+    {
+      "block_id": "bd648a3b6c15",
+      "region_id": "a89ff685be33",
+      "region_class": "paragraph",
+      "score": 1.0,
+      "page_index": 1,
+      "flagged": false
+    },
+    {
+      "block_id": "5bd01a55db02",
+      "region_id": "e06a0801deb0",
+      "region_class": "title",
+      "score": 1.0,
+      "page_index": 1,
+      "flagged": false
+    },
+    {
+      "block_id": "e2542c1387b2",
+      "region_id": "0c7ec6dac4f0",
+      "region_class": "paragraph",
+      "score": 1.0,
+      "page_index": 1,
+      "flagged": false
+    },
+    {
+      "block_id": "c4cf0ee294cc",
+      "region_id": "f52522b39f49",
+      "region_class": "title",
+      "score": 1.0,
+      "page_index": 1,
+      "flagged": false
+    },
+    {
+      "block_id": "14ee9cb6496a",
+      "region_id": "e147050096d9",
+      "region_class": "paragraph",
+      "score": 1.0,
+      "page_index": 1,
+      "flagged": false
+    },
+    {
+      "block_id": "77ab0d4ca03e",
+      "region_id": "e241fdf96af0",
+      "region_class": "paragraph",
+      "score": 1.0,
+      "page_index": 1,
+      "flagged": false
+    },
+    {
+      "block_id": "729c4e8ba624",
+      "region_id": "6f76cac2af9d",
+      "region_class": "footer",
+      "score": 1.0,
+      "page_index": 1,
+      "flagged": false
+    },
+    {
+      "block_id": "57316364a5ed",
+      "region_id": "1acd5dd04643",
+      "region_class": "header",
+      "score": 1.0,
+      "page_index": 2,
+      "flagged": false
+    },
+    {
+      "block_id": "959a0f162b58",
+      "region_id": "abcfd9a69710",
+      "region_class": "paragraph",
+      "score": 1.0,
+      "page_index": 2,
+      "flagged": false
+    },
+    {
+      "block_id": "2c2f6714b612",
+      "region_id": "60474b48521b",
+      "region_class": "title",
+      "score": 1.0,
+      "page_index": 2,
+      "flagged": false
+    },
+    {
+      "block_id": "a79d14eb5f41",
+      "region_id": "d2b07d3cef96",
+      "region_class": "paragraph",
+      "score": 1.0,
+      "page_index": 2,
+      "flagged": false
+    },
+    {
+      "block_id": "654b5c0d53d9",
+      "region_id": "d541f340e961",
+      "region_class": "paragraph",
+      "score": 1.0,
+      "page_index": 2,
+      "flagged": false
+    },
+    {
+      "block_id": "596444446dda",
+      "region_id": "5ab7c8c25bca",
+      "region_class": "paragraph",
+      "score": 1.0,
+      "page_index": 2,
+      "flagged": false
+    },
+    {
+      "block_id": "ebb1ea93d67a",
+      "region_id": "2d8176f2ed8e",
+      "region_class": "title",
+      "score": 1.0,
+      "page_index": 2,
+      "flagged": false
+    },
+    {
+      "block_id": "62540bf33c0a",
+      "region_id": "48720ac67d49",
+      "region_class": "title",
+      "score": 1.0,
+      "page_index": 2,
+      "flagged": false
+    },
+    {
+      "block_id": "3db7e2e2ce9e",
+      "region_id": "ed576c01c3ea",
+      "region_class": "paragraph",
+      "score": 1.0,
+      "page_index": 2,
+      "flagged": false
+    },
+    {
+      "block_id": "64831ed08030",
+      "region_id": "0ffec1643470",
+      "region_class": "caption",
+      "score": 1.0,
+      "page_index": 2,
+      "flagged": false
+    },
+    {
+      "block_id": "9e3e7bed84c3",
+      "region_id": "9235176688ae",
+      "region_class": "paragraph",
+      "score": 1.0,
+      "page_index": 2,
+      "flagged": false
+    },
+    {
+      "block_id": "006ad7530e72",
+      "region_id": "636c3d150e0a",
+      "region_class": "paragraph",
+      "score": 1.0,
+      "page_index": 2,
+      "flagged": false
+    },
+    {
+      "block_id": "d66871f65a88",
+      "region_id": "6ccea69e889f",
+      "region_class": "caption",
+      "score": 1.0,
+      "page_index": 2,
+      "flagged": false
+    },
+    {
+      "block_id": "3bf60b9331d9",
+      "region_id": "6b5264fa5773",
+      "region_class": "table",
+      "score": 1.0,
+      "page_index": 2,
+      "flagged": false
+    },
+    {
+      "block_id": "d6f1d95ff92a",
+      "region_id": "029e37f5147e",
+      "region_class": "table",
+      "score": 1.0,
+      "page_index": 2,
+      "flagged": false
+    },
+    {
+      "block_id": "871ef15af7fb",
+      "region_id": "720e4c43f686",
+      "region_class": "title",
+      "score": 1.0,
+      "page_index": 2,
+      "flagged": false
+    },
+    {
+      "block_id": "ada325fabfce",
+      "region_id": "44e746301ac9",
+      "region_class": "paragraph",
+      "score": 1.0,
+      "page_index": 2,
+      "flagged": false
+    },
+    {
+      "block_id": "95ba7f2070a5",
+      "region_id": "1c13608a2e51",
+      "region_class": "paragraph",
+      "score": 1.0,
+      "page_index": 2,
+      "flagged": false
+    },
+    {
+      "block_id": "5e489349f2d7",
+      "region_id": "83576148e496",
+      "region_class": "paragraph",
+      "score": 1.0,
+      "page_index": 2,
+      "flagged": false
+    },
+    {
+      "block_id": "a98e83b7fe61",
+      "region_id": "6f9c8d49b705",
+      "region_class": "paragraph",
+      "score": 1.0,
+      "page_index": 2,
+      "flagged": false
+    },
+    {
+      "block_id": "84b3fafebfaf",
+      "region_id": "cee15ba9ee02",
+      "region_class": "paragraph",
+      "score": 1.0,
+      "page_index": 2,
+      "flagged": false
+    },
+    {
+      "block_id": "6eafef340c86",
+      "region_id": "e8d327303dfc",
+      "region_class": "caption",
+      "score": 1.0,
+      "page_index": 2,
+      "flagged": false
+    },
+    {
+      "block_id": "cc2da3225383",
+      "region_id": "6a6547a24897",
+      "region_class": "table",
+      "score": 1.0,
+      "page_index": 2,
+      "flagged": false
+    },
+    {
+      "block_id": "702c215d5bd3",
+      "region_id": "11fb94d9a82f",
+      "region_class": "footer",
+      "score": 1.0,
+      "page_index": 2,
+      "flagged": false
+    }
+  ],
+  "unassigned": []
+}
