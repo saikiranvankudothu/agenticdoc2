@@ -27,4 +27,7 @@ dependencies = [
     "ultralytics>=8.4.33",
     "timm>=1.0.26",
     "pytest>=9.0.2",
+    "sentence-transformers>=5.3.0",
+    "pyvis>=0.3.2",
+    "faiss-cpu>=1.13.2",
 ]

@@ -1,0 +1,422 @@
+[
+  {
+    "node_id": "a08f30ed0c9d",
+    "text": "Figure 1. Context chunks are prefetched independently using chunk-local RoPE. At inference time, retrieved chunks are concatenated with the prompt, global RoPE positions are reconstructed, and prompt-conditioned attention norms are used to select high-impact tokens for full-context KV recomputation. The recomputed KV states are concatenated with cached chunks, restoring cross-chunk interactions. A",
+    "role": "Method",
+    "page": 0,
+    "section_id": null,
+    "region_class": "caption",
+    "confidence": 0.8,
+    "is_noise": false
+  },
+  {
+    "node_id": "ec2685348823",
+    "text": "query–token affinity, and effective information flow, by iden- tifying tokens that are structurally positioned to propagate information under the global causal attention induced by retrieval and decoding. Crucially, this property holds only when attention norms are computed under a RoPE order- ing consistent with inference-time decoding, using a global positional reconstruction of retrieved chunks",
+    "role": "Method",
+    "page": 0,
+    "section_id": null,
+    "region_class": "paragraph",
+    "confidence": 0.8,
+    "is_noise": false
+  },
+  {
+    "node_id": "94db7a9a9fad",
+    "text": "tive information flow under the global causal attention graph.",
+    "role": "Method",
+    "page": 0,
+    "section_id": null,
+    "region_class": "paragraph",
+    "confidence": 0.8,
+    "is_noise": false
+  },
+  {
+    "node_id": "b5f5b80a2b1d",
+    "text": "• We show that reliable recomputation target selection requires an inference-consistent RoPE ordering , and introduce a global positional reconstruction of retrieved chunks to enable stable and meaningful token ranking.",
+    "role": "Method",
+    "page": 0,
+    "section_id": null,
+    "region_class": "list",
+    "confidence": 0.8,
+    "is_noise": false
+  },
+  {
+    "node_id": "ce94567d18d4",
+    "text": "• Building on the identified information-flow–critical tokens, we further propose a retrieved-chunk reorder- ing strategy that improves downstream attention ef- fectiveness, providing additional validation of our information-flow perspective.",
+    "role": "Method",
+    "page": 0,
+    "section_id": null,
+    "region_class": "list",
+    "confidence": 0.8,
+    "is_noise": false
+  },
+  {
+    "node_id": "3b3ae1e66423",
+    "text": "• We evaluate our approach on both LLM and VLM RAG benchmarks, demonstrating consistent improvements over existing selective recomputation methods under comparable efficiency budgets.",
+    "role": "Result",
+    "page": 0,
+    "section_id": null,
+    "region_class": "list",
+    "confidence": 0.8,
+    "is_noise": false
+  },
+  {
+    "node_id": "87213f5aee7b",
+    "text": "While our primary focus is retrieval-augmented generation with precomputed document-level KV caches, the proposed chunking-and-recompute strategy also applies when such caches are unavailable. In non-RAG long-context inference, the input can be partitioned into chunks whose KV caches are computed independently, followed by selective recom- putation under the global causal mask. This yields two pra",
+    "role": "Method",
+    "page": 0,
+    "section_id": null,
+    "region_class": "paragraph",
+    "confidence": 0.8,
+    "is_noise": false
+  },
+  {
+    "node_id": "aaee53921e65",
+    "text": "2.1. KV Eviction & Compression",
+    "role": "Definition",
+    "page": 0,
+    "section_id": null,
+    "region_class": "title",
+    "confidence": 0.8,
+    "is_noise": false
+  },
+  {
+    "node_id": "f09ece78e015",
+    "text": "KV eviction and compression methods reduce long-context inference cost by limiting the size or precision of KV caches during decoding. Eviction-based approaches such as H2O ( Zhang et al. , 2023 ) and StreamingLLM ( Xiao et al. , 2023 ) discard cached KV states based on heuristics, includ- ing recency or attention importance. Compression methods such as Pyramid KV ( Cai et al. , 2024 ) and memoriz",
+    "role": "Observation",
+    "page": 0,
+    "section_id": null,
+    "region_class": "paragraph",
+    "confidence": 0.8,
+    "is_noise": false
+  },
+  {
+    "node_id": "a29639315d06",
+    "text": "We summarize our contributions as follows.",
+    "role": "Dataset",
+    "page": 0,
+    "section_id": null,
+    "region_class": "paragraph",
+    "confidence": 0.8,
+    "is_noise": false
+  },
+  {
+    "node_id": "d9f4872f2b43",
+    "text": "• We propose a simple and effective attention- norm–based criterion from the query to context to- kens that jointly captures semantic relevance and effec-",
+    "role": "Method",
+    "page": 0,
+    "section_id": null,
+    "region_class": "list",
+    "confidence": 0.8,
+    "is_noise": false
+  },
+  {
+    "node_id": "17294395846a",
+    "text": "are lost. Rather than shrinking or discarding KV caches, we retain token-level KV states and selectively recompute a small subset of tokens to restore global information flow.",
+    "role": "Observation",
+    "page": 1,
+    "section_id": null,
+    "region_class": "paragraph",
+    "confidence": 0.8,
+    "is_noise": false
+  },
+  {
+    "node_id": "425202c62e72",
+    "text": "where d h is the per-head dimension. In practice, inference consists of a prefilling phase that computes KV states for an input context of length L in a single forward pass, followed by an iterative decoding phase that appends one new KV pair per generated token. In long-context question answering, where the generated answer is short, inference cost is often dominated by the prefilling stage.",
+    "role": "Method",
+    "page": 1,
+    "section_id": null,
+    "region_class": "paragraph",
+    "confidence": 0.8,
+    "is_noise": false
+  },
+  {
+    "node_id": "065cf9815941",
+    "text": "Chunked input processing has been explored to extend effec- tive context length beyond the model’s native window. Con- text Expansion with Parallel Encoding (CEPE) ( Yen et al. , 2024 ) encodes long contexts in parallel using a lightweight encoder and enables a decoder to attend to chunk repre- sentations via cross-attention. A key limitation of such approaches is that chunks are encoded independe",
+    "role": "Method",
+    "page": 1,
+    "section_id": null,
+    "region_class": "paragraph",
+    "confidence": 0.8,
+    "is_noise": false
+  },
+  {
+    "node_id": "e8b71caedbfa",
+    "text": "3.2. Rotary Positional Embedding (RoPE)",
+    "role": "Definition",
+    "page": 1,
+    "section_id": null,
+    "region_class": "title",
+    "confidence": 0.8,
+    "is_noise": false
+  },
+  {
+    "node_id": "9080a0fc8dc2",
+    "text": "Rotary positional embedding (RoPE) encodes positional information by applying position-dependent rotations to queries and keys. For vectors decomposed into 2D sub- spaces, RoPE applies",
+    "role": "Definition",
+    "page": 1,
+    "section_id": null,
+    "region_class": "paragraph",
+    "confidence": 0.8,
+    "is_noise": false
+  },
+  {
+    "node_id": "dae21f6b2dff",
+    "text": "RoPE( x , t ) = � cos( θ i t ) − sin( θ i t ) sin( θ i t ) cos( θ i t )",
+    "role": "Definition",
+    "page": 1,
+    "section_id": null,
+    "region_class": "paragraph",
+    "confidence": 0.8,
+    "is_noise": false
+  },
+  {
+    "node_id": "540469ad963f",
+    "text": "where the angular frequencies are defined as",
+    "role": "Definition",
+    "page": 1,
+    "section_id": null,
+    "region_class": "paragraph",
+    "confidence": 0.8,
+    "is_noise": false
+  },
+  {
+    "node_id": "53c70fedd3e7",
+    "text": "θ i = 10000 − 2 i/d , i = 0 , . . . , d",
+    "role": "Definition",
+    "page": 1,
+    "section_id": null,
+    "region_class": "paragraph",
+    "confidence": 0.8,
+    "is_noise": false
+  },
+  {
+    "node_id": "a89ff685be33",
+    "text": "Lower-index dimensions correspond to higher frequencies and are more sensitive to positional differences, while higher-index dimensions encode lower-frequency compo- nents. Consequently, the effectiveness of attention interac- tions depends on the absolute positions at which tokens are placed, which becomes particularly relevant when KV states are computed independently and later reused or recompu",
+    "role": "Observation",
+    "page": 1,
+    "section_id": null,
+    "region_class": "paragraph",
+    "confidence": 0.8,
+    "is_noise": false
+  },
+  {
+    "node_id": "144ab83dcdf7",
+    "text": "KV recomputation methods aim to recover accuracy when reusing independently prefetched KV caches by selectively recomputing a small subset of tokens under the full context. CacheBlend identifies tokens whose cached KV states devi- ate most from full-context attention, while EPIC mitigates positional mismatch by recomputing fixed chunk-initial to- kens. These approaches select recomputation targets",
+    "role": "Method",
+    "page": 1,
+    "section_id": null,
+    "region_class": "paragraph",
+    "confidence": 0.8,
+    "is_noise": false
+  },
+  {
+    "node_id": "0c7ec6dac4f0",
+    "text": "In this section, we introduce our method for selecting re- computation targets by jointly considering token semantic relevance and positional influence, with the goal of facilitat- ing information propagation during decoding.",
+    "role": "Method",
+    "page": 1,
+    "section_id": null,
+    "region_class": "paragraph",
+    "confidence": 0.8,
+    "is_noise": false
+  },
+  {
+    "node_id": "f52522b39f49",
+    "text": "4.1. Input Chunking and Prefilling",
+    "role": "Method",
+    "page": 1,
+    "section_id": null,
+    "region_class": "title",
+    "confidence": 0.8,
+    "is_noise": false
+  },
+  {
+    "node_id": "e147050096d9",
+    "text": "Let the input consist of N tokens, which we partition into K disjoint chunks { C 1 , . . . , C K } . Each chunk serves as a basic unit for prefilling and can correspond to a naturally independent segment (e.g., a document or an image), or a contiguous partition of a single long input (e.g., a text sequence or a visual token grid).",
+    "role": "Definition",
+    "page": 1,
+    "section_id": null,
+    "region_class": "paragraph",
+    "confidence": 0.8,
+    "is_noise": false
+  },
+  {
+    "node_id": "4b772c40cc08",
+    "text": "We consider an autoregressive Transformer decoder. Let h ℓ t ∈ R d denote the hidden state at layer ℓ and position t . For each attention head, keys and values are computed as linear projections of the hidden states,",
+    "role": "Definition",
+    "page": 1,
+    "section_id": null,
+    "region_class": "paragraph",
+    "confidence": 0.8,
+    "is_noise": false
+  },
+  {
+    "node_id": "d6dbf5af615b",
+    "text": "k ℓ t = W ℓ K h ℓ t , v ℓ t = W ℓ V h ℓ t , (1)",
+    "role": "Definition",
+    "page": 1,
+    "section_id": null,
+    "region_class": "paragraph",
+    "confidence": 0.8,
+    "is_noise": false
+  },
+  {
+    "node_id": "e241fdf96af0",
+    "text": "During chunk-wise prefilling, each chunk is processed inde- pendently to compute its key–value (KV) cache. Within a chunk C i , positional indices are assigned locally: tokens are indexed from 0 to | C i | − 1 according to their order inside the chunk, regardless of their absolute position in the full input. Keys and queries are then computed using RoPE based on these chunk-local positions, and th",
+    "role": "Method",
+    "page": 1,
+    "section_id": null,
+    "region_class": "paragraph",
+    "confidence": 0.8,
+    "is_noise": false
+  },
+  {
+    "node_id": "8feaf570ed68",
+    "text": "where the head index is omitted for clarity.",
+    "role": "Method",
+    "page": 1,
+    "section_id": null,
+    "region_class": "paragraph",
+    "confidence": 0.8,
+    "is_noise": false
+  },
+  {
+    "node_id": "850faa696fff",
+    "text": "During autoregressive decoding, to avoid recomputing keys and values for previously processed tokens, Transformer de- coders maintain a key–value (KV) cache that stores all past { k ℓ s , v ℓ s } s ≤ t at each layer. We denote the cached tensors up to position t by",
+    "role": "Definition",
+    "page": 1,
+    "section_id": null,
+    "region_class": "paragraph",
+    "confidence": 0.8,
+    "is_noise": false
+  },
+  {
+    "node_id": "abcfd9a69710",
+    "text": "which frequency placement and prompt–context proximity can arise in practice.",
+    "role": "Method",
+    "page": 2,
+    "section_id": null,
+    "region_class": "paragraph",
+    "confidence": 0.8,
+    "is_noise": false
+  },
+  {
+    "node_id": "9235176688ae",
+    "text": "ing order can degrade the quality of selected recomputation targets.",
+    "role": "Method",
+    "page": 2,
+    "section_id": null,
+    "region_class": "paragraph",
+    "confidence": 0.8,
+    "is_noise": false
+  },
+  {
+    "node_id": "636c3d150e0a",
+    "text": "These results indicate that effective selective recomputation benefits from evaluating token importance under a positional layout that closely matches inference-time decoding. Based on this observation, we adopt GLOBAL as the default RoPE geometry for token selection in our method. In the reorder- ing setting, we use HL–TP for the first-stage selection to encourage diversity across chunks, followe",
+    "role": "Observation",
+    "page": 2,
+    "section_id": null,
+    "region_class": "paragraph",
+    "confidence": 0.8,
+    "is_noise": false
+  },
+  {
+    "node_id": "d2b07d3cef96",
+    "text": "Beyond KV prefilling and token selection, we further con- sider the ordering of chunks at inference time as an addi- tional degree of freedom for facilitating information flow. Under RoPE-based causal decoding, tokens placed closer to the prompt in the sequence are more likely to interact with prompt queries through attention, which facilitates more effective propagation of contextual information ",
+    "role": "Method",
+    "page": 2,
+    "section_id": null,
+    "region_class": "paragraph",
+    "confidence": 0.8,
+    "is_noise": false
+  },
+  {
+    "node_id": "6ccea69e889f",
+    "text": "Table 1. Ablation of RoPE geometry configurations on Qwen under the passage-split setting. Higher is better.",
+    "role": "Method",
+    "page": 2,
+    "section_id": null,
+    "region_class": "caption",
+    "confidence": 0.8,
+    "is_noise": false
+  },
+  {
+    "node_id": "d541f340e961",
+    "text": "Concretely, we perform an initial round of token selection within each chunk independently, using local RoPE rather than global positions. This makes token selection within each chunk comparable and prevents chunks closer to the prompt from being systematically favored. After reordering, we reselect tokens under the updated chunk order to obtain the final set of recomputation tokens. This second s",
+    "role": "Method",
+    "page": 2,
+    "section_id": null,
+    "region_class": "paragraph",
+    "confidence": 0.8,
+    "is_noise": false
+  },
+  {
+    "node_id": "44e746301ac9",
+    "text": "To further understand why our selection strategy facilitates effective information propagation, we analyze the RoPE similarity between prompt tokens and the selected context tokens. Importantly, this analysis blocks the contribution of token semantics: similarities are computed purely from the RoPE embedding matrices. Specifically, we measure the similarity between the RoPE embeddings of prompt to",
+    "role": "Method",
+    "page": 2,
+    "section_id": null,
+    "region_class": "paragraph",
+    "confidence": 0.8,
+    "is_noise": false
+  },
+  {
+    "node_id": "5ab7c8c25bca",
+    "text": "Thus, chunk reordering leverages the freedom in chunk or- dering to further align RoPE geometry with information flow in the decoding phase, complementing token selection under chunk-wise prefilling. More details on KV recompu- tation implementation can be found at Appendix. B",
+    "role": "Method",
+    "page": 2,
+    "section_id": null,
+    "region_class": "paragraph",
+    "confidence": 0.8,
+    "is_noise": false
+  },
+  {
+    "node_id": "6f9c8d49b705",
+    "text": "LLaMA Norm-based 0.5324 0.9773 0.5219 0.9766 CacheBlend 0.5243 0.9133 0.5191 0.8570 EPIC 0.5049 0.6734 0.4985 0.6852",
+    "role": "Result",
+    "page": 2,
+    "section_id": null,
+    "region_class": "paragraph",
+    "confidence": 0.8,
+    "is_noise": false
+  },
+  {
+    "node_id": "ed576c01c3ea",
+    "text": "We ablate different RoPE geometry configurations to study how positional allocation during token selection affects downstream performance.",
+    "role": "Method",
+    "page": 2,
+    "section_id": null,
+    "region_class": "paragraph",
+    "confidence": 0.8,
+    "is_noise": false
+  },
+  {
+    "node_id": "cee15ba9ee02",
+    "text": "Qwen Norm-based 0.4548 0.9805 0.4179 0.9805 CacheBlend 0.4505 0.8078 0.4226 0.8891 EPIC 0.4129 0.5656 0.3835 0.6555",
+    "role": "Result",
+    "page": 2,
+    "section_id": null,
+    "region_class": "paragraph",
+    "confidence": 0.8,
+    "is_noise": false
+  },
+  {
+    "node_id": "e8d327303dfc",
+    "text": "Table 2. RoPE similarity statistics on long-context QA benchmarks. We report Mean-of-Max (MoM) and Max scores across different inference strategies. Higher is better.",
+    "role": "Dataset",
+    "page": 2,
+    "section_id": null,
+    "region_class": "caption",
+    "confidence": 0.8,
+    "is_noise": false
+  },
+  {
+    "node_id": "0ffec1643470",
+    "text": "Table 1 shows that RoPE geometry has a substantial impact on recomputation effectiveness. Among the tested configura- tions, GLOBAL consistently achieves the best performance across all four benchmarks. In contrast, configurations that assign prompt and context tokens to separate or truncated positional ranges (e.g., HL–HP and TL–TP) result in notice- ably lower scores. This suggests that mismatch",
+    "role": "Method",
+    "page": 2,
+    "section_id": null,
+    "region_class": "caption",
+    "confidence": 0.8,
+    "is_noise": false
+  }
+]

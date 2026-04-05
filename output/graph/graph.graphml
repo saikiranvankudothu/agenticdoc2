@@ -1,0 +1,1668 @@
+<?xml version='1.0' encoding='utf-8'?>
+<graphml xmlns="http://graphml.graphdrawing.org/xmlns" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"><key id="d14" for="edge" attr.name="edge_source" attr.type="string"/>
+<key id="d13" for="edge" attr.name="matched_refs" attr.type="string"/>
+<key id="d12" for="edge" attr.name="s_emb" attr.type="double"/>
+<key id="d11" for="edge" attr.name="s_ref" attr.type="double"/>
+<key id="d10" for="edge" attr.name="weight" attr.type="double"/>
+<key id="d9" for="edge" attr.name="relation" attr.type="string"/>
+<key id="d8" for="node" attr.name="is_noise" attr.type="boolean"/>
+<key id="d7" for="node" attr.name="section_id" attr.type="string"/>
+<key id="d6" for="node" attr.name="bbox_y0" attr.type="double"/>
+<key id="d5" for="node" attr.name="role_confidence" attr.type="double"/>
+<key id="d4" for="node" attr.name="confidence" attr.type="double"/>
+<key id="d3" for="node" attr.name="text" attr.type="string"/>
+<key id="d2" for="node" attr.name="page" attr.type="long"/>
+<key id="d1" for="node" attr.name="role" attr.type="string"/>
+<key id="d0" for="node" attr.name="type" attr.type="string"/>
+<graph edgedefault="directed"><node id="1dd87e2e7e3c">
+  <data key="d0">figure</data>
+  <data key="d1">N/A</data>
+  <data key="d2">0</data>
+  <data key="d3"></data>
+  <data key="d4">0.95</data>
+  <data key="d5">0.0</data>
+  <data key="d6">0.0</data>
+  <data key="d7"></data>
+  <data key="d8">True</data>
+</node>
+<node id="62aa5c622c4c">
+  <data key="d0">header</data>
+  <data key="d1">Method</data>
+  <data key="d2">0</data>
+  <data key="d3">Information-Flow-Aware KV Recomputation for Long Context</data>
+  <data key="d4">0.8</data>
+  <data key="d5">0.2701</data>
+  <data key="d6">45.50126647949219</data>
+  <data key="d7"></data>
+  <data key="d8">True</data>
+</node>
+<node id="0ddc07cdd50c">
+  <data key="d0">figure</data>
+  <data key="d1">N/A</data>
+  <data key="d2">0</data>
+  <data key="d3"></data>
+  <data key="d4">0.95</data>
+  <data key="d5">0.0</data>
+  <data key="d6">57.16654968261719</data>
+  <data key="d7"></data>
+  <data key="d8">True</data>
+</node>
+<node id="a08f30ed0c9d">
+  <data key="d0">caption</data>
+  <data key="d1">Method</data>
+  <data key="d2">0</data>
+  <data key="d3">Figure 1. Context chunks are prefetched independently using chunk-local RoPE. At inference time, retrieved chunks are concatenated with the prompt, global RoPE positions are reconstructed, and prompt-conditioned attention norms are used to select high-impact tokens for full-context KV recomputation. The recomputed KV states are concatenated with cached chunks, restoring cross-chunk interactions. A</data>
+  <data key="d4">0.8</data>
+  <data key="d5">0.2828</data>
+  <data key="d6">234.25502014160156</data>
+  <data key="d7"></data>
+  <data key="d8">False</data>
+</node>
+<node id="ec2685348823">
+  <data key="d0">paragraph</data>
+  <data key="d1">Method</data>
+  <data key="d2">0</data>
+  <data key="d3">query–token affinity, and effective information flow, by iden- tifying tokens that are structurally positioned to propagate information under the global causal attention induced by retrieval and decoding. Crucially, this property holds only when attention norms are computed under a RoPE order- ing consistent with inference-time decoding, using a global positional reconstruction of retrieved chunks</data>
+  <data key="d4">0.8</data>
+  <data key="d5">0.2722</data>
+  <data key="d6">296.0985412597656</data>
+  <data key="d7"></data>
+  <data key="d8">False</data>
+</node>
+<node id="94db7a9a9fad">
+  <data key="d0">paragraph</data>
+  <data key="d1">Method</data>
+  <data key="d2">0</data>
+  <data key="d3">tive information flow under the global causal attention graph.</data>
+  <data key="d4">0.8</data>
+  <data key="d5">0.2861</data>
+  <data key="d6">296.0985412597656</data>
+  <data key="d7"></data>
+  <data key="d8">False</data>
+</node>
+<node id="b5f5b80a2b1d">
+  <data key="d0">list</data>
+  <data key="d1">Method</data>
+  <data key="d2">0</data>
+  <data key="d3">• We show that reliable recomputation target selection requires an inference-consistent RoPE ordering , and introduce a global positional reconstruction of retrieved chunks to enable stable and meaningful token ranking.</data>
+  <data key="d4">0.8</data>
+  <data key="d5">0.2543</data>
+  <data key="d6">326.8015441894531</data>
+  <data key="d7"></data>
+  <data key="d8">False</data>
+</node>
+<node id="ce94567d18d4">
+  <data key="d0">list</data>
+  <data key="d1">Method</data>
+  <data key="d2">0</data>
+  <data key="d3">• Building on the identified information-flow–critical tokens, we further propose a retrieved-chunk reorder- ing strategy that improves downstream attention ef- fectiveness, providing additional validation of our information-flow perspective.</data>
+  <data key="d4">0.8</data>
+  <data key="d5">0.3313</data>
+  <data key="d6">381.41455078125</data>
+  <data key="d7"></data>
+  <data key="d8">False</data>
+</node>
+<node id="3b3ae1e66423">
+  <data key="d0">list</data>
+  <data key="d1">Result</data>
+  <data key="d2">0</data>
+  <data key="d3">• We evaluate our approach on both LLM and VLM RAG benchmarks, demonstrating consistent improvements over existing selective recomputation methods under comparable efficiency budgets.</data>
+  <data key="d4">0.8</data>
+  <data key="d5">0.2351</data>
+  <data key="d6">447.9825439453125</data>
+  <data key="d7"></data>
+  <data key="d8">False</data>
+</node>
+<node id="87213f5aee7b">
+  <data key="d0">paragraph</data>
+  <data key="d1">Method</data>
+  <data key="d2">0</data>
+  <data key="d3">While our primary focus is retrieval-augmented generation with precomputed document-level KV caches, the proposed chunking-and-recompute strategy also applies when such caches are unavailable. In non-RAG long-context inference, the input can be partitioned into chunks whose KV caches are computed independently, followed by selective recom- putation under the global causal mask. This yields two pra</data>
+  <data key="d4">0.8</data>
+  <data key="d5">0.2972</data>
+  <data key="d6">493.35955810546875</data>
+  <data key="d7"></data>
+  <data key="d8">False</data>
+</node>
+<node id="eb1f0235f6e6">
+  <data key="d0">title</data>
+  <data key="d1">Method</data>
+  <data key="d2">0</data>
+  <data key="d3">2. Related Work</data>
+  <data key="d4">0.8</data>
+  <data key="d5">0.2443</data>
+  <data key="d6">510.14105224609375</data>
+  <data key="d7">eb1f0235f6e6</data>
+  <data key="d8">False</data>
+</node>
+<node id="aaee53921e65">
+  <data key="d0">title</data>
+  <data key="d1">Definition</data>
+  <data key="d2">0</data>
+  <data key="d3">2.1. KV Eviction &amp; Compression</data>
+  <data key="d4">0.8</data>
+  <data key="d5">0.2357</data>
+  <data key="d6">531.4269409179688</data>
+  <data key="d7">aaee53921e65</data>
+  <data key="d8">False</data>
+</node>
+<node id="f09ece78e015">
+  <data key="d0">paragraph</data>
+  <data key="d1">Observation</data>
+  <data key="d2">0</data>
+  <data key="d3">KV eviction and compression methods reduce long-context inference cost by limiting the size or precision of KV caches during decoding. Eviction-based approaches such as H2O ( Zhang et al. , 2023 ) and StreamingLLM ( Xiao et al. , 2023 ) discard cached KV states based on heuristics, includ- ing recency or attention importance. Compression methods such as Pyramid KV ( Cai et al. , 2024 ) and memoriz</data>
+  <data key="d4">0.8</data>
+  <data key="d5">0.2511</data>
+  <data key="d6">550.4385375976562</data>
+  <data key="d7">aaee53921e65</data>
+  <data key="d8">False</data>
+</node>
+<node id="a29639315d06">
+  <data key="d0">paragraph</data>
+  <data key="d1">Dataset</data>
+  <data key="d2">0</data>
+  <data key="d3">We summarize our contributions as follows.</data>
+  <data key="d4">0.8</data>
+  <data key="d5">0.2379</data>
+  <data key="d6">654.7535400390625</data>
+  <data key="d7">aaee53921e65</data>
+  <data key="d8">False</data>
+</node>
+<node id="d9f4872f2b43">
+  <data key="d0">list</data>
+  <data key="d1">Method</data>
+  <data key="d2">0</data>
+  <data key="d3">• We propose a simple and effective attention- norm–based criterion from the query to context to- kens that jointly captures semantic relevance and effec-</data>
+  <data key="d4">0.8</data>
+  <data key="d5">0.2647</data>
+  <data key="d6">681.9445190429688</data>
+  <data key="d7">aaee53921e65</data>
+  <data key="d8">False</data>
+</node>
+<node id="6c947c83b6f1">
+  <data key="d0">footer</data>
+  <data key="d1">Method</data>
+  <data key="d2">0</data>
+  <data key="d3">2</data>
+  <data key="d4">0.8</data>
+  <data key="d5">0.2463</data>
+  <data key="d6">730.7615356445312</data>
+  <data key="d7">aaee53921e65</data>
+  <data key="d8">True</data>
+</node>
+<node id="4faa67333fb7">
+  <data key="d0">figure</data>
+  <data key="d1">N/A</data>
+  <data key="d2">1</data>
+  <data key="d3"></data>
+  <data key="d4">0.95</data>
+  <data key="d5">0.0</data>
+  <data key="d6">0.0</data>
+  <data key="d7">aaee53921e65</data>
+  <data key="d8">True</data>
+</node>
+<node id="10d405f6b89d">
+  <data key="d0">header</data>
+  <data key="d1">Method</data>
+  <data key="d2">1</data>
+  <data key="d3">Information-Flow-Aware KV Recomputation for Long Context</data>
+  <data key="d4">0.8</data>
+  <data key="d5">0.2701</data>
+  <data key="d6">45.50126647949219</data>
+  <data key="d7">aaee53921e65</data>
+  <data key="d8">True</data>
+</node>
+<node id="17294395846a">
+  <data key="d0">paragraph</data>
+  <data key="d1">Observation</data>
+  <data key="d2">1</data>
+  <data key="d3">are lost. Rather than shrinking or discarding KV caches, we retain token-level KV states and selectively recompute a small subset of tokens to restore global information flow.</data>
+  <data key="d4">0.8</data>
+  <data key="d5">0.235</data>
+  <data key="d6">67.81756591796875</data>
+  <data key="d7">aaee53921e65</data>
+  <data key="d8">False</data>
+</node>
+<node id="425202c62e72">
+  <data key="d0">paragraph</data>
+  <data key="d1">Method</data>
+  <data key="d2">1</data>
+  <data key="d3">where d h is the per-head dimension. In practice, inference consists of a prefilling phase that computes KV states for an input context of length L in a single forward pass, followed by an iterative decoding phase that appends one new KV pair per generated token. In long-context question answering, where the generated answer is short, inference cost is often dominated by the prefilling stage.</data>
+  <data key="d4">0.8</data>
+  <data key="d5">0.25</data>
+  <data key="d6">67.81756591796875</data>
+  <data key="d7">aaee53921e65</data>
+  <data key="d8">False</data>
+</node>
+<node id="fdab2688595d">
+  <data key="d0">title</data>
+  <data key="d1">Method</data>
+  <data key="d2">1</data>
+  <data key="d3">2.2. Chunked Input Processing</data>
+  <data key="d4">0.8</data>
+  <data key="d5">0.2776</data>
+  <data key="d6">116.50292205810547</data>
+  <data key="d7">fdab2688595d</data>
+  <data key="d8">False</data>
+</node>
+<node id="065cf9815941">
+  <data key="d0">paragraph</data>
+  <data key="d1">Method</data>
+  <data key="d2">1</data>
+  <data key="d3">Chunked input processing has been explored to extend effec- tive context length beyond the model’s native window. Con- text Expansion with Parallel Encoding (CEPE) ( Yen et al. , 2024 ) encodes long contexts in parallel using a lightweight encoder and enables a decoder to attend to chunk repre- sentations via cross-attention. A key limitation of such approaches is that chunks are encoded independe</data>
+  <data key="d4">0.8</data>
+  <data key="d5">0.2742</data>
+  <data key="d6">135.5135498046875</data>
+  <data key="d7">fdab2688595d</data>
+  <data key="d8">False</data>
+</node>
+<node id="e8b71caedbfa">
+  <data key="d0">title</data>
+  <data key="d1">Definition</data>
+  <data key="d2">1</data>
+  <data key="d3">3.2. Rotary Positional Embedding (RoPE)</data>
+  <data key="d4">0.8</data>
+  <data key="d5">0.2691</data>
+  <data key="d6">164.3238983154297</data>
+  <data key="d7">fdab2688595d</data>
+  <data key="d8">False</data>
+</node>
+<node id="9080a0fc8dc2">
+  <data key="d0">paragraph</data>
+  <data key="d1">Definition</data>
+  <data key="d2">1</data>
+  <data key="d3">Rotary positional embedding (RoPE) encodes positional information by applying position-dependent rotations to queries and keys. For vectors decomposed into 2D sub- spaces, RoPE applies</data>
+  <data key="d4">0.8</data>
+  <data key="d5">0.2804</data>
+  <data key="d6">183.33453369140625</data>
+  <data key="d7">fdab2688595d</data>
+  <data key="d8">False</data>
+</node>
+<node id="dae21f6b2dff">
+  <data key="d0">paragraph</data>
+  <data key="d1">Definition</data>
+  <data key="d2">1</data>
+  <data key="d3">RoPE( x , t ) = � cos( θ i t ) − sin( θ i t ) sin( θ i t ) cos( θ i t )</data>
+  <data key="d4">0.8</data>
+  <data key="d5">0.2692</data>
+  <data key="d6">233.20089721679688</data>
+  <data key="d7">fdab2688595d</data>
+  <data key="d8">False</data>
+</node>
+<node id="10c26b309662">
+  <data key="d0">paragraph</data>
+  <data key="d1">Definition</data>
+  <data key="d2">1</data>
+  <data key="d3">� x , (3)</data>
+  <data key="d4">0.8</data>
+  <data key="d5">0.3148</data>
+  <data key="d6">233.20089721679688</data>
+  <data key="d7">fdab2688595d</data>
+  <data key="d8">False</data>
+</node>
+<node id="540469ad963f">
+  <data key="d0">paragraph</data>
+  <data key="d1">Definition</data>
+  <data key="d2">1</data>
+  <data key="d3">where the angular frequencies are defined as</data>
+  <data key="d4">0.8</data>
+  <data key="d5">0.3067</data>
+  <data key="d6">271.9245910644531</data>
+  <data key="d7">fdab2688595d</data>
+  <data key="d8">False</data>
+</node>
+<node id="53c70fedd3e7">
+  <data key="d0">paragraph</data>
+  <data key="d1">Definition</data>
+  <data key="d2">1</data>
+  <data key="d3">θ i = 10000 − 2 i/d , i = 0 , . . . , d</data>
+  <data key="d4">0.8</data>
+  <data key="d5">0.2232</data>
+  <data key="d6">292.6640930175781</data>
+  <data key="d7">fdab2688595d</data>
+  <data key="d8">False</data>
+</node>
+<node id="5c4171bae03e">
+  <data key="d0">paragraph</data>
+  <data key="d1">Result</data>
+  <data key="d2">1</data>
+  <data key="d3">2 − 1 . (4)</data>
+  <data key="d4">0.8</data>
+  <data key="d5">0.2295</data>
+  <data key="d6">297.6705322265625</data>
+  <data key="d7">fdab2688595d</data>
+  <data key="d8">False</data>
+</node>
+<node id="099698770710">
+  <data key="d0">title</data>
+  <data key="d1">Definition</data>
+  <data key="d2">1</data>
+  <data key="d3">2.3. KV Recomputation</data>
+  <data key="d4">0.8</data>
+  <data key="d5">0.2215</data>
+  <data key="d6">315.7059020996094</data>
+  <data key="d7">099698770710</data>
+  <data key="d8">False</data>
+</node>
+<node id="a89ff685be33">
+  <data key="d0">paragraph</data>
+  <data key="d1">Observation</data>
+  <data key="d2">1</data>
+  <data key="d3">Lower-index dimensions correspond to higher frequencies and are more sensitive to positional differences, while higher-index dimensions encode lower-frequency compo- nents. Consequently, the effectiveness of attention interac- tions depends on the absolute positions at which tokens are placed, which becomes particularly relevant when KV states are computed independently and later reused or recompu</data>
+  <data key="d4">0.8</data>
+  <data key="d5">0.2945</data>
+  <data key="d6">321.2305603027344</data>
+  <data key="d7">099698770710</data>
+  <data key="d8">False</data>
+</node>
+<node id="144ab83dcdf7">
+  <data key="d0">paragraph</data>
+  <data key="d1">Method</data>
+  <data key="d2">1</data>
+  <data key="d3">KV recomputation methods aim to recover accuracy when reusing independently prefetched KV caches by selectively recomputing a small subset of tokens under the full context. CacheBlend identifies tokens whose cached KV states devi- ate most from full-context attention, while EPIC mitigates positional mismatch by recomputing fixed chunk-initial to- kens. These approaches select recomputation targets</data>
+  <data key="d4">0.8</data>
+  <data key="d5">0.2655</data>
+  <data key="d6">334.716552734375</data>
+  <data key="d7">099698770710</data>
+  <data key="d8">False</data>
+</node>
+<node id="e06a0801deb0">
+  <data key="d0">title</data>
+  <data key="d1">Method</data>
+  <data key="d2">1</data>
+  <data key="d3">4. Method</data>
+  <data key="d4">0.8</data>
+  <data key="d5">0.2429</data>
+  <data key="d6">431.21002197265625</data>
+  <data key="d7">e06a0801deb0</data>
+  <data key="d8">False</data>
+</node>
+<node id="0c7ec6dac4f0">
+  <data key="d0">paragraph</data>
+  <data key="d1">Method</data>
+  <data key="d2">1</data>
+  <data key="d3">In this section, we introduce our method for selecting re- computation targets by jointly considering token semantic relevance and positional influence, with the goal of facilitat- ing information propagation during decoding.</data>
+  <data key="d4">0.8</data>
+  <data key="d5">0.3129</data>
+  <data key="d6">452.85455322265625</data>
+  <data key="d7">e06a0801deb0</data>
+  <data key="d8">False</data>
+</node>
+<node id="6c99266e9176">
+  <data key="d0">title</data>
+  <data key="d1">Method</data>
+  <data key="d2">1</data>
+  <data key="d3">3. Preliminary</data>
+  <data key="d4">0.8</data>
+  <data key="d5">0.2504</data>
+  <data key="d6">504.47198486328125</data>
+  <data key="d7">6c99266e9176</data>
+  <data key="d8">False</data>
+</node>
+<node id="f52522b39f49">
+  <data key="d0">title</data>
+  <data key="d1">Method</data>
+  <data key="d2">1</data>
+  <data key="d3">4.1. Input Chunking and Prefilling</data>
+  <data key="d4">0.8</data>
+  <data key="d5">0.274</data>
+  <data key="d6">513.493896484375</data>
+  <data key="d7">f52522b39f49</data>
+  <data key="d8">False</data>
+</node>
+<node id="3f4c7190fe02">
+  <data key="d0">title</data>
+  <data key="d1">Method</data>
+  <data key="d2">1</data>
+  <data key="d3">3.1. KV Cache</data>
+  <data key="d4">0.8</data>
+  <data key="d5">0.2264</data>
+  <data key="d6">525.7579345703125</data>
+  <data key="d7">3f4c7190fe02</data>
+  <data key="d8">False</data>
+</node>
+<node id="e147050096d9">
+  <data key="d0">paragraph</data>
+  <data key="d1">Definition</data>
+  <data key="d2">1</data>
+  <data key="d3">Let the input consist of N tokens, which we partition into K disjoint chunks { C 1 , . . . , C K } . Each chunk serves as a basic unit for prefilling and can correspond to a naturally independent segment (e.g., a document or an image), or a contiguous partition of a single long input (e.g., a text sequence or a visual token grid).</data>
+  <data key="d4">0.8</data>
+  <data key="d5">0.28</data>
+  <data key="d6">532.5055541992188</data>
+  <data key="d7">3f4c7190fe02</data>
+  <data key="d8">False</data>
+</node>
+<node id="4b772c40cc08">
+  <data key="d0">paragraph</data>
+  <data key="d1">Definition</data>
+  <data key="d2">1</data>
+  <data key="d3">We consider an autoregressive Transformer decoder. Let h ℓ t ∈ R d denote the hidden state at layer ℓ and position t . For each attention head, keys and values are computed as linear projections of the hidden states,</data>
+  <data key="d4">0.8</data>
+  <data key="d5">0.2823</data>
+  <data key="d6">544.7685546875</data>
+  <data key="d7">3f4c7190fe02</data>
+  <data key="d8">False</data>
+</node>
+<node id="d6dbf5af615b">
+  <data key="d0">paragraph</data>
+  <data key="d1">Definition</data>
+  <data key="d2">1</data>
+  <data key="d3">k ℓ t = W ℓ K h ℓ t , v ℓ t = W ℓ V h ℓ t , (1)</data>
+  <data key="d4">0.8</data>
+  <data key="d5">0.292</data>
+  <data key="d6">600.3186645507812</data>
+  <data key="d7">3f4c7190fe02</data>
+  <data key="d8">False</data>
+</node>
+<node id="e241fdf96af0">
+  <data key="d0">paragraph</data>
+  <data key="d1">Method</data>
+  <data key="d2">1</data>
+  <data key="d3">During chunk-wise prefilling, each chunk is processed inde- pendently to compute its key–value (KV) cache. Within a chunk C i , positional indices are assigned locally: tokens are indexed from 0 to | C i | − 1 according to their order inside the chunk, regardless of their absolute position in the full input. Keys and queries are then computed using RoPE based on these chunk-local positions, and th</data>
+  <data key="d4">0.8</data>
+  <data key="d5">0.2574</data>
+  <data key="d6">610.2135620117188</data>
+  <data key="d7">3f4c7190fe02</data>
+  <data key="d8">False</data>
+</node>
+<node id="8feaf570ed68">
+  <data key="d0">paragraph</data>
+  <data key="d1">Method</data>
+  <data key="d2">1</data>
+  <data key="d3">where the head index is omitted for clarity.</data>
+  <data key="d4">0.8</data>
+  <data key="d5">0.2321</data>
+  <data key="d6">620.279541015625</data>
+  <data key="d7">3f4c7190fe02</data>
+  <data key="d8">False</data>
+</node>
+<node id="850faa696fff">
+  <data key="d0">paragraph</data>
+  <data key="d1">Definition</data>
+  <data key="d2">1</data>
+  <data key="d3">During autoregressive decoding, to avoid recomputing keys and values for previously processed tokens, Transformer de- coders maintain a key–value (KV) cache that stores all past { k ℓ s , v ℓ s } s ≤ t at each layer. We denote the cached tensors up to position t by</data>
+  <data key="d4">0.8</data>
+  <data key="d5">0.2889</data>
+  <data key="d6">638.2125244140625</data>
+  <data key="d7">3f4c7190fe02</data>
+  <data key="d8">False</data>
+</node>
+<node id="c330b0c929e2">
+  <data key="d0">equation</data>
+  <data key="d1">N/A</data>
+  <data key="d2">1</data>
+  <data key="d3">K ℓ ≤ t ∈ R t × d h , V ℓ ≤ t ∈ R t × d h , (2)</data>
+  <data key="d4">0.8</data>
+  <data key="d5">0.0</data>
+  <data key="d6">705.4935302734375</data>
+  <data key="d7">3f4c7190fe02</data>
+  <data key="d8">True</data>
+</node>
+<node id="6f76cac2af9d">
+  <data key="d0">footer</data>
+  <data key="d1">Method</data>
+  <data key="d2">1</data>
+  <data key="d3">3</data>
+  <data key="d4">0.8</data>
+  <data key="d5">0.2535</data>
+  <data key="d6">730.7615356445312</data>
+  <data key="d7">3f4c7190fe02</data>
+  <data key="d8">True</data>
+</node>
+<node id="a75ab3b14e2a">
+  <data key="d0">figure</data>
+  <data key="d1">N/A</data>
+  <data key="d2">2</data>
+  <data key="d3"></data>
+  <data key="d4">0.95</data>
+  <data key="d5">0.0</data>
+  <data key="d6">0.0</data>
+  <data key="d7">3f4c7190fe02</data>
+  <data key="d8">True</data>
+</node>
+<node id="1acd5dd04643">
+  <data key="d0">header</data>
+  <data key="d1">Method</data>
+  <data key="d2">2</data>
+  <data key="d3">Information-Flow-Aware KV Recomputation for Long Context</data>
+  <data key="d4">0.8</data>
+  <data key="d5">0.2701</data>
+  <data key="d6">45.50126647949219</data>
+  <data key="d7">3f4c7190fe02</data>
+  <data key="d8">True</data>
+</node>
+<node id="abcfd9a69710">
+  <data key="d0">paragraph</data>
+  <data key="d1">Method</data>
+  <data key="d2">2</data>
+  <data key="d3">which frequency placement and prompt–context proximity can arise in practice.</data>
+  <data key="d4">0.8</data>
+  <data key="d5">0.2724</data>
+  <data key="d6">67.81756591796875</data>
+  <data key="d7">3f4c7190fe02</data>
+  <data key="d8">False</data>
+</node>
+<node id="9235176688ae">
+  <data key="d0">paragraph</data>
+  <data key="d1">Method</data>
+  <data key="d2">2</data>
+  <data key="d3">ing order can degrade the quality of selected recomputation targets.</data>
+  <data key="d4">0.8</data>
+  <data key="d5">0.2706</data>
+  <data key="d6">67.81756591796875</data>
+  <data key="d7">3f4c7190fe02</data>
+  <data key="d8">False</data>
+</node>
+<node id="636c3d150e0a">
+  <data key="d0">paragraph</data>
+  <data key="d1">Observation</data>
+  <data key="d2">2</data>
+  <data key="d3">These results indicate that effective selective recomputation benefits from evaluating token importance under a positional layout that closely matches inference-time decoding. Based on this observation, we adopt GLOBAL as the default RoPE geometry for token selection in our method. In the reorder- ing setting, we use HL–TP for the first-stage selection to encourage diversity across chunks, followe</data>
+  <data key="d4">0.8</data>
+  <data key="d5">0.2369</data>
+  <data key="d6">97.70556640625</data>
+  <data key="d7">3f4c7190fe02</data>
+  <data key="d8">False</data>
+</node>
+<node id="60474b48521b">
+  <data key="d0">title</data>
+  <data key="d1">Definition</data>
+  <data key="d2">2</data>
+  <data key="d3">4.3. KV reorder</data>
+  <data key="d4">0.8</data>
+  <data key="d5">0.2256</data>
+  <data key="d6">104.54790496826172</data>
+  <data key="d7">60474b48521b</data>
+  <data key="d8">False</data>
+</node>
+<node id="d2b07d3cef96">
+  <data key="d0">paragraph</data>
+  <data key="d1">Method</data>
+  <data key="d2">2</data>
+  <data key="d3">Beyond KV prefilling and token selection, we further con- sider the ordering of chunks at inference time as an addi- tional degree of freedom for facilitating information flow. Under RoPE-based causal decoding, tokens placed closer to the prompt in the sequence are more likely to interact with prompt queries through attention, which facilitates more effective propagation of contextual information </data>
+  <data key="d4">0.8</data>
+  <data key="d5">0.281</data>
+  <data key="d6">123.55853271484375</data>
+  <data key="d7">60474b48521b</data>
+  <data key="d8">False</data>
+</node>
+<node id="6ccea69e889f">
+  <data key="d0">caption</data>
+  <data key="d1">Method</data>
+  <data key="d2">2</data>
+  <data key="d3">Table 1. Ablation of RoPE geometry configurations on Qwen under the passage-split setting. Higher is better.</data>
+  <data key="d4">0.8</data>
+  <data key="d5">0.2571</data>
+  <data key="d6">216.6430206298828</data>
+  <data key="d7">60474b48521b</data>
+  <data key="d8">False</data>
+</node>
+<node id="6b5264fa5773">
+  <data key="d0">table</data>
+  <data key="d1">N/A</data>
+  <data key="d2">2</data>
+  <data key="d3">Method 2WikiMQA MuSiQue HotpotQA NarrativeQA</data>
+  <data key="d4">0.8</data>
+  <data key="d5">0.0</data>
+  <data key="d6">247.3770751953125</data>
+  <data key="d7">60474b48521b</data>
+  <data key="d8">True</data>
+</node>
+<node id="029e37f5147e">
+  <data key="d0">table</data>
+  <data key="d1">N/A</data>
+  <data key="d2">2</data>
+  <data key="d3">HL–HP 0.4455 0.2871 0.5529 0.1481 TL–TP 0.4458 0.2970 0.5693 0.1923 HL–TP 0.4722 0.3072 0.5651 0.2106 GLOBAL 0.5019 0.3386 0.5954 0.2288</data>
+  <data key="d4">0.8</data>
+  <data key="d5">0.0</data>
+  <data key="d6">261.54925537109375</data>
+  <data key="d7">60474b48521b</data>
+  <data key="d8">True</data>
+</node>
+<node id="d541f340e961">
+  <data key="d0">paragraph</data>
+  <data key="d1">Method</data>
+  <data key="d2">2</data>
+  <data key="d3">Concretely, we perform an initial round of token selection within each chunk independently, using local RoPE rather than global positions. This makes token selection within each chunk comparable and prevents chunks closer to the prompt from being systematically favored. After reordering, we reselect tokens under the updated chunk order to obtain the final set of recomputation tokens. This second s</data>
+  <data key="d4">0.8</data>
+  <data key="d5">0.2694</data>
+  <data key="d6">308.8635559082031</data>
+  <data key="d7">60474b48521b</data>
+  <data key="d8">False</data>
+</node>
+<node id="720e4c43f686">
+  <data key="d0">title</data>
+  <data key="d1">Result</data>
+  <data key="d2">2</data>
+  <data key="d3">5.2. RoPE Similarity</data>
+  <data key="d4">0.8</data>
+  <data key="d5">0.2308</data>
+  <data key="d6">324.9949035644531</data>
+  <data key="d7">720e4c43f686</data>
+  <data key="d8">False</data>
+</node>
+<node id="44e746301ac9">
+  <data key="d0">paragraph</data>
+  <data key="d1">Method</data>
+  <data key="d2">2</data>
+  <data key="d3">To further understand why our selection strategy facilitates effective information propagation, we analyze the RoPE similarity between prompt tokens and the selected context tokens. Importantly, this analysis blocks the contribution of token semantics: similarities are computed purely from the RoPE embedding matrices. Specifically, we measure the similarity between the RoPE embeddings of prompt to</data>
+  <data key="d4">0.8</data>
+  <data key="d5">0.2401</data>
+  <data key="d6">344.00555419921875</data>
+  <data key="d7">720e4c43f686</data>
+  <data key="d8">False</data>
+</node>
+<node id="5ab7c8c25bca">
+  <data key="d0">paragraph</data>
+  <data key="d1">Method</data>
+  <data key="d2">2</data>
+  <data key="d3">Thus, chunk reordering leverages the freedom in chunk or- dering to further align RoPE geometry with information flow in the decoding phase, complementing token selection under chunk-wise prefilling. More details on KV recompu- tation implementation can be found at Appendix. B</data>
+  <data key="d4">0.8</data>
+  <data key="d5">0.2581</data>
+  <data key="d6">458.3035583496094</data>
+  <data key="d7">720e4c43f686</data>
+  <data key="d8">False</data>
+</node>
+<node id="1c13608a2e51">
+  <data key="d0">paragraph</data>
+  <data key="d1">Method</data>
+  <data key="d2">2</data>
+  <data key="d3">2WikiMQA HotpotQA</data>
+  <data key="d4">0.8</data>
+  <data key="d5">0.2306</data>
+  <data key="d6">514.002685546875</data>
+  <data key="d7">720e4c43f686</data>
+  <data key="d8">False</data>
+</node>
+<node id="83576148e496">
+  <data key="d0">paragraph</data>
+  <data key="d1">Method</data>
+  <data key="d2">2</data>
+  <data key="d3">Model Method MoM Max MoM Max</data>
+  <data key="d4">0.8</data>
+  <data key="d5">0.2522</data>
+  <data key="d6">527.8135986328125</data>
+  <data key="d7">720e4c43f686</data>
+  <data key="d8">False</data>
+</node>
+<node id="2d8176f2ed8e">
+  <data key="d0">title</data>
+  <data key="d1">Result</data>
+  <data key="d2">2</data>
+  <data key="d3">5. Ablation Result</data>
+  <data key="d4">0.8</data>
+  <data key="d5">0.2587</data>
+  <data key="d6">532.4170532226562</data>
+  <data key="d7">2d8176f2ed8e</data>
+  <data key="d8">False</data>
+</node>
+<node id="6f9c8d49b705">
+  <data key="d0">paragraph</data>
+  <data key="d1">Result</data>
+  <data key="d2">2</data>
+  <data key="d3">LLaMA Norm-based 0.5324 0.9773 0.5219 0.9766 CacheBlend 0.5243 0.9133 0.5191 0.8570 EPIC 0.5049 0.6734 0.4985 0.6852</data>
+  <data key="d4">0.8</data>
+  <data key="d5">0.2502</data>
+  <data key="d6">541.206298828125</data>
+  <data key="d7">2d8176f2ed8e</data>
+  <data key="d8">False</data>
+</node>
+<node id="48720ac67d49">
+  <data key="d0">title</data>
+  <data key="d1">Result</data>
+  <data key="d2">2</data>
+  <data key="d3">5.1. RoPE Geometry</data>
+  <data key="d4">0.8</data>
+  <data key="d5">0.2233</data>
+  <data key="d6">553.7029418945312</data>
+  <data key="d7">48720ac67d49</data>
+  <data key="d8">False</data>
+</node>
+<node id="ed576c01c3ea">
+  <data key="d0">paragraph</data>
+  <data key="d1">Method</data>
+  <data key="d2">2</data>
+  <data key="d3">We ablate different RoPE geometry configurations to study how positional allocation during token selection affects downstream performance.</data>
+  <data key="d4">0.8</data>
+  <data key="d5">0.2618</data>
+  <data key="d6">572.7145385742188</data>
+  <data key="d7">48720ac67d49</data>
+  <data key="d8">False</data>
+</node>
+<node id="cee15ba9ee02">
+  <data key="d0">paragraph</data>
+  <data key="d1">Result</data>
+  <data key="d2">2</data>
+  <data key="d3">Qwen Norm-based 0.4548 0.9805 0.4179 0.9805 CacheBlend 0.4505 0.8078 0.4226 0.8891 EPIC 0.4129 0.5656 0.3835 0.6555</data>
+  <data key="d4">0.8</data>
+  <data key="d5">0.2608</data>
+  <data key="d6">574.1814575195312</data>
+  <data key="d7">48720ac67d49</data>
+  <data key="d8">False</data>
+</node>
+<node id="e8d327303dfc">
+  <data key="d0">caption</data>
+  <data key="d1">Dataset</data>
+  <data key="d2">2</data>
+  <data key="d3">Table 2. RoPE similarity statistics on long-context QA benchmarks. We report Mean-of-Max (MoM) and Max scores across different inference strategies. Higher is better.</data>
+  <data key="d4">0.8</data>
+  <data key="d5">0.2475</data>
+  <data key="d6">605.7970581054688</data>
+  <data key="d7">48720ac67d49</data>
+  <data key="d8">False</data>
+</node>
+<node id="0ffec1643470">
+  <data key="d0">caption</data>
+  <data key="d1">Method</data>
+  <data key="d2">2</data>
+  <data key="d3">Table 1 shows that RoPE geometry has a substantial impact on recomputation effectiveness. Among the tested configura- tions, GLOBAL consistently achieves the best performance across all four benchmarks. In contrast, configurations that assign prompt and context tokens to separate or truncated positional ranges (e.g., HL–HP and TL–TP) result in notice- ably lower scores. This suggests that mismatch</data>
+  <data key="d4">0.8</data>
+  <data key="d5">0.2267</data>
+  <data key="d6">614.5575561523438</data>
+  <data key="d7">48720ac67d49</data>
+  <data key="d8">False</data>
+</node>
+<node id="6a6547a24897">
+  <data key="d0">table</data>
+  <data key="d1">N/A</data>
+  <data key="d2">2</data>
+  <data key="d3">As shown in Table 2 , norm-based selection consistently yields higher RoPE similarity scores than prior methods across both datasets and model families, under both the Mean-of-Max and Max metrics. This result reveals an alignment between attention salience and RoPE-induced</data>
+  <data key="d4">0.8</data>
+  <data key="d5">0.0</data>
+  <data key="d6">658.0345458984375</data>
+  <data key="d7">48720ac67d49</data>
+  <data key="d8">True</data>
+</node>
+<node id="11fb94d9a82f">
+  <data key="d0">footer</data>
+  <data key="d1">Method</data>
+  <data key="d2">2</data>
+  <data key="d3">5</data>
+  <data key="d4">0.8</data>
+  <data key="d5">0.2234</data>
+  <data key="d6">730.7615356445312</data>
+  <data key="d7">48720ac67d49</data>
+  <data key="d8">True</data>
+</node>
+<edge source="a08f30ed0c9d" target="1dd87e2e7e3c">
+  <data key="d9">refers_to</data>
+  <data key="d10">0.8602</data>
+  <data key="d11">1.0</data>
+  <data key="d12">0.5341</data>
+  <data key="d13">[["figure", 1]]</data>
+  <data key="d14">multimodal</data>
+</edge>
+<edge source="a08f30ed0c9d" target="0ddc07cdd50c">
+  <data key="d9">refers_to</data>
+  <data key="d10">0.8602</data>
+  <data key="d11">1.0</data>
+  <data key="d12">0.5341</data>
+  <data key="d13">[["figure", 1]]</data>
+  <data key="d14">multimodal</data>
+</edge>
+<edge source="a08f30ed0c9d" target="4faa67333fb7">
+  <data key="d9">refers_to</data>
+  <data key="d10">0.3702</data>
+  <data key="d11">0.3</data>
+  <data key="d12">0.5341</data>
+  <data key="d13">[["figure", 1]]</data>
+  <data key="d14">multimodal</data>
+</edge>
+<edge source="a08f30ed0c9d" target="3b3ae1e66423">
+  <data key="d9">produces</data>
+  <data key="d10">0.259</data>
+  <data key="d14">semantic_role</data>
+</edge>
+<edge source="a08f30ed0c9d" target="f09ece78e015">
+  <data key="d9">produces</data>
+  <data key="d10">0.267</data>
+  <data key="d14">semantic_role</data>
+</edge>
+<edge source="ec2685348823" target="3b3ae1e66423">
+  <data key="d9">produces</data>
+  <data key="d10">0.2536</data>
+  <data key="d14">semantic_role</data>
+</edge>
+<edge source="ec2685348823" target="f09ece78e015">
+  <data key="d9">produces</data>
+  <data key="d10">0.2616</data>
+  <data key="d14">semantic_role</data>
+</edge>
+<edge source="94db7a9a9fad" target="3b3ae1e66423">
+  <data key="d9">produces</data>
+  <data key="d10">0.2606</data>
+  <data key="d14">semantic_role</data>
+</edge>
+<edge source="94db7a9a9fad" target="f09ece78e015">
+  <data key="d9">produces</data>
+  <data key="d10">0.2686</data>
+  <data key="d14">semantic_role</data>
+</edge>
+<edge source="b5f5b80a2b1d" target="3b3ae1e66423">
+  <data key="d9">produces</data>
+  <data key="d10">0.2447</data>
+  <data key="d14">semantic_role</data>
+</edge>
+<edge source="b5f5b80a2b1d" target="f09ece78e015">
+  <data key="d9">produces</data>
+  <data key="d10">0.2527</data>
+  <data key="d14">semantic_role</data>
+</edge>
+<edge source="ce94567d18d4" target="3b3ae1e66423">
+  <data key="d9">produces</data>
+  <data key="d10">0.2832</data>
+  <data key="d14">semantic_role</data>
+</edge>
+<edge source="ce94567d18d4" target="f09ece78e015">
+  <data key="d9">produces</data>
+  <data key="d10">0.2912</data>
+  <data key="d14">semantic_role</data>
+</edge>
+<edge source="87213f5aee7b" target="3b3ae1e66423">
+  <data key="d9">produces</data>
+  <data key="d10">0.2661</data>
+  <data key="d14">semantic_role</data>
+</edge>
+<edge source="87213f5aee7b" target="f09ece78e015">
+  <data key="d9">produces</data>
+  <data key="d10">0.2742</data>
+  <data key="d14">semantic_role</data>
+</edge>
+<edge source="eb1f0235f6e6" target="3b3ae1e66423">
+  <data key="d9">produces</data>
+  <data key="d10">0.2397</data>
+  <data key="d14">semantic_role</data>
+</edge>
+<edge source="eb1f0235f6e6" target="f09ece78e015">
+  <data key="d9">produces</data>
+  <data key="d10">0.2477</data>
+  <data key="d14">semantic_role</data>
+</edge>
+<edge source="aaee53921e65" target="d9f4872f2b43">
+  <data key="d9">used_in</data>
+  <data key="d10">0.2502</data>
+  <data key="d14">semantic_role</data>
+</edge>
+<edge source="aaee53921e65" target="f09ece78e015">
+  <data key="d9">contains</data>
+  <data key="d10">1.0</data>
+  <data key="d14">section</data>
+</edge>
+<edge source="aaee53921e65" target="a29639315d06">
+  <data key="d9">contains</data>
+  <data key="d10">1.0</data>
+  <data key="d14">section</data>
+</edge>
+<edge source="aaee53921e65" target="6c947c83b6f1">
+  <data key="d9">contains</data>
+  <data key="d10">1.0</data>
+  <data key="d14">section</data>
+</edge>
+<edge source="aaee53921e65" target="4faa67333fb7">
+  <data key="d9">contains</data>
+  <data key="d10">1.0</data>
+  <data key="d14">section</data>
+</edge>
+<edge source="aaee53921e65" target="10d405f6b89d">
+  <data key="d9">contains</data>
+  <data key="d10">1.0</data>
+  <data key="d14">section</data>
+</edge>
+<edge source="aaee53921e65" target="17294395846a">
+  <data key="d9">contains</data>
+  <data key="d10">1.0</data>
+  <data key="d14">section</data>
+</edge>
+<edge source="aaee53921e65" target="425202c62e72">
+  <data key="d9">contains</data>
+  <data key="d10">1.0</data>
+  <data key="d14">section</data>
+</edge>
+<edge source="a29639315d06" target="3b3ae1e66423">
+  <data key="d9">evaluated_on</data>
+  <data key="d10">0.2365</data>
+  <data key="d14">semantic_role</data>
+</edge>
+<edge source="a29639315d06" target="d9f4872f2b43">
+  <data key="d9">evaluated_by</data>
+  <data key="d10">0.2513</data>
+  <data key="d14">semantic_role</data>
+</edge>
+<edge source="d9f4872f2b43" target="3b3ae1e66423">
+  <data key="d9">produces</data>
+  <data key="d10">0.2499</data>
+  <data key="d14">semantic_role</data>
+</edge>
+<edge source="d9f4872f2b43" target="f09ece78e015">
+  <data key="d9">produces</data>
+  <data key="d10">0.2579</data>
+  <data key="d14">semantic_role</data>
+</edge>
+<edge source="425202c62e72" target="5c4171bae03e">
+  <data key="d9">produces</data>
+  <data key="d10">0.2398</data>
+  <data key="d14">semantic_role</data>
+</edge>
+<edge source="425202c62e72" target="17294395846a">
+  <data key="d9">produces</data>
+  <data key="d10">0.2425</data>
+  <data key="d14">semantic_role</data>
+</edge>
+<edge source="fdab2688595d" target="5c4171bae03e">
+  <data key="d9">produces</data>
+  <data key="d10">0.2535</data>
+  <data key="d14">semantic_role</data>
+</edge>
+<edge source="fdab2688595d" target="17294395846a">
+  <data key="d9">produces</data>
+  <data key="d10">0.2563</data>
+  <data key="d14">semantic_role</data>
+</edge>
+<edge source="fdab2688595d" target="a89ff685be33">
+  <data key="d9">produces</data>
+  <data key="d10">0.2861</data>
+  <data key="d14">semantic_role</data>
+</edge>
+<edge source="fdab2688595d" target="065cf9815941">
+  <data key="d9">contains</data>
+  <data key="d10">1.0</data>
+  <data key="d14">section</data>
+</edge>
+<edge source="fdab2688595d" target="9080a0fc8dc2">
+  <data key="d9">contains</data>
+  <data key="d10">1.0</data>
+  <data key="d14">section</data>
+</edge>
+<edge source="fdab2688595d" target="dae21f6b2dff">
+  <data key="d9">contains</data>
+  <data key="d10">1.0</data>
+  <data key="d14">section</data>
+</edge>
+<edge source="fdab2688595d" target="10c26b309662">
+  <data key="d9">contains</data>
+  <data key="d10">1.0</data>
+  <data key="d14">section</data>
+</edge>
+<edge source="fdab2688595d" target="540469ad963f">
+  <data key="d9">contains</data>
+  <data key="d10">1.0</data>
+  <data key="d14">section</data>
+</edge>
+<edge source="fdab2688595d" target="53c70fedd3e7">
+  <data key="d9">contains</data>
+  <data key="d10">1.0</data>
+  <data key="d14">section</data>
+</edge>
+<edge source="065cf9815941" target="5c4171bae03e">
+  <data key="d9">produces</data>
+  <data key="d10">0.2519</data>
+  <data key="d14">semantic_role</data>
+</edge>
+<edge source="065cf9815941" target="17294395846a">
+  <data key="d9">produces</data>
+  <data key="d10">0.2546</data>
+  <data key="d14">semantic_role</data>
+</edge>
+<edge source="065cf9815941" target="a89ff685be33">
+  <data key="d9">produces</data>
+  <data key="d10">0.2843</data>
+  <data key="d14">semantic_role</data>
+</edge>
+<edge source="e8b71caedbfa" target="fdab2688595d">
+  <data key="d9">used_in</data>
+  <data key="d10">0.2733</data>
+  <data key="d14">semantic_role</data>
+</edge>
+<edge source="e8b71caedbfa" target="065cf9815941">
+  <data key="d9">used_in</data>
+  <data key="d10">0.2717</data>
+  <data key="d14">semantic_role</data>
+</edge>
+<edge source="9080a0fc8dc2" target="fdab2688595d">
+  <data key="d9">used_in</data>
+  <data key="d10">0.279</data>
+  <data key="d14">semantic_role</data>
+</edge>
+<edge source="9080a0fc8dc2" target="065cf9815941">
+  <data key="d9">used_in</data>
+  <data key="d10">0.2773</data>
+  <data key="d14">semantic_role</data>
+</edge>
+<edge source="dae21f6b2dff" target="fdab2688595d">
+  <data key="d9">used_in</data>
+  <data key="d10">0.2734</data>
+  <data key="d14">semantic_role</data>
+</edge>
+<edge source="dae21f6b2dff" target="065cf9815941">
+  <data key="d9">used_in</data>
+  <data key="d10">0.2717</data>
+  <data key="d14">semantic_role</data>
+</edge>
+<edge source="10c26b309662" target="fdab2688595d">
+  <data key="d9">used_in</data>
+  <data key="d10">0.2962</data>
+  <data key="d14">semantic_role</data>
+</edge>
+<edge source="10c26b309662" target="065cf9815941">
+  <data key="d9">used_in</data>
+  <data key="d10">0.2945</data>
+  <data key="d14">semantic_role</data>
+</edge>
+<edge source="540469ad963f" target="fdab2688595d">
+  <data key="d9">used_in</data>
+  <data key="d10">0.2922</data>
+  <data key="d14">semantic_role</data>
+</edge>
+<edge source="540469ad963f" target="065cf9815941">
+  <data key="d9">used_in</data>
+  <data key="d10">0.2904</data>
+  <data key="d14">semantic_role</data>
+</edge>
+<edge source="53c70fedd3e7" target="fdab2688595d">
+  <data key="d9">used_in</data>
+  <data key="d10">0.2504</data>
+  <data key="d14">semantic_role</data>
+</edge>
+<edge source="53c70fedd3e7" target="065cf9815941">
+  <data key="d9">used_in</data>
+  <data key="d10">0.2487</data>
+  <data key="d14">semantic_role</data>
+</edge>
+<edge source="099698770710" target="144ab83dcdf7">
+  <data key="d9">used_in</data>
+  <data key="d10">0.2435</data>
+  <data key="d14">semantic_role</data>
+</edge>
+<edge source="099698770710" target="a89ff685be33">
+  <data key="d9">contains</data>
+  <data key="d10">1.0</data>
+  <data key="d14">section</data>
+</edge>
+<edge source="144ab83dcdf7" target="5c4171bae03e">
+  <data key="d9">produces</data>
+  <data key="d10">0.2475</data>
+  <data key="d14">semantic_role</data>
+</edge>
+<edge source="144ab83dcdf7" target="a89ff685be33">
+  <data key="d9">produces</data>
+  <data key="d10">0.28</data>
+  <data key="d14">semantic_role</data>
+</edge>
+<edge source="e06a0801deb0" target="5c4171bae03e">
+  <data key="d9">produces</data>
+  <data key="d10">0.2362</data>
+  <data key="d14">semantic_role</data>
+</edge>
+<edge source="e06a0801deb0" target="17294395846a">
+  <data key="d9">produces</data>
+  <data key="d10">0.2389</data>
+  <data key="d14">semantic_role</data>
+</edge>
+<edge source="e06a0801deb0" target="a89ff685be33">
+  <data key="d9">produces</data>
+  <data key="d10">0.2687</data>
+  <data key="d14">semantic_role</data>
+</edge>
+<edge source="e06a0801deb0" target="0c7ec6dac4f0">
+  <data key="d9">contains</data>
+  <data key="d10">1.0</data>
+  <data key="d14">section</data>
+</edge>
+<edge source="0c7ec6dac4f0" target="5c4171bae03e">
+  <data key="d9">produces</data>
+  <data key="d10">0.2712</data>
+  <data key="d14">semantic_role</data>
+</edge>
+<edge source="0c7ec6dac4f0" target="17294395846a">
+  <data key="d9">produces</data>
+  <data key="d10">0.274</data>
+  <data key="d14">semantic_role</data>
+</edge>
+<edge source="0c7ec6dac4f0" target="a89ff685be33">
+  <data key="d9">produces</data>
+  <data key="d10">0.3037</data>
+  <data key="d14">semantic_role</data>
+</edge>
+<edge source="6c99266e9176" target="5c4171bae03e">
+  <data key="d9">produces</data>
+  <data key="d10">0.2399</data>
+  <data key="d14">semantic_role</data>
+</edge>
+<edge source="6c99266e9176" target="17294395846a">
+  <data key="d9">produces</data>
+  <data key="d10">0.2427</data>
+  <data key="d14">semantic_role</data>
+</edge>
+<edge source="6c99266e9176" target="a89ff685be33">
+  <data key="d9">produces</data>
+  <data key="d10">0.2724</data>
+  <data key="d14">semantic_role</data>
+</edge>
+<edge source="f52522b39f49" target="5c4171bae03e">
+  <data key="d9">produces</data>
+  <data key="d10">0.2518</data>
+  <data key="d14">semantic_role</data>
+</edge>
+<edge source="f52522b39f49" target="17294395846a">
+  <data key="d9">produces</data>
+  <data key="d10">0.2545</data>
+  <data key="d14">semantic_role</data>
+</edge>
+<edge source="f52522b39f49" target="a89ff685be33">
+  <data key="d9">produces</data>
+  <data key="d10">0.2843</data>
+  <data key="d14">semantic_role</data>
+</edge>
+<edge source="3f4c7190fe02" target="5c4171bae03e">
+  <data key="d9">produces</data>
+  <data key="d10">0.2279</data>
+  <data key="d14">semantic_role</data>
+</edge>
+<edge source="3f4c7190fe02" target="17294395846a">
+  <data key="d9">produces</data>
+  <data key="d10">0.2307</data>
+  <data key="d14">semantic_role</data>
+</edge>
+<edge source="3f4c7190fe02" target="a89ff685be33">
+  <data key="d9">produces</data>
+  <data key="d10">0.2604</data>
+  <data key="d14">semantic_role</data>
+</edge>
+<edge source="3f4c7190fe02" target="e147050096d9">
+  <data key="d9">contains</data>
+  <data key="d10">1.0</data>
+  <data key="d14">section</data>
+</edge>
+<edge source="3f4c7190fe02" target="4b772c40cc08">
+  <data key="d9">contains</data>
+  <data key="d10">1.0</data>
+  <data key="d14">section</data>
+</edge>
+<edge source="3f4c7190fe02" target="d6dbf5af615b">
+  <data key="d9">contains</data>
+  <data key="d10">1.0</data>
+  <data key="d14">section</data>
+</edge>
+<edge source="3f4c7190fe02" target="e241fdf96af0">
+  <data key="d9">contains</data>
+  <data key="d10">1.0</data>
+  <data key="d14">section</data>
+</edge>
+<edge source="3f4c7190fe02" target="8feaf570ed68">
+  <data key="d9">contains</data>
+  <data key="d10">1.0</data>
+  <data key="d14">section</data>
+</edge>
+<edge source="3f4c7190fe02" target="850faa696fff">
+  <data key="d9">contains</data>
+  <data key="d10">1.0</data>
+  <data key="d14">section</data>
+</edge>
+<edge source="3f4c7190fe02" target="c330b0c929e2">
+  <data key="d9">contains</data>
+  <data key="d10">1.0</data>
+  <data key="d14">section</data>
+</edge>
+<edge source="3f4c7190fe02" target="6f76cac2af9d">
+  <data key="d9">contains</data>
+  <data key="d10">1.0</data>
+  <data key="d14">section</data>
+</edge>
+<edge source="3f4c7190fe02" target="a75ab3b14e2a">
+  <data key="d9">contains</data>
+  <data key="d10">1.0</data>
+  <data key="d14">section</data>
+</edge>
+<edge source="3f4c7190fe02" target="1acd5dd04643">
+  <data key="d9">contains</data>
+  <data key="d10">1.0</data>
+  <data key="d14">section</data>
+</edge>
+<edge source="3f4c7190fe02" target="abcfd9a69710">
+  <data key="d9">contains</data>
+  <data key="d10">1.0</data>
+  <data key="d14">section</data>
+</edge>
+<edge source="3f4c7190fe02" target="9235176688ae">
+  <data key="d9">contains</data>
+  <data key="d10">1.0</data>
+  <data key="d14">section</data>
+</edge>
+<edge source="3f4c7190fe02" target="636c3d150e0a">
+  <data key="d9">contains</data>
+  <data key="d10">1.0</data>
+  <data key="d14">section</data>
+</edge>
+<edge source="e147050096d9" target="3f4c7190fe02">
+  <data key="d9">used_in</data>
+  <data key="d10">0.2532</data>
+  <data key="d14">semantic_role</data>
+</edge>
+<edge source="e147050096d9" target="e241fdf96af0">
+  <data key="d9">used_in</data>
+  <data key="d10">0.2687</data>
+  <data key="d14">semantic_role</data>
+</edge>
+<edge source="e147050096d9" target="8feaf570ed68">
+  <data key="d9">used_in</data>
+  <data key="d10">0.256</data>
+  <data key="d14">semantic_role</data>
+</edge>
+<edge source="4b772c40cc08" target="3f4c7190fe02">
+  <data key="d9">used_in</data>
+  <data key="d10">0.2543</data>
+  <data key="d14">semantic_role</data>
+</edge>
+<edge source="4b772c40cc08" target="e241fdf96af0">
+  <data key="d9">used_in</data>
+  <data key="d10">0.2699</data>
+  <data key="d14">semantic_role</data>
+</edge>
+<edge source="4b772c40cc08" target="8feaf570ed68">
+  <data key="d9">used_in</data>
+  <data key="d10">0.2572</data>
+  <data key="d14">semantic_role</data>
+</edge>
+<edge source="d6dbf5af615b" target="3f4c7190fe02">
+  <data key="d9">used_in</data>
+  <data key="d10">0.2592</data>
+  <data key="d14">semantic_role</data>
+</edge>
+<edge source="d6dbf5af615b" target="e241fdf96af0">
+  <data key="d9">used_in</data>
+  <data key="d10">0.2747</data>
+  <data key="d14">semantic_role</data>
+</edge>
+<edge source="d6dbf5af615b" target="8feaf570ed68">
+  <data key="d9">used_in</data>
+  <data key="d10">0.2621</data>
+  <data key="d14">semantic_role</data>
+</edge>
+<edge source="e241fdf96af0" target="5c4171bae03e">
+  <data key="d9">produces</data>
+  <data key="d10">0.2434</data>
+  <data key="d14">semantic_role</data>
+</edge>
+<edge source="e241fdf96af0" target="17294395846a">
+  <data key="d9">produces</data>
+  <data key="d10">0.2462</data>
+  <data key="d14">semantic_role</data>
+</edge>
+<edge source="e241fdf96af0" target="a89ff685be33">
+  <data key="d9">produces</data>
+  <data key="d10">0.276</data>
+  <data key="d14">semantic_role</data>
+</edge>
+<edge source="8feaf570ed68" target="5c4171bae03e">
+  <data key="d9">produces</data>
+  <data key="d10">0.2308</data>
+  <data key="d14">semantic_role</data>
+</edge>
+<edge source="8feaf570ed68" target="17294395846a">
+  <data key="d9">produces</data>
+  <data key="d10">0.2335</data>
+  <data key="d14">semantic_role</data>
+</edge>
+<edge source="8feaf570ed68" target="a89ff685be33">
+  <data key="d9">produces</data>
+  <data key="d10">0.2633</data>
+  <data key="d14">semantic_role</data>
+</edge>
+<edge source="850faa696fff" target="3f4c7190fe02">
+  <data key="d9">used_in</data>
+  <data key="d10">0.2576</data>
+  <data key="d14">semantic_role</data>
+</edge>
+<edge source="850faa696fff" target="e241fdf96af0">
+  <data key="d9">used_in</data>
+  <data key="d10">0.2732</data>
+  <data key="d14">semantic_role</data>
+</edge>
+<edge source="850faa696fff" target="8feaf570ed68">
+  <data key="d9">used_in</data>
+  <data key="d10">0.2605</data>
+  <data key="d14">semantic_role</data>
+</edge>
+<edge source="abcfd9a69710" target="720e4c43f686">
+  <data key="d9">produces</data>
+  <data key="d10">0.2516</data>
+  <data key="d14">semantic_role</data>
+</edge>
+<edge source="abcfd9a69710" target="2d8176f2ed8e">
+  <data key="d9">produces</data>
+  <data key="d10">0.2655</data>
+  <data key="d14">semantic_role</data>
+</edge>
+<edge source="abcfd9a69710" target="6f9c8d49b705">
+  <data key="d9">produces</data>
+  <data key="d10">0.2613</data>
+  <data key="d14">semantic_role</data>
+</edge>
+<edge source="abcfd9a69710" target="636c3d150e0a">
+  <data key="d9">produces</data>
+  <data key="d10">0.2546</data>
+  <data key="d14">semantic_role</data>
+</edge>
+<edge source="9235176688ae" target="720e4c43f686">
+  <data key="d9">produces</data>
+  <data key="d10">0.2507</data>
+  <data key="d14">semantic_role</data>
+</edge>
+<edge source="9235176688ae" target="2d8176f2ed8e">
+  <data key="d9">produces</data>
+  <data key="d10">0.2646</data>
+  <data key="d14">semantic_role</data>
+</edge>
+<edge source="9235176688ae" target="6f9c8d49b705">
+  <data key="d9">produces</data>
+  <data key="d10">0.2604</data>
+  <data key="d14">semantic_role</data>
+</edge>
+<edge source="9235176688ae" target="636c3d150e0a">
+  <data key="d9">produces</data>
+  <data key="d10">0.2538</data>
+  <data key="d14">semantic_role</data>
+</edge>
+<edge source="60474b48521b" target="d2b07d3cef96">
+  <data key="d9">used_in</data>
+  <data key="d10">0.2533</data>
+  <data key="d14">semantic_role</data>
+</edge>
+<edge source="60474b48521b" target="6ccea69e889f">
+  <data key="d9">used_in</data>
+  <data key="d10">0.2414</data>
+  <data key="d14">semantic_role</data>
+</edge>
+<edge source="60474b48521b" target="d541f340e961">
+  <data key="d9">used_in</data>
+  <data key="d10">0.2475</data>
+  <data key="d14">semantic_role</data>
+</edge>
+<edge source="60474b48521b" target="6b5264fa5773">
+  <data key="d9">contains</data>
+  <data key="d10">1.0</data>
+  <data key="d14">section</data>
+</edge>
+<edge source="60474b48521b" target="029e37f5147e">
+  <data key="d9">contains</data>
+  <data key="d10">1.0</data>
+  <data key="d14">section</data>
+</edge>
+<edge source="d2b07d3cef96" target="720e4c43f686">
+  <data key="d9">produces</data>
+  <data key="d10">0.2559</data>
+  <data key="d14">semantic_role</data>
+</edge>
+<edge source="d2b07d3cef96" target="2d8176f2ed8e">
+  <data key="d9">produces</data>
+  <data key="d10">0.2699</data>
+  <data key="d14">semantic_role</data>
+</edge>
+<edge source="d2b07d3cef96" target="6f9c8d49b705">
+  <data key="d9">produces</data>
+  <data key="d10">0.2656</data>
+  <data key="d14">semantic_role</data>
+</edge>
+<edge source="d2b07d3cef96" target="636c3d150e0a">
+  <data key="d9">produces</data>
+  <data key="d10">0.259</data>
+  <data key="d14">semantic_role</data>
+</edge>
+<edge source="6ccea69e889f" target="6b5264fa5773">
+  <data key="d9">refers_to</data>
+  <data key="d10">0.8961</data>
+  <data key="d11">1.0</data>
+  <data key="d12">0.6537</data>
+  <data key="d13">[["table", 1]]</data>
+  <data key="d14">multimodal</data>
+</edge>
+<edge source="6ccea69e889f" target="6a6547a24897">
+  <data key="d9">refers_to</data>
+  <data key="d10">0.8958</data>
+  <data key="d11">1.0</data>
+  <data key="d12">0.6528</data>
+  <data key="d13">[["table", 1]]</data>
+  <data key="d14">multimodal</data>
+</edge>
+<edge source="6ccea69e889f" target="029e37f5147e">
+  <data key="d9">refers_to</data>
+  <data key="d10">0.8664</data>
+  <data key="d11">1.0</data>
+  <data key="d12">0.5546</data>
+  <data key="d13">[["table", 1]]</data>
+  <data key="d14">multimodal</data>
+</edge>
+<edge source="6ccea69e889f" target="720e4c43f686">
+  <data key="d9">produces</data>
+  <data key="d10">0.244</data>
+  <data key="d14">semantic_role</data>
+</edge>
+<edge source="6ccea69e889f" target="2d8176f2ed8e">
+  <data key="d9">produces</data>
+  <data key="d10">0.2579</data>
+  <data key="d14">semantic_role</data>
+</edge>
+<edge source="6ccea69e889f" target="6f9c8d49b705">
+  <data key="d9">produces</data>
+  <data key="d10">0.2536</data>
+  <data key="d14">semantic_role</data>
+</edge>
+<edge source="6ccea69e889f" target="636c3d150e0a">
+  <data key="d9">produces</data>
+  <data key="d10">0.247</data>
+  <data key="d14">semantic_role</data>
+</edge>
+<edge source="d541f340e961" target="720e4c43f686">
+  <data key="d9">produces</data>
+  <data key="d10">0.2501</data>
+  <data key="d14">semantic_role</data>
+</edge>
+<edge source="d541f340e961" target="2d8176f2ed8e">
+  <data key="d9">produces</data>
+  <data key="d10">0.2641</data>
+  <data key="d14">semantic_role</data>
+</edge>
+<edge source="d541f340e961" target="6f9c8d49b705">
+  <data key="d9">produces</data>
+  <data key="d10">0.2598</data>
+  <data key="d14">semantic_role</data>
+</edge>
+<edge source="d541f340e961" target="636c3d150e0a">
+  <data key="d9">produces</data>
+  <data key="d10">0.2531</data>
+  <data key="d14">semantic_role</data>
+</edge>
+<edge source="720e4c43f686" target="44e746301ac9">
+  <data key="d9">contains</data>
+  <data key="d10">1.0</data>
+  <data key="d14">section</data>
+</edge>
+<edge source="720e4c43f686" target="5ab7c8c25bca">
+  <data key="d9">contains</data>
+  <data key="d10">1.0</data>
+  <data key="d14">section</data>
+</edge>
+<edge source="720e4c43f686" target="1c13608a2e51">
+  <data key="d9">contains</data>
+  <data key="d10">1.0</data>
+  <data key="d14">section</data>
+</edge>
+<edge source="720e4c43f686" target="83576148e496">
+  <data key="d9">contains</data>
+  <data key="d10">1.0</data>
+  <data key="d14">section</data>
+</edge>
+<edge source="44e746301ac9" target="720e4c43f686">
+  <data key="d9">produces</data>
+  <data key="d10">0.2354</data>
+  <data key="d14">semantic_role</data>
+</edge>
+<edge source="44e746301ac9" target="636c3d150e0a">
+  <data key="d9">produces</data>
+  <data key="d10">0.2385</data>
+  <data key="d14">semantic_role</data>
+</edge>
+<edge source="5ab7c8c25bca" target="720e4c43f686">
+  <data key="d9">produces</data>
+  <data key="d10">0.2445</data>
+  <data key="d14">semantic_role</data>
+</edge>
+<edge source="5ab7c8c25bca" target="636c3d150e0a">
+  <data key="d9">produces</data>
+  <data key="d10">0.2475</data>
+  <data key="d14">semantic_role</data>
+</edge>
+<edge source="1c13608a2e51" target="720e4c43f686">
+  <data key="d9">produces</data>
+  <data key="d10">0.2307</data>
+  <data key="d14">semantic_role</data>
+</edge>
+<edge source="1c13608a2e51" target="636c3d150e0a">
+  <data key="d9">produces</data>
+  <data key="d10">0.2338</data>
+  <data key="d14">semantic_role</data>
+</edge>
+<edge source="83576148e496" target="720e4c43f686">
+  <data key="d9">produces</data>
+  <data key="d10">0.2415</data>
+  <data key="d14">semantic_role</data>
+</edge>
+<edge source="83576148e496" target="636c3d150e0a">
+  <data key="d9">produces</data>
+  <data key="d10">0.2445</data>
+  <data key="d14">semantic_role</data>
+</edge>
+<edge source="2d8176f2ed8e" target="6f9c8d49b705">
+  <data key="d9">contains</data>
+  <data key="d10">1.0</data>
+  <data key="d14">section</data>
+</edge>
+<edge source="48720ac67d49" target="ed576c01c3ea">
+  <data key="d9">contains</data>
+  <data key="d10">1.0</data>
+  <data key="d14">section</data>
+</edge>
+<edge source="48720ac67d49" target="cee15ba9ee02">
+  <data key="d9">contains</data>
+  <data key="d10">1.0</data>
+  <data key="d14">section</data>
+</edge>
+<edge source="48720ac67d49" target="e8d327303dfc">
+  <data key="d9">contains</data>
+  <data key="d10">1.0</data>
+  <data key="d14">section</data>
+</edge>
+<edge source="48720ac67d49" target="0ffec1643470">
+  <data key="d9">contains</data>
+  <data key="d10">1.0</data>
+  <data key="d14">section</data>
+</edge>
+<edge source="48720ac67d49" target="6a6547a24897">
+  <data key="d9">contains</data>
+  <data key="d10">1.0</data>
+  <data key="d14">section</data>
+</edge>
+<edge source="48720ac67d49" target="11fb94d9a82f">
+  <data key="d9">contains</data>
+  <data key="d10">1.0</data>
+  <data key="d14">section</data>
+</edge>
+<edge source="ed576c01c3ea" target="48720ac67d49">
+  <data key="d9">produces</data>
+  <data key="d10">0.2425</data>
+  <data key="d14">semantic_role</data>
+</edge>
+<edge source="ed576c01c3ea" target="cee15ba9ee02">
+  <data key="d9">produces</data>
+  <data key="d10">0.2613</data>
+  <data key="d14">semantic_role</data>
+</edge>
+<edge source="ed576c01c3ea" target="636c3d150e0a">
+  <data key="d9">produces</data>
+  <data key="d10">0.2493</data>
+  <data key="d14">semantic_role</data>
+</edge>
+<edge source="e8d327303dfc" target="6a6547a24897">
+  <data key="d9">refers_to</data>
+  <data key="d10">0.9359</data>
+  <data key="d11">1.0</data>
+  <data key="d12">0.7863</data>
+  <data key="d13">[["table", 2]]</data>
+  <data key="d14">multimodal</data>
+</edge>
+<edge source="e8d327303dfc" target="6b5264fa5773">
+  <data key="d9">refers_to</data>
+  <data key="d10">0.8656</data>
+  <data key="d11">1.0</data>
+  <data key="d12">0.5521</data>
+  <data key="d13">[["table", 2]]</data>
+  <data key="d14">multimodal</data>
+</edge>
+<edge source="e8d327303dfc" target="029e37f5147e">
+  <data key="d9">refers_to</data>
+  <data key="d10">0.8557</data>
+  <data key="d11">1.0</data>
+  <data key="d12">0.5191</data>
+  <data key="d13">[["table", 2]]</data>
+  <data key="d14">multimodal</data>
+</edge>
+<edge source="e8d327303dfc" target="48720ac67d49">
+  <data key="d9">evaluated_on</data>
+  <data key="d10">0.2354</data>
+  <data key="d14">semantic_role</data>
+</edge>
+<edge source="e8d327303dfc" target="cee15ba9ee02">
+  <data key="d9">evaluated_on</data>
+  <data key="d10">0.2541</data>
+  <data key="d14">semantic_role</data>
+</edge>
+<edge source="e8d327303dfc" target="ed576c01c3ea">
+  <data key="d9">evaluated_by</data>
+  <data key="d10">0.2546</data>
+  <data key="d14">semantic_role</data>
+</edge>
+<edge source="e8d327303dfc" target="0ffec1643470">
+  <data key="d9">evaluated_by</data>
+  <data key="d10">0.2371</data>
+  <data key="d14">semantic_role</data>
+</edge>
+<edge source="0ffec1643470" target="6a6547a24897">
+  <data key="d9">refers_to</data>
+  <data key="d10">0.9149</data>
+  <data key="d11">1.0</data>
+  <data key="d12">0.7163</data>
+  <data key="d13">[["table", 1]]</data>
+  <data key="d14">multimodal</data>
+</edge>
+<edge source="0ffec1643470" target="029e37f5147e">
+  <data key="d9">refers_to</data>
+  <data key="d10">0.8726</data>
+  <data key="d11">1.0</data>
+  <data key="d12">0.5754</data>
+  <data key="d13">[["table", 1]]</data>
+  <data key="d14">multimodal</data>
+</edge>
+<edge source="0ffec1643470" target="6b5264fa5773">
+  <data key="d9">refers_to</data>
+  <data key="d10">0.8593</data>
+  <data key="d11">1.0</data>
+  <data key="d12">0.5311</data>
+  <data key="d13">[["table", 1]]</data>
+  <data key="d14">multimodal</data>
+</edge>
+<edge source="0ffec1643470" target="48720ac67d49">
+  <data key="d9">produces</data>
+  <data key="d10">0.225</data>
+  <data key="d14">semantic_role</data>
+</edge>
+<edge source="0ffec1643470" target="cee15ba9ee02">
+  <data key="d9">produces</data>
+  <data key="d10">0.2437</data>
+  <data key="d14">semantic_role</data>
+</edge>
+<edge source="0ffec1643470" target="636c3d150e0a">
+  <data key="d9">produces</data>
+  <data key="d10">0.2318</data>
+  <data key="d14">semantic_role</data>
+</edge>
+</graph></graphml>

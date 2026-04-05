@@ -1,0 +1,2128 @@
+{
+  "directed": true,
+  "multigraph": false,
+  "graph": {},
+  "nodes": [
+    {
+      "type": "figure",
+      "role": "N/A",
+      "page": 0,
+      "text": "",
+      "confidence": 0.95,
+      "role_confidence": 0.0,
+      "bbox_y0": 0.0,
+      "section_id": null,
+      "is_noise": true,
+      "id": "1dd87e2e7e3c"
+    },
+    {
+      "type": "header",
+      "role": "Method",
+      "page": 0,
+      "text": "Information-Flow-Aware KV Recomputation for Long Context",
+      "confidence": 0.8,
+      "role_confidence": 0.2701,
+      "bbox_y0": 45.50126647949219,
+      "section_id": null,
+      "is_noise": true,
+      "id": "62aa5c622c4c"
+    },
+    {
+      "type": "figure",
+      "role": "N/A",
+      "page": 0,
+      "text": "",
+      "confidence": 0.95,
+      "role_confidence": 0.0,
+      "bbox_y0": 57.16654968261719,
+      "section_id": null,
+      "is_noise": true,
+      "id": "0ddc07cdd50c"
+    },
+    {
+      "type": "caption",
+      "role": "Method",
+      "page": 0,
+      "text": "Figure 1. Context chunks are prefetched independently using chunk-local RoPE. At inference time, retrieved chunks are concatenated with the prompt, global RoPE positions are reconstructed, and prompt-conditioned attention norms are used to select high-impact tokens for full-context KV recomputation. The recomputed KV states are concatenated with cached chunks, restoring cross-chunk interactions. A",
+      "confidence": 0.8,
+      "role_confidence": 0.2828,
+      "bbox_y0": 234.25502014160156,
+      "section_id": null,
+      "is_noise": false,
+      "id": "a08f30ed0c9d"
+    },
+    {
+      "type": "paragraph",
+      "role": "Method",
+      "page": 0,
+      "text": "query\u2013token affinity, and effective information flow, by iden- tifying tokens that are structurally positioned to propagate information under the global causal attention induced by retrieval and decoding. Crucially, this property holds only when attention norms are computed under a RoPE order- ing consistent with inference-time decoding, using a global positional reconstruction of retrieved chunks",
+      "confidence": 0.8,
+      "role_confidence": 0.2722,
+      "bbox_y0": 296.0985412597656,
+      "section_id": null,
+      "is_noise": false,
+      "id": "ec2685348823"
+    },
+    {
+      "type": "paragraph",
+      "role": "Method",
+      "page": 0,
+      "text": "tive information flow under the global causal attention graph.",
+      "confidence": 0.8,
+      "role_confidence": 0.2861,
+      "bbox_y0": 296.0985412597656,
+      "section_id": null,
+      "is_noise": false,
+      "id": "94db7a9a9fad"
+    },
+    {
+      "type": "list",
+      "role": "Method",
+      "page": 0,
+      "text": "\u2022 We show that reliable recomputation target selection requires an inference-consistent RoPE ordering , and introduce a global positional reconstruction of retrieved chunks to enable stable and meaningful token ranking.",
+      "confidence": 0.8,
+      "role_confidence": 0.2543,
+      "bbox_y0": 326.8015441894531,
+      "section_id": null,
+      "is_noise": false,
+      "id": "b5f5b80a2b1d"
+    },
+    {
+      "type": "list",
+      "role": "Method",
+      "page": 0,
+      "text": "\u2022 Building on the identified information-flow\u2013critical tokens, we further propose a retrieved-chunk reorder- ing strategy that improves downstream attention ef- fectiveness, providing additional validation of our information-flow perspective.",
+      "confidence": 0.8,
+      "role_confidence": 0.3313,
+      "bbox_y0": 381.41455078125,
+      "section_id": null,
+      "is_noise": false,
+      "id": "ce94567d18d4"
+    },
+    {
+      "type": "list",
+      "role": "Result",
+      "page": 0,
+      "text": "\u2022 We evaluate our approach on both LLM and VLM RAG benchmarks, demonstrating consistent improvements over existing selective recomputation methods under comparable efficiency budgets.",
+      "confidence": 0.8,
+      "role_confidence": 0.2351,
+      "bbox_y0": 447.9825439453125,
+      "section_id": null,
+      "is_noise": false,
+      "id": "3b3ae1e66423"
+    },
+    {
+      "type": "paragraph",
+      "role": "Method",
+      "page": 0,
+      "text": "While our primary focus is retrieval-augmented generation with precomputed document-level KV caches, the proposed chunking-and-recompute strategy also applies when such caches are unavailable. In non-RAG long-context inference, the input can be partitioned into chunks whose KV caches are computed independently, followed by selective recom- putation under the global causal mask. This yields two pra",
+      "confidence": 0.8,
+      "role_confidence": 0.2972,
+      "bbox_y0": 493.35955810546875,
+      "section_id": null,
+      "is_noise": false,
+      "id": "87213f5aee7b"
+    },
+    {
+      "type": "title",
+      "role": "Method",
+      "page": 0,
+      "text": "2. Related Work",
+      "confidence": 0.8,
+      "role_confidence": 0.2443,
+      "bbox_y0": 510.14105224609375,
+      "section_id": "eb1f0235f6e6",
+      "is_noise": false,
+      "id": "eb1f0235f6e6"
+    },
+    {
+      "type": "title",
+      "role": "Definition",
+      "page": 0,
+      "text": "2.1. KV Eviction & Compression",
+      "confidence": 0.8,
+      "role_confidence": 0.2357,
+      "bbox_y0": 531.4269409179688,
+      "section_id": "aaee53921e65",
+      "is_noise": false,
+      "id": "aaee53921e65"
+    },
+    {
+      "type": "paragraph",
+      "role": "Observation",
+      "page": 0,
+      "text": "KV eviction and compression methods reduce long-context inference cost by limiting the size or precision of KV caches during decoding. Eviction-based approaches such as H2O ( Zhang et al. , 2023 ) and StreamingLLM ( Xiao et al. , 2023 ) discard cached KV states based on heuristics, includ- ing recency or attention importance. Compression methods such as Pyramid KV ( Cai et al. , 2024 ) and memoriz",
+      "confidence": 0.8,
+      "role_confidence": 0.2511,
+      "bbox_y0": 550.4385375976562,
+      "section_id": "aaee53921e65",
+      "is_noise": false,
+      "id": "f09ece78e015"
+    },
+    {
+      "type": "paragraph",
+      "role": "Dataset",
+      "page": 0,
+      "text": "We summarize our contributions as follows.",
+      "confidence": 0.8,
+      "role_confidence": 0.2379,
+      "bbox_y0": 654.7535400390625,
+      "section_id": "aaee53921e65",
+      "is_noise": false,
+      "id": "a29639315d06"
+    },
+    {
+      "type": "list",
+      "role": "Method",
+      "page": 0,
+      "text": "\u2022 We propose a simple and effective attention- norm\u2013based criterion from the query to context to- kens that jointly captures semantic relevance and effec-",
+      "confidence": 0.8,
+      "role_confidence": 0.2647,
+      "bbox_y0": 681.9445190429688,
+      "section_id": "aaee53921e65",
+      "is_noise": false,
+      "id": "d9f4872f2b43"
+    },
+    {
+      "type": "footer",
+      "role": "Method",
+      "page": 0,
+      "text": "2",
+      "confidence": 0.8,
+      "role_confidence": 0.2463,
+      "bbox_y0": 730.7615356445312,
+      "section_id": "aaee53921e65",
+      "is_noise": true,
+      "id": "6c947c83b6f1"
+    },
+    {
+      "type": "figure",
+      "role": "N/A",
+      "page": 1,
+      "text": "",
+      "confidence": 0.95,
+      "role_confidence": 0.0,
+      "bbox_y0": 0.0,
+      "section_id": "aaee53921e65",
+      "is_noise": true,
+      "id": "4faa67333fb7"
+    },
+    {
+      "type": "header",
+      "role": "Method",
+      "page": 1,
+      "text": "Information-Flow-Aware KV Recomputation for Long Context",
+      "confidence": 0.8,
+      "role_confidence": 0.2701,
+      "bbox_y0": 45.50126647949219,
+      "section_id": "aaee53921e65",
+      "is_noise": true,
+      "id": "10d405f6b89d"
+    },
+    {
+      "type": "paragraph",
+      "role": "Observation",
+      "page": 1,
+      "text": "are lost. Rather than shrinking or discarding KV caches, we retain token-level KV states and selectively recompute a small subset of tokens to restore global information flow.",
+      "confidence": 0.8,
+      "role_confidence": 0.235,
+      "bbox_y0": 67.81756591796875,
+      "section_id": "aaee53921e65",
+      "is_noise": false,
+      "id": "17294395846a"
+    },
+    {
+      "type": "paragraph",
+      "role": "Method",
+      "page": 1,
+      "text": "where d h is the per-head dimension. In practice, inference consists of a prefilling phase that computes KV states for an input context of length L in a single forward pass, followed by an iterative decoding phase that appends one new KV pair per generated token. In long-context question answering, where the generated answer is short, inference cost is often dominated by the prefilling stage.",
+      "confidence": 0.8,
+      "role_confidence": 0.25,
+      "bbox_y0": 67.81756591796875,
+      "section_id": "aaee53921e65",
+      "is_noise": false,
+      "id": "425202c62e72"
+    },
+    {
+      "type": "title",
+      "role": "Method",
+      "page": 1,
+      "text": "2.2. Chunked Input Processing",
+      "confidence": 0.8,
+      "role_confidence": 0.2776,
+      "bbox_y0": 116.50292205810547,
+      "section_id": "fdab2688595d",
+      "is_noise": false,
+      "id": "fdab2688595d"
+    },
+    {
+      "type": "paragraph",
+      "role": "Method",
+      "page": 1,
+      "text": "Chunked input processing has been explored to extend effec- tive context length beyond the model\u2019s native window. Con- text Expansion with Parallel Encoding (CEPE) ( Yen et al. , 2024 ) encodes long contexts in parallel using a lightweight encoder and enables a decoder to attend to chunk repre- sentations via cross-attention. A key limitation of such approaches is that chunks are encoded independe",
+      "confidence": 0.8,
+      "role_confidence": 0.2742,
+      "bbox_y0": 135.5135498046875,
+      "section_id": "fdab2688595d",
+      "is_noise": false,
+      "id": "065cf9815941"
+    },
+    {
+      "type": "title",
+      "role": "Definition",
+      "page": 1,
+      "text": "3.2. Rotary Positional Embedding (RoPE)",
+      "confidence": 0.8,
+      "role_confidence": 0.2691,
+      "bbox_y0": 164.3238983154297,
+      "section_id": "fdab2688595d",
+      "is_noise": false,
+      "id": "e8b71caedbfa"
+    },
+    {
+      "type": "paragraph",
+      "role": "Definition",
+      "page": 1,
+      "text": "Rotary positional embedding (RoPE) encodes positional information by applying position-dependent rotations to queries and keys. For vectors decomposed into 2D sub- spaces, RoPE applies",
+      "confidence": 0.8,
+      "role_confidence": 0.2804,
+      "bbox_y0": 183.33453369140625,
+      "section_id": "fdab2688595d",
+      "is_noise": false,
+      "id": "9080a0fc8dc2"
+    },
+    {
+      "type": "paragraph",
+      "role": "Definition",
+      "page": 1,
+      "text": "RoPE( x , t ) = \ufffd cos( \u03b8 i t ) \u2212 sin( \u03b8 i t ) sin( \u03b8 i t ) cos( \u03b8 i t )",
+      "confidence": 0.8,
+      "role_confidence": 0.2692,
+      "bbox_y0": 233.20089721679688,
+      "section_id": "fdab2688595d",
+      "is_noise": false,
+      "id": "dae21f6b2dff"
+    },
+    {
+      "type": "paragraph",
+      "role": "Definition",
+      "page": 1,
+      "text": "\ufffd x , (3)",
+      "confidence": 0.8,
+      "role_confidence": 0.3148,
+      "bbox_y0": 233.20089721679688,
+      "section_id": "fdab2688595d",
+      "is_noise": false,
+      "id": "10c26b309662"
+    },
+    {
+      "type": "paragraph",
+      "role": "Definition",
+      "page": 1,
+      "text": "where the angular frequencies are defined as",
+      "confidence": 0.8,
+      "role_confidence": 0.3067,
+      "bbox_y0": 271.9245910644531,
+      "section_id": "fdab2688595d",
+      "is_noise": false,
+      "id": "540469ad963f"
+    },
+    {
+      "type": "paragraph",
+      "role": "Definition",
+      "page": 1,
+      "text": "\u03b8 i = 10000 \u2212 2 i/d , i = 0 , . . . , d",
+      "confidence": 0.8,
+      "role_confidence": 0.2232,
+      "bbox_y0": 292.6640930175781,
+      "section_id": "fdab2688595d",
+      "is_noise": false,
+      "id": "53c70fedd3e7"
+    },
+    {
+      "type": "paragraph",
+      "role": "Result",
+      "page": 1,
+      "text": "2 \u2212 1 . (4)",
+      "confidence": 0.8,
+      "role_confidence": 0.2295,
+      "bbox_y0": 297.6705322265625,
+      "section_id": "fdab2688595d",
+      "is_noise": false,
+      "id": "5c4171bae03e"
+    },
+    {
+      "type": "title",
+      "role": "Definition",
+      "page": 1,
+      "text": "2.3. KV Recomputation",
+      "confidence": 0.8,
+      "role_confidence": 0.2215,
+      "bbox_y0": 315.7059020996094,
+      "section_id": "099698770710",
+      "is_noise": false,
+      "id": "099698770710"
+    },
+    {
+      "type": "paragraph",
+      "role": "Observation",
+      "page": 1,
+      "text": "Lower-index dimensions correspond to higher frequencies and are more sensitive to positional differences, while higher-index dimensions encode lower-frequency compo- nents. Consequently, the effectiveness of attention interac- tions depends on the absolute positions at which tokens are placed, which becomes particularly relevant when KV states are computed independently and later reused or recompu",
+      "confidence": 0.8,
+      "role_confidence": 0.2945,
+      "bbox_y0": 321.2305603027344,
+      "section_id": "099698770710",
+      "is_noise": false,
+      "id": "a89ff685be33"
+    },
+    {
+      "type": "paragraph",
+      "role": "Method",
+      "page": 1,
+      "text": "KV recomputation methods aim to recover accuracy when reusing independently prefetched KV caches by selectively recomputing a small subset of tokens under the full context. CacheBlend identifies tokens whose cached KV states devi- ate most from full-context attention, while EPIC mitigates positional mismatch by recomputing fixed chunk-initial to- kens. These approaches select recomputation targets",
+      "confidence": 0.8,
+      "role_confidence": 0.2655,
+      "bbox_y0": 334.716552734375,
+      "section_id": "099698770710",
+      "is_noise": false,
+      "id": "144ab83dcdf7"
+    },
+    {
+      "type": "title",
+      "role": "Method",
+      "page": 1,
+      "text": "4. Method",
+      "confidence": 0.8,
+      "role_confidence": 0.2429,
+      "bbox_y0": 431.21002197265625,
+      "section_id": "e06a0801deb0",
+      "is_noise": false,
+      "id": "e06a0801deb0"
+    },
+    {
+      "type": "paragraph",
+      "role": "Method",
+      "page": 1,
+      "text": "In this section, we introduce our method for selecting re- computation targets by jointly considering token semantic relevance and positional influence, with the goal of facilitat- ing information propagation during decoding.",
+      "confidence": 0.8,
+      "role_confidence": 0.3129,
+      "bbox_y0": 452.85455322265625,
+      "section_id": "e06a0801deb0",
+      "is_noise": false,
+      "id": "0c7ec6dac4f0"
+    },
+    {
+      "type": "title",
+      "role": "Method",
+      "page": 1,
+      "text": "3. Preliminary",
+      "confidence": 0.8,
+      "role_confidence": 0.2504,
+      "bbox_y0": 504.47198486328125,
+      "section_id": "6c99266e9176",
+      "is_noise": false,
+      "id": "6c99266e9176"
+    },
+    {
+      "type": "title",
+      "role": "Method",
+      "page": 1,
+      "text": "4.1. Input Chunking and Prefilling",
+      "confidence": 0.8,
+      "role_confidence": 0.274,
+      "bbox_y0": 513.493896484375,
+      "section_id": "f52522b39f49",
+      "is_noise": false,
+      "id": "f52522b39f49"
+    },
+    {
+      "type": "title",
+      "role": "Method",
+      "page": 1,
+      "text": "3.1. KV Cache",
+      "confidence": 0.8,
+      "role_confidence": 0.2264,
+      "bbox_y0": 525.7579345703125,
+      "section_id": "3f4c7190fe02",
+      "is_noise": false,
+      "id": "3f4c7190fe02"
+    },
+    {
+      "type": "paragraph",
+      "role": "Definition",
+      "page": 1,
+      "text": "Let the input consist of N tokens, which we partition into K disjoint chunks { C 1 , . . . , C K } . Each chunk serves as a basic unit for prefilling and can correspond to a naturally independent segment (e.g., a document or an image), or a contiguous partition of a single long input (e.g., a text sequence or a visual token grid).",
+      "confidence": 0.8,
+      "role_confidence": 0.28,
+      "bbox_y0": 532.5055541992188,
+      "section_id": "3f4c7190fe02",
+      "is_noise": false,
+      "id": "e147050096d9"
+    },
+    {
+      "type": "paragraph",
+      "role": "Definition",
+      "page": 1,
+      "text": "We consider an autoregressive Transformer decoder. Let h \u2113 t \u2208 R d denote the hidden state at layer \u2113 and position t . For each attention head, keys and values are computed as linear projections of the hidden states,",
+      "confidence": 0.8,
+      "role_confidence": 0.2823,
+      "bbox_y0": 544.7685546875,
+      "section_id": "3f4c7190fe02",
+      "is_noise": false,
+      "id": "4b772c40cc08"
+    },
+    {
+      "type": "paragraph",
+      "role": "Definition",
+      "page": 1,
+      "text": "k \u2113 t = W \u2113 K h \u2113 t , v \u2113 t = W \u2113 V h \u2113 t , (1)",
+      "confidence": 0.8,
+      "role_confidence": 0.292,
+      "bbox_y0": 600.3186645507812,
+      "section_id": "3f4c7190fe02",
+      "is_noise": false,
+      "id": "d6dbf5af615b"
+    },
+    {
+      "type": "paragraph",
+      "role": "Method",
+      "page": 1,
+      "text": "During chunk-wise prefilling, each chunk is processed inde- pendently to compute its key\u2013value (KV) cache. Within a chunk C i , positional indices are assigned locally: tokens are indexed from 0 to | C i | \u2212 1 according to their order inside the chunk, regardless of their absolute position in the full input. Keys and queries are then computed using RoPE based on these chunk-local positions, and th",
+      "confidence": 0.8,
+      "role_confidence": 0.2574,
+      "bbox_y0": 610.2135620117188,
+      "section_id": "3f4c7190fe02",
+      "is_noise": false,
+      "id": "e241fdf96af0"
+    },
+    {
+      "type": "paragraph",
+      "role": "Method",
+      "page": 1,
+      "text": "where the head index is omitted for clarity.",
+      "confidence": 0.8,
+      "role_confidence": 0.2321,
+      "bbox_y0": 620.279541015625,
+      "section_id": "3f4c7190fe02",
+      "is_noise": false,
+      "id": "8feaf570ed68"
+    },
+    {
+      "type": "paragraph",
+      "role": "Definition",
+      "page": 1,
+      "text": "During autoregressive decoding, to avoid recomputing keys and values for previously processed tokens, Transformer de- coders maintain a key\u2013value (KV) cache that stores all past { k \u2113 s , v \u2113 s } s \u2264 t at each layer. We denote the cached tensors up to position t by",
+      "confidence": 0.8,
+      "role_confidence": 0.2889,
+      "bbox_y0": 638.2125244140625,
+      "section_id": "3f4c7190fe02",
+      "is_noise": false,
+      "id": "850faa696fff"
+    },
+    {
+      "type": "equation",
+      "role": "N/A",
+      "page": 1,
+      "text": "K \u2113 \u2264 t \u2208 R t \u00d7 d h , V \u2113 \u2264 t \u2208 R t \u00d7 d h , (2)",
+      "confidence": 0.8,
+      "role_confidence": 0.0,
+      "bbox_y0": 705.4935302734375,
+      "section_id": "3f4c7190fe02",
+      "is_noise": true,
+      "id": "c330b0c929e2"
+    },
+    {
+      "type": "footer",
+      "role": "Method",
+      "page": 1,
+      "text": "3",
+      "confidence": 0.8,
+      "role_confidence": 0.2535,
+      "bbox_y0": 730.7615356445312,
+      "section_id": "3f4c7190fe02",
+      "is_noise": true,
+      "id": "6f76cac2af9d"
+    },
+    {
+      "type": "figure",
+      "role": "N/A",
+      "page": 2,
+      "text": "",
+      "confidence": 0.95,
+      "role_confidence": 0.0,
+      "bbox_y0": 0.0,
+      "section_id": "3f4c7190fe02",
+      "is_noise": true,
+      "id": "a75ab3b14e2a"
+    },
+    {
+      "type": "header",
+      "role": "Method",
+      "page": 2,
+      "text": "Information-Flow-Aware KV Recomputation for Long Context",
+      "confidence": 0.8,
+      "role_confidence": 0.2701,
+      "bbox_y0": 45.50126647949219,
+      "section_id": "3f4c7190fe02",
+      "is_noise": true,
+      "id": "1acd5dd04643"
+    },
+    {
+      "type": "paragraph",
+      "role": "Method",
+      "page": 2,
+      "text": "which frequency placement and prompt\u2013context proximity can arise in practice.",
+      "confidence": 0.8,
+      "role_confidence": 0.2724,
+      "bbox_y0": 67.81756591796875,
+      "section_id": "3f4c7190fe02",
+      "is_noise": false,
+      "id": "abcfd9a69710"
+    },
+    {
+      "type": "paragraph",
+      "role": "Method",
+      "page": 2,
+      "text": "ing order can degrade the quality of selected recomputation targets.",
+      "confidence": 0.8,
+      "role_confidence": 0.2706,
+      "bbox_y0": 67.81756591796875,
+      "section_id": "3f4c7190fe02",
+      "is_noise": false,
+      "id": "9235176688ae"
+    },
+    {
+      "type": "paragraph",
+      "role": "Observation",
+      "page": 2,
+      "text": "These results indicate that effective selective recomputation benefits from evaluating token importance under a positional layout that closely matches inference-time decoding. Based on this observation, we adopt GLOBAL as the default RoPE geometry for token selection in our method. In the reorder- ing setting, we use HL\u2013TP for the first-stage selection to encourage diversity across chunks, followe",
+      "confidence": 0.8,
+      "role_confidence": 0.2369,
+      "bbox_y0": 97.70556640625,
+      "section_id": "3f4c7190fe02",
+      "is_noise": false,
+      "id": "636c3d150e0a"
+    },
+    {
+      "type": "title",
+      "role": "Definition",
+      "page": 2,
+      "text": "4.3. KV reorder",
+      "confidence": 0.8,
+      "role_confidence": 0.2256,
+      "bbox_y0": 104.54790496826172,
+      "section_id": "60474b48521b",
+      "is_noise": false,
+      "id": "60474b48521b"
+    },
+    {
+      "type": "paragraph",
+      "role": "Method",
+      "page": 2,
+      "text": "Beyond KV prefilling and token selection, we further con- sider the ordering of chunks at inference time as an addi- tional degree of freedom for facilitating information flow. Under RoPE-based causal decoding, tokens placed closer to the prompt in the sequence are more likely to interact with prompt queries through attention, which facilitates more effective propagation of contextual information ",
+      "confidence": 0.8,
+      "role_confidence": 0.281,
+      "bbox_y0": 123.55853271484375,
+      "section_id": "60474b48521b",
+      "is_noise": false,
+      "id": "d2b07d3cef96"
+    },
+    {
+      "type": "caption",
+      "role": "Method",
+      "page": 2,
+      "text": "Table 1. Ablation of RoPE geometry configurations on Qwen under the passage-split setting. Higher is better.",
+      "confidence": 0.8,
+      "role_confidence": 0.2571,
+      "bbox_y0": 216.6430206298828,
+      "section_id": "60474b48521b",
+      "is_noise": false,
+      "id": "6ccea69e889f"
+    },
+    {
+      "type": "table",
+      "role": "N/A",
+      "page": 2,
+      "text": "Method 2WikiMQA MuSiQue HotpotQA NarrativeQA",
+      "confidence": 0.8,
+      "role_confidence": 0.0,
+      "bbox_y0": 247.3770751953125,
+      "section_id": "60474b48521b",
+      "is_noise": true,
+      "id": "6b5264fa5773"
+    },
+    {
+      "type": "table",
+      "role": "N/A",
+      "page": 2,
+      "text": "HL\u2013HP 0.4455 0.2871 0.5529 0.1481 TL\u2013TP 0.4458 0.2970 0.5693 0.1923 HL\u2013TP 0.4722 0.3072 0.5651 0.2106 GLOBAL 0.5019 0.3386 0.5954 0.2288",
+      "confidence": 0.8,
+      "role_confidence": 0.0,
+      "bbox_y0": 261.54925537109375,
+      "section_id": "60474b48521b",
+      "is_noise": true,
+      "id": "029e37f5147e"
+    },
+    {
+      "type": "paragraph",
+      "role": "Method",
+      "page": 2,
+      "text": "Concretely, we perform an initial round of token selection within each chunk independently, using local RoPE rather than global positions. This makes token selection within each chunk comparable and prevents chunks closer to the prompt from being systematically favored. After reordering, we reselect tokens under the updated chunk order to obtain the final set of recomputation tokens. This second s",
+      "confidence": 0.8,
+      "role_confidence": 0.2694,
+      "bbox_y0": 308.8635559082031,
+      "section_id": "60474b48521b",
+      "is_noise": false,
+      "id": "d541f340e961"
+    },
+    {
+      "type": "title",
+      "role": "Result",
+      "page": 2,
+      "text": "5.2. RoPE Similarity",
+      "confidence": 0.8,
+      "role_confidence": 0.2308,
+      "bbox_y0": 324.9949035644531,
+      "section_id": "720e4c43f686",
+      "is_noise": false,
+      "id": "720e4c43f686"
+    },
+    {
+      "type": "paragraph",
+      "role": "Method",
+      "page": 2,
+      "text": "To further understand why our selection strategy facilitates effective information propagation, we analyze the RoPE similarity between prompt tokens and the selected context tokens. Importantly, this analysis blocks the contribution of token semantics: similarities are computed purely from the RoPE embedding matrices. Specifically, we measure the similarity between the RoPE embeddings of prompt to",
+      "confidence": 0.8,
+      "role_confidence": 0.2401,
+      "bbox_y0": 344.00555419921875,
+      "section_id": "720e4c43f686",
+      "is_noise": false,
+      "id": "44e746301ac9"
+    },
+    {
+      "type": "paragraph",
+      "role": "Method",
+      "page": 2,
+      "text": "Thus, chunk reordering leverages the freedom in chunk or- dering to further align RoPE geometry with information flow in the decoding phase, complementing token selection under chunk-wise prefilling. More details on KV recompu- tation implementation can be found at Appendix. B",
+      "confidence": 0.8,
+      "role_confidence": 0.2581,
+      "bbox_y0": 458.3035583496094,
+      "section_id": "720e4c43f686",
+      "is_noise": false,
+      "id": "5ab7c8c25bca"
+    },
+    {
+      "type": "paragraph",
+      "role": "Method",
+      "page": 2,
+      "text": "2WikiMQA HotpotQA",
+      "confidence": 0.8,
+      "role_confidence": 0.2306,
+      "bbox_y0": 514.002685546875,
+      "section_id": "720e4c43f686",
+      "is_noise": false,
+      "id": "1c13608a2e51"
+    },
+    {
+      "type": "paragraph",
+      "role": "Method",
+      "page": 2,
+      "text": "Model Method MoM Max MoM Max",
+      "confidence": 0.8,
+      "role_confidence": 0.2522,
+      "bbox_y0": 527.8135986328125,
+      "section_id": "720e4c43f686",
+      "is_noise": false,
+      "id": "83576148e496"
+    },
+    {
+      "type": "title",
+      "role": "Result",
+      "page": 2,
+      "text": "5. Ablation Result",
+      "confidence": 0.8,
+      "role_confidence": 0.2587,
+      "bbox_y0": 532.4170532226562,
+      "section_id": "2d8176f2ed8e",
+      "is_noise": false,
+      "id": "2d8176f2ed8e"
+    },
+    {
+      "type": "paragraph",
+      "role": "Result",
+      "page": 2,
+      "text": "LLaMA Norm-based 0.5324 0.9773 0.5219 0.9766 CacheBlend 0.5243 0.9133 0.5191 0.8570 EPIC 0.5049 0.6734 0.4985 0.6852",
+      "confidence": 0.8,
+      "role_confidence": 0.2502,
+      "bbox_y0": 541.206298828125,
+      "section_id": "2d8176f2ed8e",
+      "is_noise": false,
+      "id": "6f9c8d49b705"
+    },
+    {
+      "type": "title",
+      "role": "Result",
+      "page": 2,
+      "text": "5.1. RoPE Geometry",
+      "confidence": 0.8,
+      "role_confidence": 0.2233,
+      "bbox_y0": 553.7029418945312,
+      "section_id": "48720ac67d49",
+      "is_noise": false,
+      "id": "48720ac67d49"
+    },
+    {
+      "type": "paragraph",
+      "role": "Method",
+      "page": 2,
+      "text": "We ablate different RoPE geometry configurations to study how positional allocation during token selection affects downstream performance.",
+      "confidence": 0.8,
+      "role_confidence": 0.2618,
+      "bbox_y0": 572.7145385742188,
+      "section_id": "48720ac67d49",
+      "is_noise": false,
+      "id": "ed576c01c3ea"
+    },
+    {
+      "type": "paragraph",
+      "role": "Result",
+      "page": 2,
+      "text": "Qwen Norm-based 0.4548 0.9805 0.4179 0.9805 CacheBlend 0.4505 0.8078 0.4226 0.8891 EPIC 0.4129 0.5656 0.3835 0.6555",
+      "confidence": 0.8,
+      "role_confidence": 0.2608,
+      "bbox_y0": 574.1814575195312,
+      "section_id": "48720ac67d49",
+      "is_noise": false,
+      "id": "cee15ba9ee02"
+    },
+    {
+      "type": "caption",
+      "role": "Dataset",
+      "page": 2,
+      "text": "Table 2. RoPE similarity statistics on long-context QA benchmarks. We report Mean-of-Max (MoM) and Max scores across different inference strategies. Higher is better.",
+      "confidence": 0.8,
+      "role_confidence": 0.2475,
+      "bbox_y0": 605.7970581054688,
+      "section_id": "48720ac67d49",
+      "is_noise": false,
+      "id": "e8d327303dfc"
+    },
+    {
+      "type": "caption",
+      "role": "Method",
+      "page": 2,
+      "text": "Table 1 shows that RoPE geometry has a substantial impact on recomputation effectiveness. Among the tested configura- tions, GLOBAL consistently achieves the best performance across all four benchmarks. In contrast, configurations that assign prompt and context tokens to separate or truncated positional ranges (e.g., HL\u2013HP and TL\u2013TP) result in notice- ably lower scores. This suggests that mismatch",
+      "confidence": 0.8,
+      "role_confidence": 0.2267,
+      "bbox_y0": 614.5575561523438,
+      "section_id": "48720ac67d49",
+      "is_noise": false,
+      "id": "0ffec1643470"
+    },
+    {
+      "type": "table",
+      "role": "N/A",
+      "page": 2,
+      "text": "As shown in Table 2 , norm-based selection consistently yields higher RoPE similarity scores than prior methods across both datasets and model families, under both the Mean-of-Max and Max metrics. This result reveals an alignment between attention salience and RoPE-induced",
+      "confidence": 0.8,
+      "role_confidence": 0.0,
+      "bbox_y0": 658.0345458984375,
+      "section_id": "48720ac67d49",
+      "is_noise": true,
+      "id": "6a6547a24897"
+    },
+    {
+      "type": "footer",
+      "role": "Method",
+      "page": 2,
+      "text": "5",
+      "confidence": 0.8,
+      "role_confidence": 0.2234,
+      "bbox_y0": 730.7615356445312,
+      "section_id": "48720ac67d49",
+      "is_noise": true,
+      "id": "11fb94d9a82f"
+    }
+  ],
+  "edges": [
+    {
+      "relation": "refers_to",
+      "weight": 0.8602,
+      "s_ref": 1.0,
+      "s_emb": 0.5341,
+      "matched_refs": [
+        [
+          "figure",
+          1
+        ]
+      ],
+      "edge_source": "multimodal",
+      "source": "a08f30ed0c9d",
+      "target": "1dd87e2e7e3c"
+    },
+    {
+      "relation": "refers_to",
+      "weight": 0.8602,
+      "s_ref": 1.0,
+      "s_emb": 0.5341,
+      "matched_refs": [
+        [
+          "figure",
+          1
+        ]
+      ],
+      "edge_source": "multimodal",
+      "source": "a08f30ed0c9d",
+      "target": "0ddc07cdd50c"
+    },
+    {
+      "relation": "refers_to",
+      "weight": 0.3702,
+      "s_ref": 0.3,
+      "s_emb": 0.5341,
+      "matched_refs": [
+        [
+          "figure",
+          1
+        ]
+      ],
+      "edge_source": "multimodal",
+      "source": "a08f30ed0c9d",
+      "target": "4faa67333fb7"
+    },
+    {
+      "relation": "produces",
+      "weight": 0.259,
+      "edge_source": "semantic_role",
+      "source": "a08f30ed0c9d",
+      "target": "3b3ae1e66423"
+    },
+    {
+      "relation": "produces",
+      "weight": 0.267,
+      "edge_source": "semantic_role",
+      "source": "a08f30ed0c9d",
+      "target": "f09ece78e015"
+    },
+    {
+      "relation": "produces",
+      "weight": 0.2536,
+      "edge_source": "semantic_role",
+      "source": "ec2685348823",
+      "target": "3b3ae1e66423"
+    },
+    {
+      "relation": "produces",
+      "weight": 0.2616,
+      "edge_source": "semantic_role",
+      "source": "ec2685348823",
+      "target": "f09ece78e015"
+    },
+    {
+      "relation": "produces",
+      "weight": 0.2606,
+      "edge_source": "semantic_role",
+      "source": "94db7a9a9fad",
+      "target": "3b3ae1e66423"
+    },
+    {
+      "relation": "produces",
+      "weight": 0.2686,
+      "edge_source": "semantic_role",
+      "source": "94db7a9a9fad",
+      "target": "f09ece78e015"
+    },
+    {
+      "relation": "produces",
+      "weight": 0.2447,
+      "edge_source": "semantic_role",
+      "source": "b5f5b80a2b1d",
+      "target": "3b3ae1e66423"
+    },
+    {
+      "relation": "produces",
+      "weight": 0.2527,
+      "edge_source": "semantic_role",
+      "source": "b5f5b80a2b1d",
+      "target": "f09ece78e015"
+    },
+    {
+      "relation": "produces",
+      "weight": 0.2832,
+      "edge_source": "semantic_role",
+      "source": "ce94567d18d4",
+      "target": "3b3ae1e66423"
+    },
+    {
+      "relation": "produces",
+      "weight": 0.2912,
+      "edge_source": "semantic_role",
+      "source": "ce94567d18d4",
+      "target": "f09ece78e015"
+    },
+    {
+      "relation": "produces",
+      "weight": 0.2661,
+      "edge_source": "semantic_role",
+      "source": "87213f5aee7b",
+      "target": "3b3ae1e66423"
+    },
+    {
+      "relation": "produces",
+      "weight": 0.2742,
+      "edge_source": "semantic_role",
+      "source": "87213f5aee7b",
+      "target": "f09ece78e015"
+    },
+    {
+      "relation": "produces",
+      "weight": 0.2397,
+      "edge_source": "semantic_role",
+      "source": "eb1f0235f6e6",
+      "target": "3b3ae1e66423"
+    },
+    {
+      "relation": "produces",
+      "weight": 0.2477,
+      "edge_source": "semantic_role",
+      "source": "eb1f0235f6e6",
+      "target": "f09ece78e015"
+    },
+    {
+      "relation": "used_in",
+      "weight": 0.2502,
+      "edge_source": "semantic_role",
+      "source": "aaee53921e65",
+      "target": "d9f4872f2b43"
+    },
+    {
+      "relation": "contains",
+      "weight": 1.0,
+      "edge_source": "section",
+      "source": "aaee53921e65",
+      "target": "f09ece78e015"
+    },
+    {
+      "relation": "contains",
+      "weight": 1.0,
+      "edge_source": "section",
+      "source": "aaee53921e65",
+      "target": "a29639315d06"
+    },
+    {
+      "relation": "contains",
+      "weight": 1.0,
+      "edge_source": "section",
+      "source": "aaee53921e65",
+      "target": "6c947c83b6f1"
+    },
+    {
+      "relation": "contains",
+      "weight": 1.0,
+      "edge_source": "section",
+      "source": "aaee53921e65",
+      "target": "4faa67333fb7"
+    },
+    {
+      "relation": "contains",
+      "weight": 1.0,
+      "edge_source": "section",
+      "source": "aaee53921e65",
+      "target": "10d405f6b89d"
+    },
+    {
+      "relation": "contains",
+      "weight": 1.0,
+      "edge_source": "section",
+      "source": "aaee53921e65",
+      "target": "17294395846a"
+    },
+    {
+      "relation": "contains",
+      "weight": 1.0,
+      "edge_source": "section",
+      "source": "aaee53921e65",
+      "target": "425202c62e72"
+    },
+    {
+      "relation": "evaluated_on",
+      "weight": 0.2365,
+      "edge_source": "semantic_role",
+      "source": "a29639315d06",
+      "target": "3b3ae1e66423"
+    },
+    {
+      "relation": "evaluated_by",
+      "weight": 0.2513,
+      "edge_source": "semantic_role",
+      "source": "a29639315d06",
+      "target": "d9f4872f2b43"
+    },
+    {
+      "relation": "produces",
+      "weight": 0.2499,
+      "edge_source": "semantic_role",
+      "source": "d9f4872f2b43",
+      "target": "3b3ae1e66423"
+    },
+    {
+      "relation": "produces",
+      "weight": 0.2579,
+      "edge_source": "semantic_role",
+      "source": "d9f4872f2b43",
+      "target": "f09ece78e015"
+    },
+    {
+      "relation": "produces",
+      "weight": 0.2398,
+      "edge_source": "semantic_role",
+      "source": "425202c62e72",
+      "target": "5c4171bae03e"
+    },
+    {
+      "relation": "produces",
+      "weight": 0.2425,
+      "edge_source": "semantic_role",
+      "source": "425202c62e72",
+      "target": "17294395846a"
+    },
+    {
+      "relation": "produces",
+      "weight": 0.2535,
+      "edge_source": "semantic_role",
+      "source": "fdab2688595d",
+      "target": "5c4171bae03e"
+    },
+    {
+      "relation": "produces",
+      "weight": 0.2563,
+      "edge_source": "semantic_role",
+      "source": "fdab2688595d",
+      "target": "17294395846a"
+    },
+    {
+      "relation": "produces",
+      "weight": 0.2861,
+      "edge_source": "semantic_role",
+      "source": "fdab2688595d",
+      "target": "a89ff685be33"
+    },
+    {
+      "relation": "contains",
+      "weight": 1.0,
+      "edge_source": "section",
+      "source": "fdab2688595d",
+      "target": "065cf9815941"
+    },
+    {
+      "relation": "contains",
+      "weight": 1.0,
+      "edge_source": "section",
+      "source": "fdab2688595d",
+      "target": "9080a0fc8dc2"
+    },
+    {
+      "relation": "contains",
+      "weight": 1.0,
+      "edge_source": "section",
+      "source": "fdab2688595d",
+      "target": "dae21f6b2dff"
+    },
+    {
+      "relation": "contains",
+      "weight": 1.0,
+      "edge_source": "section",
+      "source": "fdab2688595d",
+      "target": "10c26b309662"
+    },
+    {
+      "relation": "contains",
+      "weight": 1.0,
+      "edge_source": "section",
+      "source": "fdab2688595d",
+      "target": "540469ad963f"
+    },
+    {
+      "relation": "contains",
+      "weight": 1.0,
+      "edge_source": "section",
+      "source": "fdab2688595d",
+      "target": "53c70fedd3e7"
+    },
+    {
+      "relation": "produces",
+      "weight": 0.2519,
+      "edge_source": "semantic_role",
+      "source": "065cf9815941",
+      "target": "5c4171bae03e"
+    },
+    {
+      "relation": "produces",
+      "weight": 0.2546,
+      "edge_source": "semantic_role",
+      "source": "065cf9815941",
+      "target": "17294395846a"
+    },
+    {
+      "relation": "produces",
+      "weight": 0.2843,
+      "edge_source": "semantic_role",
+      "source": "065cf9815941",
+      "target": "a89ff685be33"
+    },
+    {
+      "relation": "used_in",
+      "weight": 0.2733,
+      "edge_source": "semantic_role",
+      "source": "e8b71caedbfa",
+      "target": "fdab2688595d"
+    },
+    {
+      "relation": "used_in",
+      "weight": 0.2717,
+      "edge_source": "semantic_role",
+      "source": "e8b71caedbfa",
+      "target": "065cf9815941"
+    },
+    {
+      "relation": "used_in",
+      "weight": 0.279,
+      "edge_source": "semantic_role",
+      "source": "9080a0fc8dc2",
+      "target": "fdab2688595d"
+    },
+    {
+      "relation": "used_in",
+      "weight": 0.2773,
+      "edge_source": "semantic_role",
+      "source": "9080a0fc8dc2",
+      "target": "065cf9815941"
+    },
+    {
+      "relation": "used_in",
+      "weight": 0.2734,
+      "edge_source": "semantic_role",
+      "source": "dae21f6b2dff",
+      "target": "fdab2688595d"
+    },
+    {
+      "relation": "used_in",
+      "weight": 0.2717,
+      "edge_source": "semantic_role",
+      "source": "dae21f6b2dff",
+      "target": "065cf9815941"
+    },
+    {
+      "relation": "used_in",
+      "weight": 0.2962,
+      "edge_source": "semantic_role",
+      "source": "10c26b309662",
+      "target": "fdab2688595d"
+    },
+    {
+      "relation": "used_in",
+      "weight": 0.2945,
+      "edge_source": "semantic_role",
+      "source": "10c26b309662",
+      "target": "065cf9815941"
+    },
+    {
+      "relation": "used_in",
+      "weight": 0.2922,
+      "edge_source": "semantic_role",
+      "source": "540469ad963f",
+      "target": "fdab2688595d"
+    },
+    {
+      "relation": "used_in",
+      "weight": 0.2904,
+      "edge_source": "semantic_role",
+      "source": "540469ad963f",
+      "target": "065cf9815941"
+    },
+    {
+      "relation": "used_in",
+      "weight": 0.2504,
+      "edge_source": "semantic_role",
+      "source": "53c70fedd3e7",
+      "target": "fdab2688595d"
+    },
+    {
+      "relation": "used_in",
+      "weight": 0.2487,
+      "edge_source": "semantic_role",
+      "source": "53c70fedd3e7",
+      "target": "065cf9815941"
+    },
+    {
+      "relation": "used_in",
+      "weight": 0.2435,
+      "edge_source": "semantic_role",
+      "source": "099698770710",
+      "target": "144ab83dcdf7"
+    },
+    {
+      "relation": "contains",
+      "weight": 1.0,
+      "edge_source": "section",
+      "source": "099698770710",
+      "target": "a89ff685be33"
+    },
+    {
+      "relation": "produces",
+      "weight": 0.2475,
+      "edge_source": "semantic_role",
+      "source": "144ab83dcdf7",
+      "target": "5c4171bae03e"
+    },
+    {
+      "relation": "produces",
+      "weight": 0.28,
+      "edge_source": "semantic_role",
+      "source": "144ab83dcdf7",
+      "target": "a89ff685be33"
+    },
+    {
+      "relation": "produces",
+      "weight": 0.2362,
+      "edge_source": "semantic_role",
+      "source": "e06a0801deb0",
+      "target": "5c4171bae03e"
+    },
+    {
+      "relation": "produces",
+      "weight": 0.2389,
+      "edge_source": "semantic_role",
+      "source": "e06a0801deb0",
+      "target": "17294395846a"
+    },
+    {
+      "relation": "produces",
+      "weight": 0.2687,
+      "edge_source": "semantic_role",
+      "source": "e06a0801deb0",
+      "target": "a89ff685be33"
+    },
+    {
+      "relation": "contains",
+      "weight": 1.0,
+      "edge_source": "section",
+      "source": "e06a0801deb0",
+      "target": "0c7ec6dac4f0"
+    },
+    {
+      "relation": "produces",
+      "weight": 0.2712,
+      "edge_source": "semantic_role",
+      "source": "0c7ec6dac4f0",
+      "target": "5c4171bae03e"
+    },
+    {
+      "relation": "produces",
+      "weight": 0.274,
+      "edge_source": "semantic_role",
+      "source": "0c7ec6dac4f0",
+      "target": "17294395846a"
+    },
+    {
+      "relation": "produces",
+      "weight": 0.3037,
+      "edge_source": "semantic_role",
+      "source": "0c7ec6dac4f0",
+      "target": "a89ff685be33"
+    },
+    {
+      "relation": "produces",
+      "weight": 0.2399,
+      "edge_source": "semantic_role",
+      "source": "6c99266e9176",
+      "target": "5c4171bae03e"
+    },
+    {
+      "relation": "produces",
+      "weight": 0.2427,
+      "edge_source": "semantic_role",
+      "source": "6c99266e9176",
+      "target": "17294395846a"
+    },
+    {
+      "relation": "produces",
+      "weight": 0.2724,
+      "edge_source": "semantic_role",
+      "source": "6c99266e9176",
+      "target": "a89ff685be33"
+    },
+    {
+      "relation": "produces",
+      "weight": 0.2518,
+      "edge_source": "semantic_role",
+      "source": "f52522b39f49",
+      "target": "5c4171bae03e"
+    },
+    {
+      "relation": "produces",
+      "weight": 0.2545,
+      "edge_source": "semantic_role",
+      "source": "f52522b39f49",
+      "target": "17294395846a"
+    },
+    {
+      "relation": "produces",
+      "weight": 0.2843,
+      "edge_source": "semantic_role",
+      "source": "f52522b39f49",
+      "target": "a89ff685be33"
+    },
+    {
+      "relation": "produces",
+      "weight": 0.2279,
+      "edge_source": "semantic_role",
+      "source": "3f4c7190fe02",
+      "target": "5c4171bae03e"
+    },
+    {
+      "relation": "produces",
+      "weight": 0.2307,
+      "edge_source": "semantic_role",
+      "source": "3f4c7190fe02",
+      "target": "17294395846a"
+    },
+    {
+      "relation": "produces",
+      "weight": 0.2604,
+      "edge_source": "semantic_role",
+      "source": "3f4c7190fe02",
+      "target": "a89ff685be33"
+    },
+    {
+      "relation": "contains",
+      "weight": 1.0,
+      "edge_source": "section",
+      "source": "3f4c7190fe02",
+      "target": "e147050096d9"
+    },
+    {
+      "relation": "contains",
+      "weight": 1.0,
+      "edge_source": "section",
+      "source": "3f4c7190fe02",
+      "target": "4b772c40cc08"
+    },
+    {
+      "relation": "contains",
+      "weight": 1.0,
+      "edge_source": "section",
+      "source": "3f4c7190fe02",
+      "target": "d6dbf5af615b"
+    },
+    {
+      "relation": "contains",
+      "weight": 1.0,
+      "edge_source": "section",
+      "source": "3f4c7190fe02",
+      "target": "e241fdf96af0"
+    },
+    {
+      "relation": "contains",
+      "weight": 1.0,
+      "edge_source": "section",
+      "source": "3f4c7190fe02",
+      "target": "8feaf570ed68"
+    },
+    {
+      "relation": "contains",
+      "weight": 1.0,
+      "edge_source": "section",
+      "source": "3f4c7190fe02",
+      "target": "850faa696fff"
+    },
+    {
+      "relation": "contains",
+      "weight": 1.0,
+      "edge_source": "section",
+      "source": "3f4c7190fe02",
+      "target": "c330b0c929e2"
+    },
+    {
+      "relation": "contains",
+      "weight": 1.0,
+      "edge_source": "section",
+      "source": "3f4c7190fe02",
+      "target": "6f76cac2af9d"
+    },
+    {
+      "relation": "contains",
+      "weight": 1.0,
+      "edge_source": "section",
+      "source": "3f4c7190fe02",
+      "target": "a75ab3b14e2a"
+    },
+    {
+      "relation": "contains",
+      "weight": 1.0,
+      "edge_source": "section",
+      "source": "3f4c7190fe02",
+      "target": "1acd5dd04643"
+    },
+    {
+      "relation": "contains",
+      "weight": 1.0,
+      "edge_source": "section",
+      "source": "3f4c7190fe02",
+      "target": "abcfd9a69710"
+    },
+    {
+      "relation": "contains",
+      "weight": 1.0,
+      "edge_source": "section",
+      "source": "3f4c7190fe02",
+      "target": "9235176688ae"
+    },
+    {
+      "relation": "contains",
+      "weight": 1.0,
+      "edge_source": "section",
+      "source": "3f4c7190fe02",
+      "target": "636c3d150e0a"
+    },
+    {
+      "relation": "used_in",
+      "weight": 0.2532,
+      "edge_source": "semantic_role",
+      "source": "e147050096d9",
+      "target": "3f4c7190fe02"
+    },
+    {
+      "relation": "used_in",
+      "weight": 0.2687,
+      "edge_source": "semantic_role",
+      "source": "e147050096d9",
+      "target": "e241fdf96af0"
+    },
+    {
+      "relation": "used_in",
+      "weight": 0.256,
+      "edge_source": "semantic_role",
+      "source": "e147050096d9",
+      "target": "8feaf570ed68"
+    },
+    {
+      "relation": "used_in",
+      "weight": 0.2543,
+      "edge_source": "semantic_role",
+      "source": "4b772c40cc08",
+      "target": "3f4c7190fe02"
+    },
+    {
+      "relation": "used_in",
+      "weight": 0.2699,
+      "edge_source": "semantic_role",
+      "source": "4b772c40cc08",
+      "target": "e241fdf96af0"
+    },
+    {
+      "relation": "used_in",
+      "weight": 0.2572,
+      "edge_source": "semantic_role",
+      "source": "4b772c40cc08",
+      "target": "8feaf570ed68"
+    },
+    {
+      "relation": "used_in",
+      "weight": 0.2592,
+      "edge_source": "semantic_role",
+      "source": "d6dbf5af615b",
+      "target": "3f4c7190fe02"
+    },
+    {
+      "relation": "used_in",
+      "weight": 0.2747,
+      "edge_source": "semantic_role",
+      "source": "d6dbf5af615b",
+      "target": "e241fdf96af0"
+    },
+    {
+      "relation": "used_in",
+      "weight": 0.2621,
+      "edge_source": "semantic_role",
+      "source": "d6dbf5af615b",
+      "target": "8feaf570ed68"
+    },
+    {
+      "relation": "produces",
+      "weight": 0.2434,
+      "edge_source": "semantic_role",
+      "source": "e241fdf96af0",
+      "target": "5c4171bae03e"
+    },
+    {
+      "relation": "produces",
+      "weight": 0.2462,
+      "edge_source": "semantic_role",
+      "source": "e241fdf96af0",
+      "target": "17294395846a"
+    },
+    {
+      "relation": "produces",
+      "weight": 0.276,
+      "edge_source": "semantic_role",
+      "source": "e241fdf96af0",
+      "target": "a89ff685be33"
+    },
+    {
+      "relation": "produces",
+      "weight": 0.2308,
+      "edge_source": "semantic_role",
+      "source": "8feaf570ed68",
+      "target": "5c4171bae03e"
+    },
+    {
+      "relation": "produces",
+      "weight": 0.2335,
+      "edge_source": "semantic_role",
+      "source": "8feaf570ed68",
+      "target": "17294395846a"
+    },
+    {
+      "relation": "produces",
+      "weight": 0.2633,
+      "edge_source": "semantic_role",
+      "source": "8feaf570ed68",
+      "target": "a89ff685be33"
+    },
+    {
+      "relation": "used_in",
+      "weight": 0.2576,
+      "edge_source": "semantic_role",
+      "source": "850faa696fff",
+      "target": "3f4c7190fe02"
+    },
+    {
+      "relation": "used_in",
+      "weight": 0.2732,
+      "edge_source": "semantic_role",
+      "source": "850faa696fff",
+      "target": "e241fdf96af0"
+    },
+    {
+      "relation": "used_in",
+      "weight": 0.2605,
+      "edge_source": "semantic_role",
+      "source": "850faa696fff",
+      "target": "8feaf570ed68"
+    },
+    {
+      "relation": "produces",
+      "weight": 0.2516,
+      "edge_source": "semantic_role",
+      "source": "abcfd9a69710",
+      "target": "720e4c43f686"
+    },
+    {
+      "relation": "produces",
+      "weight": 0.2655,
+      "edge_source": "semantic_role",
+      "source": "abcfd9a69710",
+      "target": "2d8176f2ed8e"
+    },
+    {
+      "relation": "produces",
+      "weight": 0.2613,
+      "edge_source": "semantic_role",
+      "source": "abcfd9a69710",
+      "target": "6f9c8d49b705"
+    },
+    {
+      "relation": "produces",
+      "weight": 0.2546,
+      "edge_source": "semantic_role",
+      "source": "abcfd9a69710",
+      "target": "636c3d150e0a"
+    },
+    {
+      "relation": "produces",
+      "weight": 0.2507,
+      "edge_source": "semantic_role",
+      "source": "9235176688ae",
+      "target": "720e4c43f686"
+    },
+    {
+      "relation": "produces",
+      "weight": 0.2646,
+      "edge_source": "semantic_role",
+      "source": "9235176688ae",
+      "target": "2d8176f2ed8e"
+    },
+    {
+      "relation": "produces",
+      "weight": 0.2604,
+      "edge_source": "semantic_role",
+      "source": "9235176688ae",
+      "target": "6f9c8d49b705"
+    },
+    {
+      "relation": "produces",
+      "weight": 0.2538,
+      "edge_source": "semantic_role",
+      "source": "9235176688ae",
+      "target": "636c3d150e0a"
+    },
+    {
+      "relation": "used_in",
+      "weight": 0.2533,
+      "edge_source": "semantic_role",
+      "source": "60474b48521b",
+      "target": "d2b07d3cef96"
+    },
+    {
+      "relation": "used_in",
+      "weight": 0.2414,
+      "edge_source": "semantic_role",
+      "source": "60474b48521b",
+      "target": "6ccea69e889f"
+    },
+    {
+      "relation": "used_in",
+      "weight": 0.2475,
+      "edge_source": "semantic_role",
+      "source": "60474b48521b",
+      "target": "d541f340e961"
+    },
+    {
+      "relation": "contains",
+      "weight": 1.0,
+      "edge_source": "section",
+      "source": "60474b48521b",
+      "target": "6b5264fa5773"
+    },
+    {
+      "relation": "contains",
+      "weight": 1.0,
+      "edge_source": "section",
+      "source": "60474b48521b",
+      "target": "029e37f5147e"
+    },
+    {
+      "relation": "produces",
+      "weight": 0.2559,
+      "edge_source": "semantic_role",
+      "source": "d2b07d3cef96",
+      "target": "720e4c43f686"
+    },
+    {
+      "relation": "produces",
+      "weight": 0.2699,
+      "edge_source": "semantic_role",
+      "source": "d2b07d3cef96",
+      "target": "2d8176f2ed8e"
+    },
+    {
+      "relation": "produces",
+      "weight": 0.2656,
+      "edge_source": "semantic_role",
+      "source": "d2b07d3cef96",
+      "target": "6f9c8d49b705"
+    },
+    {
+      "relation": "produces",
+      "weight": 0.259,
+      "edge_source": "semantic_role",
+      "source": "d2b07d3cef96",
+      "target": "636c3d150e0a"
+    },
+    {
+      "relation": "refers_to",
+      "weight": 0.8961,
+      "s_ref": 1.0,
+      "s_emb": 0.6537,
+      "matched_refs": [
+        [
+          "table",
+          1
+        ]
+      ],
+      "edge_source": "multimodal",
+      "source": "6ccea69e889f",
+      "target": "6b5264fa5773"
+    },
+    {
+      "relation": "refers_to",
+      "weight": 0.8958,
+      "s_ref": 1.0,
+      "s_emb": 0.6528,
+      "matched_refs": [
+        [
+          "table",
+          1
+        ]
+      ],
+      "edge_source": "multimodal",
+      "source": "6ccea69e889f",
+      "target": "6a6547a24897"
+    },
+    {
+      "relation": "refers_to",
+      "weight": 0.8664,
+      "s_ref": 1.0,
+      "s_emb": 0.5546,
+      "matched_refs": [
+        [
+          "table",
+          1
+        ]
+      ],
+      "edge_source": "multimodal",
+      "source": "6ccea69e889f",
+      "target": "029e37f5147e"
+    },
+    {
+      "relation": "produces",
+      "weight": 0.244,
+      "edge_source": "semantic_role",
+      "source": "6ccea69e889f",
+      "target": "720e4c43f686"
+    },
+    {
+      "relation": "produces",
+      "weight": 0.2579,
+      "edge_source": "semantic_role",
+      "source": "6ccea69e889f",
+      "target": "2d8176f2ed8e"
+    },
+    {
+      "relation": "produces",
+      "weight": 0.2536,
+      "edge_source": "semantic_role",
+      "source": "6ccea69e889f",
+      "target": "6f9c8d49b705"
+    },
+    {
+      "relation": "produces",
+      "weight": 0.247,
+      "edge_source": "semantic_role",
+      "source": "6ccea69e889f",
+      "target": "636c3d150e0a"
+    },
+    {
+      "relation": "produces",
+      "weight": 0.2501,
+      "edge_source": "semantic_role",
+      "source": "d541f340e961",
+      "target": "720e4c43f686"
+    },
+    {
+      "relation": "produces",
+      "weight": 0.2641,
+      "edge_source": "semantic_role",
+      "source": "d541f340e961",
+      "target": "2d8176f2ed8e"
+    },
+    {
+      "relation": "produces",
+      "weight": 0.2598,
+      "edge_source": "semantic_role",
+      "source": "d541f340e961",
+      "target": "6f9c8d49b705"
+    },
+    {
+      "relation": "produces",
+      "weight": 0.2531,
+      "edge_source": "semantic_role",
+      "source": "d541f340e961",
+      "target": "636c3d150e0a"
+    },
+    {
+      "relation": "contains",
+      "weight": 1.0,
+      "edge_source": "section",
+      "source": "720e4c43f686",
+      "target": "44e746301ac9"
+    },
+    {
+      "relation": "contains",
+      "weight": 1.0,
+      "edge_source": "section",
+      "source": "720e4c43f686",
+      "target": "5ab7c8c25bca"
+    },
+    {
+      "relation": "contains",
+      "weight": 1.0,
+      "edge_source": "section",
+      "source": "720e4c43f686",
+      "target": "1c13608a2e51"
+    },
+    {
+      "relation": "contains",
+      "weight": 1.0,
+      "edge_source": "section",
+      "source": "720e4c43f686",
+      "target": "83576148e496"
+    },
+    {
+      "relation": "produces",
+      "weight": 0.2354,
+      "edge_source": "semantic_role",
+      "source": "44e746301ac9",
+      "target": "720e4c43f686"
+    },
+    {
+      "relation": "produces",
+      "weight": 0.2385,
+      "edge_source": "semantic_role",
+      "source": "44e746301ac9",
+      "target": "636c3d150e0a"
+    },
+    {
+      "relation": "produces",
+      "weight": 0.2445,
+      "edge_source": "semantic_role",
+      "source": "5ab7c8c25bca",
+      "target": "720e4c43f686"
+    },
+    {
+      "relation": "produces",
+      "weight": 0.2475,
+      "edge_source": "semantic_role",
+      "source": "5ab7c8c25bca",
+      "target": "636c3d150e0a"
+    },
+    {
+      "relation": "produces",
+      "weight": 0.2307,
+      "edge_source": "semantic_role",
+      "source": "1c13608a2e51",
+      "target": "720e4c43f686"
+    },
+    {
+      "relation": "produces",
+      "weight": 0.2338,
+      "edge_source": "semantic_role",
+      "source": "1c13608a2e51",
+      "target": "636c3d150e0a"
+    },
+    {
+      "relation": "produces",
+      "weight": 0.2415,
+      "edge_source": "semantic_role",
+      "source": "83576148e496",
+      "target": "720e4c43f686"
+    },
+    {
+      "relation": "produces",
+      "weight": 0.2445,
+      "edge_source": "semantic_role",
+      "source": "83576148e496",
+      "target": "636c3d150e0a"
+    },
+    {
+      "relation": "contains",
+      "weight": 1.0,
+      "edge_source": "section",
+      "source": "2d8176f2ed8e",
+      "target": "6f9c8d49b705"
+    },
+    {
+      "relation": "contains",
+      "weight": 1.0,
+      "edge_source": "section",
+      "source": "48720ac67d49",
+      "target": "ed576c01c3ea"
+    },
+    {
+      "relation": "contains",
+      "weight": 1.0,
+      "edge_source": "section",
+      "source": "48720ac67d49",
+      "target": "cee15ba9ee02"
+    },
+    {
+      "relation": "contains",
+      "weight": 1.0,
+      "edge_source": "section",
+      "source": "48720ac67d49",
+      "target": "e8d327303dfc"
+    },
+    {
+      "relation": "contains",
+      "weight": 1.0,
+      "edge_source": "section",
+      "source": "48720ac67d49",
+      "target": "0ffec1643470"
+    },
+    {
+      "relation": "contains",
+      "weight": 1.0,
+      "edge_source": "section",
+      "source": "48720ac67d49",
+      "target": "6a6547a24897"
+    },
+    {
+      "relation": "contains",
+      "weight": 1.0,
+      "edge_source": "section",
+      "source": "48720ac67d49",
+      "target": "11fb94d9a82f"
+    },
+    {
+      "relation": "produces",
+      "weight": 0.2425,
+      "edge_source": "semantic_role",
+      "source": "ed576c01c3ea",
+      "target": "48720ac67d49"
+    },
+    {
+      "relation": "produces",
+      "weight": 0.2613,
+      "edge_source": "semantic_role",
+      "source": "ed576c01c3ea",
+      "target": "cee15ba9ee02"
+    },
+    {
+      "relation": "produces",
+      "weight": 0.2493,
+      "edge_source": "semantic_role",
+      "source": "ed576c01c3ea",
+      "target": "636c3d150e0a"
+    },
+    {
+      "relation": "refers_to",
+      "weight": 0.9359,
+      "s_ref": 1.0,
+      "s_emb": 0.7863,
+      "matched_refs": [
+        [
+          "table",
+          2
+        ]
+      ],
+      "edge_source": "multimodal",
+      "source": "e8d327303dfc",
+      "target": "6a6547a24897"
+    },
+    {
+      "relation": "refers_to",
+      "weight": 0.8656,
+      "s_ref": 1.0,
+      "s_emb": 0.5521,
+      "matched_refs": [
+        [
+          "table",
+          2
+        ]
+      ],
+      "edge_source": "multimodal",
+      "source": "e8d327303dfc",
+      "target": "6b5264fa5773"
+    },
+    {
+      "relation": "refers_to",
+      "weight": 0.8557,
+      "s_ref": 1.0,
+      "s_emb": 0.5191,
+      "matched_refs": [
+        [
+          "table",
+          2
+        ]
+      ],
+      "edge_source": "multimodal",
+      "source": "e8d327303dfc",
+      "target": "029e37f5147e"
+    },
+    {
+      "relation": "evaluated_on",
+      "weight": 0.2354,
+      "edge_source": "semantic_role",
+      "source": "e8d327303dfc",
+      "target": "48720ac67d49"
+    },
+    {
+      "relation": "evaluated_on",
+      "weight": 0.2541,
+      "edge_source": "semantic_role",
+      "source": "e8d327303dfc",
+      "target": "cee15ba9ee02"
+    },
+    {
+      "relation": "evaluated_by",
+      "weight": 0.2546,
+      "edge_source": "semantic_role",
+      "source": "e8d327303dfc",
+      "target": "ed576c01c3ea"
+    },
+    {
+      "relation": "evaluated_by",
+      "weight": 0.2371,
+      "edge_source": "semantic_role",
+      "source": "e8d327303dfc",
+      "target": "0ffec1643470"
+    },
+    {
+      "relation": "refers_to",
+      "weight": 0.9149,
+      "s_ref": 1.0,
+      "s_emb": 0.7163,
+      "matched_refs": [
+        [
+          "table",
+          1
+        ]
+      ],
+      "edge_source": "multimodal",
+      "source": "0ffec1643470",
+      "target": "6a6547a24897"
+    },
+    {
+      "relation": "refers_to",
+      "weight": 0.8726,
+      "s_ref": 1.0,
+      "s_emb": 0.5754,
+      "matched_refs": [
+        [
+          "table",
+          1
+        ]
+      ],
+      "edge_source": "multimodal",
+      "source": "0ffec1643470",
+      "target": "029e37f5147e"
+    },
+    {
+      "relation": "refers_to",
+      "weight": 0.8593,
+      "s_ref": 1.0,
+      "s_emb": 0.5311,
+      "matched_refs": [
+        [
+          "table",
+          1
+        ]
+      ],
+      "edge_source": "multimodal",
+      "source": "0ffec1643470",
+      "target": "6b5264fa5773"
+    },
+    {
+      "relation": "produces",
+      "weight": 0.225,
+      "edge_source": "semantic_role",
+      "source": "0ffec1643470",
+      "target": "48720ac67d49"
+    },
+    {
+      "relation": "produces",
+      "weight": 0.2437,
+      "edge_source": "semantic_role",
+      "source": "0ffec1643470",
+      "target": "cee15ba9ee02"
+    },
+    {
+      "relation": "produces",
+      "weight": 0.2318,
+      "edge_source": "semantic_role",
+      "source": "0ffec1643470",
+      "target": "636c3d150e0a"
+    }
+  ]
+}
