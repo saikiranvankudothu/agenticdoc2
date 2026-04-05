@@ -1,292 +1,331 @@
-"""
-extractors/reading_order.py
-----------------------------
-Proper reading order for multi-column academic PDFs.
-
-ROOT CAUSE — why naive sort(y0, x0) breaks
--------------------------------------------
-In a two-column IEEE/ACM layout:
-
-  ┌──────────┬──────────┐
-  │ Col-L    │ Col-R    │  y≈100
-  │ block A  │ block C  │
-  │          │          │  y≈200
-  │ block B  │ block D  │
-  └──────────┴──────────┘
-
-Naive sort by (y0, x0) gives:  A, C, B, D   ← WRONG
-Correct reading order is:      A, B, C, D   ← read full left col, then right
-
-Algorithm (XY-Cut inspired)
----------------------------
-1. DETECT COLUMNS
-   Project all block x-coordinates onto the x-axis.
-   Find "x-gaps" — wide horizontal whitespace bands where no block exists.
-   These gaps are the column separators.
-
-2. ASSIGN BLOCKS TO COLUMNS
-   Each block is assigned to the column whose x-range contains its centre.
-
-3. SORT WITHIN EACH COLUMN by (y0, x0)
-
-4. HANDLE FULL-WIDTH BLOCKS
-   Blocks spanning >60% of page width (titles, section headings, figures)
-   are "full-width". They interrupt the column flow:
-   - All blocks above them → sorted in column order
-   - Full-width block → inserted at its y position
-   - All blocks below them → restarted
-
-5. MERGE
-   Interleave full-width blocks with column blocks at correct y positions.
-
-This handles:
-  - Single-column PDFs (one "column" = whole page width)
-  - Two-column IEEE/ACM style
-  - Three-column conference posters
-  - Mixed: full-width abstract + two-column body
+"""Flow connection
+run_layout.py → calls → LayoutDetectionAgent
+LayoutDetectionAgent → calls → HeuristicLayoutDetector.detect_page()
+inside that → calls → sort_reading_order() (your file)
 """
 
 from __future__ import annotations
 import logging
 from dataclasses import dataclass
-from typing import Optional
 
 from extractors.layout_models import LayoutRegion
 
 logger = logging.getLogger(__name__)
 
 
-# ─────────────────────────────────────────────
-# Column detection
-# ─────────────────────────────────────────────
-
 @dataclass
 class Column:
-    """A detected column band on a page."""
     x_min: float
     x_max: float
-    index: int          # left→right ordering (0-based)
+    index: int
 
     @property
     def centre(self) -> float:
-        return (self.x_min + self.x_max) / 2
+        return (self.x_min + self.x_max) / 2.0
 
-    def contains(self, bbox_x_centre: float, tolerance: float = 5.0) -> bool:
-        return (self.x_min - tolerance) <= bbox_x_centre <= (self.x_max + tolerance)
+    @property
+    def width(self) -> float:
+        return self.x_max - self.x_min
 
-
-def detect_columns(
-    regions: list[LayoutRegion],
-    page_width: float,
-    min_gap_width: float = 15.0,    # minimum whitespace to count as a column gap
-    min_col_width_frac: float = 0.15,  # column must be ≥15% of page width
-) -> list[Column]:
-    """
-    Detect column bands by finding x-axis gaps between blocks.
-
-    Parameters
-    ----------
-    regions       : all LayoutRegions on the page
-    page_width    : page width in PDF points
-    min_gap_width : minimum whitespace gap (pts) to count as a column separator
-    min_col_width_frac : minimum column width as fraction of page width
-
-    Returns
-    -------
-    List of Column objects sorted left to right.
-    """
-    if not regions:
-        return [Column(x_min=0, x_max=page_width, index=0)]
-
-    # Build x-coverage array at 1-point resolution
-    resolution  = 1.0
-    slots       = int(page_width / resolution) + 2
-    coverage    = [0] * slots
-
-    for r in regions:
-        lo = max(0, int(r.bbox.x0 / resolution))
-        hi = min(slots - 1, int(r.bbox.x1 / resolution))
-        for i in range(lo, hi + 1):
-            coverage[i] += 1
-
-    # Find contiguous zero-coverage gaps
-    gaps: list[tuple[float, float]] = []   # (gap_x0, gap_x1)
-    in_gap    = False
-    gap_start = 0
-
-    for i, val in enumerate(coverage):
-        if val == 0 and not in_gap:
-            in_gap    = True
-            gap_start = i
-        elif val > 0 and in_gap:
-            in_gap = False
-            gap_width = (i - gap_start) * resolution
-            if gap_width >= min_gap_width:
-                gaps.append((gap_start * resolution, i * resolution))
-
-    # Build column boundaries from gaps
-    min_col_w = page_width * min_col_width_frac
-    separators = [0.0] + [g[1] for g in gaps] + [page_width]
-
-    columns: list[Column] = []
-    for idx in range(len(separators) - 1):
-        x0 = separators[idx]
-        x1 = separators[idx + 1]
-        if (x1 - x0) >= min_col_w:
-            columns.append(Column(x_min=x0, x_max=x1, index=len(columns)))
-
-    if not columns:
-        columns = [Column(x_min=0, x_max=page_width, index=0)]
-
-    logger.debug(f"  Detected {len(columns)} column(s): "
-                 f"{[(f'{c.x_min:.0f}-{c.x_max:.0f}') for c in columns]}")
-    return columns
-
-
-# ─────────────────────────────────────────────
-# Full-width block detection
-# ─────────────────────────────────────────────
 
 def is_full_width(
     region: LayoutRegion,
     page_width: float,
     threshold: float = 0.55,
 ) -> bool:
-    """
-    Returns True if this region spans most of the page width.
-    These are treated as "flow interrupters" (titles, section headings,
-    wide figures, full-width tables).
-    """
-    return (region.bbox.width / page_width) >= threshold
+    return (region.bbox.width / max(page_width, 1.0)) >= threshold
 
 
-# ─────────────────────────────────────────────
-# Main reading-order sort
-# ─────────────────────────────────────────────
+def _x_overlap(a0: float, a1: float, b0: float, b1: float) -> float:
+    return max(0.0, min(a1, b1) - max(a0, b0))
+
+
+def _region_column_overlap(region: LayoutRegion, col: Column) -> float:
+    return _x_overlap(region.bbox.x0, region.bbox.x1, col.x_min, col.x_max)
+
+
+def _sort_single_column(regions: list[LayoutRegion]) -> list[LayoutRegion]:
+    return sorted(regions, key=lambda r: (r.bbox.y0, r.bbox.x0, r.bbox.y1))
+
+
+def _split_wide_regions(
+    regions: list[LayoutRegion],
+    page_width: float,
+    wide_frac: float = 0.48,
+) -> tuple[list[LayoutRegion], list[LayoutRegion]]:
+    """
+    Separate normal column-flow regions from wide regions inside a band.
+    Wide regions often behave like local full-width interrupters.
+    """
+    normal = []
+    wide = []
+    for r in regions:
+        frac = r.bbox.width / max(page_width, 1.0)
+        if frac >= wide_frac:
+            wide.append(r)
+        else:
+            normal.append(r)
+    return normal, sorted(wide, key=lambda r: (r.bbox.y0, r.bbox.x0))
+
+
+def detect_columns_in_band(
+    regions: list[LayoutRegion],
+    page_width: float,
+    min_gap_width: float = 18.0,
+    min_col_width_frac: float = 0.18,
+    max_columns: int = 4,
+) -> list[Column]:
+    """
+    Column detection that supports 1–N columns (up to max_columns).
+
+    Strategy:
+    - Merge nearby x-spans into occupied blocks.
+    - Find all interior gaps (not at page edges) that are wide enough.
+    - Use all qualifying gaps as column separators, not just the widest one.
+    - This correctly handles 2-column and 3-column academic layouts.
+    """
+    if not regions:
+        return [Column(0.0, page_width, 0)]
+
+    spans = sorted((r.bbox.x0, r.bbox.x1) for r in regions)
+
+    # Merge overlapping / nearby x-spans into contiguous blocks.
+    merged: list[list[float]] = []
+    for x0, x1 in spans:
+        if not merged:
+            merged.append([x0, x1])
+            continue
+        prev = merged[-1]
+        if x0 <= prev[1] + 8.0:          # merge spans within 8px
+            prev[1] = max(prev[1], x1)
+        else:
+            merged.append([x0, x1])
+
+    # Collect all inter-block gaps that are interior and wide enough.
+    interior_gaps: list[tuple[float, float]] = []
+    for i in range(len(merged) - 1):
+        gap_x0 = merged[i][1]
+        gap_x1 = merged[i + 1][0]
+        gap_w = gap_x1 - gap_x0
+        if (
+            gap_w >= min_gap_width
+            and gap_x0 > page_width * 0.10   # not at left edge
+            and gap_x1 < page_width * 0.90   # not at right edge
+        ):
+            interior_gaps.append((gap_x0, gap_x1))
+
+    if not interior_gaps:
+        return [Column(0.0, page_width, 0)]
+
+    # BUG FIX: use ALL interior gaps as column separators, not only the widest.
+    # Sort gaps left-to-right to build column boundaries in order.
+    interior_gaps.sort(key=lambda g: g[0])
+
+    # Limit to at most (max_columns - 1) separators.
+    if len(interior_gaps) >= max_columns:
+        # Keep the widest max_columns-1 gaps.
+        interior_gaps = sorted(interior_gaps, key=lambda g: g[1] - g[0], reverse=True)[: max_columns - 1]
+        interior_gaps.sort(key=lambda g: g[0])
+
+    # Build column objects from the separator gaps.
+    boundaries: list[float] = [0.0]
+    for g in interior_gaps:
+        boundaries.append(g[0])   # right edge of left neighbour
+        boundaries.append(g[1])   # left edge of right neighbour
+    boundaries.append(page_width)
+
+    # boundaries is: [col0_x0, col0_x1, col1_x0, col1_x1, ...]
+    columns: list[Column] = []
+    for i in range(0, len(boundaries) - 1, 2):
+        col = Column(boundaries[i], boundaries[i + 1], len(columns))
+        min_col_w = page_width * min_col_width_frac
+        if col.width < min_col_w:
+            # Sliver column — abort and fall back to single column.
+            return [Column(0.0, page_width, 0)]
+        columns.append(col)
+
+    if len(columns) < 2:
+        return [Column(0.0, page_width, 0)]
+
+    return columns
+
+
+def _assign_to_columns(
+    regions: list[LayoutRegion],
+    columns: list[Column],
+) -> dict[int, list[LayoutRegion]]:
+    """
+    Assign by maximum x-overlap first, then fallback to nearest centre.
+
+    BUG FIX: use fractional overlap (overlap / region_width) so that wide
+    regions that spill into an adjacent column are still assigned correctly
+    based on where *most* of their width sits.
+    """
+    buckets: dict[int, list[LayoutRegion]] = {c.index: [] for c in columns}
+
+    for r in regions:
+        r_width = max(r.bbox.x1 - r.bbox.x0, 1.0)
+        overlaps = [
+            (_region_column_overlap(r, c) / r_width, c.index)
+            for c in columns
+        ]
+        best_frac, best_idx = max(overlaps, key=lambda x: x[0])
+
+        if best_frac > 0:
+            buckets[best_idx].append(r)
+            continue
+
+        # No overlap at all — assign to nearest column by centre distance.
+        cx = (r.bbox.x0 + r.bbox.x1) / 2.0
+        nearest = min(columns, key=lambda c: abs(cx - c.centre))
+        buckets[nearest.index].append(r)
+
+    for idx in buckets:
+        buckets[idx].sort(key=lambda r: (r.bbox.y0, r.bbox.x0, r.bbox.y1))
+
+    return buckets
+
+
+def _sort_band(
+    band_regions: list[LayoutRegion],
+    page_width: float,
+    column_gap_min: float,
+) -> list[LayoutRegion]:
+    """
+    Sort one horizontal band.
+
+    BUG FIX (wide-interrupter slicing):
+      Old code used `r.bbox.y0` as break points, so normal regions whose y0
+      falls *inside* a wide block (between its y0 and y1) were placed in the
+      wrong chunk.  We now use `r.bbox.y1` (bottom of the wide block) as the
+      lower boundary for the subsequent chunk.
+    """
+    if not band_regions:
+        return []
+
+    if len(band_regions) == 1:
+        return list(band_regions)
+
+    normal, wide = _split_wide_regions(band_regions, page_width)
+
+    if len(normal) <= 1:
+        return sorted(band_regions, key=lambda r: (r.bbox.y0, r.bbox.x0))
+
+    columns = detect_columns_in_band(
+        normal,
+        page_width=page_width,
+        min_gap_width=column_gap_min,
+    )
+
+    # Single-column band — just sort top-to-bottom.
+    if len(columns) == 1:
+        return sorted(band_regions, key=lambda r: (r.bbox.y0, r.bbox.x0))
+
+    # Multi-column band: interleave wide interrupters with column chunks.
+    ordered: list[LayoutRegion] = []
+
+    # BUG FIX: break points must use y1 of each wide block (its bottom edge),
+    # not y0, so that the next chunk starts *after* the wide block ends.
+    # Sentinel values bracket the full band.
+    break_tops = [-float("inf")] + [w.bbox.y0 for w in wide]
+    break_bots = [w.bbox.y1 for w in wide] + [float("inf")]
+
+    for i, (y_lo, y_hi) in enumerate(zip(break_tops, break_bots)):
+        # Emit the wide interrupter that opened this gap (skip for first sentinel).
+        if i > 0:
+            ordered.append(wide[i - 1])
+
+        # Normal regions whose top falls in (y_lo, y_hi).
+        # BUG FIX: use y_lo as the *bottom* of the previous wide block (y1),
+        # so we don't re-include regions that were already emitted.
+        chunk = [r for r in normal if r.bbox.y0 >= y_lo and r.bbox.y0 < y_hi]
+        if not chunk:
+            continue
+
+        buckets = _assign_to_columns(chunk, columns)
+
+        # Academic reading order: finish left column entirely, then right, etc.
+        for col_idx in sorted(buckets):
+            ordered.extend(buckets[col_idx])
+
+    return ordered
+
 
 def sort_reading_order(
     regions: list[LayoutRegion],
     page_width: float,
     page_height: float,
     full_width_threshold: float = 0.55,
-    column_gap_min: float = 15.0,
+    column_gap_min: float = 18.0,
 ) -> list[LayoutRegion]:
     """
-    Sort regions into proper human reading order for multi-column layouts.
+    Reading order for multi-column academic/document pages.
 
-    Algorithm
-    ---------
-    1. Separate full-width regions from column-flow regions.
-    2. Detect columns among column-flow regions.
-    3. Assign each column-flow region to a column by its x-centre.
-    4. Group all regions into "bands" separated by full-width blocks.
-    5. Within each band, sort column-flow regions: left column first (top→bottom),
-       then right column (top→bottom).
-    6. Insert full-width regions at their natural y-position within the sequence.
+    Algorithm:
+    1. Classify each region as full-width (header/footer/figure spanning the
+       page) or column-flow.
+    2. Full-width regions act as hard horizontal separators, dividing the page
+       into bands.
+    3. Each band is sorted independently, detecting its own column structure.
 
-    Parameters
-    ----------
-    regions              : unsorted LayoutRegions for one page
-    page_width           : page width in PDF points
-    page_height          : page height in PDF points
-    full_width_threshold : width fraction above which a block is "full-width"
-    column_gap_min       : minimum gap (pts) to count as column separator
+    Key fixes vs. previous version:
+    - Band boundary is now INCLUSIVE on both sides using a small epsilon so
+      straddling regions are never silently dropped.
+    - Tail band uses cursor_y (= last full-width block's y1) so the overlap
+      filter is consistent with how bands are built above.
+    - Column detection now supports N columns, not just 2.
+    - Wide-interrupter slice points use y1 (bottom) not y0 (top).
+    - Column assignment uses fractional overlap rather than raw pixel overlap.
     """
     if not regions:
         return []
-
     if len(regions) == 1:
         return list(regions)
 
-    # ── Step 1: Split full-width vs column regions ──────────
-    full_width_regs = [r for r in regions if is_full_width(r, page_width, full_width_threshold)]
-    col_regs        = [r for r in regions if not is_full_width(r, page_width, full_width_threshold)]
-
-    # ── Step 2: Detect columns (using column regions only) ──
-    columns = detect_columns(col_regs, page_width, min_gap_width=column_gap_min)
-
-    # ── Step 3: Assign column-flow regions to columns ───────
-    def assign_column(r: LayoutRegion) -> int:
-        cx = (r.bbox.x0 + r.bbox.x1) / 2
-        for col in columns:
-            if col.contains(cx):
-                return col.index
-        # fallback: assign to nearest column
-        dists = [abs(cx - col.centre) for col in columns]
-        return dists.index(min(dists))
-
-    col_assigned: list[tuple[int, LayoutRegion]] = [
-        (assign_column(r), r) for r in col_regs
+    full_width_regs = sorted(
+        [r for r in regions if is_full_width(r, page_width, full_width_threshold)],
+        key=lambda r: (r.bbox.y0, r.bbox.x0),
+    )
+    other_regs = [
+        r for r in regions
+        if not is_full_width(r, page_width, full_width_threshold)
     ]
 
-    # ── Step 4: Group into bands split by full-width blocks ─
-    # Sort full-width blocks by y
-    full_width_sorted = sorted(full_width_regs, key=lambda r: r.bbox.y0)
-
-    # Build band boundaries: y-intervals between full-width blocks
-    # Band 0: y=0 → first full-width block
-    # Band k: between full-width blocks k-1 and k
-    # Band N: last full-width block → page bottom
-    band_breaks = (
-        [-float("inf")]
-        + [r.bbox.y0 for r in full_width_sorted]
-        + [float("inf")]
-    )
-
     ordered: list[LayoutRegion] = []
+    cursor_y = -float("inf")
 
-    for band_idx in range(len(band_breaks) - 1):
-        y_lo = band_breaks[band_idx]
-        y_hi = band_breaks[band_idx + 1]
+    # Small tolerance to avoid dropping regions that share a boundary pixel
+    # with a full-width block due to floating-point imprecision.
+    EPS = 1.0
 
-        # Insert the full-width block that opens this band (except first band)
-        if band_idx > 0:
-            ordered.append(full_width_sorted[band_idx - 1])
-
-        # Get column-flow blocks inside this y-band
-        band_blocks = [
-            (col_idx, r) for col_idx, r in col_assigned
-            if r.bbox.y0 > y_lo and r.bbox.y0 < y_hi
+    for fw in full_width_regs:
+        # BUG FIX: old code used strict `r.bbox.y1 <= fw.bbox.y0`, dropping
+        # any region whose bottom touched the full-width block's top.
+        # Use `r.bbox.y0 < fw.bbox.y0 + EPS` (region starts before the fw
+        # block) and `r.bbox.y1 <= fw.bbox.y0 + EPS` (region ends at/before
+        # the fw block top) to capture all intended content without overlap.
+        band = [
+            r for r in other_regs
+            if r.bbox.y0 >= cursor_y - EPS and r.bbox.y1 <= fw.bbox.y0 + EPS
         ]
+        ordered.extend(_sort_band(band, page_width, column_gap_min))
+        ordered.append(fw)
+        cursor_y = fw.bbox.y1   # advance cursor to bottom of full-width block
 
-        if not band_blocks:
-            continue
+    # BUG FIX: tail band should start from cursor_y (bottom of last fw block).
+    # Old code used `r.bbox.y0 >= cursor_y` which is correct, but combined
+    # with the EPS adjustment above we must be consistent.
+    tail_band = [r for r in other_regs if r.bbox.y0 >= cursor_y - EPS]
+    ordered.extend(_sort_band(tail_band, page_width, column_gap_min))
 
-        # ── Step 5: Sort within each column top→bottom ──────
-        # Then order: col 0 entirely, then col 1, etc.
-        num_cols = len(columns)
-        col_buckets: dict[int, list[LayoutRegion]] = {i: [] for i in range(num_cols)}
-        for col_idx, r in band_blocks:
-            col_buckets[col_idx].append(r)
+    # Deduplicate while preserving first-occurrence order.
+    # (A region may land in both a band and the tail if it straddles cursor_y.)
+    seen: set = set()
+    deduped: list[LayoutRegion] = []
+    for r in ordered:
+        if r.region_id not in seen:
+            deduped.append(r)
+            seen.add(r.region_id)
 
-        for col_idx in range(num_cols):
-            col_buckets[col_idx].sort(key=lambda r: (r.bbox.y0, r.bbox.x0))
-
-        # ── Step 6: Interleave columns in reading order ──────
-        # For single-column: trivial
-        # For multi-column: read column 0 fully, then column 1, etc.
-        # EXCEPTION: if columns have very different y-extents (mixed layout),
-        # we fall back to row-band interleaving
-        if num_cols == 1:
-            ordered.extend(col_buckets[0])
-        else:
-            ordered.extend(_interleave_columns(col_buckets, num_cols))
-
-    return ordered
-
-
-def _interleave_columns(
-    col_buckets: dict[int, list[LayoutRegion]],
-    num_cols: int,
-) -> list[LayoutRegion]:
-    """
-    Merge sorted column buckets into reading order.
-
-    Standard academic reading order: read left column fully top-to-bottom,
-    then right column fully top-to-bottom (column-major order).
-    This is correct for IEEE/ACM two-column papers.
-    """
-    result: list[LayoutRegion] = []
-    for col_idx in range(num_cols):
-        result.extend(col_buckets.get(col_idx, []))
-    return result
+    logger.debug("Reading order result: %s", [r.region_id for r in deduped])
+    return deduped

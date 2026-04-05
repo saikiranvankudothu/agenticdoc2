@@ -3,10 +3,10 @@ import fitz
 import json
 
 # load PDF
-pdf = fitz.open("pdf/paper.pdf")
+pdf = fitz.open("pdf/major_paper.pdf")
 
 # load json output
-with open("output\paper\json\extraction.json") as f:
+with open("output\major_paper\json\extraction.json",encoding="utf-8") as f:
     data = json.load(f)
 
 for page_data in data["pages"]:
@@ -25,7 +25,7 @@ for page_data in data["pages"]:
 
         page.draw_rect(rect, color=(1,0,0), width=1)
 
-pdf.save("plots/kimi_output.pdf")
+pdf.save("plots/major_paper_reading_order.pdf")
 
 
 
