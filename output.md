@@ -1,91 +1,99 @@
 
-(agenticdoc) C:\Users\Gopi\Downloads\Kiran\agenticdoc2>uv run python pipeline.py --semantic-json output/paper/json/layout_semantic.json
-The cache for model files in Transformers v4.22.0 has been updated. Migrating your old cache. This is a one-time only operation. You can interrupt this and resume the migration later on by calling `transformers.utils.move_cache()`.
-0it [00:00, ?it/s]
-2026-04-05 17:05:19,715 [INFO] __main__ — ════════════════════════════════════════════════════════
-2026-04-05 17:05:19,716 [INFO] __main__ — Building pipeline from: output\paper\json\layout_semantic.json
-2026-04-05 17:05:19,716 [INFO] __main__ — ════════════════════════════════════════════════════════
-2026-04-05 17:05:19,716 [INFO] __main__ — [Step 5] Building knowledge graph …
-2026-04-05 17:05:19,716 [INFO] agents.knowledge_graph_agent — Loading output\paper\json\layout_semantic.json …
-2026-04-05 17:05:19,731 [INFO] agents.knowledge_graph_agent — Multimodal edges: 12 added, 0 skipped (below threshold / unknown).
-2026-04-05 17:05:19,732 [INFO] agents.knowledge_graph_agent — Semantic role edges added: 116
-2026-04-05 17:05:19,732 [INFO] agents.knowledge_graph_agent — Section containment edges added: 41
-2026-04-05 17:05:19,732 [INFO] agents.knowledge_graph_agent — Graph built: 70 nodes, 169 edges
-
-📊 KNOWLEDGE GRAPH SUMMARY
-================================================
-  Nodes : 70
-  Edges : 169
-
-  Edge breakdown:
-    [multimodal] refers_to: 12
-    [section] contains: 41
-    [semantic_role] evaluated_by: 3
-    [semantic_role] evaluated_on: 3
-    [semantic_role] produces: 81
-    [semantic_role] used_in: 29
-
-  Scholarly role distribution (non-noise nodes):
-    Method: 30
-    Definition: 13
-    Result: 7
-    Observation: 4
-    Dataset: 2
-
-  Isolated nodes (no edges): 1
-  Graph density: 0.03499
-================================================
-2026-04-05 17:05:19,734 [INFO] __main__ — [Step 6] Building FAISS index …
-2026-04-05 17:05:19,734 [INFO] agents.faiss_agent — Loading encoder 'all-MiniLM-L6-v2' …
-2026-04-05 17:05:19,738 [INFO] sentence_transformers.SentenceTransformer — Load pretrained SentenceTransformer: all-MiniLM-L6-v2
-C:\Users\Gopi\Downloads\Kiran\agenticdoc2\.venv\Lib\site-packages\huggingface_hub\file_download.py:949: FutureWarning: `resume_download` is deprecated and will to force a new download, use `force_download=True`.
+(agenticdoc) C:\Users\Gopi\Downloads\Kiran\agenticdoc2>uv run python retrieval_evaluation.py --use-real-agents
+2026-04-05 21:21:52,415 [INFO] __main__ — Loaded 70 nodes from output\paper\json\layout_semantic.json
+2026-04-05 21:21:52,415 [INFO] __main__ — Loading real FAISSAgent + HybridRetrievalEngine …
+2026-04-05 21:21:52,482 [INFO] faiss.loader — Loading faiss with AVX512 support.
+2026-04-05 21:21:52,482 [INFO] faiss.loader — Could not load library with AVX512 support due to:
+ModuleNotFoundError("No module named 'faiss.swigfaiss_avx512'")
+2026-04-05 21:21:52,482 [INFO] faiss.loader — Loading faiss with AVX2 support.
+2026-04-05 21:21:52,498 [INFO] faiss.loader — Successfully loaded faiss with AVX2 support.
+2026-04-05 21:22:01,591 [INFO] agents.faiss_agent — Loading encoder 'all-MiniLM-L6-v2' …
+2026-04-05 21:22:01,591 [INFO] sentence_transformers.SentenceTransformer — Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+C:\Users\Gopi\Downloads\Kiran\agenticdoc2\.venv\Lib\site-packages\huggingface_hub\file_download.py:949: FutureWarning: `resume_download` is deprecated and will be removed in version 1.0.0. Downloads always resume when possible. If you want to force a new download, use `force_download=True`.
   warnings.warn(
-2026-04-05 17:05:25,047 [INFO] agents.faiss_agent — Loading output\paper\json\layout_semantic.json …
-2026-04-05 17:05:25,047 [INFO] agents.faiss_agent — Building FAISS index over 42 regions …
-Batches: 100%|███████████████████████████████████████████████████████████████████████████| 2/2 [00:01<00:00,  1.47it/s]
-2026-04-05 17:05:26,407 [INFO] agents.faiss_agent — Index type: IndexFlatIP (exact cosine, n=42)
-2026-04-05 17:05:26,408 [INFO] agents.faiss_agent — FAISS index built in 1.35s — 42 vectors, dim=384, type=FlatIP
+2026-04-05 21:22:05,960 [INFO] agents.faiss_agent — Loading output\paper\json\layout_semantic.json …
+2026-04-05 21:22:05,960 [INFO] agents.faiss_agent — Building FAISS index over 42 regions …
+Batches: 100%|███████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 2/2 [00:01<00:00,  1.76it/s]
+2026-04-05 21:22:07,099 [INFO] agents.faiss_agent — Index type: IndexFlatIP (exact cosine, n=42)
+2026-04-05 21:22:07,099 [INFO] agents.faiss_agent — FAISS index built in 1.14s — 42 vectors, dim=384, type=FlatIP
+2026-04-05 21:22:07,099 [INFO] agents.knowledge_graph_agent — Loading output\paper\json\layout_semantic.json …
+2026-04-05 21:22:07,101 [INFO] agents.knowledge_graph_agent — Multimodal edges: 12 added, 0 skipped (below threshold / unknown).
+2026-04-05 21:22:07,103 [INFO] agents.knowledge_graph_agent — Semantic role edges added: 156
+2026-04-05 21:22:07,103 [INFO] agents.knowledge_graph_agent — Co-section definition edges added: 30
+2026-04-05 21:22:07,103 [INFO] agents.knowledge_graph_agent — Section containment edges added: 39
+2026-04-05 21:22:07,103 [INFO] agents.knowledge_graph_agent — Graph built: 70 nodes, 237 edges
+2026-04-05 21:22:07,103 [INFO] __main__ — Evaluating 5 queries at K=[5, 10]
+2026-04-05 21:22:07,105 [INFO] __main__ — Starting evaluation: 5 queries × [5, 10] k-values
+2026-04-05 21:22:07,105 [INFO] __main__ — [1/5] Query: What method or approach does this paper propose?
+Batches: 100%|███████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1/1 [00:00<00:00, 52.42it/s]
+2026-04-05 21:22:07,129 [INFO] agents.hybrid_retrieval_engine — Query: 'What method or approach does this paper propose?'  →  intent=method (conf=0.27)
+Batches: 100%|███████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1/1 [00:00<00:00, 60.50it/s]
+2026-04-05 21:22:07,148 [INFO] agents.hybrid_retrieval_engine — FAISS seeds: 5 nodes  ['a2963931', 'e1470500', '6ccea69e', '87213f5a', 'f09ece78']
+2026-04-05 21:22:07,150 [INFO] agents.hybrid_retrieval_engine — Graph expansion: 4 neighbours via relations ['refers_to', 'used_in']
+2026-04-05 21:22:07,150 [INFO] agents.hybrid_retrieval_engine — Retrieval complete: 9 final nodes (seeds=5, expanded=4)
+2026-04-05 21:22:07,150 [INFO] __main__ — [2/5] Query: What are the main results and performance metrics?
+Batches: 100%|███████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1/1 [00:00<00:00, 51.85it/s]
+2026-04-05 21:22:07,171 [INFO] agents.hybrid_retrieval_engine — Query: 'What are the main results and performance metrics?'  →  intent=general (conf=0.09)
+Batches: 100%|███████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1/1 [00:00<00:00, 66.42it/s]
+2026-04-05 21:22:07,192 [INFO] agents.hybrid_retrieval_engine — FAISS seeds: 5 nodes  ['3b3ae1e6', 'cee15ba9', '0ffec164', 'e8d32730', '6f9c8d49']
+2026-04-05 21:22:07,192 [INFO] agents.hybrid_retrieval_engine — Intent override: classifier='general' (conf=0.09) → role-fallback='result'
+2026-04-05 21:22:07,192 [INFO] agents.hybrid_retrieval_engine — Graph expansion: 4 neighbours via relations ['←produces']
+2026-04-05 21:22:07,193 [INFO] agents.hybrid_retrieval_engine — Retrieval complete: 9 final nodes (seeds=5, expanded=4)
+2026-04-05 21:22:07,193 [INFO] __main__ — [3/5] Query: What are the key definitions in this paper?
+Batches: 100%|███████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1/1 [00:00<00:00, 52.35it/s] 
+2026-04-05 21:22:07,214 [INFO] agents.hybrid_retrieval_engine — Query: 'What are the key definitions in this paper?'  →  intent=definition (conf=0.20)
+Batches: 100%|███████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1/1 [00:00<00:00, 53.57it/s]
+2026-04-05 21:22:07,237 [INFO] agents.hybrid_retrieval_engine — FAISS seeds: 5 nodes  ['a2963931', '8feaf570', '425202c6', 'e1470500', '6ccea69e']
+2026-04-05 21:22:07,238 [INFO] agents.hybrid_retrieval_engine — Graph expansion: 3 neighbours via relations ['defines', 'used_in']
+2026-04-05 21:22:07,238 [INFO] agents.hybrid_retrieval_engine — Retrieval complete: 8 final nodes (seeds=5, expanded=3)
+2026-04-05 21:22:07,238 [INFO] __main__ — [4/5] Query: What observations or findings does the paper report?
+Batches: 100%|███████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1/1 [00:00<00:00, 54.45it/s] 
+2026-04-05 21:22:07,261 [INFO] agents.hybrid_retrieval_engine — Query: 'What observations or findings does the paper report?'  →  intent=general (conf=0.00)    
+Batches: 100%|███████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1/1 [00:00<00:00, 54.38it/s] 
+2026-04-05 21:22:07,281 [INFO] agents.hybrid_retrieval_engine — FAISS seeds: 5 nodes  ['a2963931', '8feaf570', '94db7a9a', 'ce94567d', '3b3ae1e6']
+2026-04-05 21:22:07,281 [INFO] agents.hybrid_retrieval_engine — Intent override: classifier='general' (conf=0.00) → role-fallback='method'
+2026-04-05 21:22:07,281 [INFO] agents.hybrid_retrieval_engine — Graph expansion: 4 neighbours via relations ['produces']
+2026-04-05 21:22:07,281 [INFO] agents.hybrid_retrieval_engine — Retrieval complete: 9 final nodes (seeds=5, expanded=4)
+2026-04-05 21:22:07,281 [INFO] __main__ — [5/5] Query: What datasets or benchmarks were used?
+Batches: 100%|███████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1/1 [00:00<00:00, 69.32it/s] 
+2026-04-05 21:22:07,302 [INFO] agents.hybrid_retrieval_engine — Query: 'What datasets or benchmarks were used?'  →  intent=general (conf=0.00)
+Batches: 100%|███████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1/1 [00:00<00:00, 69.63it/s] 
+2026-04-05 21:22:07,321 [INFO] agents.hybrid_retrieval_engine — FAISS seeds: 5 nodes  ['3b3ae1e6', 'e8d32730', '0ffec164', 'cee15ba9', '6f9c8d49']
+2026-04-05 21:22:07,321 [INFO] agents.hybrid_retrieval_engine — Intent override: classifier='general' (conf=0.00) → role-fallback='result'
+2026-04-05 21:22:07,321 [INFO] agents.hybrid_retrieval_engine — Graph expansion: 4 neighbours via relations ['refers_to', '←produces']
+2026-04-05 21:22:07,321 [INFO] agents.hybrid_retrieval_engine — Retrieval complete: 9 final nodes (seeds=5, expanded=4) 
 
-🗂  FAISS AGENT SUMMARY
-================================================
-  Index type     : FlatIP
-  Total vectors  : 42
-  Useful nodes   : 42  (non-noise)
-  Noise nodes    : 0   (header/footer/N/A)
-  Embedding dim  : 384
+========================================================================
+  RETRIEVAL EVALUATION REPORT — FAISS-only vs Hybrid (FAISS+KG)
+========================================================================
 
-  Scholarly role distribution:
-    Method: 23
-    Definition: 10
-    Observation: 4
-    Result: 3
-    Dataset: 2
-================================================
-2026-04-05 17:05:26,409 [INFO] __main__ — [Step 7] Initialising hybrid retrieval engine …
-2026-04-05 17:05:26,411 [INFO] __main__ — [Step 8] Initialising answer generation agent …
-2026-04-05 17:05:28,525 [INFO] __main__ — Pipeline ready.
+  ── K = 5 ──────────────────────────────────────────────
+  Metric                   FAISS-only       Hybrid   Δ (Hybrid−FAISS)
+  ──────────────────────────────────────────────────────────────────────
+  Precision@K                  0.2800       0.2800   – +0.0000
+  Recall@K                     0.2122       0.2122   – +0.0000
+  MRR                          0.4167       0.4500   ▲ +0.0333
+  nDCG@K                       0.5158       0.5158   – +0.0000
+  Hit Rate                     0.8000       0.8000   – +0.0000
+  Latency (ms)                21.5000      21.7000   – +0.0000
 
-❓ Query: What is the proposed method and how does it work?
+  ── K = 10 ──────────────────────────────────────────────
+  Metric                   FAISS-only       Hybrid   Δ (Hybrid−FAISS)
+  ──────────────────────────────────────────────────────────────────────
+  Precision@K                  0.2000       0.2600   ▲ +0.0600
+  Recall@K                     0.2387       0.3789   ▲ +0.1402
+  MRR                          0.4167       0.4500   ▲ +0.0333
+  nDCG@K                       0.5269       0.6236   ▲ +0.0967
+  Hit Rate                     0.8000       1.0000   ▲ +0.2000
+  Latency (ms)                21.5000      21.7000   – +0.0000
 
-2026-04-05 17:05:28,527 [INFO] agents.hybrid_retrieval_engine — Query: 'What is the proposed method and how does it work?'  →  intent=method (conf=0.27)
-Batches: 100%|███████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1/1 [00:00<00:00,  7.24it/s]
-2026-04-05 17:05:28,671 [INFO] agents.hybrid_retrieval_engine — FAISS seeds: 5 nodes  ['e1470500', '5ab7c8c2', 'f09ece78', 'a2963931', 'e241fdf9']
-2026-04-05 17:05:28,672 [INFO] agents.hybrid_retrieval_engine — Graph expansion: 7 neighbours via relations ['produces', 'used_in']
-2026-04-05 17:05:28,672 [INFO] agents.hybrid_retrieval_engine — Retrieval complete: 10 final nodes (seeds=5, expanded=7)
-2026-04-05 17:05:28,673 [INFO] agents.answer_generation_agent — Generating answer for: 'What is the proposed method and how does it work?'  (passages=6, edges=12, intent=method)
-2026-04-05 17:05:44,702 [INFO] agents.answer_generation_agent — Ollama responded in 16.0s  (model=llama3, prompt_tokens=1015)
+  ── Per-query breakdown (K=5) ─────────────────────────────
+  dataset_retrieval              nDCG  FAISS=0.631  Hybrid=0.631  –+0.000
+  definition_retrieval           nDCG  FAISS=0.431  Hybrid=0.431  –+0.000
+  method_retrieval               nDCG  FAISS=0.571  Hybrid=0.571  –+0.000
+  observation_retrieval          nDCG  FAISS=0.000  Hybrid=0.000  –+0.000
+  result_retrieval               nDCG  FAISS=0.947  Hybrid=0.947  –+0.000
 
-════════════════════════════════════════════════════════════
-  QUERY   : What is the proposed method and how does it work?
-  MODEL   : llama3   latency=16.0s
-════════════════════════════════════════════════════════════
-## Answer
-The proposed method is chunk-wise prefilling, which leverages the freedom in chunk ordering to further align RoPE geometry with information flow in the decoding phase. During this process, each chunk is processed independently to compute its key-value (KV) cache.
+========================================================================
 
-## Evidence
-1. [P5 | Role: Method | Page: 1 | Node: e241fdf9 | Score: 0.127] "During chunk-wise prefilling, each chunk is processed independently to compute its key–value (KV) cache."
-2. [P1 | Role: Definition | Page: 1 | Node: e1470500 | Score: 0.139] "Let the input consist of N tokens, which we partition into K disjoint chunks { C 1 , . . . , C K } ."
-
-## Graph Reasoning
-- Paragraph[e241fdf9] → produces → Paragraph[a89ff685]: This shows that the chunk-wise prefilling method (P5) is used to compute the KV cache, which is then used in the observation about attention interactions (P6).
-════════════════════════════════════════════════════════════
+2026-04-05 21:22:07,329 [INFO] __main__ — Report saved → output/eval/retrieval_report.json

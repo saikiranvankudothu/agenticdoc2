@@ -8,7 +8,7 @@
         "MRR": 0.4167,
         "mean_nDCG@k": 0.5158,
         "hit_rate": 0.8,
-        "mean_latency_ms": 20.13,
+        "mean_latency_ms": 21.5,
         "n_queries": 5
       },
       "10": {
@@ -17,7 +17,7 @@
         "MRR": 0.4167,
         "mean_nDCG@k": 0.5269,
         "hit_rate": 0.8,
-        "mean_latency_ms": 20.13,
+        "mean_latency_ms": 21.5,
         "n_queries": 5
       }
     },
@@ -31,7 +31,7 @@
         "reciprocal_rank": 0.3333,
         "ndcg@k": 0.5706,
         "hit": true,
-        "latency_ms": 18.75
+        "latency_ms": 22.39
       },
       {
         "query": "What method or approach does this paper propose?",
@@ -42,7 +42,7 @@
         "reciprocal_rank": 0.3333,
         "ndcg@k": 0.6152,
         "hit": true,
-        "latency_ms": 18.75
+        "latency_ms": 22.39
       },
       {
         "query": "What are the main results and performance metrics?",
@@ -53,7 +53,7 @@
         "reciprocal_rank": 1.0,
         "ndcg@k": 0.9469,
         "hit": true,
-        "latency_ms": 24.61
+        "latency_ms": 20.91
       },
       {
         "query": "What are the main results and performance metrics?",
@@ -64,7 +64,7 @@
         "reciprocal_rank": 1.0,
         "ndcg@k": 0.9469,
         "hit": true,
-        "latency_ms": 24.61
+        "latency_ms": 20.91
       },
       {
         "query": "What are the key definitions in this paper?",
@@ -75,7 +75,7 @@
         "reciprocal_rank": 0.25,
         "ndcg@k": 0.4307,
         "hit": true,
-        "latency_ms": 18.64
+        "latency_ms": 21.99
       },
       {
         "query": "What are the key definitions in this paper?",
@@ -86,7 +86,7 @@
         "reciprocal_rank": 0.25,
         "ndcg@k": 0.4413,
         "hit": true,
-        "latency_ms": 18.64
+        "latency_ms": 21.99
       },
       {
         "query": "What observations or findings does the paper report?",
@@ -97,7 +97,7 @@
         "reciprocal_rank": 0.0,
         "ndcg@k": 0.0,
         "hit": false,
-        "latency_ms": 17.94
+        "latency_ms": 22.62
       },
       {
         "query": "What observations or findings does the paper report?",
@@ -108,7 +108,7 @@
         "reciprocal_rank": 0.0,
         "ndcg@k": 0.0,
         "hit": false,
-        "latency_ms": 17.94
+        "latency_ms": 22.62
       },
       {
         "query": "What datasets or benchmarks were used?",
@@ -119,7 +119,7 @@
         "reciprocal_rank": 0.5,
         "ndcg@k": 0.6309,
         "hit": true,
-        "latency_ms": 20.73
+        "latency_ms": 19.59
       },
       {
         "query": "What datasets or benchmarks were used?",
@@ -130,7 +130,7 @@
         "reciprocal_rank": 0.5,
         "ndcg@k": 0.6309,
         "hit": true,
-        "latency_ms": 20.73
+        "latency_ms": 19.59
       }
     ]
   },
@@ -143,7 +143,7 @@
         "MRR": 0.45,
         "mean_nDCG@k": 0.5158,
         "hit_rate": 0.8,
-        "mean_latency_ms": 21.74,
+        "mean_latency_ms": 21.7,
         "n_queries": 5
       },
       "10": {
@@ -152,7 +152,7 @@
         "MRR": 0.45,
         "mean_nDCG@k": 0.6236,
         "hit_rate": 1.0,
-        "mean_latency_ms": 21.74,
+        "mean_latency_ms": 21.7,
         "n_queries": 5
       }
     },
@@ -166,7 +166,7 @@
         "reciprocal_rank": 0.3333,
         "ndcg@k": 0.5706,
         "hit": true,
-        "latency_ms": 24.32
+        "latency_ms": 22.94
       },
       {
         "query": "What method or approach does this paper propose?",
@@ -177,7 +177,7 @@
         "reciprocal_rank": 0.3333,
         "ndcg@k": 0.6378,
         "hit": true,
-        "latency_ms": 24.32
+        "latency_ms": 22.94
       },
       {
         "query": "What are the main results and performance metrics?",
@@ -188,7 +188,7 @@
         "reciprocal_rank": 1.0,
         "ndcg@k": 0.9469,
         "hit": true,
-        "latency_ms": 19.37
+        "latency_ms": 21.2
       },
       {
         "query": "What are the main results and performance metrics?",
@@ -199,7 +199,7 @@
         "reciprocal_rank": 1.0,
         "ndcg@k": 0.9469,
         "hit": true,
-        "latency_ms": 19.37
+        "latency_ms": 21.2
       },
       {
         "query": "What are the key definitions in this paper?",
@@ -210,7 +210,7 @@
         "reciprocal_rank": 0.25,
         "ndcg@k": 0.4307,
         "hit": true,
-        "latency_ms": 20.69
+        "latency_ms": 23.25
       },
       {
         "query": "What are the key definitions in this paper?",
@@ -221,7 +221,7 @@
         "reciprocal_rank": 0.25,
         "ndcg@k": 0.4307,
         "hit": true,
-        "latency_ms": 20.69
+        "latency_ms": 23.25
       },
       {
         "query": "What observations or findings does the paper report?",
@@ -232,7 +232,7 @@
         "reciprocal_rank": 0.1667,
         "ndcg@k": 0.0,
         "hit": false,
-        "latency_ms": 21.66
+        "latency_ms": 21.45
       },
       {
         "query": "What observations or findings does the paper report?",
@@ -243,7 +243,7 @@
         "reciprocal_rank": 0.1667,
         "ndcg@k": 0.4716,
         "hit": true,
-        "latency_ms": 21.66
+        "latency_ms": 21.45
       },
       {
         "query": "What datasets or benchmarks were used?",
@@ -254,7 +254,7 @@
         "reciprocal_rank": 0.5,
         "ndcg@k": 0.6309,
         "hit": true,
-        "latency_ms": 22.64
+        "latency_ms": 19.69
       },
       {
         "query": "What datasets or benchmarks were used?",
@@ -265,7 +265,7 @@
         "reciprocal_rank": 0.5,
         "ndcg@k": 0.6309,
         "hit": true,
-        "latency_ms": 22.64
+        "latency_ms": 19.69
       }
     ]
   },
