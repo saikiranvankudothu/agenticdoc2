@@ -1,0 +1,288 @@
+{
+  "faiss_only": {
+    "system": "FAISS-only",
+    "by_k": {
+      "5": {
+        "mean_precision@k": 0.28,
+        "mean_recall@k": 0.2122,
+        "MRR": 0.4167,
+        "mean_nDCG@k": 0.5158,
+        "hit_rate": 0.8,
+        "mean_latency_ms": 20.13,
+        "n_queries": 5
+      },
+      "10": {
+        "mean_precision@k": 0.2,
+        "mean_recall@k": 0.2387,
+        "MRR": 0.4167,
+        "mean_nDCG@k": 0.5269,
+        "hit_rate": 0.8,
+        "mean_latency_ms": 20.13,
+        "n_queries": 5
+      }
+    },
+    "per_query": [
+      {
+        "query": "What method or approach does this paper propose?",
+        "description": "method_retrieval",
+        "k": 5,
+        "precision@k": 0.4,
+        "recall@k": 0.0556,
+        "reciprocal_rank": 0.3333,
+        "ndcg@k": 0.5706,
+        "hit": true,
+        "latency_ms": 18.75
+      },
+      {
+        "query": "What method or approach does this paper propose?",
+        "description": "method_retrieval",
+        "k": 10,
+        "precision@k": 0.4,
+        "recall@k": 0.1111,
+        "reciprocal_rank": 0.3333,
+        "ndcg@k": 0.6152,
+        "hit": true,
+        "latency_ms": 18.75
+      },
+      {
+        "query": "What are the main results and performance metrics?",
+        "description": "result_retrieval",
+        "k": 5,
+        "precision@k": 0.6,
+        "recall@k": 0.4286,
+        "reciprocal_rank": 1.0,
+        "ndcg@k": 0.9469,
+        "hit": true,
+        "latency_ms": 24.61
+      },
+      {
+        "query": "What are the main results and performance metrics?",
+        "description": "result_retrieval",
+        "k": 10,
+        "precision@k": 0.3,
+        "recall@k": 0.4286,
+        "reciprocal_rank": 1.0,
+        "ndcg@k": 0.9469,
+        "hit": true,
+        "latency_ms": 24.61
+      },
+      {
+        "query": "What are the key definitions in this paper?",
+        "description": "definition_retrieval",
+        "k": 5,
+        "precision@k": 0.2,
+        "recall@k": 0.0769,
+        "reciprocal_rank": 0.25,
+        "ndcg@k": 0.4307,
+        "hit": true,
+        "latency_ms": 18.64
+      },
+      {
+        "query": "What are the key definitions in this paper?",
+        "description": "definition_retrieval",
+        "k": 10,
+        "precision@k": 0.2,
+        "recall@k": 0.1538,
+        "reciprocal_rank": 0.25,
+        "ndcg@k": 0.4413,
+        "hit": true,
+        "latency_ms": 18.64
+      },
+      {
+        "query": "What observations or findings does the paper report?",
+        "description": "observation_retrieval",
+        "k": 5,
+        "precision@k": 0.0,
+        "recall@k": 0.0,
+        "reciprocal_rank": 0.0,
+        "ndcg@k": 0.0,
+        "hit": false,
+        "latency_ms": 17.94
+      },
+      {
+        "query": "What observations or findings does the paper report?",
+        "description": "observation_retrieval",
+        "k": 10,
+        "precision@k": 0.0,
+        "recall@k": 0.0,
+        "reciprocal_rank": 0.0,
+        "ndcg@k": 0.0,
+        "hit": false,
+        "latency_ms": 17.94
+      },
+      {
+        "query": "What datasets or benchmarks were used?",
+        "description": "dataset_retrieval",
+        "k": 5,
+        "precision@k": 0.2,
+        "recall@k": 0.5,
+        "reciprocal_rank": 0.5,
+        "ndcg@k": 0.6309,
+        "hit": true,
+        "latency_ms": 20.73
+      },
+      {
+        "query": "What datasets or benchmarks were used?",
+        "description": "dataset_retrieval",
+        "k": 10,
+        "precision@k": 0.1,
+        "recall@k": 0.5,
+        "reciprocal_rank": 0.5,
+        "ndcg@k": 0.6309,
+        "hit": true,
+        "latency_ms": 20.73
+      }
+    ]
+  },
+  "hybrid": {
+    "system": "Hybrid (FAISS+KG)",
+    "by_k": {
+      "5": {
+        "mean_precision@k": 0.28,
+        "mean_recall@k": 0.2122,
+        "MRR": 0.45,
+        "mean_nDCG@k": 0.5158,
+        "hit_rate": 0.8,
+        "mean_latency_ms": 21.74,
+        "n_queries": 5
+      },
+      "10": {
+        "mean_precision@k": 0.26,
+        "mean_recall@k": 0.3789,
+        "MRR": 0.45,
+        "mean_nDCG@k": 0.6236,
+        "hit_rate": 1.0,
+        "mean_latency_ms": 21.74,
+        "n_queries": 5
+      }
+    },
+    "per_query": [
+      {
+        "query": "What method or approach does this paper propose?",
+        "description": "method_retrieval",
+        "k": 5,
+        "precision@k": 0.4,
+        "recall@k": 0.0556,
+        "reciprocal_rank": 0.3333,
+        "ndcg@k": 0.5706,
+        "hit": true,
+        "latency_ms": 24.32
+      },
+      {
+        "query": "What method or approach does this paper propose?",
+        "description": "method_retrieval",
+        "k": 10,
+        "precision@k": 0.5,
+        "recall@k": 0.1389,
+        "reciprocal_rank": 0.3333,
+        "ndcg@k": 0.6378,
+        "hit": true,
+        "latency_ms": 24.32
+      },
+      {
+        "query": "What are the main results and performance metrics?",
+        "description": "result_retrieval",
+        "k": 5,
+        "precision@k": 0.6,
+        "recall@k": 0.4286,
+        "reciprocal_rank": 1.0,
+        "ndcg@k": 0.9469,
+        "hit": true,
+        "latency_ms": 19.37
+      },
+      {
+        "query": "What are the main results and performance metrics?",
+        "description": "result_retrieval",
+        "k": 10,
+        "precision@k": 0.3,
+        "recall@k": 0.4286,
+        "reciprocal_rank": 1.0,
+        "ndcg@k": 0.9469,
+        "hit": true,
+        "latency_ms": 19.37
+      },
+      {
+        "query": "What are the key definitions in this paper?",
+        "description": "definition_retrieval",
+        "k": 5,
+        "precision@k": 0.2,
+        "recall@k": 0.0769,
+        "reciprocal_rank": 0.25,
+        "ndcg@k": 0.4307,
+        "hit": true,
+        "latency_ms": 20.69
+      },
+      {
+        "query": "What are the key definitions in this paper?",
+        "description": "definition_retrieval",
+        "k": 10,
+        "precision@k": 0.1,
+        "recall@k": 0.0769,
+        "reciprocal_rank": 0.25,
+        "ndcg@k": 0.4307,
+        "hit": true,
+        "latency_ms": 20.69
+      },
+      {
+        "query": "What observations or findings does the paper report?",
+        "description": "observation_retrieval",
+        "k": 5,
+        "precision@k": 0.0,
+        "recall@k": 0.0,
+        "reciprocal_rank": 0.1667,
+        "ndcg@k": 0.0,
+        "hit": false,
+        "latency_ms": 21.66
+      },
+      {
+        "query": "What observations or findings does the paper report?",
+        "description": "observation_retrieval",
+        "k": 10,
+        "precision@k": 0.3,
+        "recall@k": 0.75,
+        "reciprocal_rank": 0.1667,
+        "ndcg@k": 0.4716,
+        "hit": true,
+        "latency_ms": 21.66
+      },
+      {
+        "query": "What datasets or benchmarks were used?",
+        "description": "dataset_retrieval",
+        "k": 5,
+        "precision@k": 0.2,
+        "recall@k": 0.5,
+        "reciprocal_rank": 0.5,
+        "ndcg@k": 0.6309,
+        "hit": true,
+        "latency_ms": 22.64
+      },
+      {
+        "query": "What datasets or benchmarks were used?",
+        "description": "dataset_retrieval",
+        "k": 10,
+        "precision@k": 0.1,
+        "recall@k": 0.5,
+        "reciprocal_rank": 0.5,
+        "ndcg@k": 0.6309,
+        "hit": true,
+        "latency_ms": 22.64
+      }
+    ]
+  },
+  "delta_hybrid_minus_faiss": {
+    "5": {
+      "mean_precision@k": 0.0,
+      "mean_recall@k": 0.0,
+      "MRR": 0.0333,
+      "mean_nDCG@k": 0.0,
+      "hit_rate": 0.0
+    },
+    "10": {
+      "mean_precision@k": 0.06,
+      "mean_recall@k": 0.1402,
+      "MRR": 0.0333,
+      "mean_nDCG@k": 0.0967,
+      "hit_rate": 0.2
+    }
+  }
+}

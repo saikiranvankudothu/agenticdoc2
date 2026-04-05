@@ -31,4 +31,5 @@ dependencies = [
     "pyvis>=0.3.2",
     "faiss-cpu>=1.13.2",
     "streamlit>=1.56.0",
+    "plotly>=6.6.0",
 ]

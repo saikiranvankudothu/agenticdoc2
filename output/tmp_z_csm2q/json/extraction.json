@@ -1,0 +1,2630 @@
+{
+  "doc_id": "tmp_z_csm2q",
+  "source_path": "C:\\Users\\Gopi\\AppData\\Local\\Temp\\tmp_z_csm2q.pdf",
+  "total_pages": 5,
+  "pages": [
+    {
+      "page_index": 0,
+      "width": 612.0,
+      "height": 792.0,
+      "text_blocks": [
+        {
+          "block_id": "322f263d4324",
+          "text": "Agent Orchestrated Multimodal Academic Knowledge Extraction via Hybrid Vector Graph Retrieval",
+          "bbox": {
+            "x0": 70.90299987792969,
+            "y0": 49.138877868652344,
+            "x1": 541.0989379882812,
+            "y1": 133.74180603027344
+          },
+          "page_index": 0,
+          "style": {
+            "font_name": "NimbusRomNo9L-Regu",
+            "font_size": 23.91029930114746,
+            "is_bold": false,
+            "is_italic": false,
+            "color": 0
+          },
+          "block_type": "text",
+          "extraction_method": "embedded",
+          "confidence": 1.0,
+          "raw_block_no": 0
+        },
+        {
+          "block_id": "456c0c18fe11",
+          "text": "V. Sai Kiran, M. Vineela, T. Karthik, Ramdas Kapila Department of Computer Science and Engineering (Data Science), B. V. Raju Institute of Technology, Telangana, India 22211a67b8@bvrit.ac.in, 22211a6767@bvrit.ac.in, 22211a67b2@bvrit.ac.in, kapilaramdas@gmail.com",
+          "bbox": {
+            "x0": 62.629005432128906,
+            "y0": 148.2790069580078,
+            "x1": 552.858642578125,
+            "y1": 186.00950622558594
+          },
+          "page_index": 0,
+          "style": {
+            "font_name": "NimbusRomNo9L-Regu",
+            "font_size": 9.962599754333496,
+            "is_bold": false,
+            "is_italic": false,
+            "color": 0
+          },
+          "block_type": "text",
+          "extraction_method": "embedded",
+          "confidence": 1.0,
+          "raw_block_no": 1
+        },
+        {
+          "block_id": "ad921c8cfae2",
+          "text": "Abstract —Academic documents contain structured text, fig- ures, tables, equations, and cross-referenced sections. Conven- tional OCR-based and text-only retrieval systems flatten docu- ment structure and fail to model explicit scholarly relationships, limiting their effectiveness for academic question answering. In this work, we develop an agent orchestrated multimodal document intelligence framework that integrates layout-aware extraction, academic knowledge graph construction, and hybrid vector-Graph retrieval. Specialized agents perform multimodal alignment, semantic role classification, and structured knowledge graph generation. Retrieved evidence is fused from semantic vector search and relational graph traversal to support grounded and explainable scholarly reasoning. We implemented a modular prototype and evaluated it qualitatively against OCR only and text based RAG baselines, demonstrating improved structural grounding and relational query resolution. A quantitative bench- marking study is planned as future work. Index Terms —Multimodal Document Intelligence, Agent- Orchestrated Systems, Academic Knowledge Extraction, Knowl- edge Graphs, Hybrid Vector–Graph Retrieval, Retrieval- Augmented Generation",
+          "bbox": {
+            "x0": 48.96400451660156,
+            "y0": 217.639404296875,
+            "x1": 300.0245666503906,
+            "y1": 429.418701171875
+          },
+          "page_index": 0,
+          "style": {
+            "font_name": "NimbusRomNo9L-Medi",
+            "font_size": 8.966400146484375,
+            "is_bold": true,
+            "is_italic": false,
+            "color": 0
+          },
+          "block_type": "text",
+          "extraction_method": "embedded",
+          "confidence": 1.0,
+          "raw_block_no": 2
+        },
+        {
+          "block_id": "0e81432c65e9",
+          "text": "I. I NTRODUCTION",
+          "bbox": {
+            "x0": 135.61900329589844,
+            "y0": 445.6177062988281,
+            "x1": 213.37521362304688,
+            "y1": 457.6226501464844
+          },
+          "page_index": 0,
+          "style": {
+            "font_name": "NimbusRomNo9L-Regu",
+            "font_size": 7.970099925994873,
+            "is_bold": false,
+            "is_italic": false,
+            "color": 0
+          },
+          "block_type": "text",
+          "extraction_method": "embedded",
+          "confidence": 1.0,
+          "raw_block_no": 3
+        },
+        {
+          "block_id": "aeb1c3f3e115",
+          "text": "Academic documents integrate structured text, figures, ta- bles, equations, and citation networks into a tightly interdepen- dent format. Effective scholarly question answering requires preserving document structure while capturing semantic and relational dependencies across these heterogeneous elements. In reality, current methods only partially solve these prob- lems. OCR based pipelines often flatten layout and discard structural cues. Text-only Retrieval Augmented Generation (RAG) systems improve semantic retrieval, but they still operate on unstructured text chunks without explicit scholarly relationship modeling. Knowledge graph–based systems help with relational reasoning, yet semantic recall can drop when they are used in isolation. To overcome these limitations, we propose an agent- orchestrated multimodal document intelligence framework that integrates layout-aware extraction, academic knowledge graph construction, and hybrid semantic relational retrieval within a unified architecture. The system decomposes document under- standing into specialized agents, enabling modular processing and structured scholarly reasoning. The main contributions of this work are:",
+          "bbox": {
+            "x0": 48.9640007019043,
+            "y0": 465.66070556640625,
+            "x1": 300.02197265625,
+            "y1": 719.24462890625
+          },
+          "page_index": 0,
+          "style": {
+            "font_name": "NimbusRomNo9L-Regu",
+            "font_size": 9.962599754333496,
+            "is_bold": false,
+            "is_italic": false,
+            "color": 0
+          },
+          "block_type": "text",
+          "extraction_method": "embedded",
+          "confidence": 1.0,
+          "raw_block_no": 4
+        },
+        {
+          "block_id": "282e250e5cb3",
+          "text": "• An agent-orchestrated multimodal document intelligence architecture for academic knowledge extraction.",
+          "bbox": {
+            "x0": 321.94000244140625,
+            "y0": 217.07769775390625,
+            "x1": 563.0299072265625,
+            "y1": 241.0376434326172
+          },
+          "page_index": 0,
+          "style": {
+            "font_name": "NimbusRomNo9L-Regu",
+            "font_size": 9.962599754333496,
+            "is_bold": false,
+            "is_italic": false,
+            "color": 0
+          },
+          "block_type": "text",
+          "extraction_method": "embedded",
+          "confidence": 1.0,
+          "raw_block_no": 5
+        },
+        {
+          "block_id": "fc2d59d597a7",
+          "text": "• A structured academic knowledge graph schema grounded in layout-aligned entities and scholarly relationships.",
+          "bbox": {
+            "x0": 321.94000244140625,
+            "y0": 240.98773193359375,
+            "x1": 563.0325927734375,
+            "y1": 276.9036865234375
+          },
+          "page_index": 0,
+          "style": {
+            "font_name": "NimbusRomNo9L-Regu",
+            "font_size": 9.962599754333496,
+            "is_bold": false,
+            "is_italic": false,
+            "color": 0
+          },
+          "block_type": "text",
+          "extraction_method": "embedded",
+          "confidence": 1.0,
+          "raw_block_no": 6
+        },
+        {
+          "block_id": "ed4a6bbc6912",
+          "text": "• A hybrid retrieval strategy combining semantic similarity with relational graph traversal.",
+          "bbox": {
+            "x0": 321.94000244140625,
+            "y0": 276.8537292480469,
+            "x1": 563.0299072265625,
+            "y1": 300.81365966796875
+          },
+          "page_index": 0,
+          "style": {
+            "font_name": "NimbusRomNo9L-Regu",
+            "font_size": 9.962599754333496,
+            "is_bold": false,
+            "is_italic": false,
+            "color": 0
+          },
+          "block_type": "text",
+          "extraction_method": "embedded",
+          "confidence": 1.0,
+          "raw_block_no": 7
+        },
+        {
+          "block_id": "647777b7f528",
+          "text": "• A qualitative comparative evaluation against OCR based and text-only RAG baselines.",
+          "bbox": {
+            "x0": 321.94000244140625,
+            "y0": 300.7637023925781,
+            "x1": 563.030029296875,
+            "y1": 324.7236328125
+          },
+          "page_index": 0,
+          "style": {
+            "font_name": "NimbusRomNo9L-Regu",
+            "font_size": 9.962599754333496,
+            "is_bold": false,
+            "is_italic": false,
+            "color": 0
+          },
+          "block_type": "text",
+          "extraction_method": "embedded",
+          "confidence": 1.0,
+          "raw_block_no": 8
+        },
+        {
+          "block_id": "abeaf6f7f566",
+          "text": "II. P ROBLEM S TATEMENT",
+          "bbox": {
+            "x0": 382.125,
+            "y0": 335.5556945800781,
+            "x1": 492.8973083496094,
+            "y1": 347.5606384277344
+          },
+          "page_index": 0,
+          "style": {
+            "font_name": "NimbusRomNo9L-Regu",
+            "font_size": 7.970099925994873,
+            "is_bold": false,
+            "is_italic": false,
+            "color": 0
+          },
+          "block_type": "text",
+          "extraction_method": "embedded",
+          "confidence": 1.0,
+          "raw_block_no": 9
+        },
+        {
+          "block_id": "1b80c83af92c",
+          "text": "Despite advances in document intelligence and retrieval- augmented generation, no unified framework currently inte- grates layout-preserving multimodal extraction, explicit aca- demic entity modeling, and hybrid semantic–relational re- trieval within a single architecture. Academic documents require joint reasoning over textual content, visual layout, and scholarly relationships such as citations, methodological dependencies, and dataset result as- sociations. However, existing systems typically address only one or two of these aspects in isolation. The core challenge we address is designing an integrated framework that simultaneously: (i) preserves multimodal document structure, (ii) constructs an explicit academic knowledge representation, and (iii) sup- ports hybrid retrieval that balances semantic similarity with relational reasoning.",
+          "bbox": {
+            "x0": 311.9779968261719,
+            "y0": 353.58367919921875,
+            "x1": 563.0355834960938,
+            "y1": 546.3834838867188
+          },
+          "page_index": 0,
+          "style": {
+            "font_name": "NimbusRomNo9L-Regu",
+            "font_size": 9.962599754333496,
+            "is_bold": false,
+            "is_italic": false,
+            "color": 0
+          },
+          "block_type": "text",
+          "extraction_method": "embedded",
+          "confidence": 1.0,
+          "raw_block_no": 10
+        },
+        {
+          "block_id": "885707da90b4",
+          "text": "III. R ELATED W ORK",
+          "bbox": {
+            "x0": 392.6510009765625,
+            "y0": 557.215576171875,
+            "x1": 482.36834716796875,
+            "y1": 569.2205200195312
+          },
+          "page_index": 0,
+          "style": {
+            "font_name": "NimbusRomNo9L-Regu",
+            "font_size": 9.962599754333496,
+            "is_bold": false,
+            "is_italic": false,
+            "color": 0
+          },
+          "block_type": "text",
+          "extraction_method": "embedded",
+          "confidence": 1.0,
+          "raw_block_no": 11
+        },
+        {
+          "block_id": "e98a1ddf4f1e",
+          "text": "By transforming scanned pages into machine-readable text, OCR-based systems [10] have been crucial to the digitization of documents. Nevertheless, the majority of OCR pipelines handle documents as flat text streams, eliminating layout details like figure placement, section structure, and caption alignment. Their capacity to bolster more complex scholarly reasoning is hampered by this loss of structural context. To more accurately depict visually rich documents, layout- aware models like LayoutLM and associated multimodal trans- formers integrate spatial features. Performance on tasks like entity extraction and document classification is enhanced by these models. However, they are not specifically made to",
+          "bbox": {
+            "x0": 311.9779968261719,
+            "y0": 575.2435302734375,
+            "x1": 563.0355834960938,
+            "y1": 719.2445068359375
+          },
+          "page_index": 0,
+          "style": {
+            "font_name": "NimbusRomNo9L-Regu",
+            "font_size": 9.962599754333496,
+            "is_bold": false,
+            "is_italic": false,
+            "color": 0
+          },
+          "block_type": "text",
+          "extraction_method": "embedded",
+          "confidence": 1.0,
+          "raw_block_no": 12
+        }
+      ],
+      "figure_blocks": [
+        {
+          "block_id": "21cc2f820da9",
+          "bbox": {
+            "x0": 0.0,
+            "y0": 0.0,
+            "x1": 612.0,
+            "y1": 49.138877868652344
+          },
+          "page_index": 0,
+          "image_path": null,
+          "caption": null
+        }
+      ],
+      "extraction_method": "embedded",
+      "ocr_triggered": false
+    },
+    {
+      "page_index": 1,
+      "width": 612.0,
+      "height": 792.0,
+      "text_blocks": [
+        {
+          "block_id": "095726a6c386",
+          "text": "model higher-level scholarly relationships; instead, they are typically optimized for predictions at the region or token level. By incorporating semantic retrieval into language gener- ation, Retrieval-Augmented Generation (RAG) [1] enhances factual grounding. The majority of RAG systems work over unstructured chunks and do not specifically represent academic dependencies like method–result associations or citation links, despite their effectiveness in retrieving pertinent text passages. Relational reasoning and enhanced explainability are sup- ported by the structured representation of entities and their relationships made possible by knowledge graph approaches [8]. On the other hand, graph-based systems may have poor semantic recall when used alone, especially when lexical variation is present. In intelligent systems, agent-based architectures improve coordination and modularity. Despite these benefits, it is uncommon for current methods to integrate hybrid vector- graph retrieval, multimodal extraction, and explicit scholarly knowledge representation into a single framework.",
+          "bbox": {
+            "x0": 48.9640007019043,
+            "y0": 49.70452880859375,
+            "x1": 300.0219421386719,
+            "y1": 277.9715576171875
+          },
+          "page_index": 1,
+          "style": {
+            "font_name": "NimbusRomNo9L-Regu",
+            "font_size": 9.962599754333496,
+            "is_bold": false,
+            "is_italic": false,
+            "color": 0
+          },
+          "block_type": "text",
+          "extraction_method": "embedded",
+          "confidence": 1.0,
+          "raw_block_no": 0
+        },
+        {
+          "block_id": "11103498785e",
+          "text": "IV. P ROPOSED S YSTEM A RCHITECTURE",
+          "bbox": {
+            "x0": 88.66600036621094,
+            "y0": 287.67462158203125,
+            "x1": 260.3258361816406,
+            "y1": 299.6795654296875
+          },
+          "page_index": 1,
+          "style": {
+            "font_name": "NimbusRomNo9L-Regu",
+            "font_size": 7.970099925994873,
+            "is_bold": false,
+            "is_italic": false,
+            "color": 0
+          },
+          "block_type": "text",
+          "extraction_method": "embedded",
+          "confidence": 1.0,
+          "raw_block_no": 1
+        },
+        {
+          "block_id": "8ef46009c593",
+          "text": "A. System Overview",
+          "bbox": {
+            "x0": 48.9640007019043,
+            "y0": 304.9046325683594,
+            "x1": 131.70338439941406,
+            "y1": 316.79998779296875
+          },
+          "page_index": 1,
+          "style": {
+            "font_name": "NimbusRomNo9L-ReguItal",
+            "font_size": 9.962599754333496,
+            "is_bold": false,
+            "is_italic": true,
+            "color": 0
+          },
+          "block_type": "text",
+          "extraction_method": "embedded",
+          "confidence": 1.0,
+          "raw_block_no": 2
+        },
+        {
+          "block_id": "315846058494",
+          "text": "We break down academic document understanding into coordinated agents that are each in charge of multimodal extraction, semantic interpretation, knowledge construction, and retrieval rather than treating it as a single end-to-end task. This division facilitates systematic reasoning across diverse elements like text, figures, and tables while assisting in man- aging the structural complexity of academic PDFs. Sequential processing is used for documents. First, layout- aware extraction maintains spatial and structural data. After that, roles are assigned and cross-modal relationships are captured by semantic analysis. An academic knowledge graph that clearly depicts entities and their relationships within the document is created using the structured output. We use a dual-index design for retrieval. Structured entities and relations are stored in a graph representation, whereas text segments are embedded in a semantic vector space. Both indices are consulted during query processing, and the results are combined to produce grounded answers. The process from document ingestion to retrieval-augmented answer generation is shown in Figure 1.",
+          "bbox": {
+            "x0": 48.9640007019043,
+            "y0": 321.24462890625,
+            "x1": 300.0218811035156,
+            "y1": 561.1104125976562
+          },
+          "page_index": 1,
+          "style": {
+            "font_name": "NimbusRomNo9L-Regu",
+            "font_size": 9.962599754333496,
+            "is_bold": false,
+            "is_italic": false,
+            "color": 0
+          },
+          "block_type": "text",
+          "extraction_method": "embedded",
+          "confidence": 1.0,
+          "raw_block_no": 3
+        },
+        {
+          "block_id": "915f1a4b4ddd",
+          "text": "B. Architectural Components",
+          "bbox": {
+            "x0": 48.9640007019043,
+            "y0": 570.8134765625,
+            "x1": 168.28602600097656,
+            "y1": 582.7088012695312
+          },
+          "page_index": 1,
+          "style": {
+            "font_name": "NimbusRomNo9L-ReguItal",
+            "font_size": 9.962599754333496,
+            "is_bold": false,
+            "is_italic": true,
+            "color": 0
+          },
+          "block_type": "text",
+          "extraction_method": "embedded",
+          "confidence": 1.0,
+          "raw_block_no": 4
+        },
+        {
+          "block_id": "3d6b48533629",
+          "text": "1) Document Extraction Agent: The Document Extraction While maintaining spatial layout, the agent parses academic PDFs to extract text blocks, tables, figures, captions, and equa- tions.To ensure adequate coverage for processing downstream, an OCR fallback is activated when embedded text (such as scanned pages) is not complete. 2) Multimodal Semantic Understanding Agent: This agent finds cross-modal relationships and gives semantic roles to aligned document elements. Scholarly entities like concepts, methods, datasets, and results are extracted using transformer- based encoders, and figures and tables are connected to",
+          "bbox": {
+            "x0": 48.9640007019043,
+            "y0": 587.1534423828125,
+            "x1": 300.0218811035156,
+            "y1": 719.2444458007812
+          },
+          "page_index": 1,
+          "style": {
+            "font_name": "NimbusRomNo9L-Regu",
+            "font_size": 9.962599754333496,
+            "is_bold": false,
+            "is_italic": false,
+            "color": 0
+          },
+          "block_type": "text",
+          "extraction_method": "embedded",
+          "confidence": 1.0,
+          "raw_block_no": 5
+        },
+        {
+          "block_id": "f73b429b188a",
+          "text": "explanatory text. In this step, contextual meaning is added to structural information. 3) Knowledge Structuring Agent: The Knowledge Struc- turing Agent creates an academic knowledge graph in which scholarly relationships are represented as edges and entities (Document, Section, Concept, Method, Dataset, Result, Fig- ure, Table) as nodes. To guarantee traceability and grounded retrieval, provenance metadata is kept. 4) Hybrid Storage and Retrieval Module: We keep a graph index for relational traversal and a vector index for semantic similarity search. When retrieving evidence, the system can combine structured reasoning and semantic matching thanks to this dual representation. 5) Retrieval Augmented Query Engine: When a query is received, the engine gathers information from both indices, combines the findings, and gives a language model for re- sponse generation grounded context.",
+          "bbox": {
+            "x0": 311.9779968261719,
+            "y0": 49.70550537109375,
+            "x1": 563.03564453125,
+            "y1": 254.6865692138672
+          },
+          "page_index": 1,
+          "style": {
+            "font_name": "NimbusRomNo9L-Regu",
+            "font_size": 9.962599754333496,
+            "is_bold": false,
+            "is_italic": false,
+            "color": 0
+          },
+          "block_type": "text",
+          "extraction_method": "embedded",
+          "confidence": 1.0,
+          "raw_block_no": 6
+        },
+        {
+          "block_id": "81d7ccb91e34",
+          "text": "C. Workflow for Agent Orchestration",
+          "bbox": {
+            "x0": 311.9779968261719,
+            "y0": 264.5606689453125,
+            "x1": 463.8278503417969,
+            "y1": 276.4560241699219
+          },
+          "page_index": 1,
+          "style": {
+            "font_name": "NimbusRomNo9L-ReguItal",
+            "font_size": 9.962599754333496,
+            "is_bold": false,
+            "is_italic": true,
+            "color": 0
+          },
+          "block_type": "text",
+          "extraction_method": "embedded",
+          "confidence": 1.0,
+          "raw_block_no": 7
+        },
+        {
+          "block_id": "ef415dea9064",
+          "text": "Task sequencing and agent-to-agent data exchange are man- aged by an orchestration layer. When intermediate outputs need to be refined, the pipeline allows for selective reprocess- ing and modular execution.",
+          "bbox": {
+            "x0": 311.9779968261719,
+            "y0": 280.9716796875,
+            "x1": 563.0354614257812,
+            "y1": 328.8415832519531
+          },
+          "page_index": 1,
+          "style": {
+            "font_name": "NimbusRomNo9L-Regu",
+            "font_size": 9.962599754333496,
+            "is_bold": false,
+            "is_italic": false,
+            "color": 0
+          },
+          "block_type": "text",
+          "extraction_method": "embedded",
+          "confidence": 1.0,
+          "raw_block_no": 8
+        },
+        {
+          "block_id": "aa84721cf1b9",
+          "text": "D. Agent Independence",
+          "bbox": {
+            "x0": 311.9779968261719,
+            "y0": 338.71563720703125,
+            "x1": 412.0821533203125,
+            "y1": 350.6109924316406
+          },
+          "page_index": 1,
+          "style": {
+            "font_name": "NimbusRomNo9L-ReguItal",
+            "font_size": 9.962599754333496,
+            "is_bold": false,
+            "is_italic": true,
+            "color": 0
+          },
+          "block_type": "text",
+          "extraction_method": "embedded",
+          "confidence": 1.0,
+          "raw_block_no": 9
+        },
+        {
+          "block_id": "12ed7c652103",
+          "text": "To increase robustness, each agent makes decisions based on lightweight rules. When coverage is poor, the extraction agent turns on OCR fallback. By utilizing contextual cues, the Semantic Agent improves role assignments. The Knowledge Graph Agent provides confidence scores and verifies schema consistency.Based on the properties of the query, the Retrieval Agent dynamically chooses vector-based, graph-based, or hy- brid strategies during query processing. This regulated inde- pendence preserves interpretability while enhancing flexibility.",
+          "bbox": {
+            "x0": 311.9779968261719,
+            "y0": 355.12664794921875,
+            "x1": 563.0355834960938,
+            "y1": 462.7724914550781
+          },
+          "page_index": 1,
+          "style": {
+            "font_name": "NimbusRomNo9L-Regu",
+            "font_size": 9.962599754333496,
+            "is_bold": false,
+            "is_italic": false,
+            "color": 0
+          },
+          "block_type": "text",
+          "extraction_method": "embedded",
+          "confidence": 1.0,
+          "raw_block_no": 10
+        },
+        {
+          "block_id": "52e567dfccf5",
+          "text": "V. M ETHODOLOGY AND I MPLEMENTATION",
+          "bbox": {
+            "x0": 345.52301025390625,
+            "y0": 472.64654541015625,
+            "x1": 529.4987182617188,
+            "y1": 484.6514892578125
+          },
+          "page_index": 1,
+          "style": {
+            "font_name": "NimbusRomNo9L-Regu",
+            "font_size": 7.970099925994873,
+            "is_bold": false,
+            "is_italic": false,
+            "color": 0
+          },
+          "block_type": "text",
+          "extraction_method": "embedded",
+          "confidence": 1.0,
+          "raw_block_no": 11
+        },
+        {
+          "block_id": "f2e28c675784",
+          "text": "We create an end-to-end pipeline with distinct intermediate steps to convert unstructured academic PDFs into knowledge that is query-ready. Before being sent to later components, the structured outputs from each stage are checked. We can keep an eye on processing quality and isolate errors.",
+          "bbox": {
+            "x0": 311.9779968261719,
+            "y0": 489.99853515625,
+            "x1": 563.0355834960938,
+            "y1": 549.824462890625
+          },
+          "page_index": 1,
+          "style": {
+            "font_name": "NimbusRomNo9L-Regu",
+            "font_size": 9.962599754333496,
+            "is_bold": false,
+            "is_italic": false,
+            "color": 0
+          },
+          "block_type": "text",
+          "extraction_method": "embedded",
+          "confidence": 1.0,
+          "raw_block_no": 12
+        },
+        {
+          "block_id": "c5119cd56690",
+          "text": "A. Step-Wise Processing Pipeline (Inputs/Outputs)",
+          "bbox": {
+            "x0": 311.9779968261719,
+            "y0": 559.698486328125,
+            "x1": 518.1837768554688,
+            "y1": 571.5938110351562
+          },
+          "page_index": 1,
+          "style": {
+            "font_name": "NimbusRomNo9L-ReguItal",
+            "font_size": 9.962599754333496,
+            "is_bold": false,
+            "is_italic": true,
+            "color": 0
+          },
+          "block_type": "text",
+          "extraction_method": "embedded",
+          "confidence": 1.0,
+          "raw_block_no": 13
+        },
+        {
+          "block_id": "b6298d1dd721",
+          "text": "• Step 1: PDF Parsing / Text Extraction Input: PDF pages. Output: text blocks B = { ( t i , b i , p i , s i ) } where t i denotes the extracted text, b i the bounding box, p i the page index, and s i optional style attributes such as font size or weight.",
+          "bbox": {
+            "x0": 321.94000244140625,
+            "y0": 575.3738403320312,
+            "x1": 563.0394897460938,
+            "y1": 647.513427734375
+          },
+          "page_index": 1,
+          "style": {
+            "font_name": "NimbusRomNo9L-Regu",
+            "font_size": 9.962599754333496,
+            "is_bold": false,
+            "is_italic": false,
+            "color": 0
+          },
+          "block_type": "text",
+          "extraction_method": "embedded",
+          "confidence": 1.0,
+          "raw_block_no": 14
+        },
+        {
+          "block_id": "a2969ecf4145",
+          "text": "• Step 2: Layout Detection Input: rendered page images and/or PDF geometry. Output: layout regions R = { ( c j , r j , p j , γ j ) } where c j represents the region class (e.g., title, paragraph, table, figure, caption, equation), r j denotes the bounding box, and γ j is an associated confidence score.",
+          "bbox": {
+            "x0": 321.94000244140625,
+            "y0": 647.1048583984375,
+            "x1": 563.0370483398438,
+            "y1": 720.7384643554688
+          },
+          "page_index": 1,
+          "style": {
+            "font_name": "NimbusRomNo9L-Regu",
+            "font_size": 9.962599754333496,
+            "is_bold": false,
+            "is_italic": false,
+            "color": 0
+          },
+          "block_type": "text",
+          "extraction_method": "embedded",
+          "confidence": 1.0,
+          "raw_block_no": 15
+        }
+      ],
+      "figure_blocks": [
+        {
+          "block_id": "e63bb174f503",
+          "bbox": {
+            "x0": 0.0,
+            "y0": 0.0,
+            "x1": 612.0,
+            "y1": 49.70452880859375
+          },
+          "page_index": 1,
+          "image_path": null,
+          "caption": null
+        }
+      ],
+      "extraction_method": "embedded",
+      "ocr_triggered": false
+    },
+    {
+      "page_index": 2,
+      "width": 612.0,
+      "height": 792.0,
+      "text_blocks": [
+        {
+          "block_id": "6ee2354c8836",
+          "text": "Fig. 1. Proposed Architecture.",
+          "bbox": {
+            "x0": 255.37399291992188,
+            "y0": 319.8186340332031,
+            "x1": 356.62615966796875,
+            "y1": 329.422607421875
+          },
+          "page_index": 2,
+          "style": {
+            "font_name": "NimbusRomNo9L-Regu",
+            "font_size": 7.970099925994873,
+            "is_bold": false,
+            "is_italic": false,
+            "color": 0
+          },
+          "block_type": "text",
+          "extraction_method": "embedded",
+          "confidence": 1.0,
+          "raw_block_no": 0
+        },
+        {
+          "block_id": "07f43176cb60",
+          "text": "B. Text–Layout Alignment and Multimodal Linking Implemen- tation",
+          "bbox": {
+            "x0": 48.9639892578125,
+            "y0": 350.1895751953125,
+            "x1": 300.02142333984375,
+            "y1": 374.0399169921875
+          },
+          "page_index": 2,
+          "style": {
+            "font_name": "NimbusRomNo9L-ReguItal",
+            "font_size": 9.962599754333496,
+            "is_bold": false,
+            "is_italic": true,
+            "color": 0
+          },
+          "block_type": "text",
+          "extraction_method": "embedded",
+          "confidence": 1.0,
+          "raw_block_no": 1
+        },
+        {
+          "block_id": "e0550f1476bf",
+          "text": "1) Step 3: Text-Layout Alignment (Mapping): Given ex- tracted text blocks B and detected layout regions R on each page, we assign each block i to a region j by maximizing spatial consistency. For every pair ( i, j ) on the same page, we compute an overlap score:",
+          "bbox": {
+            "x0": 48.9639892578125,
+            "y0": 378.4345703125,
+            "x1": 300.031494140625,
+            "y1": 438.25946044921875
+          },
+          "page_index": 2,
+          "style": {
+            "font_name": "NimbusRomNo9L-ReguItal",
+            "font_size": 9.962599754333496,
+            "is_bold": false,
+            "is_italic": true,
+            "color": 0
+          },
+          "block_type": "text",
+          "extraction_method": "embedded",
+          "confidence": 1.0,
+          "raw_block_no": 2
+        },
+        {
+          "block_id": "157c189d4c94",
+          "text": "S IoU ( i, j ) = area( b i ∩ r j )",
+          "bbox": {
+            "x0": 118.7649917602539,
+            "y0": 445.6119689941406,
+            "x1": 226.24949645996094,
+            "y1": 464.3920593261719
+          },
+          "page_index": 2,
+          "style": {
+            "font_name": "CMR10",
+            "font_size": 9.962599754333496,
+            "is_bold": false,
+            "is_italic": false,
+            "color": 0
+          },
+          "block_type": "text",
+          "extraction_method": "embedded",
+          "confidence": 1.0,
+          "raw_block_no": 3
+        },
+        {
+          "block_id": "cc5985f9f6b0",
+          "text": "area( b i ∪ r j ) , (1)",
+          "bbox": {
+            "x0": 172.86300659179688,
+            "y0": 450.8675537109375,
+            "x1": 300.0215759277344,
+            "y1": 477.965087890625
+          },
+          "page_index": 2,
+          "style": {
+            "font_name": "CMR10",
+            "font_size": 9.962599754333496,
+            "is_bold": false,
+            "is_italic": false,
+            "color": 0
+          },
+          "block_type": "text",
+          "extraction_method": "embedded",
+          "confidence": 1.0,
+          "raw_block_no": 4
+        },
+        {
+          "block_id": "d20f316a49b6",
+          "text": "and a containment score:",
+          "bbox": {
+            "x0": 48.964019775390625,
+            "y0": 475.5905456542969,
+            "x1": 151.27992248535156,
+            "y1": 487.5954895019531
+          },
+          "page_index": 2,
+          "style": {
+            "font_name": "NimbusRomNo9L-Regu",
+            "font_size": 9.962599754333496,
+            "is_bold": false,
+            "is_italic": false,
+            "color": 0
+          },
+          "block_type": "text",
+          "extraction_method": "embedded",
+          "confidence": 1.0,
+          "raw_block_no": 5
+        },
+        {
+          "block_id": "659bf03a5e37",
+          "text": "S contain ( i, j ) = area( b i ∩ r j )",
+          "bbox": {
+            "x0": 114.86402130126953,
+            "y0": 492.9049987792969,
+            "x1": 230.1505126953125,
+            "y1": 511.6850891113281
+          },
+          "page_index": 2,
+          "style": {
+            "font_name": "NimbusRomNo9L-Regu",
+            "font_size": 6.973800182342529,
+            "is_bold": false,
+            "is_italic": false,
+            "color": 0
+          },
+          "block_type": "text",
+          "extraction_method": "embedded",
+          "confidence": 1.0,
+          "raw_block_no": 6
+        },
+        {
+          "block_id": "65bc40b76c0e",
+          "text": "area( b i ) . (2)",
+          "bbox": {
+            "x0": 186.6439971923828,
+            "y0": 498.1605529785156,
+            "x1": 300.02618408203125,
+            "y1": 517.4374389648438
+          },
+          "page_index": 2,
+          "style": {
+            "font_name": "CMR10",
+            "font_size": 9.962599754333496,
+            "is_bold": false,
+            "is_italic": false,
+            "color": 0
+          },
+          "block_type": "text",
+          "extraction_method": "embedded",
+          "confidence": 1.0,
+          "raw_block_no": 7
+        },
+        {
+          "block_id": "235a20262746",
+          "text": "The final alignment score is:",
+          "bbox": {
+            "x0": 48.96400451660156,
+            "y0": 522.5235595703125,
+            "x1": 166.4031524658203,
+            "y1": 534.5285034179688
+          },
+          "page_index": 2,
+          "style": {
+            "font_name": "NimbusRomNo9L-Regu",
+            "font_size": 9.962599754333496,
+            "is_bold": false,
+            "is_italic": false,
+            "color": 0
+          },
+          "block_type": "text",
+          "extraction_method": "embedded",
+          "confidence": 1.0,
+          "raw_block_no": 8
+        },
+        {
+          "block_id": "c1ee884fbab1",
+          "text": "S map ( i, j ) = αS IoU ( i, j ) + (1 − α ) S contain ( i, j ) , (3)",
+          "bbox": {
+            "x0": 78.54800415039062,
+            "y0": 542.7235717773438,
+            "x1": 300.0313415527344,
+            "y1": 561.4931030273438
+          },
+          "page_index": 2,
+          "style": {
+            "font_name": "NimbusRomNo9L-Regu",
+            "font_size": 6.973800182342529,
+            "is_bold": false,
+            "is_italic": false,
+            "color": 0
+          },
+          "block_type": "text",
+          "extraction_method": "embedded",
+          "confidence": 1.0,
+          "raw_block_no": 9
+        },
+        {
+          "block_id": "0849c12c0943",
+          "text": "where α ∈ [0 , 1] balances IoU vs. containment. A block is assigned to the region with maximum S map if it exceeds a threshold τ . 2) Step 4: Semantic Classification + Multimodal Linking: After alignment, each layout region is assigned an academic semantic role (e.g., Definition, Method, Result, Observation) using a lightweight classifier over region-level text repre- sentations. This enriches structural layout information with contextual scholarly meaning. Multimodal links are then established between captions, in-text references, and their corresponding figures or tables. Linking combines lexical reference detection (e.g., “Fig. 1”, “Table 2”) with embedding-based semantic similarity to handle",
+          "bbox": {
+            "x0": 48.96400451660156,
+            "y0": 562.9225463867188,
+            "x1": 300.0314636230469,
+            "y1": 719.2445068359375
+          },
+          "page_index": 2,
+          "style": {
+            "font_name": "NimbusRomNo9L-Regu",
+            "font_size": 9.962599754333496,
+            "is_bold": false,
+            "is_italic": false,
+            "color": 0
+          },
+          "block_type": "text",
+          "extraction_method": "embedded",
+          "confidence": 1.0,
+          "raw_block_no": 10
+        },
+        {
+          "block_id": "fe3aa2994e50",
+          "text": "Algorithm 1 Text–Layout Alignment (Step 3) Require: Text blocks B , layout regions R , thresholds τ Ensure: Assignments A",
+          "bbox": {
+            "x0": 311.9779968261719,
+            "y0": 347.5289001464844,
+            "x1": 541.9147338867188,
+            "y1": 392.0170593261719
+          },
+          "page_index": 2,
+          "style": {
+            "font_name": "NimbusRomNo9L-Regu",
+            "font_size": 9.962599754333496,
+            "is_bold": false,
+            "is_italic": false,
+            "color": 0
+          },
+          "block_type": "text",
+          "extraction_method": "embedded",
+          "confidence": 1.0,
+          "raw_block_no": 11
+        },
+        {
+          "block_id": "202b99586c5c",
+          "text": "1: for each page p do 2: for each text block i ∈B p do",
+          "bbox": {
+            "x0": 317.73199462890625,
+            "y0": 384.8438720703125,
+            "x1": 461.2455139160156,
+            "y1": 415.9270324707031
+          },
+          "page_index": 2,
+          "style": {
+            "font_name": "NimbusRomNo9L-Regu",
+            "font_size": 9.962599754333496,
+            "is_bold": false,
+            "is_italic": false,
+            "color": 0
+          },
+          "block_type": "text",
+          "extraction_method": "embedded",
+          "confidence": 1.0,
+          "raw_block_no": 12
+        },
+        {
+          "block_id": "3568e3d7604a",
+          "text": "3: compute S map ( i, j ) for all j ∈R p",
+          "bbox": {
+            "x0": 317.73199462890625,
+            "y0": 409.11248779296875,
+            "x1": 486.96856689453125,
+            "y1": 427.88201904296875
+          },
+          "page_index": 2,
+          "style": {
+            "font_name": "NimbusRomNo9L-Regu",
+            "font_size": 9.962599754333496,
+            "is_bold": false,
+            "is_italic": false,
+            "color": 0
+          },
+          "block_type": "text",
+          "extraction_method": "embedded",
+          "confidence": 1.0,
+          "raw_block_no": 13
+        },
+        {
+          "block_id": "a6ffbaea127e",
+          "text": "4: j ⋆ ← arg max j S map ( i, j )",
+          "bbox": {
+            "x0": 317.73199462890625,
+            "y0": 421.4275817871094,
+            "x1": 452.5528259277344,
+            "y1": 439.8380126953125
+          },
+          "page_index": 2,
+          "style": {
+            "font_name": "CMR10",
+            "font_size": 9.962599754333496,
+            "is_bold": false,
+            "is_italic": false,
+            "color": 0
+          },
+          "block_type": "text",
+          "extraction_method": "embedded",
+          "confidence": 1.0,
+          "raw_block_no": 14
+        },
+        {
+          "block_id": "c36966a566a8",
+          "text": "5: if S map ( i, j ⋆ ) ≥ τ then",
+          "bbox": {
+            "x0": 317.73199462890625,
+            "y0": 432.6648254394531,
+            "x1": 442.96826171875,
+            "y1": 451.7929992675781
+          },
+          "page_index": 2,
+          "style": {
+            "font_name": "NimbusRomNo9L-Medi",
+            "font_size": 9.962599754333496,
+            "is_bold": true,
+            "is_italic": false,
+            "color": 0
+          },
+          "block_type": "text",
+          "extraction_method": "embedded",
+          "confidence": 1.0,
+          "raw_block_no": 15
+        },
+        {
+          "block_id": "103900bc758b",
+          "text": "6: add ( i, j ⋆ ) to A",
+          "bbox": {
+            "x0": 317.7319641113281,
+            "y0": 444.97845458984375,
+            "x1": 424.2122802734375,
+            "y1": 463.74798583984375
+          },
+          "page_index": 2,
+          "style": {
+            "font_name": "CMMI10",
+            "font_size": 9.962599754333496,
+            "is_bold": false,
+            "is_italic": true,
+            "color": 0
+          },
+          "block_type": "text",
+          "extraction_method": "embedded",
+          "confidence": 1.0,
+          "raw_block_no": 16
+        },
+        {
+          "block_id": "e361e0f2b88d",
+          "text": "7: else",
+          "bbox": {
+            "x0": 317.7319641113281,
+            "y0": 456.5747985839844,
+            "x1": 364.3310546875,
+            "y1": 469.5361328125
+          },
+          "page_index": 2,
+          "style": {
+            "font_name": "NimbusRomNo9L-Medi",
+            "font_size": 9.962599754333496,
+            "is_bold": true,
+            "is_italic": false,
+            "color": 0
+          },
+          "block_type": "text",
+          "extraction_method": "embedded",
+          "confidence": 1.0,
+          "raw_block_no": 17
+        },
+        {
+          "block_id": "e9bdc7376efa",
+          "text": "8: mark i as unassigned for merge/OCR fallback",
+          "bbox": {
+            "x0": 317.7319641113281,
+            "y0": 468.888427734375,
+            "x1": 547.782470703125,
+            "y1": 480.89337158203125
+          },
+          "page_index": 2,
+          "style": {
+            "font_name": "NimbusRomNo9L-Regu",
+            "font_size": 9.962599754333496,
+            "is_bold": false,
+            "is_italic": false,
+            "color": 0
+          },
+          "block_type": "text",
+          "extraction_method": "embedded",
+          "confidence": 1.0,
+          "raw_block_no": 18
+        },
+        {
+          "block_id": "16fd90066a5f",
+          "text": "9: end if",
+          "bbox": {
+            "x0": 317.7319641113281,
+            "y0": 480.48577880859375,
+            "x1": 373.9150695800781,
+            "y1": 493.4471130371094
+          },
+          "page_index": 2,
+          "style": {
+            "font_name": "NimbusRomNo9L-Medi",
+            "font_size": 9.962599754333496,
+            "is_bold": true,
+            "is_italic": false,
+            "color": 0
+          },
+          "block_type": "text",
+          "extraction_method": "embedded",
+          "confidence": 1.0,
+          "raw_block_no": 19
+        },
+        {
+          "block_id": "7d71e34d0d7f",
+          "text": "10: end for",
+          "bbox": {
+            "x0": 313.7469787597656,
+            "y0": 492.4407653808594,
+            "x1": 370.3385925292969,
+            "y1": 505.402099609375
+          },
+          "page_index": 2,
+          "style": {
+            "font_name": "NimbusRomNo9L-Medi",
+            "font_size": 9.962599754333496,
+            "is_bold": true,
+            "is_italic": false,
+            "color": 0
+          },
+          "block_type": "text",
+          "extraction_method": "embedded",
+          "confidence": 1.0,
+          "raw_block_no": 20
+        },
+        {
+          "block_id": "fffb7d3f2ac6",
+          "text": "11: end for 12: return A",
+          "bbox": {
+            "x0": 313.7469787597656,
+            "y0": 504.395751953125,
+            "x1": 371.1754455566406,
+            "y1": 535.4788818359375
+          },
+          "page_index": 2,
+          "style": {
+            "font_name": "NimbusRomNo9L-Medi",
+            "font_size": 9.962599754333496,
+            "is_bold": true,
+            "is_italic": false,
+            "color": 0
+          },
+          "block_type": "text",
+          "extraction_method": "embedded",
+          "confidence": 1.0,
+          "raw_block_no": 21
+        },
+        {
+          "block_id": "74cad9642c15",
+          "text": "ambiguous or implicit references. A weighted fusion integrates these signals:",
+          "bbox": {
+            "x0": 311.9779968261719,
+            "y0": 552.6045532226562,
+            "x1": 563.0355224609375,
+            "y1": 576.5645141601562
+          },
+          "page_index": 2,
+          "style": {
+            "font_name": "NimbusRomNo9L-Regu",
+            "font_size": 9.962599754333496,
+            "is_bold": false,
+            "is_italic": false,
+            "color": 0
+          },
+          "block_type": "text",
+          "extraction_method": "embedded",
+          "confidence": 1.0,
+          "raw_block_no": 22
+        },
+        {
+          "block_id": "258202630d8c",
+          "text": "S link = βS ref + (1 − β ) S emb , (4)",
+          "bbox": {
+            "x0": 379.5679931640625,
+            "y0": 590.278564453125,
+            "x1": 563.033935546875,
+            "y1": 609.048095703125
+          },
+          "page_index": 2,
+          "style": {
+            "font_name": "CMR10",
+            "font_size": 9.962599754333496,
+            "is_bold": false,
+            "is_italic": false,
+            "color": 0
+          },
+          "block_type": "equation",
+          "extraction_method": "embedded",
+          "confidence": 1.0,
+          "raw_block_no": 23
+        },
+        {
+          "block_id": "4061bd5d9706",
+          "text": "where S ref captures explicit reference cues and S emb rep- resents cosine similarity between region embeddings. The parameter β ∈ [0 , 1] balances lexical precision and semantic robustness. This step outputs semantically labeled regions together with multimodal edges, which are subsequently consumed by the knowledge graph construction stage. a) Step 5: Knowledge Graph Construction: Input: Mul- timodal links and labeled regions. Output: An academic",
+          "bbox": {
+            "x0": 311.97796630859375,
+            "y0": 610.767578125,
+            "x1": 563.04541015625,
+            "y1": 719.8422241210938
+          },
+          "page_index": 2,
+          "style": {
+            "font_name": "NimbusRomNo9L-Regu",
+            "font_size": 9.962599754333496,
+            "is_bold": false,
+            "is_italic": false,
+            "color": 0
+          },
+          "block_type": "text",
+          "extraction_method": "embedded",
+          "confidence": 1.0,
+          "raw_block_no": 24
+        }
+      ],
+      "figure_blocks": [
+        {
+          "block_id": "ebee407e0862",
+          "bbox": {
+            "x0": 0.0,
+            "y0": 0.0,
+            "x1": 612.0,
+            "y1": 319.8186340332031
+          },
+          "page_index": 2,
+          "image_path": null,
+          "caption": null
+        }
+      ],
+      "extraction_method": "embedded",
+      "ocr_triggered": false
+    },
+    {
+      "page_index": 3,
+      "width": 612.0,
+      "height": 792.0,
+      "text_blocks": [
+        {
+          "block_id": "20e7c88188da",
+          "text": "knowledge graph with nodes and edges that preserve prove- nance information, G = ( V, E ) . Semantically labeled areas are now combined into a structured graph representation. Section V-C contains the comprehensive definition of the schema. b) Step 6: Embedding and Indexing: Input: selected text spans together with their graph context. Output: vector index I v and graph index I g used during retrieval. Here, textual segments are encoded into dense representations while their structural relations are preserved in a graph store. c) Step 7: Hybrid Retrieval: Input: user query q . Output: candidate evidence retrieved from both the vector and graph indices. The final relevance computation strategy is described in Section V-F. d) Step 8: Retrieval-Augmented Answer Generation: Input: fused evidence C . Output: grounded response with citations to provenance fields (page/region/section), enabling traceable academic question answering.",
+          "bbox": {
+            "x0": 48.9640007019043,
+            "y0": 49.70452880859375,
+            "x1": 300.03143310546875,
+            "y1": 264.3326416015625
+          },
+          "page_index": 3,
+          "style": {
+            "font_name": "NimbusRomNo9L-Regu",
+            "font_size": 9.962599754333496,
+            "is_bold": false,
+            "is_italic": false,
+            "color": 0
+          },
+          "block_type": "text",
+          "extraction_method": "embedded",
+          "confidence": 1.0,
+          "raw_block_no": 0
+        },
+        {
+          "block_id": "502dd7481f0f",
+          "text": "C. Academic Knowledge Graph Schema",
+          "bbox": {
+            "x0": 48.96400833129883,
+            "y0": 270.3936767578125,
+            "x1": 214.2534637451172,
+            "y1": 282.2890319824219
+          },
+          "page_index": 3,
+          "style": {
+            "font_name": "NimbusRomNo9L-ReguItal",
+            "font_size": 9.962599754333496,
+            "is_bold": false,
+            "is_italic": true,
+            "color": 0
+          },
+          "block_type": "text",
+          "extraction_method": "embedded",
+          "confidence": 1.0,
+          "raw_block_no": 1
+        },
+        {
+          "block_id": "0b64cca8e43f",
+          "text": "We construct a lightweight academic knowledge graph capturing structural and scholarly entities (Document, Sec- tion, Concept, Method, Dataset, Result, Figure, Table, Cita- tion) with provenance (page index and extraction confidence). Edges encode relations such as appears_in , refers_to , explains , uses_method , evaluated_on , produces , and cites , enabling traceable relational retrieval.",
+          "bbox": {
+            "x0": 48.96400833129883,
+            "y0": 285.3846740722656,
+            "x1": 300.0218811035156,
+            "y1": 369.12054443359375
+          },
+          "page_index": 3,
+          "style": {
+            "font_name": "NimbusRomNo9L-Regu",
+            "font_size": 9.962599754333496,
+            "is_bold": false,
+            "is_italic": false,
+            "color": 0
+          },
+          "block_type": "text",
+          "extraction_method": "embedded",
+          "confidence": 1.0,
+          "raw_block_no": 2
+        },
+        {
+          "block_id": "1528c658d2e9",
+          "text": "D. Vector Embedding and Semantic Storage",
+          "bbox": {
+            "x0": 48.96400833129883,
+            "y0": 375.18060302734375,
+            "x1": 230.52236938476562,
+            "y1": 387.0759582519531
+          },
+          "page_index": 3,
+          "style": {
+            "font_name": "NimbusRomNo9L-ReguItal",
+            "font_size": 9.962599754333496,
+            "is_bold": false,
+            "is_italic": true,
+            "color": 0
+          },
+          "block_type": "text",
+          "extraction_method": "embedded",
+          "confidence": 1.0,
+          "raw_block_no": 3
+        },
+        {
+          "block_id": "cf5161272e4b",
+          "text": "Sentence-level encoders are used in conjunction with graph construction to transform semantically significant text seg- ments into dense embeddings. To facilitate effective similarity- based retrieval, these embeddings are kept in a vector database. Even in cases where there is little lexical overlap, this repre- sentation facilitates semantic matching between user queries and pertinent scholarly content.",
+          "bbox": {
+            "x0": 48.96400833129883,
+            "y0": 390.1716003417969,
+            "x1": 300.0218811035156,
+            "y1": 473.907470703125
+          },
+          "page_index": 3,
+          "style": {
+            "font_name": "NimbusRomNo9L-Regu",
+            "font_size": 9.962599754333496,
+            "is_bold": false,
+            "is_italic": false,
+            "color": 0
+          },
+          "block_type": "text",
+          "extraction_method": "embedded",
+          "confidence": 1.0,
+          "raw_block_no": 4
+        },
+        {
+          "block_id": "f8525577135a",
+          "text": "E. Model Choices",
+          "bbox": {
+            "x0": 48.96400833129883,
+            "y0": 479.967529296875,
+            "x1": 123.56394958496094,
+            "y1": 491.8628845214844
+          },
+          "page_index": 3,
+          "style": {
+            "font_name": "NimbusRomNo9L-ReguItal",
+            "font_size": 9.962599754333496,
+            "is_bold": false,
+            "is_italic": true,
+            "color": 0
+          },
+          "block_type": "text",
+          "extraction_method": "embedded",
+          "confidence": 1.0,
+          "raw_block_no": 5
+        },
+        {
+          "block_id": "39b2b490bc1d",
+          "text": "The current prototype integrates LayoutLM-style features for layout-aware encoding and employs SBERT [3] for sentence-level semantic embeddings. Lexical reference de- tection and embedding similarity are combined to create multimodal linking. Because the general framework is still model-agnostic, more sophisticated document transformers, like Donut or other vision-language encoders, can be inte- grated without necessitating modifications to the orchestration or retrieval components.",
+          "bbox": {
+            "x0": 48.96400833129883,
+            "y0": 494.9585266113281,
+            "x1": 300.02191162109375,
+            "y1": 602.6044311523438
+          },
+          "page_index": 3,
+          "style": {
+            "font_name": "NimbusRomNo9L-Regu",
+            "font_size": 9.962599754333496,
+            "is_bold": false,
+            "is_italic": false,
+            "color": 0
+          },
+          "block_type": "text",
+          "extraction_method": "embedded",
+          "confidence": 1.0,
+          "raw_block_no": 6
+        },
+        {
+          "block_id": "d75f7054dc8e",
+          "text": "F. Hybrid Retrieval Strategy",
+          "bbox": {
+            "x0": 48.96400833129883,
+            "y0": 608.6644897460938,
+            "x1": 165.40687561035156,
+            "y1": 620.559814453125
+          },
+          "page_index": 3,
+          "style": {
+            "font_name": "NimbusRomNo9L-ReguItal",
+            "font_size": 9.962599754333496,
+            "is_bold": false,
+            "is_italic": true,
+            "color": 0
+          },
+          "block_type": "text",
+          "extraction_method": "embedded",
+          "confidence": 1.0,
+          "raw_block_no": 7
+        },
+        {
+          "block_id": "e71f4a279da3",
+          "text": "A weighted score fusion scheme that combines vector- based scores with graph-based relevance measures is used to combine relational graph signals and semantic similarity during retrieval. The vector retrieval module uses cosine similarity over sentence embeddings to calculate normalized semantic sim- ilarity scores S v ( c i , q ) and returns candidate text chunks c i in response to a user query q . The knowledge graph retrieval",
+          "bbox": {
+            "x0": 48.9639892578125,
+            "y0": 623.655517578125,
+            "x1": 300.02191162109375,
+            "y1": 719.2444458007812
+          },
+          "page_index": 3,
+          "style": {
+            "font_name": "NimbusRomNo9L-Regu",
+            "font_size": 9.962599754333496,
+            "is_bold": false,
+            "is_italic": false,
+            "color": 0
+          },
+          "block_type": "text",
+          "extraction_method": "embedded",
+          "confidence": 1.0,
+          "raw_block_no": 8
+        },
+        {
+          "block_id": "51f6017ea32f",
+          "text": "module finds related nodes and subgraphs concurrently, gener- ating relational relevance scores S g ( c i , q ) according to relation types, traversal depth, and edge confidence weights. For every candidate c i , the final hybrid relevance score is calculated as follows:",
+          "bbox": {
+            "x0": 311.97796630859375,
+            "y0": 49.70550537109375,
+            "x1": 563.0401000976562,
+            "y1": 109.53050994873047
+          },
+          "page_index": 3,
+          "style": {
+            "font_name": "NimbusRomNo9L-Regu",
+            "font_size": 9.962599754333496,
+            "is_bold": false,
+            "is_italic": false,
+            "color": 0
+          },
+          "block_type": "text",
+          "extraction_method": "embedded",
+          "confidence": 1.0,
+          "raw_block_no": 9
+        },
+        {
+          "block_id": "653b6db88234",
+          "text": "S hybrid ( c i , q ) = λS v ( c i , q ) + (1 − λ ) S g ( c i , q ) , (5)",
+          "bbox": {
+            "x0": 345.02996826171875,
+            "y0": 116.6055908203125,
+            "x1": 563.0352783203125,
+            "y1": 135.37513732910156
+          },
+          "page_index": 3,
+          "style": {
+            "font_name": "NimbusRomNo9L-Regu",
+            "font_size": 6.973800182342529,
+            "is_bold": false,
+            "is_italic": false,
+            "color": 0
+          },
+          "block_type": "text",
+          "extraction_method": "embedded",
+          "confidence": 1.0,
+          "raw_block_no": 10
+        },
+        {
+          "block_id": "442975eba085",
+          "text": "where λ ∈ [0 , 1] establishes the ratio of relational reasoning to semantic similarity.",
+          "bbox": {
+            "x0": 311.9779357910156,
+            "y0": 135.77557373046875,
+            "x1": 563.0447387695312,
+            "y1": 159.7355194091797
+          },
+          "page_index": 3,
+          "style": {
+            "font_name": "NimbusRomNo9L-Regu",
+            "font_size": 9.962599754333496,
+            "is_bold": false,
+            "is_italic": false,
+            "color": 0
+          },
+          "block_type": "text",
+          "extraction_method": "embedded",
+          "confidence": 1.0,
+          "raw_block_no": 11
+        },
+        {
+          "block_id": "9e7a1eae3cb3",
+          "text": "G. Retrieval-Augmented Response Generation",
+          "bbox": {
+            "x0": 311.9779357910156,
+            "y0": 167.17559814453125,
+            "x1": 500.7890625,
+            "y1": 179.07093811035156
+          },
+          "page_index": 3,
+          "style": {
+            "font_name": "NimbusRomNo9L-ReguItal",
+            "font_size": 9.962599754333496,
+            "is_bold": false,
+            "is_italic": true,
+            "color": 0
+          },
+          "block_type": "text",
+          "extraction_method": "embedded",
+          "confidence": 1.0,
+          "raw_block_no": 12
+        },
+        {
+          "block_id": "db5ae11dfd08",
+          "text": "Retrieved evidence from both the vector database and knowledge graph is provided as contextual input to a large lan- guage model for response generation. By grounding generation in retrieved multimodal and structured knowledge, the system reduces hallucinations and produces accurate, context-aware, and interpretable responses. The modular agent-based design allows for flexible integration of different language models without altering the core architecture.",
+          "bbox": {
+            "x0": 311.9779357910156,
+            "y0": 182.5836181640625,
+            "x1": 563.0355834960938,
+            "y1": 278.275634765625
+          },
+          "page_index": 3,
+          "style": {
+            "font_name": "NimbusRomNo9L-Regu",
+            "font_size": 9.962599754333496,
+            "is_bold": false,
+            "is_italic": false,
+            "color": 0
+          },
+          "block_type": "text",
+          "extraction_method": "embedded",
+          "confidence": 1.0,
+          "raw_block_no": 13
+        },
+        {
+          "block_id": "e0f964916e2b",
+          "text": "VI. E XPERIMENTAL E VALUATION",
+          "bbox": {
+            "x0": 365.2039489746094,
+            "y0": 285.7146911621094,
+            "x1": 509.81341552734375,
+            "y1": 297.7196350097656
+          },
+          "page_index": 3,
+          "style": {
+            "font_name": "NimbusRomNo9L-Regu",
+            "font_size": 7.970099925994873,
+            "is_bold": false,
+            "is_italic": false,
+            "color": 0
+          },
+          "block_type": "text",
+          "extraction_method": "embedded",
+          "confidence": 1.0,
+          "raw_block_no": 14
+        },
+        {
+          "block_id": "8eb6a6350a6f",
+          "text": "The proposed framework is currently implemented as a modular prototype. At this stage, the evaluation focuses on qualitative analysis of retrieval grounding, relational reasoning capability, and structural alignment, while large-scale quanti- tative benchmarking is planned as future work.",
+          "bbox": {
+            "x0": 311.9779357910156,
+            "y0": 301.34869384765625,
+            "x1": 563.035400390625,
+            "y1": 361.173583984375
+          },
+          "page_index": 3,
+          "style": {
+            "font_name": "NimbusRomNo9L-Regu",
+            "font_size": 9.962599754333496,
+            "is_bold": false,
+            "is_italic": false,
+            "color": 0
+          },
+          "block_type": "text",
+          "extraction_method": "embedded",
+          "confidence": 1.0,
+          "raw_block_no": 15
+        },
+        {
+          "block_id": "82c6170997d5",
+          "text": "A. Experimental Setup",
+          "bbox": {
+            "x0": 311.9779357910156,
+            "y0": 368.6136474609375,
+            "x1": 404.83929443359375,
+            "y1": 380.5090026855469
+          },
+          "page_index": 3,
+          "style": {
+            "font_name": "NimbusRomNo9L-ReguItal",
+            "font_size": 9.962599754333496,
+            "is_bold": false,
+            "is_italic": true,
+            "color": 0
+          },
+          "block_type": "text",
+          "extraction_method": "embedded",
+          "confidence": 1.0,
+          "raw_block_no": 16
+        },
+        {
+          "block_id": "299b6b8a1345",
+          "text": "The system is implemented as an end-to-end pipeline over academic PDF documents containing structured sections, fig- ures, tables, and citations. A set of representative academic queries was manually designed to evaluate the system’s ability to: (i) retrieve struc- turally aligned content, (ii) resolve cross-referenced elements such as figures and tables, (iii) identify method–result and dataset relationships, and (iv) support citation tracing and cross-section reasoning. Each query was executed across three systems: 1) An OCR-based text retrieval pipeline, 2) A text-only Retrieval-Augmented Generation (RAG) system,",
+          "bbox": {
+            "x0": 311.9779357910156,
+            "y0": 384.02264404296875,
+            "x1": 563.0355224609375,
+            "y1": 541.8515014648438
+          },
+          "page_index": 3,
+          "style": {
+            "font_name": "NimbusRomNo9L-Regu",
+            "font_size": 9.962599754333496,
+            "is_bold": false,
+            "is_italic": false,
+            "color": 0
+          },
+          "block_type": "text",
+          "extraction_method": "embedded",
+          "confidence": 1.0,
+          "raw_block_no": 17
+        },
+        {
+          "block_id": "36fd5ead86d3",
+          "text": "3) The proposed agent-orchestrated multimodal framework.",
+          "bbox": {
+            "x0": 321.93994140625,
+            "y0": 541.8015747070312,
+            "x1": 563.034912109375,
+            "y1": 553.8065185546875
+          },
+          "page_index": 3,
+          "style": {
+            "font_name": "NimbusRomNo9L-Regu",
+            "font_size": 9.962599754333496,
+            "is_bold": false,
+            "is_italic": false,
+            "color": 0
+          },
+          "block_type": "text",
+          "extraction_method": "embedded",
+          "confidence": 1.0,
+          "raw_block_no": 18
+        },
+        {
+          "block_id": "0a3797f3f7b8",
+          "text": "B. Baselines",
+          "bbox": {
+            "x0": 311.9779357910156,
+            "y0": 561.24658203125,
+            "x1": 363.72369384765625,
+            "y1": 573.1419067382812
+          },
+          "page_index": 3,
+          "style": {
+            "font_name": "NimbusRomNo9L-ReguItal",
+            "font_size": 9.962599754333496,
+            "is_bold": false,
+            "is_italic": true,
+            "color": 0
+          },
+          "block_type": "text",
+          "extraction_method": "embedded",
+          "confidence": 1.0,
+          "raw_block_no": 19
+        },
+        {
+          "block_id": "7c3516b221ea",
+          "text": "Two baselines are considered: (i) an OCR-based retrieval pipeline operating on flattened text, and (ii) a text-only RAG system using semantic embeddings without layout or graph modeling.",
+          "bbox": {
+            "x0": 311.9779357910156,
+            "y0": 576.6546020507812,
+            "x1": 563.0355834960938,
+            "y1": 624.5255126953125
+          },
+          "page_index": 3,
+          "style": {
+            "font_name": "NimbusRomNo9L-Regu",
+            "font_size": 9.962599754333496,
+            "is_bold": false,
+            "is_italic": false,
+            "color": 0
+          },
+          "block_type": "text",
+          "extraction_method": "embedded",
+          "confidence": 1.0,
+          "raw_block_no": 20
+        },
+        {
+          "block_id": "ec13c0a00bba",
+          "text": "C. Qualitative Evaluation Results",
+          "bbox": {
+            "x0": 311.9779357910156,
+            "y0": 631.965576171875,
+            "x1": 450.40814208984375,
+            "y1": 643.8609008789062
+          },
+          "page_index": 3,
+          "style": {
+            "font_name": "NimbusRomNo9L-ReguItal",
+            "font_size": 9.962599754333496,
+            "is_bold": false,
+            "is_italic": true,
+            "color": 0
+          },
+          "block_type": "text",
+          "extraction_method": "embedded",
+          "confidence": 1.0,
+          "raw_block_no": 21
+        },
+        {
+          "block_id": "ca7f029e6495",
+          "text": "We evaluated each system with respect to both the relevance of retrieved evidence and its structural grounding within the document. The comparison across representative query types is summarized in Table I. In our qualitative analysis, the OCR-based pipeline often failed to preserve document structure, which limited its ability",
+          "bbox": {
+            "x0": 311.9779357910156,
+            "y0": 647.3735961914062,
+            "x1": 563.0355224609375,
+            "y1": 719.2445068359375
+          },
+          "page_index": 3,
+          "style": {
+            "font_name": "NimbusRomNo9L-Regu",
+            "font_size": 9.962599754333496,
+            "is_bold": false,
+            "is_italic": false,
+            "color": 0
+          },
+          "block_type": "text",
+          "extraction_method": "embedded",
+          "confidence": 1.0,
+          "raw_block_no": 22
+        }
+      ],
+      "figure_blocks": [
+        {
+          "block_id": "e5f908b5aaa0",
+          "bbox": {
+            "x0": 0.0,
+            "y0": 0.0,
+            "x1": 612.0,
+            "y1": 49.70452880859375
+          },
+          "page_index": 3,
+          "image_path": null,
+          "caption": null
+        }
+      ],
+      "extraction_method": "embedded",
+      "ocr_triggered": false
+    },
+    {
+      "page_index": 4,
+      "width": 612.0,
+      "height": 792.0,
+      "text_blocks": [
+        {
+          "block_id": "00c148ac7002",
+          "text": "TABLE I Q UALITATIVE C OMPARISON A CROSS R ETRIEVAL A PPROACHES",
+          "bbox": {
+            "x0": 199.37298583984375,
+            "y0": 51.54560089111328,
+            "x1": 412.6344909667969,
+            "y1": 70.1165542602539
+          },
+          "page_index": 4,
+          "style": {
+            "font_name": "NimbusRomNo9L-Regu",
+            "font_size": 6.376100063323975,
+            "is_bold": false,
+            "is_italic": false,
+            "color": 0
+          },
+          "block_type": "text",
+          "extraction_method": "embedded",
+          "confidence": 1.0,
+          "raw_block_no": 0
+        },
+        {
+          "block_id": "edd8619d6d78",
+          "text": "Query Type OCR-Based Text-Only RAG Proposed Framework",
+          "bbox": {
+            "x0": 110.30400085449219,
+            "y0": 78.77570343017578,
+            "x1": 477.4098815917969,
+            "y1": 89.14480590820312
+          },
+          "page_index": 4,
+          "style": {
+            "font_name": "NimbusRomNo9L-Medi",
+            "font_size": 7.970099925994873,
+            "is_bold": true,
+            "is_italic": false,
+            "color": 0
+          },
+          "block_type": "text",
+          "extraction_method": "embedded",
+          "confidence": 1.0,
+          "raw_block_no": 1
+        },
+        {
+          "block_id": "4a102d51b865",
+          "text": "Figure explanation retrieval",
+          "bbox": {
+            "x0": 110.30400085449219,
+            "y0": 88.42761993408203,
+            "x1": 195.34494018554688,
+            "y1": 106.99759674072266
+          },
+          "page_index": 4,
+          "style": {
+            "font_name": "NimbusRomNo9L-Regu",
+            "font_size": 7.970099925994873,
+            "is_bold": false,
+            "is_italic": false,
+            "color": 0
+          },
+          "block_type": "text",
+          "extraction_method": "embedded",
+          "confidence": 1.0,
+          "raw_block_no": 2
+        },
+        {
+          "block_id": "c0206e0a8b8c",
+          "text": "Keyword-based matching without layout modeling",
+          "bbox": {
+            "x0": 207.69700622558594,
+            "y0": 88.42761993408203,
+            "x1": 292.7380065917969,
+            "y1": 106.99759674072266
+          },
+          "page_index": 4,
+          "style": {
+            "font_name": "NimbusRomNo9L-Regu",
+            "font_size": 7.970099925994873,
+            "is_bold": false,
+            "is_italic": false,
+            "color": 0
+          },
+          "block_type": "text",
+          "extraction_method": "embedded",
+          "confidence": 1.0,
+          "raw_block_no": 3
+        },
+        {
+          "block_id": "4f3c3e299e9f",
+          "text": "Text proximity-based retrieval without explicit alignment",
+          "bbox": {
+            "x0": 305.0899963378906,
+            "y0": 88.42761993408203,
+            "x1": 390.1311340332031,
+            "y1": 115.9645767211914
+          },
+          "page_index": 4,
+          "style": {
+            "font_name": "NimbusRomNo9L-Regu",
+            "font_size": 7.970099925994873,
+            "is_bold": false,
+            "is_italic": false,
+            "color": 0
+          },
+          "block_type": "text",
+          "extraction_method": "embedded",
+          "confidence": 1.0,
+          "raw_block_no": 4
+        },
+        {
+          "block_id": "229ba8aa920b",
+          "text": "Explicit section–figure align- ment using layout-aware link- ing",
+          "bbox": {
+            "x0": 402.4830017089844,
+            "y0": 88.42761993408203,
+            "x1": 501.6949462890625,
+            "y1": 115.9645767211914
+          },
+          "page_index": 4,
+          "style": {
+            "font_name": "NimbusRomNo9L-Regu",
+            "font_size": 7.970099925994873,
+            "is_bold": false,
+            "is_italic": false,
+            "color": 0
+          },
+          "block_type": "text",
+          "extraction_method": "embedded",
+          "confidence": 1.0,
+          "raw_block_no": 5
+        },
+        {
+          "block_id": "171787e61fae",
+          "text": "Method–result association Limited support due to ab- sence of relational model- ing",
+          "bbox": {
+            "x0": 110.30400085449219,
+            "y0": 115.72565460205078,
+            "x1": 292.73797607421875,
+            "y1": 143.26162719726562
+          },
+          "page_index": 4,
+          "style": {
+            "font_name": "NimbusRomNo9L-Regu",
+            "font_size": 7.970099925994873,
+            "is_bold": false,
+            "is_italic": false,
+            "color": 0
+          },
+          "block_type": "text",
+          "extraction_method": "embedded",
+          "confidence": 1.0,
+          "raw_block_no": 6
+        },
+        {
+          "block_id": "14210f76ce05",
+          "text": "Implicit association in- ferred from local text con- text",
+          "bbox": {
+            "x0": 305.0899963378906,
+            "y0": 115.72565460205078,
+            "x1": 390.1310729980469,
+            "y1": 143.26162719726562
+          },
+          "page_index": 4,
+          "style": {
+            "font_name": "NimbusRomNo9L-Regu",
+            "font_size": 7.970099925994873,
+            "is_bold": false,
+            "is_italic": false,
+            "color": 0
+          },
+          "block_type": "text",
+          "extraction_method": "embedded",
+          "confidence": 1.0,
+          "raw_block_no": 7
+        },
+        {
+          "block_id": "0e72bee2566a",
+          "text": "Explicit method–result rela- tions modeled in knowledge graph",
+          "bbox": {
+            "x0": 402.4830017089844,
+            "y0": 115.72565460205078,
+            "x1": 501.6949157714844,
+            "y1": 143.26162719726562
+          },
+          "page_index": 4,
+          "style": {
+            "font_name": "NimbusRomNo9L-Regu",
+            "font_size": 7.970099925994873,
+            "is_bold": false,
+            "is_italic": false,
+            "color": 0
+          },
+          "block_type": "text",
+          "extraction_method": "embedded",
+          "confidence": 1.0,
+          "raw_block_no": 8
+        },
+        {
+          "block_id": "364796e3262d",
+          "text": "Citation tracing Keyword-based lookup without structural linkage",
+          "bbox": {
+            "x0": 110.30400085449219,
+            "y0": 143.02264404296875,
+            "x1": 292.73797607421875,
+            "y1": 161.59359741210938
+          },
+          "page_index": 4,
+          "style": {
+            "font_name": "NimbusRomNo9L-Regu",
+            "font_size": 7.970099925994873,
+            "is_bold": false,
+            "is_italic": false,
+            "color": 0
+          },
+          "block_type": "text",
+          "extraction_method": "embedded",
+          "confidence": 1.0,
+          "raw_block_no": 9
+        },
+        {
+          "block_id": "1e8cfe39ff9c",
+          "text": "Textually relevant retrieval without structured citation modeling",
+          "bbox": {
+            "x0": 305.0899963378906,
+            "y0": 143.02264404296875,
+            "x1": 390.131103515625,
+            "y1": 170.55960083007812
+          },
+          "page_index": 4,
+          "style": {
+            "font_name": "NimbusRomNo9L-Regu",
+            "font_size": 7.970099925994873,
+            "is_bold": false,
+            "is_italic": false,
+            "color": 0
+          },
+          "block_type": "text",
+          "extraction_method": "embedded",
+          "confidence": 1.0,
+          "raw_block_no": 10
+        },
+        {
+          "block_id": "e21e26e1efaa",
+          "text": "Structured citation linkage via graph traversal",
+          "bbox": {
+            "x0": 402.4830017089844,
+            "y0": 143.02264404296875,
+            "x1": 501.69488525390625,
+            "y1": 161.59359741210938
+          },
+          "page_index": 4,
+          "style": {
+            "font_name": "NimbusRomNo9L-Regu",
+            "font_size": 7.970099925994873,
+            "is_bold": false,
+            "is_italic": false,
+            "color": 0
+          },
+          "block_type": "text",
+          "extraction_method": "embedded",
+          "confidence": 1.0,
+          "raw_block_no": 11
+        },
+        {
+          "block_id": "b6ac88ec3c55",
+          "text": "Dataset identification Unstructured mentions without entity modeling",
+          "bbox": {
+            "x0": 110.30400085449219,
+            "y0": 170.32061767578125,
+            "x1": 292.73797607421875,
+            "y1": 188.89059448242188
+          },
+          "page_index": 4,
+          "style": {
+            "font_name": "NimbusRomNo9L-Regu",
+            "font_size": 7.970099925994873,
+            "is_bold": false,
+            "is_italic": false,
+            "color": 0
+          },
+          "block_type": "text",
+          "extraction_method": "embedded",
+          "confidence": 1.0,
+          "raw_block_no": 12
+        },
+        {
+          "block_id": "9fb4221aa18b",
+          "text": "Semantic matching with- out explicit dataset repre- sentation",
+          "bbox": {
+            "x0": 305.0899963378906,
+            "y0": 170.32061767578125,
+            "x1": 390.1310729980469,
+            "y1": 197.85757446289062
+          },
+          "page_index": 4,
+          "style": {
+            "font_name": "NimbusRomNo9L-Regu",
+            "font_size": 7.970099925994873,
+            "is_bold": false,
+            "is_italic": false,
+            "color": 0
+          },
+          "block_type": "text",
+          "extraction_method": "embedded",
+          "confidence": 1.0,
+          "raw_block_no": 13
+        },
+        {
+          "block_id": "315664eb3e30",
+          "text": "Dataset entities explicitly rep- resented in knowledge graph",
+          "bbox": {
+            "x0": 402.4830017089844,
+            "y0": 170.32061767578125,
+            "x1": 501.6949768066406,
+            "y1": 188.89059448242188
+          },
+          "page_index": 4,
+          "style": {
+            "font_name": "NimbusRomNo9L-Regu",
+            "font_size": 7.970099925994873,
+            "is_bold": false,
+            "is_italic": false,
+            "color": 0
+          },
+          "block_type": "text",
+          "extraction_method": "embedded",
+          "confidence": 1.0,
+          "raw_block_no": 14
+        },
+        {
+          "block_id": "a06b2be7c234",
+          "text": "Cross-section reasoning Limited support for multi- section reasoning",
+          "bbox": {
+            "x0": 110.30400085449219,
+            "y0": 197.61761474609375,
+            "x1": 292.738037109375,
+            "y1": 216.18856811523438
+          },
+          "page_index": 4,
+          "style": {
+            "font_name": "NimbusRomNo9L-Regu",
+            "font_size": 7.970099925994873,
+            "is_bold": false,
+            "is_italic": false,
+            "color": 0
+          },
+          "block_type": "text",
+          "extraction_method": "embedded",
+          "confidence": 1.0,
+          "raw_block_no": 15
+        },
+        {
+          "block_id": "fb5ba83eafc6",
+          "text": "Contextual linkage within retrieved passages only",
+          "bbox": {
+            "x0": 305.0899963378906,
+            "y0": 197.61761474609375,
+            "x1": 390.13104248046875,
+            "y1": 216.18856811523438
+          },
+          "page_index": 4,
+          "style": {
+            "font_name": "NimbusRomNo9L-Regu",
+            "font_size": 7.970099925994873,
+            "is_bold": false,
+            "is_italic": false,
+            "color": 0
+          },
+          "block_type": "text",
+          "extraction_method": "embedded",
+          "confidence": 1.0,
+          "raw_block_no": 16
+        },
+        {
+          "block_id": "fe0f0f74789d",
+          "text": "Explicit multi-hop relational traversal across sections",
+          "bbox": {
+            "x0": 402.4830017089844,
+            "y0": 197.61761474609375,
+            "x1": 501.6949157714844,
+            "y1": 216.18856811523438
+          },
+          "page_index": 4,
+          "style": {
+            "font_name": "NimbusRomNo9L-Regu",
+            "font_size": 7.970099925994873,
+            "is_bold": false,
+            "is_italic": false,
+            "color": 0
+          },
+          "block_type": "text",
+          "extraction_method": "embedded",
+          "confidence": 1.0,
+          "raw_block_no": 17
+        },
+        {
+          "block_id": "fd8086d5469c",
+          "text": "to resolve relational queries. The text-only RAG system im- proved semantic relevance in many cases, but without explicit modeling of academic relationships, grounding remained weak for more complex queries. By contrast, the proposed frame- work produced more consistently aligned and contextually grounded results, largely due to the combination of multimodal alignment and knowledge graph reasoning.",
+          "bbox": {
+            "x0": 48.9640007019043,
+            "y0": 238.31756591796875,
+            "x1": 300.02154541015625,
+            "y1": 322.0534973144531
+          },
+          "page_index": 4,
+          "style": {
+            "font_name": "NimbusRomNo9L-Regu",
+            "font_size": 9.962599754333496,
+            "is_bold": false,
+            "is_italic": false,
+            "color": 0
+          },
+          "block_type": "text",
+          "extraction_method": "embedded",
+          "confidence": 1.0,
+          "raw_block_no": 18
+        },
+        {
+          "block_id": "f35a31e234a3",
+          "text": "D. Discussion",
+          "bbox": {
+            "x0": 48.9640007019043,
+            "y0": 330.70355224609375,
+            "x1": 107.35478973388672,
+            "y1": 342.5989074707031
+          },
+          "page_index": 4,
+          "style": {
+            "font_name": "NimbusRomNo9L-ReguItal",
+            "font_size": 9.962599754333496,
+            "is_bold": false,
+            "is_italic": true,
+            "color": 0
+          },
+          "block_type": "text",
+          "extraction_method": "embedded",
+          "confidence": 1.0,
+          "raw_block_no": 19
+        },
+        {
+          "block_id": "08c8045e56fa",
+          "text": "Overall, our observations indicate that the framework pro- vides stronger structural grounding and relational reason- ing compared to the baselines considered. In particular, ex- plicit knowledge graph modeling supports multi-hop academic queries that are difficult to handle with text-only retrieval. At the same time, the additional stages required for graph construction and alignment introduce computational overhead. This trade-off implies that additional optimization will be required to strike a balance between efficiency and reasoning ability.",
+          "bbox": {
+            "x0": 48.9640007019043,
+            "y0": 346.6105651855469,
+            "x1": 300.02191162109375,
+            "y1": 466.2113952636719
+          },
+          "page_index": 4,
+          "style": {
+            "font_name": "NimbusRomNo9L-Regu",
+            "font_size": 9.962599754333496,
+            "is_bold": false,
+            "is_italic": false,
+            "color": 0
+          },
+          "block_type": "text",
+          "extraction_method": "embedded",
+          "confidence": 1.0,
+          "raw_block_no": 20
+        },
+        {
+          "block_id": "87812ad2e83a",
+          "text": "E. Limitations and Future Work",
+          "bbox": {
+            "x0": 48.9640007019043,
+            "y0": 474.8624572753906,
+            "x1": 180.73928833007812,
+            "y1": 486.7578125
+          },
+          "page_index": 4,
+          "style": {
+            "font_name": "NimbusRomNo9L-ReguItal",
+            "font_size": 9.962599754333496,
+            "is_bold": false,
+            "is_italic": true,
+            "color": 0
+          },
+          "block_type": "text",
+          "extraction_method": "embedded",
+          "confidence": 1.0,
+          "raw_block_no": 21
+        },
+        {
+          "block_id": "f3742d42032c",
+          "text": "The evaluation of the current system is restricted to qual- itative evaluation over a small number of documents. Future work includes quantitative benchmarking using measures like precision@k, recall@k, grounding accuracy, and latency. The experiments that are planned include ablation experiments to identify the value added by vector retrieval, graph reasoning, and agent orchestration, as well as comparisons with state-of- the-art multimodal document understanding models.",
+          "bbox": {
+            "x0": 48.9640007019043,
+            "y0": 490.7684631347656,
+            "x1": 300.0219421386719,
+            "y1": 586.4603881835938
+          },
+          "page_index": 4,
+          "style": {
+            "font_name": "NimbusRomNo9L-Regu",
+            "font_size": 9.962599754333496,
+            "is_bold": false,
+            "is_italic": false,
+            "color": 0
+          },
+          "block_type": "text",
+          "extraction_method": "embedded",
+          "confidence": 1.0,
+          "raw_block_no": 22
+        },
+        {
+          "block_id": "ffeaf52e646a",
+          "text": "VII. C ONCLUSION",
+          "bbox": {
+            "x0": 134.28900146484375,
+            "y0": 595.1104125976562,
+            "x1": 214.70120239257812,
+            "y1": 607.1153564453125
+          },
+          "page_index": 4,
+          "style": {
+            "font_name": "NimbusRomNo9L-Regu",
+            "font_size": 7.970099925994873,
+            "is_bold": false,
+            "is_italic": false,
+            "color": 0
+          },
+          "block_type": "text",
+          "extraction_method": "embedded",
+          "confidence": 1.0,
+          "raw_block_no": 23
+        },
+        {
+          "block_id": "26d7bd9d2b76",
+          "text": "In order to enhance academic knowledge extraction and hybrid retrieval, we presented an agent-orchestrated multi- modal framework in this work. The suggested method com- bines vector-based semantic search with graph-based relational reasoning, explicitly models scholarly relationships, and main- tains layout structure rather than depending only on flattened text representations. Our goal is to facilitate more trustworthy document comprehension by organizing the system into phases of extraction, knowledge structuring, semantic alignment, and",
+          "bbox": {
+            "x0": 48.9640007019043,
+            "y0": 611.597412109375,
+            "x1": 300.02191162109375,
+            "y1": 719.244384765625
+          },
+          "page_index": 4,
+          "style": {
+            "font_name": "NimbusRomNo9L-Regu",
+            "font_size": 9.962599754333496,
+            "is_bold": false,
+            "is_italic": false,
+            "color": 0
+          },
+          "block_type": "text",
+          "extraction_method": "embedded",
+          "confidence": 1.0,
+          "raw_block_no": 24
+        },
+        {
+          "block_id": "899ede544cc2",
+          "text": "hybrid retrieval. The framework handled queries involving figures, methods, datasets, and citations more consistently and with a stronger contextual foundation in our qualitative tests. The results show that combining multimodal extraction with structured knowledge representation is a promising path for academic retrieval systems, even though the current evalua- tion is restricted to qualitative analysis. Future research will concentrate on improvements aimed at scalability and realistic deployment, quantitative benchmarking, and ablation studies to better understand component contributions. In order to improve interactive academic knowledge exploration, we also plan to look into adaptive agent strategies.",
+          "bbox": {
+            "x0": 311.9779968261719,
+            "y0": 238.31744384765625,
+            "x1": 563.03564453125,
+            "y1": 381.8293151855469
+          },
+          "page_index": 4,
+          "style": {
+            "font_name": "NimbusRomNo9L-Regu",
+            "font_size": 9.962599754333496,
+            "is_bold": false,
+            "is_italic": false,
+            "color": 0
+          },
+          "block_type": "text",
+          "extraction_method": "embedded",
+          "confidence": 1.0,
+          "raw_block_no": 25
+        },
+        {
+          "block_id": "55268d2a7565",
+          "text": "R EFERENCES",
+          "bbox": {
+            "x0": 409.61199951171875,
+            "y0": 388.5043640136719,
+            "x1": 465.4085998535156,
+            "y1": 400.5093078613281
+          },
+          "page_index": 4,
+          "style": {
+            "font_name": "NimbusRomNo9L-Regu",
+            "font_size": 7.970099925994873,
+            "is_bold": false,
+            "is_italic": false,
+            "color": 0
+          },
+          "block_type": "text",
+          "extraction_method": "embedded",
+          "confidence": 1.0,
+          "raw_block_no": 26
+        },
+        {
+          "block_id": "8ada904f05bc",
+          "text": "[1] P. Lewis, E. Perez, A. Piktus, et al., “Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks,” in Advances in Neural Informa- tion Processing Systems (NeurIPS) , 2020.",
+          "bbox": {
+            "x0": 315.9630126953125,
+            "y0": 405.1394348144531,
+            "x1": 563.0361938476562,
+            "y1": 432.6764221191406
+          },
+          "page_index": 4,
+          "style": {
+            "font_name": "NimbusRomNo9L-Regu",
+            "font_size": 7.970099925994873,
+            "is_bold": false,
+            "is_italic": false,
+            "color": 0
+          },
+          "block_type": "text",
+          "extraction_method": "embedded",
+          "confidence": 1.0,
+          "raw_block_no": 27
+        },
+        {
+          "block_id": "bfb404e25523",
+          "text": "[2] J. Devlin, M.-W. Chang, K. Lee, and K. Toutanova, “BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding,” in Proc. NAACL-HLT , 2019.",
+          "bbox": {
+            "x0": 315.9630126953125,
+            "y0": 432.0394592285156,
+            "x1": 563.0361328125,
+            "y1": 459.575439453125
+          },
+          "page_index": 4,
+          "style": {
+            "font_name": "NimbusRomNo9L-Regu",
+            "font_size": 7.970099925994873,
+            "is_bold": false,
+            "is_italic": false,
+            "color": 0
+          },
+          "block_type": "text",
+          "extraction_method": "embedded",
+          "confidence": 1.0,
+          "raw_block_no": 28
+        },
+        {
+          "block_id": "08eba4140a12",
+          "text": "[3] N. Reimers and I. Gurevych, “Sentence-BERT: Sentence Embeddings using Siamese BERT-Networks,” in Proc. EMNLP , 2019.",
+          "bbox": {
+            "x0": 315.9630126953125,
+            "y0": 458.9384765625,
+            "x1": 563.0361938476562,
+            "y1": 477.5084533691406
+          },
+          "page_index": 4,
+          "style": {
+            "font_name": "NimbusRomNo9L-Regu",
+            "font_size": 7.970099925994873,
+            "is_bold": false,
+            "is_italic": false,
+            "color": 0
+          },
+          "block_type": "text",
+          "extraction_method": "embedded",
+          "confidence": 1.0,
+          "raw_block_no": 29
+        },
+        {
+          "block_id": "b0d46b04d6d8",
+          "text": "[4] Y. Xu, M. Li, L. Cui, S. Huang, F. Wei, and M. Zhou, “LayoutLM: Pre-training of Text and Layout for Document Image Understanding,” in Proc. KDD , 2020.",
+          "bbox": {
+            "x0": 315.9630126953125,
+            "y0": 476.8704833984375,
+            "x1": 563.0361938476562,
+            "y1": 504.407470703125
+          },
+          "page_index": 4,
+          "style": {
+            "font_name": "NimbusRomNo9L-Regu",
+            "font_size": 7.970099925994873,
+            "is_bold": false,
+            "is_italic": false,
+            "color": 0
+          },
+          "block_type": "text",
+          "extraction_method": "embedded",
+          "confidence": 1.0,
+          "raw_block_no": 30
+        },
+        {
+          "block_id": "e6a2a06a60e7",
+          "text": "[5] Y. Xu, Y. Xu, T. Lv, et al., “LayoutLMv2: Multi-modal Pre-training for Visually-Rich Document Understanding,” in Proc. ACL , 2021.",
+          "bbox": {
+            "x0": 315.9630126953125,
+            "y0": 503.7705078125,
+            "x1": 563.0361938476562,
+            "y1": 522.3405151367188
+          },
+          "page_index": 4,
+          "style": {
+            "font_name": "NimbusRomNo9L-Regu",
+            "font_size": 7.970099925994873,
+            "is_bold": false,
+            "is_italic": false,
+            "color": 0
+          },
+          "block_type": "text",
+          "extraction_method": "embedded",
+          "confidence": 1.0,
+          "raw_block_no": 31
+        },
+        {
+          "block_id": "c05b3d51f1a0",
+          "text": "[6] A. Appalaraju, B. Jasani, and A. Manmatha, “DocFormer: End-to-End Transformer for Document Understanding,” in Proc. ICCV , 2021.",
+          "bbox": {
+            "x0": 315.9630126953125,
+            "y0": 521.7025146484375,
+            "x1": 563.036376953125,
+            "y1": 540.2734985351562
+          },
+          "page_index": 4,
+          "style": {
+            "font_name": "NimbusRomNo9L-Regu",
+            "font_size": 7.970099925994873,
+            "is_bold": false,
+            "is_italic": false,
+            "color": 0
+          },
+          "block_type": "text",
+          "extraction_method": "embedded",
+          "confidence": 1.0,
+          "raw_block_no": 32
+        },
+        {
+          "block_id": "1f4ec80d06c9",
+          "text": "[7] G. Kim, T. Hong, B. Chung, and J. Park, “Donut: Document Under- standing Transformer without OCR,” in Proc. ECCV , 2022.",
+          "bbox": {
+            "x0": 315.9630126953125,
+            "y0": 539.635498046875,
+            "x1": 563.0360717773438,
+            "y1": 558.2055053710938
+          },
+          "page_index": 4,
+          "style": {
+            "font_name": "NimbusRomNo9L-Regu",
+            "font_size": 7.970099925994873,
+            "is_bold": false,
+            "is_italic": false,
+            "color": 0
+          },
+          "block_type": "text",
+          "extraction_method": "embedded",
+          "confidence": 1.0,
+          "raw_block_no": 33
+        },
+        {
+          "block_id": "9307b13d7b66",
+          "text": "[8] A. Hogan, E. Blomqvist, M. Cochez, et al., “Knowledge Graphs,” ACM Computing Surveys , vol. 54, no. 4, 2021.",
+          "bbox": {
+            "x0": 315.9630126953125,
+            "y0": 557.5684814453125,
+            "x1": 563.0361938476562,
+            "y1": 576.1385498046875
+          },
+          "page_index": 4,
+          "style": {
+            "font_name": "NimbusRomNo9L-Regu",
+            "font_size": 7.970099925994873,
+            "is_bold": false,
+            "is_italic": false,
+            "color": 0
+          },
+          "block_type": "text",
+          "extraction_method": "embedded",
+          "confidence": 1.0,
+          "raw_block_no": 34
+        },
+        {
+          "block_id": "79ae3e990ad8",
+          "text": "[9] J. Johnson, M. Douze, and H. J´ egou, “Billion-scale Similarity Search with GPUs,” IEEE Transactions on Big Data , 2019.",
+          "bbox": {
+            "x0": 315.9630126953125,
+            "y0": 575.4615478515625,
+            "x1": 563.0398559570312,
+            "y1": 594.071533203125
+          },
+          "page_index": 4,
+          "style": {
+            "font_name": "NimbusRomNo9L-Regu",
+            "font_size": 7.970099925994873,
+            "is_bold": false,
+            "is_italic": false,
+            "color": 0
+          },
+          "block_type": "text",
+          "extraction_method": "embedded",
+          "confidence": 1.0,
+          "raw_block_no": 35
+        },
+        {
+          "block_id": "5579c52c2960",
+          "text": "[10] R. Smith, “An Overview of the Tesseract OCR Engine,” in Proc. ICDAR , 2007.",
+          "bbox": {
+            "x0": 311.97802734375,
+            "y0": 593.4335327148438,
+            "x1": 563.0364379882812,
+            "y1": 612.0045166015625
+          },
+          "page_index": 4,
+          "style": {
+            "font_name": "NimbusRomNo9L-Regu",
+            "font_size": 7.970099925994873,
+            "is_bold": false,
+            "is_italic": false,
+            "color": 0
+          },
+          "block_type": "text",
+          "extraction_method": "embedded",
+          "confidence": 1.0,
+          "raw_block_no": 36
+        }
+      ],
+      "figure_blocks": [
+        {
+          "block_id": "8e90b91c7f19",
+          "bbox": {
+            "x0": 0.0,
+            "y0": 0.0,
+            "x1": 612.0,
+            "y1": 51.54560089111328
+          },
+          "page_index": 4,
+          "image_path": null,
+          "caption": null
+        }
+      ],
+      "extraction_method": "embedded",
+      "ocr_triggered": false
+    }
+  ]
+}

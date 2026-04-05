@@ -13,8 +13,8 @@ Architecture
                │   QueryIntentClassifier  │
                │   detect intent:         │
                │   method / dataset /     │
-               │   result / figure /      │
-               │   general                │
+               │   result / definition /  │  ← definition now supported
+               │   figure / general       │
                └────────────┬────────────┘
                             │
               ┌─────────────▼─────────────┐
@@ -27,12 +27,16 @@ Architecture
               │   intent → relations[]     │
               │   BFS 1-hop expansion      │
               │   graph_score per neighbour│
+              │   MAX_KG_EXPANSION cap     │  ← new: absolute cap on expansion
               └─────────────┬─────────────┘
                             │
               ┌─────────────▼─────────────┐
               │   HybridScorer             │
               │   final = α·faiss_score    │
               │         + (1-α)·graph_score│
+              │   SEED_BONUS for seeds     │  ← new: seeds can't be displaced
+              │   RELATION_WEIGHTS         │  ← new: refers_to downweighted
+              │   MIN_KG_SCORE filter      │  ← new: noisy expansions pruned
               │   dedup + re-rank          │
               └─────────────┬─────────────┘
                             │
@@ -51,33 +55,51 @@ Architecture
                │  └──────────────────┘   │
                └─────────────────────────┘
 
-Scoring
-───────
+Scoring (v2)
+────────────
 FAISS seeds  : faiss_score  = cosine similarity ∈ [0, 1]
-               graph_score  = edge_weight of the traversed edge  (0.0 if seed)
-               final_score  = α · faiss_score + (1-α) · graph_score
+               graph_score  = 0.0 (no edge traversed)
+               seed_bonus   = SEED_BONUS (0.20) added before final sort
+               final_score  = α · faiss_score + (1-α) · graph_score + seed_bonus
 
-Graph neighbours: faiss_score = cosine(query_vec, neighbour_vec) via FAISS
-                  graph_score  = edge_weight (s_link or role_confidence)
+Graph neighbours: faiss_score = cosine(query_vec, neighbour_vec) if in FAISS else 0
+                  graph_score  = edge_weight × RELATION_WEIGHT[relation]
                   final_score  = α · faiss_score + (1-α) · graph_score
+                  (NO seed_bonus — expansion nodes compete fairly)
 
-Alpha (α) default = 0.6  → slightly favours semantic relevance over graph proximity.
-Tunable at construction time or per-query.
+Changes from v1
+───────────────
+- SEED_BONUS (0.20): FAISS seeds receive a score additive so that low-weight
+  graph expansions cannot displace top-ranked seeds. This fixed method/result
+  nDCG collapsing to 0 when KG neighbours ranked higher than correct seeds.
 
-Query intent → expansion relations
-───────────────────────────────────
-method    → produces, used_in, refers_to
-dataset   → evaluated_on, evaluated_by, refers_to
-result    → produces (reverse), evaluated_on (reverse), refers_to
-figure    → refers_to
-general   → produces, refers_to, evaluated_on        (broad, all high-value)
+- MAX_KG_EXPANSION (4): Hard cap on total graph expansion nodes per query,
+  replacing the per-seed `expand_k` expansion which was producing 7-10
+  expansions for only 42 indexed nodes (massive inflation ratio).
+
+- MIN_KG_SCORE (0.10): Graph neighbours with edge_weight below this threshold
+  are dropped before merge, removing noise edges from scoring.
+
+- RELATION_WEIGHTS: `refers_to` downweighted to 0.40 (too promiscuous),
+  `co_section` at 0.50, semantic relations at 1.0. Fixes dataset nDCG drop.
+
+- "definition" intent added: uses `defines`, `used_in`, `co_section` edges.
+  Fixes definition_retrieval nDCG = 0.000 in Hybrid.
+
+- Role-based intent fallback: if regex classifier confidence < CONF_THRESHOLD,
+  infer intent from majority scholarly_role of FAISS seeds. This bypasses the
+  weak text-pattern classifier for queries like "What are the key definitions?"
+  which fired conf=0.00 in v1.
+
+Alpha (α) default = 0.7  → raised from 0.6 to further favour semantic score,
+since the FAISS-only baseline was already strong.
 """
 
 from __future__ import annotations
 
 import logging
 import re
-from collections import defaultdict
+from collections import Counter, defaultdict
 from dataclasses import dataclass, field
 from typing import Any, Optional
 
@@ -96,40 +118,75 @@ logging.basicConfig(
 # Constants
 # ──────────────────────────────────────────────────────────────────────────────
 
-DEFAULT_ALPHA     = 0.6     # weight on FAISS score; (1-α) on graph score
+DEFAULT_ALPHA     = 0.7     # raised from 0.6 — FAISS baseline was already strong
 DEFAULT_TOP_K     = 5       # seeds from FAISS
-DEFAULT_EXPAND_K  = 3       # graph neighbours per seed
+DEFAULT_EXPAND_K  = 3       # graph neighbours per seed (soft limit; MAX_KG_EXPANSION is hard)
 DEFAULT_FINAL_K   = 10      # results returned to caller
 RRF_K             = 60      # not used (weighted sum chosen) — kept for reference
 
-# Intent → outgoing relations to follow during graph expansion
-INTENT_RELATIONS: dict[str, list[str]] = {
-    "method":   ["produces", "used_in", "refers_to"],
-    "dataset":  ["evaluated_on", "evaluated_by", "refers_to"],
-    "result":   ["refers_to"],           # results rarely have outgoing edges;
-                                         # see _expand_results() for reverse traversal
-    "figure":   ["refers_to"],
-    "general":  ["produces", "refers_to", "evaluated_on"],
+# v2 additions
+SEED_BONUS        = 0.20    # additive bonus applied to all FAISS seed final_scores
+                            # prevents graph neighbours displacing correct seeds
+MIN_KG_SCORE      = 0.10    # drop expansion nodes whose edge_weight < this
+MAX_KG_EXPANSION  = 4       # hard cap on total KG expansion nodes per query
+                            # (not per-seed — controls inflation on small graphs)
+CONF_THRESHOLD    = 0.15    # if classifier confidence < this, use role-based fallback
+
+# Per-relation score multipliers applied to edge_weight before merge.
+# Downweighting `refers_to` fixes the dataset query precision drop (v1 issue).
+RELATION_WEIGHTS: dict[str, float] = {
+    "produces":      1.0,
+    "used_in":       1.0,
+    "evaluated_on":  1.0,
+    "evaluated_by":  1.0,
+    "defines":       0.90,   # new in KG v2
+    "co_section":    0.50,   # new in KG v2 — lateral definition links
+    "refers_to":     0.40,   # downweighted — caption→figure edges are broad
+    "contains":      0.30,   # section containment — weakest signal
 }
 
-# Intent → incoming relations to follow (reverse edges) — used for "result" queries
+# Map scholarly_role → query intent (used as fallback when classifier is weak)
+ROLE_TO_INTENT: dict[str, str] = {
+    "Method":      "method",
+    "Result":      "result",
+    "Definition":  "definition",
+    "Dataset":     "dataset",
+    "Observation": "observation",
+}
+
+# Intent → outgoing relations to follow during graph expansion
+INTENT_RELATIONS: dict[str, list[str]] = {
+    "method":     ["produces", "used_in", "refers_to"],
+    "dataset":    ["evaluated_on", "evaluated_by"],        # removed refers_to — too broad
+    "result":     ["refers_to"],
+    "definition": ["defines", "used_in", "co_section"],    # NEW intent
+    "observation":["produces", "refers_to"],               # NEW intent
+    "figure":     ["refers_to"],
+    "general":    ["produces", "refers_to", "evaluated_on"],
+}
+
+# Intent → incoming relations to follow (reverse edges)
 INTENT_REVERSE_RELATIONS: dict[str, list[str]] = {
-    "result":  ["produces", "evaluated_on"],
-    "dataset": ["evaluated_by"],
+    "result":      ["produces", "evaluated_on"],
+    "dataset":     ["evaluated_by"],
+    "observation": ["produces"],
 }
 
 # Keyword patterns for lightweight intent detection
 _INTENT_PATTERNS: list[tuple[str, list[str]]] = [
-    ("method",  [r"\bmethod\b", r"\bapproach\b", r"\balgorithm\b", r"\btechnique\b",
-                 r"\barchitecture\b", r"\bmodel\b", r"\bpipeline\b", r"\bframework\b",
-                 r"\bhow (does|do|did|is)\b", r"\bpropose[ds]?\b", r"\btrain(ing)?\b"]),
-    ("dataset", [r"\bdataset\b", r"\bbenchmark\b", r"\bcorpus\b", r"\bevaluat\w+\b",
-                 r"\bbaseline\b", r"\bexperiment\b", r"\btrain(ing)? (set|data)\b"]),
-    ("result",  [r"\bresult\b", r"\bperformance\b", r"\baccuracy\b", r"\bscore\b",
-                 r"\bimprove\w*\b", r"\boutperform\w*\b", r"\bf1\b", r"\bbleu\b",
-                 r"\bprecision\b", r"\brecall\b", r"\bmetric\b"]),
-    ("figure",  [r"\bfigure\b", r"\bfig\b", r"\btable\b", r"\bplot\b", r"\bdiagram\b",
-                 r"\bvisuali[sz]\w*\b", r"\billustrat\w*\b", r"\bshown? in\b"]),
+    ("method",     [r"\bmethod\b", r"\bapproach\b", r"\balgorithm\b", r"\btechnique\b",
+                    r"\barchitecture\b", r"\bmodel\b", r"\bpipeline\b", r"\bframework\b",
+                    r"\bhow (does|do|did|is)\b", r"\bpropose[ds]?\b", r"\btrain(ing)?\b"]),
+    ("dataset",    [r"\bdataset\b", r"\bbenchmark\b", r"\bcorpus\b", r"\bevaluat\w+\b",
+                    r"\bbaseline\b", r"\bexperiment\b", r"\btrain(ing)? (set|data)\b"]),
+    ("result",     [r"\bresult\b", r"\bperformance\b", r"\baccuracy\b", r"\bscore\b",
+                    r"\bimprove\w*\b", r"\boutperform\w*\b", r"\bf1\b", r"\bbleu\b",
+                    r"\bprecision\b", r"\brecall\b", r"\bmetric\b"]),
+    ("definition", [r"\bdefin\w+\b", r"\bterm\b", r"\bnotion\b", r"\bconcept\b",
+                    r"\bmeaning\b", r"\bwhat is\b", r"\bwhat are\b", r"\bformally\b",
+                    r"\bdenot\w+\b", r"\brefer[s]? to\b"]),
+    ("figure",     [r"\bfigure\b", r"\bfig\b", r"\btable\b", r"\bplot\b", r"\bdiagram\b",
+                    r"\bvisuali[sz]\w*\b", r"\billustrat\w*\b", r"\bshown? in\b"]),
 ]
 
 
@@ -145,7 +202,7 @@ class ScoredNode:
     """
     node_id:       str
     text:          str
-    final_score:   float          # α·faiss + (1-α)·graph
+    final_score:   float          # α·faiss + (1-α)·graph [+ seed_bonus for seeds]
     faiss_score:   float          # raw cosine similarity (0 if graph-only)
     graph_score:   float          # edge weight (0 if faiss-only seed)
     role:          str
@@ -182,7 +239,9 @@ class QueryProvenance:
     query:          str
     intent:         str
     intent_conf:    float                    # fraction of matched patterns
+    intent_source:  str                      # "classifier" | "role_fallback"
     alpha:          float
+    seed_bonus:     float
     faiss_seeds:    list[str]                # node_ids
     expanded_nodes: list[str]                # node_ids added by graph
     relations_used: list[str]                # which relation types were followed
@@ -194,27 +253,12 @@ class QueryProvenance:
 class HybridResult:
     """
     The complete output of one HybridRetrievalEngine.retrieve() call.
-
-    ranked_results  → flat list[ScoredNode] sorted by final_score desc.
-                      Pass directly to the LLM as context passages.
-
-    subgraph        → nx.DiGraph containing only the nodes and edges
-                      involved in this retrieval.  Use for:
-                        • structured reasoning (chain-of-thought over edges)
-                        • explainability ("Method X produces Result Y")
-                        • follow-up graph queries without re-running FAISS
-
-    provenance      → QueryProvenance — audit trail, scores breakdown,
-                      intent classification used.
     """
     ranked_results: list[ScoredNode]
     subgraph:       nx.DiGraph
     provenance:     QueryProvenance
 
-    # ── Convenience accessors used by the answer generator ───────────────────
-
     def top_texts(self, k: int = 5) -> list[str]:
-        """Return the top-k text snippets ready to inject into an LLM prompt."""
         return [r.text for r in self.ranked_results[:k] if r.text.strip()]
 
     def top_nodes(self, k: int = 5) -> list[ScoredNode]:
@@ -224,11 +268,6 @@ class HybridResult:
         return [r for r in self.ranked_results if r.role == role]
 
     def edge_explanations(self) -> list[str]:
-        """
-        Human-readable strings for every edge in the subgraph.
-        e.g. "Method[ec2685] --produces--> Result[3b3ae1]"
-        Used to build citation trails in the answer.
-        """
         lines = []
         for src, tgt, data in self.subgraph.edges(data=True):
             rel  = data.get("relation", "?")
@@ -247,19 +286,17 @@ class QueryIntentClassifier:
     Lightweight regex-based intent detector.
     Returns (intent: str, confidence: float).
 
-    Intent drives which graph relations are followed during expansion,
-    so it must be fast (no model inference) and conservative —
-    ambiguous queries default to "general".
+    v2: Added "definition" and "observation" intents.
+    Confidence normalisation fixed — was dividing by len(first_pattern_list)
+    instead of total matched / total checked, giving misleading low numbers.
     """
 
     def classify(self, query: str) -> tuple[str, float]:
         q = query.lower()
         scores: dict[str, int] = defaultdict(int)
-        total_patterns = 0
 
         for intent, patterns in _INTENT_PATTERNS:
             for pat in patterns:
-                total_patterns += 1
                 if re.search(pat, q):
                     scores[intent] += 1
 
@@ -267,16 +304,42 @@ class QueryIntentClassifier:
             return "general", 0.0
 
         best_intent = max(scores, key=lambda k: scores[k])
-        confidence  = scores[best_intent] / max(len(_INTENT_PATTERNS[0][1]), 1)
-        confidence  = min(confidence, 1.0)
 
-        # Tie-break: if two intents match equally, use "general"
-        top_score = scores[best_intent]
+        # Confidence = matched patterns / total patterns for this intent
+        intent_pattern_count = next(
+            len(pats) for name, pats in _INTENT_PATTERNS if name == best_intent
+        )
+        confidence = min(scores[best_intent] / max(intent_pattern_count, 1), 1.0)
+
+        # Tie-break: if two intents match equally → "general"
+        top_score   = scores[best_intent]
         top_intents = [k for k, v in scores.items() if v == top_score]
         if len(top_intents) > 1:
             return "general", round(confidence, 3)
 
         return best_intent, round(confidence, 3)
+
+
+# ──────────────────────────────────────────────────────────────────────────────
+# Role-based Intent Fallback
+# ──────────────────────────────────────────────────────────────────────────────
+
+def infer_intent_from_seeds(faiss_results: list[RetrievalResult]) -> Optional[str]:
+    """
+    Infer query intent from the majority scholarly_role of FAISS seed nodes.
+    Used as fallback when the regex classifier fires with low confidence.
+
+    Example: FAISS returns 3 Definition nodes + 2 N/A nodes
+             → majority role = "Definition" → intent = "definition"
+
+    This is more reliable than regex for queries like "What are the key
+    definitions?" which pattern-match weakly (no strong definition keywords).
+    """
+    roles = [r.role for r in faiss_results if r.role and r.role != "N/A"]
+    if not roles:
+        return None
+    majority_role = Counter(roles).most_common(1)[0][0]
+    return ROLE_TO_INTENT.get(majority_role)
 
 
 # ──────────────────────────────────────────────────────────────────────────────
@@ -286,10 +349,15 @@ class QueryIntentClassifier:
 class GraphExpander:
     """
     Given a set of seed node_ids and a query intent, walks the knowledge graph
-    and returns (neighbour_node_id, edge_weight, relation) tuples.
+    and returns (seed_id, neighbour_node_id, weighted_edge_score, relation) tuples.
 
-    Follows outgoing edges for most intents.
-    For "result" intent also follows *incoming* edges (who produced this result?).
+    v2 changes:
+    - MAX_KG_EXPANSION: total expansion capped globally (not just per-seed).
+      With 42 nodes, expanding 7-10 neighbours per query was causing massive
+      score inflation that buried correct seeds.
+    - RELATION_WEIGHTS applied at expansion time so the scorer sees pre-weighted
+      graph scores directly.
+    - MIN_KG_SCORE filter: drops expansion nodes below threshold before returning.
     """
 
     def __init__(self, graph: nx.DiGraph) -> None:
@@ -302,8 +370,9 @@ class GraphExpander:
         expand_k:  int = DEFAULT_EXPAND_K,
     ) -> list[tuple[str, str, float, str]]:
         """
-        Returns list of (seed_id, neighbour_id, edge_weight, relation).
-        neighbour_id is never in seed_ids (no self-loops back to seeds).
+        Returns list of (seed_id, neighbour_id, weighted_edge_score, relation).
+        neighbour_id is never in seed_ids.
+        Total results capped at MAX_KG_EXPANSION.
         """
         relations_out = INTENT_RELATIONS.get(intent, INTENT_RELATIONS["general"])
         relations_in  = INTENT_REVERSE_RELATIONS.get(intent, [])
@@ -312,6 +381,8 @@ class GraphExpander:
         results:  list[tuple[str, str, float, str]] = []
 
         for seed in seed_ids:
+            if len(results) >= MAX_KG_EXPANSION:
+                break
             if seed not in self._graph:
                 continue
 
@@ -319,28 +390,36 @@ class GraphExpander:
 
             # ── Outgoing edges ─────────────────────────────────────────────
             for _, nbr, data in self._graph.out_edges(seed, data=True):
-                if added >= expand_k:
+                if added >= expand_k or len(results) >= MAX_KG_EXPANSION:
                     break
                 rel = data.get("relation", "")
                 if rel not in relations_out:
                     continue
                 if nbr in seed_set:
                     continue
-                weight = float(data.get("weight", 0.5))
-                results.append((seed, nbr, weight, rel))
+                raw_weight = float(data.get("weight", 0.5))
+                rel_weight = RELATION_WEIGHTS.get(rel, 0.5)
+                weighted   = round(raw_weight * rel_weight, 4)
+                if weighted < MIN_KG_SCORE:
+                    continue
+                results.append((seed, nbr, weighted, rel))
                 added += 1
 
             # ── Incoming edges (reverse traversal for result/dataset) ───────
             for src, _, data in self._graph.in_edges(seed, data=True):
-                if added >= expand_k:
+                if added >= expand_k or len(results) >= MAX_KG_EXPANSION:
                     break
                 rel = data.get("relation", "")
                 if rel not in relations_in:
                     continue
                 if src in seed_set:
                     continue
-                weight = float(data.get("weight", 0.5))
-                results.append((seed, src, weight, f"←{rel}"))
+                raw_weight = float(data.get("weight", 0.5))
+                rel_weight = RELATION_WEIGHTS.get(rel, 0.5)
+                weighted   = round(raw_weight * rel_weight, 4)
+                if weighted < MIN_KG_SCORE:
+                    continue
+                results.append((seed, src, weighted, f"←{rel}"))
                 added += 1
 
         return results
@@ -354,16 +433,24 @@ class HybridScorer:
     """
     Merges FAISS results and graph expansion hits into a single ranked list.
 
-    Scoring
-    ───────
-    For every candidate node:
-        final_score = α · faiss_score + (1 − α) · graph_score
+    Scoring (v2)
+    ────────────
+    Seeds (origin=faiss_seed):
+        base   = α · faiss_score + (1-α) · 0.0
+        final  = base + SEED_BONUS
 
-    If a node appears as both a FAISS seed AND a graph neighbour,
-    the best faiss_score and best graph_score are kept and merged —
-    origin is marked "both".
+    Graph neighbours (origin=graph_expansion):
+        final  = α · faiss_score + (1-α) · graph_score
+        (no seed_bonus — they must earn their rank)
 
-    Deduplication is by node_id.
+    Nodes appearing in both (origin=both):
+        final  = α · faiss_score + (1-α) · graph_score + SEED_BONUS
+
+    The SEED_BONUS is the key change: it guarantees that a correct FAISS seed
+    with faiss_score=0.70 cannot be displaced by a graph neighbour with
+    faiss_score=0.0 and graph_score=0.5, which would score 0.30 at α=0.6.
+    With SEED_BONUS=0.20 the seed scores 0.70*0.6+0.20=0.62 vs 0.20 for the
+    neighbour — seed stays in the top 5.
     """
 
     def __init__(self, alpha: float = DEFAULT_ALPHA) -> None:
@@ -372,21 +459,11 @@ class HybridScorer:
     def merge(
         self,
         faiss_results:      list[RetrievalResult],
-        expansion_hits:     list[tuple[str, str, float, str]],     # (seed, nbr, w, rel)
-        faiss_lookup:       dict[str, RetrievalResult],            # node_id → result
+        expansion_hits:     list[tuple[str, str, float, str]],
+        faiss_lookup:       dict[str, RetrievalResult],
         graph:              nx.DiGraph,
-        query_vec_scorer:   Optional[Any] = None,                  # FAISSAgent for re-scoring
+        query_vec_scorer:   Optional[Any] = None,
     ) -> list[ScoredNode]:
-        """
-        Parameters
-        ──────────
-        faiss_results    : direct FAISS hits
-        expansion_hits   : (seed_id, nbr_id, edge_weight, relation) from GraphExpander
-        faiss_lookup     : node_id → RetrievalResult for O(1) score access
-        graph            : full KG — used to fetch neighbour node attributes
-        query_vec_scorer : FAISSAgent — if provided, graph neighbours get a real
-                           FAISS cosine score; otherwise graph_score proxies for it
-        """
 
         # ── Accumulator: node_id → best scores seen so far ─────────────────
         acc: dict[str, dict[str, Any]] = {}
@@ -396,28 +473,26 @@ class HybridScorer:
             acc[fr.node_id] = {
                 "faiss_score":    fr.score,
                 "graph_score":    0.0,
+                "is_seed":        True,
                 "origin":         "faiss_seed",
                 "relation_path":  [],
                 "result":         fr,
             }
 
         # 2. Graph expansion neighbours
-        for seed_id, nbr_id, edge_weight, relation in expansion_hits:
-            nbr_faiss_score = 0.0
-            if nbr_id in faiss_lookup:
-                nbr_faiss_score = faiss_lookup[nbr_id].score
+        for seed_id, nbr_id, weighted_edge_score, relation in expansion_hits:
+            nbr_faiss_score = faiss_lookup[nbr_id].score if nbr_id in faiss_lookup else 0.0
 
             if nbr_id in acc:
-                # Node already seen — upgrade scores if better
                 existing = acc[nbr_id]
                 existing["faiss_score"] = max(existing["faiss_score"], nbr_faiss_score)
-                existing["graph_score"] = max(existing["graph_score"], edge_weight)
-                existing["origin"]      = "both"
+                existing["graph_score"] = max(existing["graph_score"], weighted_edge_score)
+                # Keep is_seed=True if it was already a seed
+                if existing["origin"] == "faiss_seed":
+                    existing["origin"] = "both"
                 existing["relation_path"].append(relation)
             else:
-                # New node arriving via graph — fetch its metadata from the graph
                 g_attrs = graph.nodes.get(nbr_id, {})
-                # Build a minimal RetrievalResult from graph attrs
                 pseudo_result = RetrievalResult(
                     node_id      = nbr_id,
                     text         = g_attrs.get("text", ""),
@@ -431,7 +506,8 @@ class HybridScorer:
                 )
                 acc[nbr_id] = {
                     "faiss_score":   nbr_faiss_score,
-                    "graph_score":   edge_weight,
+                    "graph_score":   weighted_edge_score,
+                    "is_seed":       False,
                     "origin":        "graph_expansion",
                     "relation_path": [relation],
                     "result":        pseudo_result,
@@ -440,9 +516,11 @@ class HybridScorer:
         # 3. Compute final scores and build ScoredNode list
         scored: list[ScoredNode] = []
         for nid, entry in acc.items():
-            fs = entry["faiss_score"]
-            gs = entry["graph_score"]
-            final = round(self.alpha * fs + (1.0 - self.alpha) * gs, 4)
+            fs      = entry["faiss_score"]
+            gs      = entry["graph_score"]
+            is_seed = entry["is_seed"] or entry["origin"] in ("faiss_seed", "both")
+            base    = round(self.alpha * fs + (1.0 - self.alpha) * gs, 4)
+            final   = round(base + (SEED_BONUS if is_seed else 0.0), 4)
 
             r: RetrievalResult = entry["result"]
             scored.append(ScoredNode(
@@ -469,36 +547,16 @@ class HybridScorer:
 # ──────────────────────────────────────────────────────────────────────────────
 
 class SubgraphBuilder:
-    """
-    Extracts a minimal subgraph from the full KG containing only the nodes
-    and edges that were actually involved in this retrieval.
-
-    This subgraph is what the answer generator uses for structured reasoning —
-    it can traverse Method → Result chains directly without querying the full graph.
-    """
-
     @staticmethod
-    def build(
-        node_ids:  list[str],
-        graph:     nx.DiGraph,
-    ) -> nx.DiGraph:
-        """
-        Returns an induced subgraph on node_ids PLUS all edges that connect
-        any two nodes in the set.  Preserves all node and edge attributes.
-        """
+    def build(node_ids: list[str], graph: nx.DiGraph) -> nx.DiGraph:
         node_set = set(node_ids)
         sub = nx.DiGraph()
-
-        # Add nodes with full attributes
         for nid in node_set:
             if nid in graph:
                 sub.add_node(nid, **dict(graph.nodes[nid]))
-
-        # Add all edges between nodes in the set
         for src, tgt, data in graph.edges(data=True):
             if src in node_set and tgt in node_set:
                 sub.add_edge(src, tgt, **data)
-
         return sub
 
 
@@ -508,10 +566,7 @@ class SubgraphBuilder:
 
 class HybridRetrievalEngine:
     """
-    Step 7 — Hybrid Retrieval Engine.
-
-    Combines FAISSAgent (semantic similarity) and KnowledgeGraphAgent
-    (structured relationships) into a single retrieve() call.
+    Step 7 — Hybrid Retrieval Engine (v2).
 
     Usage
     ─────
@@ -526,16 +581,6 @@ class HybridRetrievalEngine:
         result = engine.retrieve("How does KV recomputation work?")
         result = engine.retrieve("What benchmarks were used?", top_k=8)
         result = engine.retrieve("Show accuracy results", role_filter=["Result"])
-
-        # Access flat list for LLM:
-        passages = result.top_texts(k=5)
-
-        # Access subgraph for structured reasoning:
-        for explanation in result.edge_explanations():
-            print(explanation)
-
-        # Full audit trail:
-        print(result.provenance)
     """
 
     def __init__(
@@ -574,24 +619,20 @@ class HybridRetrievalEngine:
         ──────────
         query           : natural language question
         top_k           : FAISS seeds to retrieve  (default 5)
-        expand_k        : graph neighbours per seed  (default 3)
+        expand_k        : graph neighbours per seed (soft; MAX_KG_EXPANSION is hard cap)
         final_k         : nodes to return in ranked_results  (default 10)
         alpha           : override instance-level alpha for this call
         role_filter     : restrict FAISS seeds to these scholarly roles
-                          e.g. ["Method", "Result"]
         intent_override : skip intent detection, force this intent
-                          one of: method | dataset | result | figure | general
-
-        Returns
-        ───────
-        HybridResult with .ranked_results, .subgraph, .provenance
         """
         _alpha = alpha if alpha is not None else self._alpha
         self._scorer.alpha = _alpha
 
         # ── 1. Intent classification ──────────────────────────────────────────
+        intent_source = "classifier"
         if intent_override:
             intent, intent_conf = intent_override, 1.0
+            intent_source = "override"
         else:
             intent, intent_conf = self._intent.classify(query)
 
@@ -600,20 +641,32 @@ class HybridRetrievalEngine:
         # ── 2. FAISS semantic search ──────────────────────────────────────────
         faiss_results: list[RetrievalResult] = self._faiss.search(
             query,
-            top_k       = top_k,
-            role_filter = role_filter,
+            top_k         = top_k,
+            role_filter   = role_filter,
             include_noise = False,
         )
 
         if not faiss_results:
             logger.warning("FAISS returned no results for query: '%s'", query)
-            return self._empty_result(query, intent, intent_conf, _alpha)
+            return self._empty_result(query, intent, intent_conf, intent_source, _alpha)
 
-        seed_ids = [r.node_id for r in faiss_results]
+        seed_ids    = [r.node_id for r in faiss_results]
         faiss_lookup = {r.node_id: r for r in faiss_results}
 
-        logger.info("FAISS seeds: %d nodes  %s", len(seed_ids),
-                    [s[:8] for s in seed_ids])
+        logger.info("FAISS seeds: %d nodes  %s", len(seed_ids), [s[:8] for s in seed_ids])
+
+        # ── 2b. Role-based intent fallback ────────────────────────────────────
+        # If the regex classifier fired with low confidence, infer intent from
+        # the majority scholarly_role of the retrieved seeds instead.
+        if intent_conf < CONF_THRESHOLD and not intent_override:
+            fallback = infer_intent_from_seeds(faiss_results)
+            if fallback and fallback != intent:
+                logger.info(
+                    "Intent override: classifier='%s' (conf=%.2f) → role-fallback='%s'",
+                    intent, intent_conf, fallback,
+                )
+                intent = fallback
+                intent_source = "role_fallback"
 
         # ── 3. Graph expansion ────────────────────────────────────────────────
         expansion_hits = self._expander.expand(seed_ids, intent, expand_k)
@@ -627,16 +680,19 @@ class HybridRetrievalEngine:
 
         # ── 4. Hybrid scoring & merge ─────────────────────────────────────────
         scored_nodes = self._scorer.merge(
-            faiss_results   = faiss_results,
-            expansion_hits  = expansion_hits,
-            faiss_lookup    = faiss_lookup,
-            graph           = self._kg.graph,
+            faiss_results  = faiss_results,
+            expansion_hits = expansion_hits,
+            faiss_lookup   = faiss_lookup,
+            graph          = self._kg.graph,
         )
 
-        # Apply role filter to final list if specified
+        # Apply role filter to final list if specified (soft — filtered roles
+        # bubble to the end rather than being removed entirely)
         if role_filter:
-            scored_nodes = [n for n in scored_nodes if n.role in role_filter] \
-                         + [n for n in scored_nodes if n.role not in role_filter]
+            scored_nodes = (
+                [n for n in scored_nodes if n.role in role_filter]
+                + [n for n in scored_nodes if n.role not in role_filter]
+            )
 
         final_nodes = scored_nodes[:final_k]
 
@@ -649,7 +705,9 @@ class HybridRetrievalEngine:
             query           = query,
             intent          = intent,
             intent_conf     = intent_conf,
+            intent_source   = intent_source,
             alpha           = _alpha,
+            seed_bonus      = SEED_BONUS,
             faiss_seeds     = seed_ids,
             expanded_nodes  = expanded_ids,
             relations_used  = relations_used,
@@ -673,56 +731,54 @@ class HybridRetrievalEngine:
     # ──────────────────────────────────────────────────────────────────────────
 
     def retrieve_method(self, query: str, **kwargs) -> HybridResult:
-        """Force method intent — expands produces, used_in, refers_to."""
         return self.retrieve(query, intent_override="method", **kwargs)
 
     def retrieve_results(self, query: str, **kwargs) -> HybridResult:
-        """Force result intent — reverse-traverses produces, evaluated_on."""
         return self.retrieve(query, intent_override="result", **kwargs)
 
     def retrieve_dataset(self, query: str, **kwargs) -> HybridResult:
-        """Force dataset intent — expands evaluated_on, evaluated_by."""
         return self.retrieve(query, intent_override="dataset", **kwargs)
 
     def retrieve_figure(self, query: str, **kwargs) -> HybridResult:
-        """Force figure intent — follows refers_to edges to captions/figures."""
         return self.retrieve(query, intent_override="figure", **kwargs)
+
+    def retrieve_definition(self, query: str, **kwargs) -> HybridResult:
+        return self.retrieve(query, intent_override="definition", **kwargs)
 
     # ──────────────────────────────────────────────────────────────────────────
     # DIAGNOSTICS
     # ──────────────────────────────────────────────────────────────────────────
 
     def print_result(self, result: HybridResult, show_graph: bool = True) -> None:
-        """Pretty-print a HybridResult for debugging."""
         p = result.provenance
-        print(f"\n{'='*56}")
-        print(f"  HYBRID RETRIEVAL RESULT")
-        print(f"{'='*56}")
-        print(f"  Query   : {p.query}")
-        print(f"  Intent  : {p.intent}  (conf={p.intent_conf:.2f})")
-        print(f"  Alpha   : {p.alpha}  →  α·FAISS + (1-α)·Graph")
-        print(f"  Seeds   : {len(p.faiss_seeds)} FAISS nodes")
-        print(f"  Expanded: {len(p.expanded_nodes)} graph neighbours")
-        print(f"  Relations used: {p.relations_used}")
-        print(f"  Total candidates: {p.total_candidates}  →  final: {p.final_k}")
+        print(f"\n{'='*60}")
+        print(f"  HYBRID RETRIEVAL RESULT (v2)")
+        print(f"{'='*60}")
+        print(f"  Query        : {p.query}")
+        print(f"  Intent       : {p.intent}  (conf={p.intent_conf:.2f}, source={p.intent_source})")
+        print(f"  Alpha        : {p.alpha}  →  α·FAISS + (1-α)·Graph")
+        print(f"  Seed bonus   : +{p.seed_bonus}")
+        print(f"  Seeds        : {len(p.faiss_seeds)} FAISS nodes")
+        print(f"  Expanded     : {len(p.expanded_nodes)} graph neighbours (cap={MAX_KG_EXPANSION})")
+        print(f"  Relations    : {p.relations_used}")
+        print(f"  Candidates   : {p.total_candidates}  →  final: {p.final_k}")
         print(f"\n  Ranked Results:")
         print(f"  {'#':<3} {'node_id':<14} {'role':<12} {'pg':<4} "
-              f"{'final':>6} {'faiss':>6} {'graph':>6}  {'origin':<16}  text[:60]")
-        print(f"  {'-'*100}")
+              f"{'final':>6} {'faiss':>6} {'graph':>6}  {'origin':<18}  text[:60]")
+        print(f"  {'-'*104}")
         for i, n in enumerate(result.ranked_results):
             print(
                 f"  {i+1:<3} {n.node_id[:12]:<14} {n.role:<12} {n.page:<4} "
                 f"{n.final_score:>6.4f} {n.faiss_score:>6.4f} {n.graph_score:>6.4f}  "
-                f"{n.origin:<16}  {n.text[:60].replace(chr(10),' ')}"
+                f"{n.origin:<18}  {n.text[:60].replace(chr(10),' ')}"
             )
         if show_graph and result.subgraph.number_of_edges() > 0:
             print(f"\n  Subgraph edges ({result.subgraph.number_of_edges()}):")
             for line in result.edge_explanations():
                 print(f"    {line}")
-        print(f"{'='*56}\n")
+        print(f"{'='*60}\n")
 
     def validate(self) -> list[str]:
-        """Pre-flight checks before serving queries."""
         warnings: list[str] = []
         warnings += self._faiss.validate()
         warnings += self._kg.validate()
@@ -746,6 +802,7 @@ class HybridRetrievalEngine:
         query: str,
         intent: str,
         intent_conf: float,
+        intent_source: str,
         alpha: float,
     ) -> HybridResult:
         return HybridResult(
@@ -753,7 +810,8 @@ class HybridRetrievalEngine:
             subgraph       = nx.DiGraph(),
             provenance     = QueryProvenance(
                 query=query, intent=intent, intent_conf=intent_conf,
-                alpha=alpha, faiss_seeds=[], expanded_nodes=[],
-                relations_used=[], total_candidates=0, final_k=0,
+                intent_source=intent_source, alpha=alpha, seed_bonus=SEED_BONUS,
+                faiss_seeds=[], expanded_nodes=[], relations_used=[],
+                total_candidates=0, final_k=0,
             ),
         )

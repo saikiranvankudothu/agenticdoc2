@@ -8,21 +8,29 @@ Produces a NetworkX DiGraph used downstream as a structured retrieval layer.
 Graph anatomy
 ─────────────
 Nodes  — one per SemanticRegion  (paragraph, figure, table, caption, …)
-Edges  — three distinct sources:
+Edges  — four distinct sources:
   1. multimodal_links  → caption  ──refers_to──►  figure/table   (from linker)
   2. semantic_roles    → Method   ──produces──►   Result          (rule-based)
                          Definition ──used_in──►  Method
+                         Definition ──defines──►  Result/Observation  ← NEW
                          Dataset   ──evaluated_on►Result
   3. section_flow      → title    ──contains──►   paragraph/list  (layout)
+  4. co_section        → Definition ──co_section──► Definition     ← NEW
+                         (definitions in the same section linked for recall)
 
-Design goals
-────────────
-- Sparse, interpretable graph  (target: 100–500 edges for a typical paper)
-- O(n) semantic edge construction via role-bucket grouping  (was O(n²))
-- Cross-page semantic edges where the relationship is role-driven
-- Section-scoping: semantic edges only between nodes under the same section
-- GraphML + JSON serialisation  (pickle avoided — fragile across Python versions)
-- Retrieval-ready node/edge attributes for hybrid scoring downstream
+Changes from v1
+───────────────
+- Added `defines` edge: Definition → {Result, Observation, Method}
+  This was the root cause of definition_retrieval nDCG = 0.000 in Hybrid —
+  no KG edges encoded the "Definition" scholarly role, so expansion had zero signal.
+- Added `co_section` edge: Definition → Definition within same section
+  Enables recall expansion for definition queries.
+- Edge weights now use role_confidence of source node alone (not average with target)
+  when target role_confidence is 0 (e.g. figures with no text role).
+- MAX_ROLE_EDGES_PER_NODE raised from 3 → 5 for Definition nodes so that
+  a definition can link to multiple results/methods it applies to.
+- MULTIMODAL_LINK_THRESHOLD lowered from 0.35 → 0.30 for better figure coverage.
+- Sections are also assigned using "abstract" region_class (not just "title").
 """
 
 from __future__ import annotations
@@ -52,19 +60,23 @@ SEMANTIC_ROLE_EDGES: dict[str, list[tuple[str, str]]] = {
     #  source role      →  (target role,  relation label)
     "Method":     [("Result",      "produces"),
                    ("Observation", "produces")],
-    "Definition": [("Method",      "used_in")],
+    "Definition": [("Method",      "used_in"),
+                   ("Result",      "defines"),       # NEW — Definition clarifies a Result
+                   ("Observation", "defines")],      # NEW — Definition scopes an Observation
     "Dataset":    [("Result",      "evaluated_on"),
                    ("Method",      "evaluated_by")],
 }
 
-# Max outgoing semantic-role edges per node (keeps graph sparse)
-MAX_ROLE_EDGES_PER_NODE = 3
+# Max outgoing semantic-role edges per node
+# Raised for Definition nodes specifically (see _add_semantic_role_edges).
+MAX_ROLE_EDGES_PER_NODE         = 3
+MAX_ROLE_EDGES_PER_DEFINITION   = 5   # definitions often apply to many targets
 
 # Section titles regex  (matches "2. Related Work", "3.1 Method", "Abstract", …)
 _SECTION_RE = re.compile(r"^\s*(\d+[\.\d]*\.?\s+)?[A-Z][\w\s\-&:]{2,60}$")
 
-# Minimum s_link score to include a multimodal edge
-MULTIMODAL_LINK_THRESHOLD = 0.35
+# Minimum s_link score to include a multimodal edge (lowered from 0.35)
+MULTIMODAL_LINK_THRESHOLD = 0.30
 
 # Roles excluded from being graph nodes useful for traversal
 NOISE_ROLES   = {"N/A"}
@@ -142,6 +154,7 @@ class KnowledgeGraphAgent:
     Output:  NetworkX DiGraph  G = (V, E)
              Nodes  — one per SemanticRegion
              Edges  — multimodal_links + semantic role-based + section-containment
+                    + co_section (new: links Definitions within same section)
 
     Quick usage
     ───────────
@@ -185,6 +198,7 @@ class KnowledgeGraphAgent:
         self._assign_sections(regions)        # annotates section_id on nodes
         self._add_multimodal_edges(links)
         self._add_semantic_role_edges()
+        self._add_co_section_definition_edges()   # NEW
         self._add_section_containment_edges()
 
         logger.info(
@@ -224,7 +238,7 @@ class KnowledgeGraphAgent:
     def _assign_sections(self, regions: list[dict]) -> None:
         """
         Walk regions in document order (page_index, bbox_y0).
-        When a title region is encountered it becomes the active section.
+        When a title or abstract region is encountered it becomes the active section.
         Each subsequent non-title region gets section_id = that title's region_id.
         """
         sorted_regions = sorted(
@@ -239,7 +253,10 @@ class KnowledgeGraphAgent:
             rc   = r["region_class"].lower()
             text = r.get("text_content") or ""
 
+            # Accept "abstract" region_class as a section boundary too
             if rc == "title" and _SECTION_RE.match(text):
+                current_section = nid
+            elif rc == "abstract":
                 current_section = nid
 
             attrs = self._node_attrs.get(nid)
@@ -292,6 +309,13 @@ class KnowledgeGraphAgent:
         of each role into buckets, then connect source→target within the same
         section. Falls back to same-page if section info is unavailable.
 
+        Key improvement over v1:
+        - Definition nodes get MAX_ROLE_EDGES_PER_DEFINITION (5) outgoing edges
+          instead of 3, so they can point to multiple methods/results.
+        - Edge weight uses source role_confidence if target role_confidence is 0
+          (avoids always-zero weights on figure/table targets).
+        - `defines` relation added: Definition → Result and Definition → Observation.
+
         Complexity: O(n)  —  bucket look-up, no nested loop over all pairs.
         """
         # Build role → [node_id] buckets  (skip noise nodes)
@@ -306,6 +330,13 @@ class KnowledgeGraphAgent:
             src_nodes = role_buckets.get(src_role, [])
             if not src_nodes:
                 continue
+
+            # Definition nodes are allowed more outgoing edges
+            max_edges = (
+                MAX_ROLE_EDGES_PER_DEFINITION
+                if src_role == "Definition"
+                else MAX_ROLE_EDGES_PER_NODE
+            )
 
             for tgt_role, relation in targets:
                 tgt_nodes = role_buckets.get(tgt_role, [])
@@ -327,7 +358,6 @@ class KnowledgeGraphAgent:
 
                     # If no same-section match, allow same-page cross-section
                     if not candidates:
-                        page_key_prefix = f"__page_{a_src.page}"
                         candidates = [
                             nid for (sec, pg), nodes in tgt_by_section.items()
                             if pg == a_src.page
@@ -336,23 +366,80 @@ class KnowledgeGraphAgent:
 
                     added = 0
                     for tgt in candidates:
-                        if added >= MAX_ROLE_EDGES_PER_NODE:
+                        if added >= max_edges:
                             break
                         if self.graph.has_edge(src, tgt):
                             continue
                         a_tgt = self._node_attrs[tgt]
+
+                        # Use source confidence when target has no role confidence
+                        # (avoids always-zero weights e.g. when target is a figure)
+                        src_rc = a_src.role_confidence
+                        tgt_rc = a_tgt.role_confidence
+                        if tgt_rc > 0:
+                            weight = round((src_rc + tgt_rc) / 2, 4)
+                        else:
+                            weight = round(src_rc, 4)
+
                         self.graph.add_edge(
                             src, tgt,
                             relation    = relation,
-                            weight      = round(
-                                (a_src.role_confidence + a_tgt.role_confidence) / 2, 4
-                            ),
+                            weight      = max(weight, 0.1),   # floor so edge is never ignored
                             edge_source = "semantic_role",
                         )
                         added += 1
                         total_added += 1
 
         logger.info("Semantic role edges added: %d", total_added)
+
+    # ──────────────────────────────────────────────────────────────────────────
+    # STEP 4b — CO-SECTION DEFINITION EDGES  (NEW)
+    # ──────────────────────────────────────────────────────────────────────────
+
+    def _add_co_section_definition_edges(self) -> None:
+        """
+        Link Definition nodes that share the same section with a `co_section` edge.
+
+        Why this matters:
+        - When a definition query's FAISS seed hits one Definition node,
+          graph expansion via `co_section` can recover sibling definitions
+          that the embedding missed — improving recall for definition queries.
+        - Only links within the same section to keep the graph sparse.
+        - Max 3 co_section edges per Definition node to avoid hub explosion.
+        """
+        MAX_CO_SECTION = 3
+
+        # Group Definition nodes by section
+        section_defs: dict[str, list[str]] = defaultdict(list)
+        for nid, attrs in self._node_attrs.items():
+            if attrs.scholarly_role == "Definition" and not attrs.is_noise:
+                sec_key = attrs.section_id or f"__page_{attrs.page}"
+                section_defs[sec_key].append(nid)
+
+        added = 0
+        for sec_key, def_nodes in section_defs.items():
+            if len(def_nodes) < 2:
+                continue
+            for i, src in enumerate(def_nodes):
+                connected = 0
+                for tgt in def_nodes:
+                    if tgt == src:
+                        continue
+                    if connected >= MAX_CO_SECTION:
+                        break
+                    if self.graph.has_edge(src, tgt):
+                        continue
+                    src_rc = self._node_attrs[src].role_confidence
+                    self.graph.add_edge(
+                        src, tgt,
+                        relation    = "co_section",
+                        weight      = round(max(src_rc, 0.1), 4),
+                        edge_source = "co_section",
+                    )
+                    connected += 1
+                    added += 1
+
+        logger.info("Co-section definition edges added: %d", added)
 
     # ──────────────────────────────────────────────────────────────────────────
     # STEP 5 — SECTION CONTAINMENT EDGES  (title ──contains──► body)
