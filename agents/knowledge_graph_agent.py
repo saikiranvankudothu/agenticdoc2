@@ -65,6 +65,7 @@ SEMANTIC_ROLE_EDGES: dict[str, list[tuple[str, str]]] = {
                    ("Observation", "defines")],      # NEW — Definition scopes an Observation
     "Dataset":    [("Result",      "evaluated_on"),
                    ("Method",      "evaluated_by")],
+    "Result":     [("Observation", "supports")],
 }
 
 # Max outgoing semantic-role edges per node

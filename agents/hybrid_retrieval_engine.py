@@ -118,14 +118,14 @@ logging.basicConfig(
 # Constants
 # ──────────────────────────────────────────────────────────────────────────────
 
-DEFAULT_ALPHA     = 0.7     # raised from 0.6 — FAISS baseline was already strong
+DEFAULT_ALPHA     = 0.60     # raised from 0.6 — FAISS baseline was already strong
 DEFAULT_TOP_K     = 5       # seeds from FAISS
 DEFAULT_EXPAND_K  = 3       # graph neighbours per seed (soft limit; MAX_KG_EXPANSION is hard)
 DEFAULT_FINAL_K   = 10      # results returned to caller
 RRF_K             = 60      # not used (weighted sum chosen) — kept for reference
 
 # v2 additions
-SEED_BONUS        = 0.20    # additive bonus applied to all FAISS seed final_scores
+SEED_BONUS        = 0.08    # additive bonus applied to all FAISS seed final_scores
                             # prevents graph neighbours displacing correct seeds
 MIN_KG_SCORE      = 0.10    # drop expansion nodes whose edge_weight < this
 MAX_KG_EXPANSION  = 4       # hard cap on total KG expansion nodes per query
@@ -177,8 +177,16 @@ _INTENT_PATTERNS: list[tuple[str, list[str]]] = [
     ("method",     [r"\bmethod\b", r"\bapproach\b", r"\balgorithm\b", r"\btechnique\b",
                     r"\barchitecture\b", r"\bmodel\b", r"\bpipeline\b", r"\bframework\b",
                     r"\bhow (does|do|did|is)\b", r"\bpropose[ds]?\b", r"\btrain(ing)?\b"]),
-    ("dataset",    [r"\bdataset\b", r"\bbenchmark\b", r"\bcorpus\b", r"\bevaluat\w+\b",
-                    r"\bbaseline\b", r"\bexperiment\b", r"\btrain(ing)? (set|data)\b"]),
+    ("dataset", [
+        r"\bdataset\b",
+        r"\bbenchmark\b",   
+        r"\bcorpus\b",
+        r"\bused (for|in)\b",
+        r"\bevaluat\w+\b",
+        r"\bbaseline\b",
+        r"\bexperiment\b",
+        r"\btrain(ing)? (set|data)\b"
+    ]),
     ("result",     [r"\bresult\b", r"\bperformance\b", r"\baccuracy\b", r"\bscore\b",
                     r"\bimprove\w*\b", r"\boutperform\w*\b", r"\bf1\b", r"\bbleu\b",
                     r"\bprecision\b", r"\brecall\b", r"\bmetric\b"]),
@@ -187,6 +195,8 @@ _INTENT_PATTERNS: list[tuple[str, list[str]]] = [
                     r"\bdenot\w+\b", r"\brefer[s]? to\b"]),
     ("figure",     [r"\bfigure\b", r"\bfig\b", r"\btable\b", r"\bplot\b", r"\bdiagram\b",
                     r"\bvisuali[sz]\w*\b", r"\billustrat\w*\b", r"\bshown? in\b"]),
+    ("observation", [r"\bobservation\b",r"\bfinding[s]?\b",r"\breport[s]?\b",
+                    r"\bdiscover\w*\b",r"\bobserv\w+\b",r"\bwhat (does|do|did).{0,20}(report|show|find|note)\b"]),
 ]
 
 

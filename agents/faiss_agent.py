@@ -258,7 +258,7 @@ class FAISSAgent:
             if not m.text.strip():
                 continue
 
-            if len(m.text.strip()) < 30:
+            if len(m.text.strip()) < 5:
                 continue
 
             filtered_meta.append(m)
